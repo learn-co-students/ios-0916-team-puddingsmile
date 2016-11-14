@@ -18,6 +18,10 @@ class LandingView: UIView {
     //searchButton.addTarget(self, action: "action:" forControlEvents.TouchUpInside)
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.lightGray
+        createButtons()
+        loadConstraints()
+       
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,41 +30,44 @@ class LandingView: UIView {
     
     func createButtons() {
         
-        searchButton = UIButton(type: UIButtonType.system) as UIButton
-        searchButton.titleLabel?.text = "Search"
-        searchButton.setTitleColor(UIColor.blue, for: .normal)
+        searchButton = UIButton()
+        searchButton.setTitle("Search", for: .normal)
+        searchButton.setTitleColor(UIColor.white, for: .normal)
+        searchButton.backgroundColor = UIColor.darkGray
         self.addSubview(searchButton)
         
-        hereButton = UIButton(type: UIButtonType.system) as UIButton
-        hereButton.titleLabel?.text = "Here"
-        hereButton.setTitleColor(UIColor.red, for: .normal)
+        hereButton = UIButton()
+        hereButton.setTitle("Here", for: .normal)
+        hereButton.setTitleColor(UIColor.white, for: .normal)
+        hereButton.backgroundColor = UIColor.darkGray
         self.addSubview(hereButton)
         
-        moreButton = UIButton(type: UIButtonType.system) as UIButton
-        moreButton.titleLabel?.text = "More"
-        moreButton.setTitleColor(UIColor.green, for: .normal)
+        moreButton = UIButton()
+        moreButton.setTitle("More", for: .normal)
+        moreButton.setTitleColor(UIColor.white, for: .normal)
+        moreButton.backgroundColor = UIColor.darkGray
         self.addSubview(moreButton)
     }
     
     
-    func addConstraints() {
+    func loadConstraints() {
         self.searchButton.translatesAutoresizingMaskIntoConstraints = false
         searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.2).isActive = true
+        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.1).isActive = true
         searchButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1).isActive = true
-        searchButton.widthAnchor.constraint(equalToConstant: self.frame.height * 0.8).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
         
         self.hereButton.translatesAutoresizingMaskIntoConstraints = false
         hereButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
         hereButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.3).isActive = true
         hereButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1).isActive = true
-        hereButton.widthAnchor.constraint(equalToConstant: self.frame.height * 0.8).isActive = true
+        hereButton.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
         
         self.moreButton.translatesAutoresizingMaskIntoConstraints = false
-        hereButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        hereButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.4).isActive = true
+        moreButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
+        moreButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.5).isActive = true
         moreButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1).isActive = true
-        moreButton.widthAnchor.constraint(equalToConstant: self.frame.height * 0.8).isActive = true
+        moreButton.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
         
     }
     
