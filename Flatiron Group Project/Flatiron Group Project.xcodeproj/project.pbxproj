@@ -19,6 +19,7 @@
 		B5D2DD6F1DDA50F3001F2CCE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD6E1DDA50F3001F2CCE /* MapViewController.swift */; };
 		B5D2DD711DDA50FD001F2CCE /* MarketInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD701DDA50FD001F2CCE /* MarketInfoViewController.swift */; };
 		B5D2DD731DDA51ED001F2CCE /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD721DDA51ED001F2CCE /* Market.swift */; };
+		C34FD6E01DDA5F560096535D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FD6DF1DDA5F560096535D /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B5D2DD6E1DDA50F3001F2CCE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B5D2DD701DDA50FD001F2CCE /* MarketInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoViewController.swift; sourceTree = "<group>"; };
 		B5D2DD721DDA51ED001F2CCE /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		C34FD6DF1DDA5F560096535D /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		B5D2DD751DDA5240001F2CCE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C34FD6DF1DDA5F560096535D /* SearchView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				563F07AD1DDA232200941467 /* LandingViewController.swift in Sources */,
 				B5D2DD731DDA51ED001F2CCE /* Market.swift in Sources */,
 				563F07AB1DDA232100941467 /* AppDelegate.swift in Sources */,
+				C34FD6E01DDA5F560096535D /* SearchView.swift in Sources */,
 				B5D2DD6D1DDA50E9001F2CCE /* SearchViewController.swift in Sources */,
 				B5D2DD6F1DDA50F3001F2CCE /* MapViewController.swift in Sources */,
 				563F07B31DDA232200941467 /* Flatiron_Group_Project.xcdatamodeld in Sources */,
