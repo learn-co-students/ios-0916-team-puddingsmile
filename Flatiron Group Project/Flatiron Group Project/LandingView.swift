@@ -29,36 +29,38 @@ class LandingView: UIView {
         searchButton = UIButton(type: UIButtonType.system) as UIButton
         searchButton.titleLabel?.text = "Search"
         searchButton.setTitleColor(UIColor.blue, for: .normal)
+        self.addSubview(searchButton)
         
         hereButton = UIButton(type: UIButtonType.system) as UIButton
         hereButton.titleLabel?.text = "Here"
         hereButton.setTitleColor(UIColor.red, for: .normal)
+        self.addSubview(hereButton)
         
         moreButton = UIButton(type: UIButtonType.system) as UIButton
         moreButton.titleLabel?.text = "More"
         moreButton.setTitleColor(UIColor.green, for: .normal)
-        
+        self.addSubview(moreButton)
     }
     
     
     func addConstraints() {
         self.searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        searchButton.topAnchor
-        searchButton.heightAnchor.constraint(equalTo: self.frame.height * 0.1).isActive = true
-        searchButton.widthAnchor
+        searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
+        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.2).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: self.frame.height * 0.8).isActive = true
         
         self.hereButton.translatesAutoresizingMaskIntoConstraints = false
-        hereButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        hereButton.topAnchor
-        hereButton.heightAnchor
-        hereButton.widthAnchor
+        hereButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
+        hereButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.3).isActive = true
+        hereButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1).isActive = true
+        hereButton.widthAnchor.constraint(equalToConstant: self.frame.height * 0.8).isActive = true
         
         self.moreButton.translatesAutoresizingMaskIntoConstraints = false
-        moreButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        moreButton.topAnchor
-        moreButton.heightAnchor
-        moreButton.widthAnchor
+        hereButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
+        hereButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.4).isActive = true
+        moreButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1).isActive = true
+        moreButton.widthAnchor.constraint(equalToConstant: self.frame.height * 0.8).isActive = true
         
     }
     
