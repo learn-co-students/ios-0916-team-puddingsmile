@@ -15,7 +15,6 @@
 		563F07C31DDA232200941467 /* Flatiron_Group_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F07C21DDA232200941467 /* Flatiron_Group_ProjectTests.swift */; };
 		563F07CE1DDA232200941467 /* Flatiron_Group_ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F07CD1DDA232200941467 /* Flatiron_Group_ProjectUITests.swift */; };
 		56FE70D01DDA564A00D72127 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FE70CF1DDA564A00D72127 /* LandingView.swift */; };
-		B5D2DD6B1DDA48F9001F2CCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D2DD6A1DDA48F9001F2CCE /* Main.storyboard */; };
 		B5D2DD6D1DDA50E9001F2CCE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD6C1DDA50E9001F2CCE /* SearchViewController.swift */; };
 		B5D2DD6F1DDA50F3001F2CCE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD6E1DDA50F3001F2CCE /* MapViewController.swift */; };
 		B5D2DD711DDA50FD001F2CCE /* MarketInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD701DDA50FD001F2CCE /* MarketInfoViewController.swift */; };
@@ -54,7 +53,6 @@
 		563F07CD1DDA232200941467 /* Flatiron_Group_ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flatiron_Group_ProjectUITests.swift; sourceTree = "<group>"; };
 		563F07CF1DDA232200941467 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56FE70CF1DDA564A00D72127 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
-		B5D2DD6A1DDA48F9001F2CCE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B5D2DD6C1DDA50E9001F2CCE /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B5D2DD6E1DDA50F3001F2CCE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B5D2DD701DDA50FD001F2CCE /* MarketInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				B5D2DD751DDA5240001F2CCE /* View */,
 				B5D2DD741DDA5237001F2CCE /* Model */,
 				563F07AA1DDA232100941467 /* AppDelegate.swift */,
-				B5D2DD6A1DDA48F9001F2CCE /* Main.storyboard */,
 				563F07B41DDA232200941467 /* Assets.xcassets */,
 				563F07B61DDA232200941467 /* LaunchScreen.storyboard */,
 				563F07B91DDA232200941467 /* Info.plist */,
@@ -274,7 +271,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5D2DD6B1DDA48F9001F2CCE /* Main.storyboard in Resources */,
 				563F07B81DDA232200941467 /* LaunchScreen.storyboard in Resources */,
 				563F07B51DDA232200941467 /* Assets.xcassets in Resources */,
 			);
