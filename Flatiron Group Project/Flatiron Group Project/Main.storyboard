@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="1264" y="453"/>
         </scene>
-        <!--View Controller-->
+        <!--Market Info View Controller-->
         <scene sceneID="NAh-ln-RtU">
             <objects>
-                <viewController id="49H-QK-bnC" sceneMemberID="viewController">
+                <viewController id="49H-QK-bnC" customClass="MarketInfoViewController" customModule="Flatiron_Group_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Cd-Eu-6jy"/>
                         <viewControllerLayoutGuide type="bottom" id="l4t-s3-sdc"/>
