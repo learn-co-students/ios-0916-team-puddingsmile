@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		563F07AB1DDA232100941467 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F07AA1DDA232100941467 /* AppDelegate.swift */; };
 		563F07AD1DDA232200941467 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563F07AC1DDA232200941467 /* ViewController.swift */; };
-		563F07B01DDA232200941467 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563F07AE1DDA232200941467 /* Main.storyboard */; };
 		563F07B31DDA232200941467 /* Flatiron_Group_Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 563F07B11DDA232200941467 /* Flatiron_Group_Project.xcdatamodeld */; };
 		563F07B51DDA232200941467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 563F07B41DDA232200941467 /* Assets.xcassets */; };
 		563F07B81DDA232200941467 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563F07B61DDA232200941467 /* LaunchScreen.storyboard */; };
@@ -38,7 +37,6 @@
 		563F07A71DDA232100941467 /* Flatiron Group Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flatiron Group Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		563F07AA1DDA232100941467 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		563F07AC1DDA232200941467 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		563F07AF1DDA232200941467 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		563F07B21DDA232200941467 /* Flatiron_Group_Project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Flatiron_Group_Project.xcdatamodel; sourceTree = "<group>"; };
 		563F07B41DDA232200941467 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		563F07B71DDA232200941467 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 			children = (
 				563F07AA1DDA232100941467 /* AppDelegate.swift */,
 				563F07AC1DDA232200941467 /* ViewController.swift */,
-				563F07AE1DDA232200941467 /* Main.storyboard */,
 				563F07B41DDA232200941467 /* Assets.xcassets */,
 				563F07B61DDA232200941467 /* LaunchScreen.storyboard */,
 				563F07B91DDA232200941467 /* Info.plist */,
@@ -237,7 +234,6 @@
 			files = (
 				563F07B81DDA232200941467 /* LaunchScreen.storyboard in Resources */,
 				563F07B51DDA232200941467 /* Assets.xcassets in Resources */,
-				563F07B01DDA232200941467 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,14 +296,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		563F07AE1DDA232200941467 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				563F07AF1DDA232200941467 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		563F07B61DDA232200941467 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -509,6 +497,7 @@
 				563F07D41DDA232200941467 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		563F07D51DDA232200941467 /* Build configuration list for PBXNativeTarget "Flatiron Group ProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +506,7 @@
 				563F07D71DDA232200941467 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		563F07D81DDA232200941467 /* Build configuration list for PBXNativeTarget "Flatiron Group ProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +515,7 @@
 				563F07DA1DDA232200941467 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
