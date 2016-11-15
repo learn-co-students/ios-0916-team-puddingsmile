@@ -22,6 +22,7 @@
 		B5D2DD731DDA51ED001F2CCE /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD721DDA51ED001F2CCE /* Market.swift */; };
 		B5D2DD781DDA5550001F2CCE /* MarketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DD771DDA5550001F2CCE /* MarketInfoView.swift */; };
 		C34FD6E01DDA5F560096535D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34FD6DF1DDA5F560096535D /* SearchView.swift */; };
+		C3C658E01DDBC34800C7B533 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C658DF1DDBC34800C7B533 /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		B5D2DD721DDA51ED001F2CCE /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		B5D2DD771DDA5550001F2CCE /* MarketInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoView.swift; sourceTree = "<group>"; };
 		C34FD6DF1DDA5F560096535D /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C3C658DF1DDBC34800C7B533 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				563F07B11DDA232200941467 /* Flatiron_Group_Project.xcdatamodeld */,
 				B5D2DD721DDA51ED001F2CCE /* Market.swift */,
+				C3C658DF1DDBC34800C7B533 /* Parser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5D2DD711DDA50FD001F2CCE /* MarketInfoViewController.swift in Sources */,
+				C3C658E01DDBC34800C7B533 /* Parser.swift in Sources */,
 				563F07AD1DDA232200941467 /* LandingViewController.swift in Sources */,
 				B5D2DD781DDA5550001F2CCE /* MarketInfoView.swift in Sources */,
 				B5D2DD731DDA51ED001F2CCE /* Market.swift in Sources */,
