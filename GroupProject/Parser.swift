@@ -41,13 +41,14 @@ func csvParser(csv: String) -> [[String: String]] {
     }
     
     for values in arrayOfValues {
+        
         dictionary["name"] = values[0]
-        dictionary["latitude"] = values[1]
-        dictionary["longitude"] = values[2]
-        dictionary["yearRound"] = values[3]
-        dictionary["timeOfDay"] = values[4]
+        dictionary["address"] = values[1]
+        dictionary["latitude"] = values[2]
+        dictionary["longitude"] = values[3]
+        dictionary["time"] = values[4]
         dictionary["days"] = values[5]
-        dictionary["EBT"] = values[6]
+        dictionary["ebt"] = values[6]
         dictionary["borough"] = values[7]
         dictionary["website"] = values[8]
         dictionary["extras"] = values[9]

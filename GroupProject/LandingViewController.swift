@@ -15,6 +15,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
+        
+        
+        let test = MarketDatabase()
+        test.makeMarkets()
+        
     }
     
 }
