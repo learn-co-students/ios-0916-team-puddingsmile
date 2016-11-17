@@ -8,14 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
+        
+        let info = Parser.csvParser()
+        print(info[50]["latitude"])
     }
-    
 }
 
