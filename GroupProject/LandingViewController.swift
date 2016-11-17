@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +16,20 @@ class ViewController: UIViewController {
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
         
+<<<<<<< HEAD
         
         let test = MarketDatabase()
         test.makeMarkets()
+=======
+        let info = Parser.csvParser()
+        let timeofday = info[36]["timeOfDay"]
+        let timeofyear = info[36]["timeOfYear"]
+        let tupleDay = Parser.timeOfDay(dayString: timeofday!)
+        let tupleMonth = Parser.timeOfYear(monthString: timeofyear!)
+        
+        print("\(tupleMonth)\(tupleDay)")
+>>>>>>> master
         
     }
-    
 }
 
