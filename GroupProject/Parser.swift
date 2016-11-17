@@ -58,21 +58,7 @@ struct Parser {
         return jsonDictionary
     }
     
-<<<<<<< HEAD
-    for values in arrayOfValues {
-        
-        dictionary["name"] = values[0]
-        dictionary["address"] = values[1]
-        dictionary["latitude"] = values[2]
-        dictionary["longitude"] = values[3]
-        dictionary["time"] = values[4]
-        dictionary["days"] = values[5]
-        dictionary["ebt"] = values[6]
-        dictionary["borough"] = values[7]
-        dictionary["website"] = values[8]
-        dictionary["extras"] = values[9]
-        jsonDictionary.append(dictionary)
-=======
+
     static func timeOfDay(dayString: String) -> (String, String) {
         let times = dayString.components(separatedBy: "/") as [String]
         var startTimes = [String]()
@@ -107,7 +93,7 @@ struct Parser {
         let startValue = "\(startTime):\(startTimes[1])\(startAA)"
         let endValue = "\(endTime):\(endTimes[1])\(endAA)"
         return (startValue, endValue)
->>>>>>> master
+
     }
     
     static func timeOfYear(monthString: String) -> (String, String) {

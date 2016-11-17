@@ -11,53 +11,49 @@ import FirebaseDatabase
 
 class MarketDatabase {
     
-    
-    
-    let testString = "Bronx Borough Hall Greenmarket,Grand Concourse bet 161st & 162nd Street,40.827307,-73.922772,6/7/11/22,8/16,Tuesday,EBT,Bronx,https://www.grownyc.org/greenmarket/bronx/bronx-borough-hall,Textile Recycling/Food Scrap Composting"
-    
-    
-    
-    
-    func makeMarkets() {
+    static func makeMarkets() {
         let ref = FIRDatabase.database().reference()
         
         let marketsRef = ref.child("markets")
         
-        let returnDictionary = csvParser(csv: testString)
-        
-        
+        let returnDictionary = Parser.csvParser()
+        print("called")
         
         for dictionary in returnDictionary {
+            print("called")
             
             let nameChild = marketsRef.child(dictionary["name"]!)
-            
+            print("after nameChild")
             let addressRef = nameChild.child("address")
             addressRef.setValue(dictionary["address"])
-            
+            print("afterAddress")
             let latitudeRef = nameChild.child("latitude")
             latitudeRef.setValue(dictionary["latitude"])
-            
+            print("lat")
             let longitudeRef = nameChild.child("longitude")
             longitudeRef.setValue(dictionary["longitude"])
-            
-            let timeRef = nameChild.child("time")
-            timeRef.setValue(dictionary["time"])
-            
+            print("long")
+            let timeRef = nameChild.child("timeOfYear")
+            timeRef.setValue(dictionary["timeOfYear"])
+            print("time")
+            let timeOfDay = nameChild.child("timeOfDay")
+            timeOfDay.setValue(dictionary["timeOfDay"])
+            print("timeOfDay")
             let datesRef = nameChild.child("days")
             datesRef.setValue(dictionary["days"])
-            
+            print("datesRef")
             let ebtRef = nameChild.child("ebt")
-            ebtRef.setValue(dictionary["ebt"])
-            
+            ebtRef.setValue(dictionary["EBT"])
+            print("ebtRef")
             let boroughRef = nameChild.child("borough")
             boroughRef.setValue(dictionary["borough"])
-            
+            print("borough")
             let websiteRef = nameChild.child("website")
             websiteRef.setValue(dictionary["website"])
-            
+            print("websiteRef")
             let extrasRef = nameChild.child("extras")
             extrasRef.setValue(dictionary["extras"])
-            
+            print("extrasRef")
         }
     }
 }
