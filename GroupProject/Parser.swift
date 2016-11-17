@@ -57,8 +57,78 @@ struct Parser {
         }
         return jsonDictionary
     }
-}
+    
+    static func timeOfDay(dayString: String) -> (String, String) {
+        let times = dayString.components(separatedBy: "/") as [String]
+        var startTimes = [String]()
+        var endTimes = [String]()
+        if times[0].contains(":") {
+            startTimes = times[0].components(separatedBy: ":") as [String]
+        } else {
+            startTimes.append(times[0])
+            startTimes.append("00")
+        }
+        if times[1].contains(":") {
+            endTimes = times[1].components(separatedBy: ":") as [String]
+        } else {
+            endTimes.append(times[1])
+            endTimes.append("00")
+        }
+     
+        var startTime = Int(startTimes[0])!
+        var startAA = "am"
+        var endTime = Int(endTimes[0])!
+        var endAA = "am"
 
+        if startTime > 12 {
+            startTime -= 12
+            startAA = "pm"
+        }
+        if endTime > 12 {
+            endTime -= 12
+            endAA = "pm"
+        }
+
+        let startValue = "\(startTime):\(startTimes[1])\(startAA)"
+        let endValue = "\(endTime):\(endTimes[1])\(endAA)"
+        return (startValue, endValue)
+    }
+    
+    
+    
+}
+//func produceDates(from string: String) -> (Date, Date){
+//    let elements = terribleString.components(separatedBy: "/")
+//    
+//    let string1 = elements[0] + elements[1]
+//    let string2 = elements[2] + elements[3]
+//    
+//    let dateFormatter = DateFormatter()
+//    dateFormatter.dateFormat = "MMMMd"
+//    
+//    return (dateFormatter.date(from: string1)!, dateFormatter.date(from: string2)!)
+//}
+//let dates = produceDates(from: terribleString)
+//func isInRange(start: Date, end: Date) -> Bool {
+//    let now = Date()
+//    if now.month > start.month && now.month < end.month {
+//        return true
+//    } else if now.month == start.month {
+//        return now.day > start.day
+//    } else if now.month == end.month {
+//        return now.day < end.day
+//    }
+//    return false
+//}
+//extension Date {
+//    var month: Int {
+//        return Calendar.current.component(.month, from: self)
+//    }
+//    var day: Int {
+//        return Calendar.current.component(.day, from: self)
+//    }
+//}
+//isInRange(start: dates.0, end: dates.1)
 
 
 

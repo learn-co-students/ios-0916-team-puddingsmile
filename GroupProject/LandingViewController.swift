@@ -17,7 +17,9 @@ class LandingViewController: UIViewController {
         self.view = landingView
         
         let info = Parser.csvParser()
-        print(info[50]["latitude"])
+        let timeofday = info[50]["timeOfDay"]
+        let tupleDay = Parser.timeOfDay(dayString: timeofday!)
+        print(tupleDay)
     }
 }
 
