@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G1108" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Market" representedClassName="Market" syncable="YES" codeGenerationType="class">
-        <attribute name="acceptEBT" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="acceptEBT" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="borough" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="extras" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hoursOpen" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="marketWebsite" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="monthsOpen" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weekDayOpen" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Market" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="Market" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
 </model>
