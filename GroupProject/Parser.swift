@@ -94,6 +94,13 @@ struct Parser {
         return (startValue, endValue)
     }
     
+    static func timeOfYear(monthString: String) -> (String, String) {
+        let times = monthString.components(separatedBy: "/") as [String]
+        let startDay = "\(times[0])/\(times[1])"
+        let endDay = "\(times[2])/\(times[3])"
+        
+        return (startDay, endDay)
+    }
     
     
 }

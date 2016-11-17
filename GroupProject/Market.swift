@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Market {
+struct _market {
     
     var latitude: Double
     var longitude: Double
