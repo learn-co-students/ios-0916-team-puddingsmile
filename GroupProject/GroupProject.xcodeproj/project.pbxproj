@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41C9EFEF0D58011ADABDA4A5 /* Pods_GroupProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E796F04915D3867E73E5AD /* Pods_GroupProjectTests.framework */; };
 		52118E11BE677BA33E036F3B /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */; };
+		56BE38301DDE560100D5EA17 /* Market.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56BE382E1DDE560100D5EA17 /* Market.xcdatamodeld */; };
 		B5D2DD9F1DDE45EE001F2CCE /* MarketInfo.csv in Resources */ = {isa = PBXBuildFile; fileRef = B5D2DD9E1DDE45EE001F2CCE /* MarketInfo.csv */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
 		C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C658ED1DDBCC1A00C7B533 /* AppDelegate.swift */; };
@@ -52,6 +53,7 @@
 		237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E14FECD137F0044D1F924B /* Pods-GroupProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		467396D901C55DBB36357A1F /* Pods-GroupProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		56BE382F1DDE560100D5EA17 /* Market.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Market.xcdatamodel; sourceTree = "<group>"; };
 		64E796F04915D3867E73E5AD /* Pods_GroupProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA920360D82CF7B104239AA /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		B5D2DD9E1DDE45EE001F2CCE /* MarketInfo.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MarketInfo.csv; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		C3C658E11DDBCC1A00C7B533 = {
 			isa = PBXGroup;
 			children = (
+				56BE382E1DDE560100D5EA17 /* Market.xcdatamodeld */,
 				B5D2DD9E1DDE45EE001F2CCE /* MarketInfo.csv */,
 				C3C659231DDBCCD400C7B533 /* Controller */,
 				C3C659221DDBCCC800C7B533 /* Models */,
@@ -500,6 +503,7 @@
 				C3C659451DDBCE8300C7B533 /* SearchView.swift in Sources */,
 				C3C6593F1DDBCE7C00C7B533 /* Parser.swift in Sources */,
 				C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */,
+				56BE38301DDE560100D5EA17 /* Market.xcdatamodeld in Sources */,
 				C3C658F61DDBCC1A00C7B533 /* GroupProject.xcdatamodeld in Sources */,
 				C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */,
 				C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */,
@@ -783,6 +787,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		56BE382E1DDE560100D5EA17 /* Market.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				56BE382F1DDE560100D5EA17 /* Market.xcdatamodel */,
+			);
+			currentVersion = 56BE382F1DDE560100D5EA17 /* Market.xcdatamodel */;
+			path = Market.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		C3C658F41DDBCC1A00C7B533 /* GroupProject.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
