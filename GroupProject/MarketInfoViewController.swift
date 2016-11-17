@@ -15,7 +15,7 @@ class MarketInfoViewController: UIViewController {
         super.viewDidLoad()
 
         let marketInfoView = MarketInfo(frame: self.view.frame)
-
+    
         self.view = marketInfoView
    
     }
