@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class MarketInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         let marketInfoView = MarketInfo(frame: self.view.frame)
 
