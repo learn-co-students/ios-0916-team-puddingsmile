@@ -126,39 +126,3 @@ struct Parser {
     }
     
 }
-//func produceDates(from string: String) -> (Date, Date){
-//    let elements = terribleString.components(separatedBy: "/")
-//    
-//    let string1 = elements[0] + elements[1]
-//    let string2 = elements[2] + elements[3]
-//    
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.dateFormat = "MMMMd"
-//    
-//    return (dateFormatter.date(from: string1)!, dateFormatter.date(from: string2)!)
-//}
-//let dates = produceDates(from: terribleString)
-//func isInRange(start: Date, end: Date) -> Bool {
-//    let now = Date()
-//    if now.month > start.month && now.month < end.month {
-//        return true
-//    } else if now.month == start.month {
-//        return now.day > start.day
-//    } else if now.month == end.month {
-//        return now.day < end.day
-//    }
-//    return false
-//}
-//extension Date {
-//    var month: Int {
-//        return Calendar.current.component(.month, from: self)
-//    }
-//    var day: Int {
-//        return Calendar.current.component(.day, from: self)
-//    }
-//}
-//isInRange(start: dates.0, end: dates.1)
-
-
-
-

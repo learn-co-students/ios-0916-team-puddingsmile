@@ -27,6 +27,14 @@ class LandingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+
+    
+    
+}
+
+
+
+extension LandingView {
     func createButtons() {
         
         searchButton = UIButton()
@@ -48,7 +56,6 @@ class LandingView: UIView {
         self.addSubview(moreButton)
     }
     
-    
     func loadConstraints() {
         self.searchButton.translatesAutoresizingMaskIntoConstraints = false
         searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
@@ -67,8 +74,25 @@ class LandingView: UIView {
         moreButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.5).isActive = true
         moreButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1).isActive = true
         moreButton.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-        
+    }
+}
+
+extension UIView {
+    
+    static func animateBlowUp() {
+        self.animate(withDuration: 0.5) {
+            
+        }
     }
     
     
+    
 }
+
+
+
+
+
+
+
+
