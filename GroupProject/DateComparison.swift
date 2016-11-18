@@ -22,7 +22,7 @@ class DateComparison {
         return (startDate, endDate)
     }
     
-    static func isInRange(start: Date, end: Date, comparedTo date: Date) -> Bool {
+    static func isInRange(between start: Date, and end: Date, comparedTo date: Date) -> Bool {
         
         if date.month > start.month && date.month < end.month {
             return true
@@ -32,6 +32,36 @@ class DateComparison {
             return date.day < end.day
         }
         return false
+    }
+    
+    func getDayOfWeek(from date: Date) -> String {
+        
+        let myCalender = Calendar(identifier: .gregorian)
+        
+        let myComponents = myCalender.component(.weekday, from: date)
+        
+        guard let day = Weekday(rawValue: myComponents) else { return "Incorrect Date" }
+        
+        switch day {
+        case .sunday:
+            return "Sunday"
+        case .monday:
+            return "Monday"
+        case .tuesday:
+            return "Tuesday"
+        case .wednesday:
+            return "Wednesday"
+        case .thursday:
+            return "Thursday"
+        case .friday:
+            return "Friday"
+        case .saturday:
+            return "Saturday"
+        }
+    }
+    
+    func isMarketOpenOn(dayOfWeek: String, marketDays: [String]) -> Bool {
+        return marketDays.contains(dayOfWeek)
     }
     
 }
@@ -45,5 +75,11 @@ extension Date {
         return Calendar.current.component(.day, from: self)
     }
 }
+
+enum Weekday: Int {
+    case sunday, monday, tuesday, wednesday, thursday, friday, saturday
+}
+
+
 
 
