@@ -50,6 +50,7 @@ class DataStore {
     
     func fetchData() {
         let context = persistentContainer.viewContext
+        
         let marketRequest = NSFetchRequest<Market>(entityName: "Market")
         do {
             markets = try context.fetch(marketRequest)
@@ -59,8 +60,14 @@ class DataStore {
             print("\(error)")
         }
         
+        if markets.count == 0 {
+            print("pulled from firebase")
+            pullFromFirebase()
+        }
+        
     }
-    
+
+
     func pullFromFirebase () {
         let ref = FIRDatabase.database().reference()
         let context = persistentContainer.viewContext
@@ -91,15 +98,12 @@ class DataStore {
                 self.markets.append(market)
                 
             }
+            
             self.saveContext()
             self.fetchData()
         })
        
     }
-    
-    
-    
-    
     
 }
 

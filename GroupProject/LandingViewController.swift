@@ -14,8 +14,7 @@ class LandingViewController: UIViewController {
         super.viewDidLoad()
         //MarketDatabase.makeMarkets()
         // Do any additional setup after loading the view, typically from a nib.
-        //DataStore.sharedInstance.pullFromFirebase()
-        
+    
         DataStore.sharedInstance.fetchData()
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
