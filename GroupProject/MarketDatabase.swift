@@ -17,7 +17,7 @@ class MarketDatabase {
         let marketsRef = ref.child("markets")
         
         let returnDictionary = Parser.csvParser()
-        print("called")
+        print("===========called===========")
         var count = 0
         for dictionary in returnDictionary {
             print(count)
@@ -25,37 +25,49 @@ class MarketDatabase {
             print("called")
             
             let nameChild = marketsRef.child(dictionary["name"]!)
-            print("after nameChild")
+            
             let addressRef = nameChild.child("address")
             addressRef.setValue(dictionary["address"])
-            print("afterAddress")
+            
             let latitudeRef = nameChild.child("latitude")
             latitudeRef.setValue(dictionary["latitude"])
-            print("lat")
+            
             let longitudeRef = nameChild.child("longitude")
             longitudeRef.setValue(dictionary["longitude"])
-            print("long")
-            let timeRef = nameChild.child("timeOfYear")
-            timeRef.setValue(dictionary["timeOfYear"])
-            print("time")
-            let timeOfDay = nameChild.child("timeOfDay")
-            timeOfDay.setValue(dictionary["timeOfDay"])
-            print("timeOfDay")
+            
+            let timeOfYearValue = dictionary["timeOfYear"]
+            let timeOfYearTuple = Parser.timeOfYear(monthString: timeOfYearValue!)
+            
+            let openDate = nameChild.child("openDate")
+            openDate.setValue(timeOfYearTuple.0)
+            
+            let closeDate = nameChild.child("closeDate")
+            closeDate.setValue(timeOfYearTuple.1)
+            
+            let timeOfDayValue = dictionary["timeOfDay"]
+            let dayTuple = Parser.timeOfDay(dayString: timeOfDayValue!)
+            
+            let startTime = nameChild.child("startTime")
+            startTime.setValue(dayTuple.0)
+            
+            let endTime = nameChild.child("endTime")
+            endTime.setValue(dayTuple.1)
+            
             let datesRef = nameChild.child("days")
             datesRef.setValue(dictionary["days"])
-            print("datesRef")
+            
             let ebtRef = nameChild.child("ebt")
             ebtRef.setValue(dictionary["EBT"])
-            print("ebtRef")
+            
             let boroughRef = nameChild.child("borough")
             boroughRef.setValue(dictionary["borough"])
-            print("borough")
+            
             let websiteRef = nameChild.child("website")
             websiteRef.setValue(dictionary["website"])
-            print("websiteRef")
+           
             let extrasRef = nameChild.child("extras")
             extrasRef.setValue(dictionary["extras"])
-            print("extrasRef")
+            
         }
     }
 }

@@ -26,7 +26,6 @@ class LandingViewController: UIViewController {
         
         print("\(tupleMonth)\(tupleDay)")
         
-        
     }
 }
 
