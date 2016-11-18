@@ -9,7 +9,7 @@
 import Foundation
 
 
-class DateComparison {
+class DateManager {
     
     static func produceDates(start: String, end: String) -> (Date?, Date?){
         
@@ -89,6 +89,7 @@ class DateComparison {
 }
 
 
+
 extension Date {
     var month: Int {
         return Calendar.current.component(.month, from: self)
@@ -104,8 +105,9 @@ extension Date {
     }
 }
 
+
 enum Weekday: Int {
-    case sunday, monday, tuesday, wednesday, thursday, friday, saturday
+    case sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday
 }
 
 
