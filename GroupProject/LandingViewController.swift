@@ -19,8 +19,8 @@ class LandingViewController: UIViewController {
         
 
         let info = Parser.csvParser()
-        let timeofday = info[36]["timeOfDay"]
-        let timeofyear = info[36]["timeOfYear"]
+        let timeofday = info[50]["timeOfDay"]
+        let timeofyear = info[50]["timeOfYear"]
         let tupleDay = Parser.timeOfDay(dayString: timeofday!)
         let tupleMonth = Parser.timeOfYear(monthString: timeofyear!)
         
