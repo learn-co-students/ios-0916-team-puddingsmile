@@ -104,6 +104,26 @@ struct Parser {
         return (startDay, endDay)
     }
     
+    static func dayOfWeek(weekString: String) -> [String] {
+        return weekString.components(separatedBy: "/")
+    }
+    
+    static func acceptEBT(ebt: String) -> Bool {
+        
+        if ebt == "EBT" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func extraEvent(events: String) -> [String] {
+        if events != "_" {
+            return events.components(separatedBy: "/")
+        } else {
+            return []
+        }
+    }
     
 }
 //func produceDates(from string: String) -> (Date, Date){
