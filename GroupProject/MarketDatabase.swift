@@ -17,7 +17,7 @@ class MarketDatabase {
         let marketsRef = ref.child("markets")
         
         let returnDictionary = Parser.csvParser()
-        print("called")
+        print("===========called===========")
         var count = 0
         for dictionary in returnDictionary {
             print(count)
@@ -42,7 +42,7 @@ class MarketDatabase {
             openDate.setValue(timeOfYearTuple.0)
             
             let closeDate = nameChild.child("closeDate")
-            closeDate.setValue(timeOfYearTuple.0)
+            closeDate.setValue(timeOfYearTuple.1)
             
             let timeOfDayValue = dictionary["timeOfDay"]
             let dayTuple = Parser.timeOfDay(dayString: timeOfDayValue!)
@@ -52,8 +52,6 @@ class MarketDatabase {
             
             let endTime = nameChild.child("endTime")
             endTime.setValue(dayTuple.1)
-            
-            let dateValue = dictionary["timeOfYear"]
             
             let datesRef = nameChild.child("days")
             datesRef.setValue(dictionary["days"])
