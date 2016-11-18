@@ -17,12 +17,12 @@ class MarketDatabase {
         let marketsRef = ref.child("markets")
         
         let returnDictionary = Parser.csvParser()
-        print("===========called===========")
+        
         var count = 0
         for dictionary in returnDictionary {
             print(count)
             count += 1
-            print("called")
+           
             
             let nameChild = marketsRef.child(dictionary["name"]!)
             

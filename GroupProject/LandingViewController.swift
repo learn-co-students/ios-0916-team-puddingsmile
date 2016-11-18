@@ -12,8 +12,11 @@ class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        MarketDatabase.makeMarkets()
+        //MarketDatabase.makeMarkets()
         // Do any additional setup after loading the view, typically from a nib.
+        //DataStore.sharedInstance.pullFromFirebase()
+        
+        DataStore.sharedInstance.fetchData()
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
         
@@ -25,6 +28,7 @@ class LandingViewController: UIViewController {
         let tupleMonth = Parser.timeOfYear(monthString: timeofyear!)
         
         print("\(tupleMonth)\(tupleDay)")
+        print("\(DataStore.sharedInstance.markets.count) COUNT!")
         
     }
 }

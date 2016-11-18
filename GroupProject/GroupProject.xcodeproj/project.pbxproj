@@ -13,6 +13,7 @@
 		B5D2DD9F1DDE45EE001F2CCE /* MarketInfo.csv in Resources */ = {isa = PBXBuildFile; fileRef = B5D2DD9E1DDE45EE001F2CCE /* MarketInfo.csv */; };
 		C315CBED1DDE564500EA6D71 /* MarketDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C315CBEC1DDE564500EA6D71 /* MarketDatabase.swift */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
+		C39323BB1DDF57BB009ECD23 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39323BA1DDF57BB009ECD23 /* Firebase.swift */; };
 		C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C658ED1DDBCC1A00C7B533 /* AppDelegate.swift */; };
 		C3C658F31DDBCC1A00C7B533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C658F11DDBCC1A00C7B533 /* Main.storyboard */; };
 		C3C658F61DDBCC1A00C7B533 /* GroupProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3C658F41DDBCC1A00C7B533 /* GroupProject.xcdatamodeld */; };
@@ -61,6 +62,7 @@
 		C00C22163A0DAEAF7038196C /* Pods-GroupProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		C315CBEC1DDE564500EA6D71 /* MarketDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketDatabase.swift; sourceTree = "<group>"; };
 		C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C39323BA1DDF57BB009ECD23 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		C3C658EA1DDBCC1A00C7B533 /* GroupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C658ED1DDBCC1A00C7B533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3C658F21DDBCC1A00C7B533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				C3C6593C1DDBCE7C00C7B533 /* Market.swift */,
 				C315CBEC1DDE564500EA6D71 /* MarketDatabase.swift */,
 				C3C6593D1DDBCE7C00C7B533 /* Parser.swift */,
+				C39323BA1DDF57BB009ECD23 /* Firebase.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C39323BB1DDF57BB009ECD23 /* Firebase.swift in Sources */,
 				C315CBED1DDE564500EA6D71 /* MarketDatabase.swift in Sources */,
 				C3C6593A1DDBCE6700C7B533 /* SearchViewController.swift in Sources */,
 				C3C6593B1DDBCE6700C7B533 /* LandingViewController.swift in Sources */,
