@@ -7,3 +7,24 @@
 //
 
 import Foundation
+
+struct LocationManager {
+    
+    static func inRange(ofLocation location: (Double, Double), ofMarket market: (Double, Double), withDistance: Double) -> Bool {
+        
+        
+        return true
+    }
+    
+    
+    
+    
+}
+
+
+
+
+
+// lat , long
+//title / name of market
+//address of market
