@@ -49,6 +49,7 @@ class DataStore {
     }
     
     func fetchData() {
+        print("Fetch data called!")
         let context = persistentContainer.viewContext
         
         let marketRequest = NSFetchRequest<Market>(entityName: "Market")
@@ -93,6 +94,7 @@ class DataStore {
             }
             self.saveContext()
             self.fetchData()
+            print(markets)
         }
     }
     
