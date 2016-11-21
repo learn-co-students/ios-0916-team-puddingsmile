@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
-class MarketDatabase {
+class FirebaseAPI {
     
     static func makeMarkets() {
         let ref = FIRDatabase.database().reference()
@@ -23,7 +23,6 @@ class MarketDatabase {
             print(count)
             count += 1
            
-            
             let nameChild = marketsRef.child(dictionary["name"]!)
             
             let addressRef = nameChild.child("address")
@@ -70,6 +69,21 @@ class MarketDatabase {
             
         }
     }
+    
+    func pullFromFirebase(completion: ([String : [String : String]]) -> () ) {
+        let ref = FIRDatabase.database().reference()
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! NSDictionary
+            
+            let testMarkets = value["markets"] as! [String : [String : String]]
+       
+            completion(textMarkets)
+  
+        })
+        
+    }
+
 }
 
 

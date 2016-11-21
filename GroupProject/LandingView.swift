@@ -8,18 +8,27 @@
 import Foundation
 import UIKit
 
+protocol LandingViewDelegate: class {
+    
+    func moveToLoginTapped(with sender: UIButton)
+    
+}
+
 class LandingView: UIView {
     
     var searchButton: UIButton!
     var hereButton: UIButton!
     var moreButton: UIButton!
     
-    //searchButton.addTarget(self, action: "action:" forControlEvents.TouchUpInside)
+    weak var delegate: LandingViewDelegate!
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.lightGray
         createButtons()
         loadConstraints()
+        moreButton.addTarget(self, action: #selector(movetologin), for: .touchUpInside)
         
     }
     
@@ -27,7 +36,11 @@ class LandingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    func movetologin(sender: UIButton) {
+        
+        delegate?.moveToLoginTapped(with: sender)
+        
+    }
     
     
 }

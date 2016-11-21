@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LandingViewController: UIViewController {
+class LandingViewController: UIViewController, LandingViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,17 +18,16 @@ class LandingViewController: UIViewController {
         DataStore.sharedInstance.fetchData()
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
-        
+        landingView.delegate = self
 
-        let info = Parser.csvParser()
-        let timeofday = info[50]["timeOfDay"]
-        let timeofyear = info[50]["timeOfYear"]
-        let tupleDay = Parser.timeOfDay(dayString: timeofday!)
-        let tupleMonth = Parser.timeOfYear(monthString: timeofyear!)
         
-        print("\(tupleMonth)\(tupleDay)")
-        print("\(DataStore.sharedInstance.markets.count) COUNT!")
         
     }
+    
+    func moveToLoginTapped(with sender: UIButton) {
+        performSegue(withIdentifier: "loginSegue", sender: nil)
+    }
+    
+    
 }
 
