@@ -62,23 +62,16 @@ class DataStore {
         
         if markets.count == 0 {
             print("pulled from firebase")
-            pullFromFirebase()
+            loadDataFromFirebase()
         }
         
     }
 
-
-    func pullFromFirebase () {
-        let ref = FIRDatabase.database().reference()
+    func loadDataFromFirebase() {
         let context = persistentContainer.viewContext
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! NSDictionary
-            
-            let testMarkets = value["markets"] as! [String : [String : String]]
-            
-            for (key, value) in testMarkets {
-               
+        FirebaseAPI.pullFromFirebase { (markets) in
+            for (key, value) in markets {
+                
                 let market: Market = NSEntityDescription.insertNewObject(forEntityName: "Market", into: context) as! Market
                 market.name = key
                 market.address = value["address"]
@@ -98,12 +91,12 @@ class DataStore {
                 self.markets.append(market)
                 
             }
-            
             self.saveContext()
             self.fetchData()
-        })
-       
+        }
     }
+    
+
     
 }
 

@@ -70,7 +70,7 @@ class FirebaseAPI {
         }
     }
     
-    func pullFromFirebase(completion: ([String : [String : String]]) -> () ) {
+    static func pullFromFirebase(completion: @escaping ([String : [String : String]]) -> () ) {
         let ref = FIRDatabase.database().reference()
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -78,7 +78,7 @@ class FirebaseAPI {
             
             let testMarkets = value["markets"] as! [String : [String : String]]
        
-            completion(textMarkets)
+            completion(testMarkets)
   
         })
         
