@@ -14,13 +14,15 @@ class LandingViewController: UIViewController, LandingViewDelegate {
         super.viewDidLoad()
         //MarketDatabase.makeMarkets()
         // Do any additional setup after loading the view, typically from a nib.
-    
+        
         DataStore.sharedInstance.fetchData()
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
         landingView.delegate = self
-
-        FirebaseAPI.writeCommentFor(market: "john john", with: "ello world")
+        
+        FirebaseAPI.writeCommentFor(market: "john john", with: "ello world", from: "bensusususu")
+        
+        
         
     }
     

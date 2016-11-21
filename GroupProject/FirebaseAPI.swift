@@ -17,9 +17,7 @@ class FirebaseAPI {
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as! [String : [String : String]]
-       
             completion(value)
-  
         })
     }
     
@@ -28,27 +26,38 @@ class FirebaseAPI {
         let ref = FIRDatabase.database().reference().child("comments").child("\(market)")
         ref.observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as! [String : [String : Any]]
-            
             completion(value)
-            
         })
-        
     }
 
+    static func increaseLikesFor(comment: MarketComment, in market: String) {
+        let ref = FIRDatabase.database().reference().child("comments").child("\(market)").child("\(comment.commentID)").child("likes")
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            
+            let likes = snapshot.value as! Int
+            writeToLikes(with: ref, newLikes: likes + 1)
+
+        })
+    }
+    
 }
 
 //MARK: - Write to Firebase
 extension FirebaseAPI {
     
-    static func writeCommentFor(market: String, with message: String) {
+    static func writeCommentFor(market: String, with message: String, from name: String) {
         
         let ref = FIRDatabase.database().reference().child("comments")
         let marketRef = ref.child("\(market)").childByAutoId()
         marketRef.child("timeStamp").setValue(Date().timeIntervalSince1970)
         marketRef.child("comment").setValue(message)
         marketRef.child("likes").setValue(0)
+        marketRef.child("name").setValue(name)
     }
     
+    static func writeToLikes(with ref: FIRDatabaseReference, newLikes: Int) {
+        ref.setValue(newLikes)
+    }
     
     
     

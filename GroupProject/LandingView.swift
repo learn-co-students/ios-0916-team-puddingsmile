@@ -20,8 +20,9 @@ class LandingView: UIView {
     var hereButton: UIButton!
     var moreButton: UIButton!
     
-    weak var delegate: LandingViewDelegate!
+    var marketcomment = [MarketComment]()
     
+    weak var delegate: LandingViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +30,11 @@ class LandingView: UIView {
         createButtons()
         loadConstraints()
         moreButton.addTarget(self, action: #selector(movetologin), for: .touchUpInside)
-        
+        FirebaseAPI.readCommentFor(market: "john john", completion: { marketComments in
+            for (key, value) in marketComments {
+                self.marketcomment.append(MarketComment(id: key, value: value))
+            }
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,17 +46,18 @@ class LandingView: UIView {
         delegate?.moveToLoginTapped(with: sender)
         
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        FirebaseAPI.readCommentFor(market: "john john", completion: { marketComments in
-            
-            for (_, value) in marketComments {
-                print("\(value["comment"] as! String)")
-            }
-            
-        })
+
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        FirebaseAPI.increaseLikesFor(comment: marketcomment[0], in: "john john")
+    }
+    
+    
 }
+
 
 
 
