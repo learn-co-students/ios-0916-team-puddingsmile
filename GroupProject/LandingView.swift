@@ -37,6 +37,10 @@ class LandingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("$$$$$$$$$$$$$$$$$")
+    }
+    
     func movetologin(sender: UIButton) {
         delegate?.moveToLoginTapped(with: sender)
     }

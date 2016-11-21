@@ -17,6 +17,8 @@
 		B5D2DDC21DE355E3001F2CCE /* RequestChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDC11DE355E3001F2CCE /* RequestChangeViewController.swift */; };
 		B5D2DDC41DE35639001F2CCE /* MarketListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */; };
 		B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */; };
+		B5D2DDEB1DE3943E001F2CCE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDEA1DE3943E001F2CCE /* LoginView.swift */; };
+		B5D2DDED1DE39B3B001F2CCE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDEC1DE39B3B001F2CCE /* ColorExtension.swift */; };
 		C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
 		C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */; };
@@ -71,6 +73,8 @@
 		B5D2DDC11DE355E3001F2CCE /* RequestChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestChangeViewController.swift; path = GroupProject/RequestChangeViewController.swift; sourceTree = "<group>"; };
 		B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketListViewController.swift; path = GroupProject/MarketListViewController.swift; sourceTree = "<group>"; };
 		B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketComment.swift; sourceTree = "<group>"; };
+		B5D2DDEA1DE3943E001F2CCE /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B5D2DDEC1DE39B3B001F2CCE /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C00C22163A0DAEAF7038196C /* Pods-GroupProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 		C3C659211DDBCCBD00C7B533 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5D2DDEA1DE3943E001F2CCE /* LoginView.swift */,
+				B5D2DDEC1DE39B3B001F2CCE /* ColorExtension.swift */,
 				C3C659401DDBCE8300C7B533 /* LandingView.swift */,
 				C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */,
 				C3C659421DDBCE8300C7B533 /* SearchView.swift */,
@@ -529,12 +535,14 @@
 				C3C6593E1DDBCE7C00C7B533 /* FarmersMarket.swift in Sources */,
 				C3C659451DDBCE8300C7B533 /* SearchView.swift in Sources */,
 				C3C6593F1DDBCE7C00C7B533 /* Parser.swift in Sources */,
+				B5D2DDED1DE39B3B001F2CCE /* ColorExtension.swift in Sources */,
 				C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */,
 				56BE38301DDE560100D5EA17 /* Market.xcdatamodeld in Sources */,
 				C3C658F61DDBCC1A00C7B533 /* GroupProject.xcdatamodeld in Sources */,
 				C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */,
 				B5D2DDC01DE35553001F2CCE /* LoginViewController.swift in Sources */,
 				B5D2DDA11DDF4D1C001F2CCE /* DateManager.swift in Sources */,
+				B5D2DDEB1DE3943E001F2CCE /* LoginView.swift in Sources */,
 				C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */,
 				B5D2DDC41DE35639001F2CCE /* MarketListViewController.swift in Sources */,
 				B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */,
