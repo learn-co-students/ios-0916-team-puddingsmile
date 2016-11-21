@@ -8,9 +8,34 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 
-//MARK: - Read from Firebase
+//MARK: - Authorization functions
 class FirebaseAPI {
+    static func signUp(email: String, password: String, name: String) {
+        let ref = FIRDatabase.database().reference().root
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            if error == nil {
+                ref.child("users").child((user?.uid)!).child("email").setValue(email)
+                ref.child("users").child((user?.uid)!).child("name").setValue(name)
+            } else {
+                print(error!)
+            }
+        })
+    }
+    
+    static func signIn(email: String, password: String) {
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            
+        })
+    }
+}
+
+
+
+
+//MARK: - Market structure functions
+extension FirebaseAPI {
     
     static func pullMarketsFromFirebase(completion: @escaping ([String : [String : String]]) -> () ) {
         let ref = FIRDatabase.database().reference().child("markets")
@@ -21,28 +46,9 @@ class FirebaseAPI {
         })
     }
     
-    static func readCommentFor(market: String, completion: @escaping ([String : [String : Any]]) -> () ) {
-        
-        let ref = FIRDatabase.database().reference().child("comments").child("\(market)")
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            let value = snapshot.value as! [String : [String : Any]]
-            completion(value)
-        })
-    }
-
-    static func increaseLikesFor(comment: MarketComment, in market: String) {
-        let ref = FIRDatabase.database().reference().child("comments").child("\(market)").child("\(comment.commentID)").child("likes")
-        ref.observeSingleEvent(of: .value, with: {snapshot in
-            
-            let likes = snapshot.value as! Int
-            writeToLikes(with: ref, newLikes: likes + 1)
-
-        })
-    }
-    
 }
 
-//MARK: - Write to Firebase
+//MARK: - Comment structure functions
 extension FirebaseAPI {
     
     static func writeCommentFor(market: String, with message: String, from name: String) {
@@ -59,11 +65,31 @@ extension FirebaseAPI {
         ref.setValue(newLikes)
     }
     
+    static func readCommentFor(market: String, completion: @escaping ([String : [String : Any]]) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("comments").child("\(market)")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            let value = snapshot.value as! [String : [String : Any]]
+            completion(value)
+        })
+    }
     
+    static func increaseLikesFor(comment: MarketComment, in market: String) {
+        let ref = FIRDatabase.database().reference().child("comments").child("\(market)").child("\(comment.commentID)").child("likes")
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            
+            let likes = snapshot.value as! Int
+            writeToLikes(with: ref, newLikes: likes + 1)
+            
+        })
+    }
     
 }
 
-
+//MARK: - Suggestion structure functions
+extension FirebaseAPI {
+    
+}
 
 
 

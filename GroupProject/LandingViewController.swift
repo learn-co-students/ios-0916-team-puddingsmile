@@ -20,9 +20,6 @@ class LandingViewController: UIViewController, LandingViewDelegate {
         self.view = landingView
         landingView.delegate = self
         
-        FirebaseAPI.writeCommentFor(market: "john john", with: "ello world", from: "bensusususu")
-        
-        
         
     }
     
