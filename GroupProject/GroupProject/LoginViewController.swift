@@ -8,12 +8,14 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let loginView = LoginView(frame: self.view.frame)
+        loginView.delegate = self
+        self.view = loginView
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +23,9 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func moveToLoginTapped(with sender: UIButton) {
+        print(1)
+    }
     /*
     // MARK: - Navigation
 

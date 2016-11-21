@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 protocol LandingViewDelegate: class {
     
@@ -20,8 +21,9 @@ class LandingView: UIView {
     var hereButton: UIButton!
     var moreButton: UIButton!
     
-    weak var delegate: LandingViewDelegate!
+    var marketcomment = [MarketComment]()
     
+    weak var delegate: LandingViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,18 +31,20 @@ class LandingView: UIView {
         createButtons()
         loadConstraints()
         moreButton.addTarget(self, action: #selector(movetologin), for: .touchUpInside)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func movetologin(sender: UIButton) {
-        
-        delegate?.moveToLoginTapped(with: sender)
-        
+    deinit {
+        print("$$$$$$$$$$$$$$$$$")
     }
+    
+    func movetologin(sender: UIButton) {
+        delegate?.moveToLoginTapped(with: sender)
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         FirebaseAPI.readCommentFor(market: "john john", completion: { marketComments in
             
@@ -53,6 +57,11 @@ class LandingView: UIView {
     
 
 }
+
+
+
+
+
 
 extension LandingView {
     func createButtons() {
