@@ -9,8 +9,65 @@
 import Foundation
 import FirebaseDatabase
 
-class MarketDatabase {
+//MARK: - Read from Firebase
+class FirebaseAPI {
     
+    static func pullMarketsFromFirebase(completion: @escaping ([String : [String : String]]) -> () ) {
+        let ref = FIRDatabase.database().reference().child("markets")
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as! [String : [String : String]]
+       
+            completion(value)
+  
+        })
+    }
+    
+    static func readCommentFor(market: String, completion: @escaping ([String : [String : Any]]) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("comments").child("\(market)")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            let value = snapshot.value as! [String : [String : Any]]
+            
+            completion(value)
+            
+        })
+        
+    }
+
+}
+
+//MARK: - Write to Firebase
+extension FirebaseAPI {
+    
+    static func writeCommentFor(market: String, with message: String) {
+        
+        let ref = FIRDatabase.database().reference().child("comments")
+        let marketRef = ref.child("\(market)").childByAutoId()
+        marketRef.child("timeStamp").setValue(Date().timeIntervalSince1970)
+        marketRef.child("comment").setValue(message)
+        marketRef.child("likes").setValue(0)
+    }
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK: - Load Firebase with information from CSV file
+extension FirebaseAPI {
     static func makeMarkets() {
         let ref = FIRDatabase.database().reference()
         
@@ -22,7 +79,6 @@ class MarketDatabase {
         for dictionary in returnDictionary {
             print(count)
             count += 1
-           
             
             let nameChild = marketsRef.child(dictionary["name"]!)
             
@@ -64,15 +120,13 @@ class MarketDatabase {
             
             let websiteRef = nameChild.child("website")
             websiteRef.setValue(dictionary["website"])
-           
+            
             let extrasRef = nameChild.child("extras")
             extrasRef.setValue(dictionary["extras"])
             
         }
     }
 }
-
-
 
 
     

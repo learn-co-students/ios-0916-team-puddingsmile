@@ -23,7 +23,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <segue destination="iHh-QM-2cc" kind="show" id="X1e-FA-x8k"/>
+                        <segue destination="iHh-QM-2cc" kind="show" identifier="loginSegue" id="X1e-FA-x8k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -44,7 +44,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="Yoy-2Z-YSI" kind="show" id="VwL-BD-zLn"/>
+                        <segue destination="Yoy-2Z-YSI" kind="show" identifier="mapViewSegue" id="VwL-BD-zLn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uS-CZ-MTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -66,9 +66,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="MIu-Iu-CCF"/>
                     <connections>
-                        <segue destination="wtY-vx-8IF" kind="presentation" id="WF3-NY-oAd"/>
-                        <segue destination="xr2-rK-8g1" kind="presentation" id="g5r-Xa-70v"/>
-                        <segue destination="TwL-4O-INN" kind="presentation" id="KjW-6N-AGa"/>
+                        <segue destination="wtY-vx-8IF" kind="presentation" identifier="searchViewSegue" id="WF3-NY-oAd"/>
+                        <segue destination="xr2-rK-8g1" kind="presentation" identifier="mapListSegue" id="g5r-Xa-70v"/>
+                        <segue destination="TwL-4O-INN" kind="presentation" identifier="marketInfoSegue" id="KjW-6N-AGa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Rm-yg-puH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -107,7 +107,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="K8F-EE-dkL" kind="presentation" id="1u7-uc-IFz"/>
+                        <segue destination="K8F-EE-dkL" kind="presentation" identifier="requestChangeSegue" id="1u7-uc-IFz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="taU-YS-QBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
