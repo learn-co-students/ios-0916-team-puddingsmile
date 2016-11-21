@@ -41,7 +41,15 @@ class LandingView: UIView {
         delegate?.moveToLoginTapped(with: sender)
         
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        FirebaseAPI.readCommentFor(market: "john john", completion: { marketComments in
+            
+            for (_, value) in marketComments {
+                print("\(value["comment"] as! String)")
+            }
+            
+        })
+    }
     
 }
 

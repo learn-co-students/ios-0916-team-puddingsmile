@@ -20,7 +20,7 @@ class LandingViewController: UIViewController, LandingViewDelegate {
         self.view = landingView
         landingView.delegate = self
 
-        
+        FirebaseAPI.writeCommentFor(market: "john john", with: "ello world")
         
     }
     
@@ -28,6 +28,7 @@ class LandingViewController: UIViewController, LandingViewDelegate {
         performSegue(withIdentifier: "loginSegue", sender: nil)
     }
     
+
     
 }
 

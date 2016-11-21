@@ -69,7 +69,7 @@ class DataStore {
 
     func loadDataFromFirebase() {
         let context = persistentContainer.viewContext
-        FirebaseAPI.pullFromFirebase { (markets) in
+        FirebaseAPI.pullMarketsFromFirebase { (markets) in
             for (key, value) in markets {
                 
                 let market: Market = NSEntityDescription.insertNewObject(forEntityName: "Market", into: context) as! Market
