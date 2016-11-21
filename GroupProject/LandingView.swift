@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 protocol LandingViewDelegate: class {
     
@@ -31,6 +32,9 @@ class LandingView: UIView {
         createButtons()
         loadConstraints()
         moreButton.addTarget(self, action: #selector(movetologin), for: .touchUpInside)
+
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
