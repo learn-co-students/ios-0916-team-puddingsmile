@@ -27,12 +27,7 @@ class LandingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-    
-    
 }
-
-
 
 extension LandingView {
     func createButtons() {
