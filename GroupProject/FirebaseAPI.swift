@@ -12,21 +12,27 @@ import FirebaseAuth
 
 //MARK: - Authorization functions
 class FirebaseAPI {
-    static func signUp(email: String, password: String, name: String) {
+    static func signUp(email: String, password: String, name: String, completion: @escaping (Bool) -> () ) {
         let ref = FIRDatabase.database().reference().root
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error == nil {
                 ref.child("users").child((user?.uid)!).child("email").setValue(email)
                 ref.child("users").child((user?.uid)!).child("name").setValue(name)
+                completion(true)
             } else {
                 print(error!)
+                completion(false)
             }
         })
     }
     
-    static func signIn(email: String, password: String) {
+    static func signIn(email: String, password: String, completion: @escaping (Bool) -> () ) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-            
+            if error == nil {
+                completion(true)
+            } else {
+                completion(false)
+            }
         })
     }
 }
@@ -45,7 +51,6 @@ extension FirebaseAPI {
             completion(value)
         })
     }
-    
 }
 
 //MARK: - Comment structure functions

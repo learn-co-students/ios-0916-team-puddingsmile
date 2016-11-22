@@ -11,35 +11,38 @@ import UIKit
 
 protocol LoginViewDelegate: class {
     
-    func moveToLoginTapped(with sender: UIButton)
+    func startSegueButton()
     
 }
 
 
 struct LoginViewPosition {
+    private static let width = UIScreen.main.bounds.width
+    private static let height = UIScreen.main.bounds.height
+    static let emailPosition = CGPoint(x: width * 0.5, y: height * 0.30)
+    static let passwordPosition = CGPoint(x: width * 0.5, y: height * 0.40)
+    static let firstnamePosition = CGPoint(x: width * 0.5, y: height * 0.40)
+    static let lastnamePosition = CGPoint(x: width * 0.5, y: height * 0.40)
     
-    static let emailPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.30)
-    static let passwordPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.40)
-    static let firstnamePosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.40)
-    static let lastnamePosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.40)
-    
-    static let loginPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.55)
-    static let newuserPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.65)
-    static let signupPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.65)
-    static let cancelPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.65)
+    static let loginPosition = CGPoint(x: width * 0.5, y: height * 0.55)
+    static let newuserPosition = CGPoint(x: width * 0.5, y: height * 0.65)
+    static let signupPosition = CGPoint(x: width * 0.5, y: height * 0.65)
+    static let cancelPosition = CGPoint(x: width * 0.5, y: height * 0.65)
 }
 
 struct NewUserViewPosition {
+    private static let width = UIScreen.main.bounds.width
+    private static let height = UIScreen.main.bounds.height
     
-    static let emailPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.20)
-    static let passwordPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.28)
-    static let firstnamePosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.36)
-    static let lastnamePosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.44)
+    static let emailPosition = CGPoint(x: width * 0.5, y: height * 0.20)
+    static let passwordPosition = CGPoint(x: width * 0.5, y: height * 0.28)
+    static let firstnamePosition = CGPoint(x: width * 0.5, y: height * 0.36)
+    static let lastnamePosition = CGPoint(x: width * 0.5, y: height * 0.44)
     
-    static let loginPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.55)
-    static let newuserPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.55)
-    static let signupPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.55)
-    static let cancelPosition = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.65)
+    static let loginPosition = CGPoint(x: width * 0.5, y: height * 0.55)
+    static let newuserPosition = CGPoint(x: width * 0.5, y: height * 0.55)
+    static let signupPosition = CGPoint(x: width * 0.5, y: height * 0.55)
+    static let cancelPosition = CGPoint(x: width * 0.5, y: height * 0.65)
 }
 
 class LoginView: UIView {
@@ -73,25 +76,14 @@ class LoginView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func movetologin(sender: UIButton) {
-        delegate?.moveToLoginTapped(with: sender)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchLocation = touches.first?.location(in: self)
         
         if emailTextField.bounds.contains(touchLocation!) {
             emailTextField.becomeFirstResponder()
-        } else if passwordTextField.bounds.contains(touchLocation!){
-            passwordTextField.becomeFirstResponder()
-        } else if firstnameTextField.bounds.contains(touchLocation!){
-            firstnameTextField.becomeFirstResponder()
-        } else if lastnameTextField.bounds.contains(touchLocation!){
-            lastnameTextField.becomeFirstResponder()
         } else {
             self.endEditing(true)
         }
-        
         
     }
     
@@ -108,7 +100,18 @@ class LoginView: UIView {
 extension LoginView {
     
     func loginButtonAction() {
-
+        
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        FirebaseAPI.signIn(email: email, password: password) { success in
+            if success {
+                self.delegate.startSegueButton()
+            } else {
+                print("womp")
+            }
+        
+        }
     }
     
     func newuserButtonAction(_ sender: UIButton) {
@@ -116,7 +119,21 @@ extension LoginView {
     }
     
     func signupButtonAction(_ sender: UIButton) {
-
+        
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let firstname = firstnameTextField.text else { return }
+        guard let lastname = lastnameTextField.text else { return }
+        
+        FirebaseAPI.signUp(email: email, password: password, name: "\(firstname) \(lastname)", completion: { success in
+            
+            if success {
+                self.delegate.startSegueButton()
+            } else {
+                print("womp")
+            }
+        
+        })
     }
     
     func cancelButtonAction(_ sender: UIButton) {

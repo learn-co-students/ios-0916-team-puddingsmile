@@ -45,6 +45,8 @@ class LandingView: UIView {
         print("$$$$$$$$$$$$$$$$$")
     }
     
+    
+    
     func movetologin(sender: UIButton) {
         delegate?.moveToLoginTapped(with: sender)
     }
