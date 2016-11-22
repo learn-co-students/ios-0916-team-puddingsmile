@@ -20,7 +20,6 @@ class MapView: MKMapView, MKMapViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         delegate = self
-        //DataStore.sharedInstance.fetchData()
         initialSetupForView()
         setupLocationManager()
         self.convertMarketsToMapItem()
@@ -48,18 +47,35 @@ class MapView: MKMapView, MKMapViewDelegate {
     }
     
     
+//    func addAnnotationsToMap() {
+//        
+//        var annotations: [MKAnnotation] = []
+//        for location in mapItemList {
+//            let annotation = MKPointAnnotation()
+//            
+//            annotation.coordinate = location.placemark.coordinate
+//            annotations.append(annotation)
+//        }
+//        self.addAnnotations(annotations)
+//    }
+    
+    
     func addAnnotationsToMap() {
-        
         var annotations: [MKAnnotation] = []
-        for location in mapItemList {
+        for location in locationArray {
             let annotation = MKPointAnnotation()
-            annotation.coordinate = location.placemark.coordinate
+            let latitude = Double(location.latitude!)
+            let longitude = Double(location.longitude!)
             
+            
+            annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+            annotation.title = location.name
+            annotation.subtitle = location.address
             annotations.append(annotation)
         }
-
         self.addAnnotations(annotations)
     }
+    
     
 }
 
@@ -89,8 +105,9 @@ extension MapView: CLLocationManagerDelegate {
   
     }
     
-    
 }
+
+
 
 
 
