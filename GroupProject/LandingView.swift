@@ -34,7 +34,6 @@ class LandingView: UIView {
         moreButton.addTarget(self, action: #selector(movetologin), for: .touchUpInside)
 
         
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

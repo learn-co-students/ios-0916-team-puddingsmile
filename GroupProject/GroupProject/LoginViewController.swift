@@ -17,15 +17,22 @@ class LoginViewController: UIViewController, LoginViewDelegate {
         self.view = loginView
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func startSegueButton() {
+       
         performSegue(withIdentifier: "mapViewSegue", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
 
-
+    deinit {
+        print("@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@")
+        
+    }
+    
 }

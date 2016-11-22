@@ -8,16 +8,30 @@
 
 import Foundation
 import UIKit
+import MapKit
+
+protocol MarketInfoDelegate {
+    
+}
+
+
 
 class MarketInfo: UIView {
     
+    var mapView: MKMapView!
+    
+    var scrollView: UIScrollView!
+    var stackView: UIStackView!
+    
     var nameLabel: UILabel!
     var addressLabel: UILabel!
+    var boroughLabel: UILabel!
+    var seasonLabel: UILabel!
     var daysLabel: UILabel!
     var timeLabel: UILabel!
     var ebtLabel: UILabel!
     var websiteButton: UIButton!
-    var infoLabel: UILabel!
+    var extrasLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,77 +46,131 @@ class MarketInfo: UIView {
     }
     
     func createLabels() {
-        print("create")
+        mapView = MKMapView()
+        self.addSubview(mapView)
+        
+        scrollView = UIScrollView()
+        self.addSubview(scrollView)
+        stackView = UIStackView()
+        scrollView.addSubview(stackView)
+        scrollView.isPagingEnabled = false
+     
+        
         nameLabel = UILabel()
-        self.addSubview(nameLabel)
+        stackView.addSubview(nameLabel)
         addressLabel = UILabel()
-        self.addSubview(addressLabel)
+        stackView.addSubview(addressLabel)
+        boroughLabel = UILabel()
+        stackView.addSubview(boroughLabel)
+        seasonLabel = UILabel()
+        stackView.addSubview(seasonLabel)
         daysLabel = UILabel()
-        self.addSubview(daysLabel)
+        stackView.addSubview(daysLabel)
         timeLabel = UILabel()
-        self.addSubview(timeLabel)
+        stackView.addSubview(timeLabel)
         ebtLabel = UILabel()
-        self.addSubview(ebtLabel)
+        stackView.addSubview(ebtLabel)
         websiteButton = UIButton()
-        self.addSubview(websiteButton)
-        infoLabel = UILabel()
-        self.addSubview(infoLabel)
+        stackView.addSubview(websiteButton)
+        extrasLabel = UILabel()
+        stackView.addSubview(extrasLabel)
     }
     
-    func loadContraints() {
-        
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.1).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-        
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        addressLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.2).isActive = true
-        addressLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05).isActive = true
-        addressLabel.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-        
-        daysLabel.translatesAutoresizingMaskIntoConstraints = false
-        daysLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        daysLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.3).isActive = true
-        daysLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05).isActive = true
-        daysLabel.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-        
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.4).isActive = true
-        timeLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05).isActive = true
-        timeLabel.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-        
-        ebtLabel.translatesAutoresizingMaskIntoConstraints = false
-        ebtLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        ebtLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.5).isActive = true
-        ebtLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05).isActive = true
-        ebtLabel.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-        
-        websiteButton.translatesAutoresizingMaskIntoConstraints = false
-        websiteButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        websiteButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.6).isActive = true
-        websiteButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05).isActive = true
-        websiteButton.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-        
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        infoLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.1).isActive = true
-        infoLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.7).isActive = true
-        infoLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.2).isActive = true
-        infoLabel.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8).isActive = true
-    }
+
     
     func loadLabels() {
         print("colors")
-        nameLabel.backgroundColor = UIColor.blue
-        addressLabel.backgroundColor = UIColor.blue
-        daysLabel.backgroundColor = UIColor.blue
-        timeLabel.backgroundColor = UIColor.blue
-        ebtLabel.backgroundColor = UIColor.blue
-        websiteButton.backgroundColor = UIColor.blue
-        infoLabel.backgroundColor = UIColor.blue
+        nameLabel.backgroundColor = UIColor.themeSand
+        addressLabel.backgroundColor = UIColor.themeBrightBlue
+        boroughLabel.backgroundColor = UIColor.themeMedBlue
+        seasonLabel.backgroundColor = UIColor.themeDarkBlue
+        daysLabel.backgroundColor = UIColor.themeTealBlue
+        timeLabel.backgroundColor = UIColor.themeMedBlue
+        ebtLabel.backgroundColor = UIColor.themeDarkBlue
+        websiteButton.backgroundColor = UIColor.themeSand
+        extrasLabel.backgroundColor = UIColor.themeDarkBlue
     }
     
+}
+
+
+//MARK: - Create Contraints
+extension MarketInfo {
+    func loadContraints() {
+        
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
+        mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.1).isActive = true
+        mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.1).isActive = true
+        mapView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.35).isActive = true
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: self.bounds.height * 0.05).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.1).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.1).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.02).isActive = true
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 58 * 9).isActive = true
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: stackView.topAnchor, constant: stackView.bounds.height * 0.02).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        addressLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        addressLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        addressLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        boroughLabel.translatesAutoresizingMaskIntoConstraints = false
+        boroughLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        boroughLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        boroughLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        boroughLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        seasonLabel.translatesAutoresizingMaskIntoConstraints = false
+        seasonLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        seasonLabel.topAnchor.constraint(equalTo: boroughLabel.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        seasonLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        seasonLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        daysLabel.translatesAutoresizingMaskIntoConstraints = false
+        daysLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        daysLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        daysLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        daysLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        timeLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: daysLabel.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        timeLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        timeLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        ebtLabel.translatesAutoresizingMaskIntoConstraints = false
+        ebtLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        ebtLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        ebtLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        ebtLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        websiteButton.translatesAutoresizingMaskIntoConstraints = false
+        websiteButton.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        websiteButton.topAnchor.constraint(equalTo: ebtLabel.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        websiteButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        websiteButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        extrasLabel.translatesAutoresizingMaskIntoConstraints = false
+        extrasLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        extrasLabel.topAnchor.constraint(equalTo: websiteButton.bottomAnchor, constant: stackView.bounds.height * 0.04).isActive = true
+        extrasLabel.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+        extrasLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+    }
 }

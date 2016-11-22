@@ -29,6 +29,10 @@ class LandingViewController: UIViewController, LandingViewDelegate {
     
     deinit {
         print("@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@")
+        
     }
     
 }

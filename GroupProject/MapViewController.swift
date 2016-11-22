@@ -13,7 +13,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataStore.sharedInstance.fetchData()
+
         print("mapview called")
         let mapView = MapView(frame: self.view.frame)
         self.view = mapView

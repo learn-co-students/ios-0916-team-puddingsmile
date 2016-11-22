@@ -21,7 +21,7 @@ class MapView: MKMapView, MKMapViewDelegate {
         delegate = self
         
         initialSetupForView()
-        setupLocationManager()
+//        setupLocationManager()
         self.convertMarketsToMapItem()
         self.addAnnotationsToMap()
         

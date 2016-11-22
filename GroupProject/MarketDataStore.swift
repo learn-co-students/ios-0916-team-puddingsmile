@@ -94,6 +94,7 @@ class DataStore {
             }
             self.saveContext()
             self.fetchData()
+            print("second completion")
             print(markets)
         }
     }
