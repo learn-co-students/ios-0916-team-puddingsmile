@@ -9,6 +9,7 @@
 import Foundation
 import MapKit
 
+
 class MapView: MKMapView, MKMapViewDelegate {
     
     var locationManager: CLLocationManager!
@@ -19,9 +20,9 @@ class MapView: MKMapView, MKMapViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         delegate = self
-        
+        //DataStore.sharedInstance.fetchData()
         initialSetupForView()
-//        setupLocationManager()
+        setupLocationManager()
         self.convertMarketsToMapItem()
         self.addAnnotationsToMap()
         
@@ -33,13 +34,11 @@ class MapView: MKMapView, MKMapViewDelegate {
     
     
     func initialSetupForView() {
-        print("called")
-        setupLocationManager()
-        
+        self.showsUserLocation = true
+        self.isZoomEnabled = true
     }
     
     func convertMarketsToMapItem() {
-        print("convert item called")
         for location in locationArray {
             let longitude = Double(location.longitude!)
             let latitude = Double(location.latitude!)
@@ -50,7 +49,7 @@ class MapView: MKMapView, MKMapViewDelegate {
     
     
     func addAnnotationsToMap() {
-        print("add annotations called")
+        
         var annotations: [MKAnnotation] = []
         for location in mapItemList {
             let annotation = MKPointAnnotation()
@@ -58,13 +57,9 @@ class MapView: MKMapView, MKMapViewDelegate {
             
             annotations.append(annotation)
         }
-        let region = MKCoordinateRegion(center: annotations[0].coordinate, span: MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04))
-        self.setRegion(region, animated: true)
+
         self.addAnnotations(annotations)
     }
-    
-    
-
     
 }
 
@@ -76,18 +71,22 @@ extension MapView: CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
         centerMapOnCurrentLocation(location: location)
+       
     }
     
     func centerMapOnCurrentLocation(location: CLLocation) {
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let span = MKCoordinateSpanMake(0.1, 0.1)
+        let span = MKCoordinateSpanMake(0.02, 0.02) //arbitrary span (about 2X2 miles i think)
         let region = MKCoordinateRegion(center: center, span: span)
         self.setRegion(region, animated: true)
+  
     }
     
     
