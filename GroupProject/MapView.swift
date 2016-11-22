@@ -76,6 +76,22 @@ class MapView: MKMapView, MKMapViewDelegate {
         self.addAnnotations(annotations)
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "pin"
+        var view: MKPinAnnotationView!
+        if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+            dequedView.annotation = annotation
+        } else {
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as! UIView
+        }
+        return view
+    }
+    
+    
+    
     
 }
 
