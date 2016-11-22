@@ -9,13 +9,17 @@
 import Foundation
 import MapKit
 
+protocol MapViewDelegate: class {
+    func transitionToMarketInfoView()
+}
+
 
 class MapView: MKMapView, MKMapViewDelegate {
     
     var locationManager: CLLocationManager!
     let locationArray = DataStore.sharedInstance.markets
     var mapItemList: [MKMapItem] = []
-    
+    weak var mapDelegate: MapViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +28,6 @@ class MapView: MKMapView, MKMapViewDelegate {
         setupLocationManager()
         self.convertMarketsToMapItem()
         self.addAnnotationsToMap()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +40,9 @@ class MapView: MKMapView, MKMapViewDelegate {
         self.isZoomEnabled = true
     }
     
+    
+//MARK: -Create annotation pins
+    
     func convertMarketsToMapItem() {
         for location in locationArray {
             let longitude = Double(location.longitude!)
@@ -45,20 +51,6 @@ class MapView: MKMapView, MKMapViewDelegate {
             mapItemList.append(MKMapItem(placemark: placemark))
         }
     }
-    
-    
-//    func addAnnotationsToMap() {
-//        
-//        var annotations: [MKAnnotation] = []
-//        for location in mapItemList {
-//            let annotation = MKPointAnnotation()
-//            
-//            annotation.coordinate = location.placemark.coordinate
-//            annotations.append(annotation)
-//        }
-//        self.addAnnotations(annotations)
-//    }
-    
     
     func addAnnotationsToMap() {
         var annotations: [MKAnnotation] = []
@@ -72,6 +64,7 @@ class MapView: MKMapView, MKMapViewDelegate {
             annotation.title = location.name
             annotation.subtitle = location.address
             annotations.append(annotation)
+    
         }
         self.addAnnotations(annotations)
     }
@@ -91,11 +84,23 @@ class MapView: MKMapView, MKMapViewDelegate {
     }
     
     
-    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("tapped")
+        let location = view.annotation
+        guard let name = location?.title else { return }
+        print("Name")
+        guard let marketName = name else { return }
+        print("name")
+        //print(mapDelegate)
+        //self.infoDelegate.passInTitle(marketName)
+        self.mapDelegate?.transitionToMarketInfoView()
+    }
     
 }
 
 extension MapView: CLLocationManagerDelegate {
+    
+// MARK: -Location Information
     
     func setupLocationManager(){
         locationManager = CLLocationManager()
@@ -103,14 +108,11 @@ extension MapView: CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
         centerMapOnCurrentLocation(location: location)
-       
     }
     
     func centerMapOnCurrentLocation(location: CLLocation) {
@@ -118,7 +120,6 @@ extension MapView: CLLocationManagerDelegate {
         let span = MKCoordinateSpanMake(0.02, 0.02) //arbitrary span (about 2X2 miles i think)
         let region = MKCoordinateRegion(center: center, span: span)
         self.setRegion(region, animated: true)
-  
     }
     
 }

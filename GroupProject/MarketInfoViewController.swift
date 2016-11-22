@@ -13,12 +13,12 @@ class MarketInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let marketInfoView = MarketInfo(frame: self.view.frame)
-    
         self.view = marketInfoView
-   
+        
     }
+    
+    
 
    
 

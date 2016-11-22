@@ -8,24 +8,21 @@
 
 import UIKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MapViewDelegate {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("mapview called")
         let mapView = MapView(frame: self.view.frame)
+        mapView.mapDelegate = self
         self.view = mapView
-        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    
+
+    func transitionToMarketInfoView() {
+        performSegue(withIdentifier: "marketInfoSegue", sender: self)
     }
     
-
  
 }
 

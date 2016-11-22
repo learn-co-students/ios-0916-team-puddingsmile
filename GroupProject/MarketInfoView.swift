@@ -10,14 +10,9 @@ import Foundation
 import UIKit
 import MapKit
 
-protocol MarketInfoDelegate {
-    
-}
-
-
-
 class MarketInfo: UIView {
     
+    var passedInTitle: String?
     var mapView: MKMapView!
     
     var scrollView: UIScrollView!
@@ -35,6 +30,7 @@ class MarketInfo: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        print("passed in title is \(passedInTitle)")
         self.backgroundColor = UIColor.brown
         createLabels()
         loadContraints()
@@ -44,6 +40,11 @@ class MarketInfo: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func getTitle(title: String) {
+        passedInTitle = title
+    }
+    
     
     func createLabels() {
         mapView = MKMapView()
