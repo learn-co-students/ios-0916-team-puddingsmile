@@ -66,9 +66,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MIu-Iu-CCF"/>
+                    <navigationItem key="navigationItem" id="MIu-Iu-CCF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="7tw-yS-Cvw">
+                            <connections>
+                                <segue destination="xr2-rK-8g1" kind="show" identifier="searchTableView" id="M81-pa-EuW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="xr2-rK-8g1" kind="presentation" identifier="mapListSegue" id="g5r-Xa-70v"/>
                         <segue destination="TwL-4O-INN" kind="presentation" identifier="marketInfoSegue" id="KjW-6N-AGa"/>
                     </connections>
                 </viewController>
