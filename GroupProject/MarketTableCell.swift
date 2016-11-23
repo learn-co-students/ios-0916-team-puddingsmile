@@ -27,7 +27,12 @@ class MarketTableCell: UITableViewCell {
         
         if segue.identifier == "listToViewSegue" {
             let dest = segue.destination as! MarketInfoViewController
-            dest.market = self.marketView.market
+            if self.marketView.market != nil {
+                dest.market = self.marketView.market
+            } else {
+                print("There is no value for market")
+            }
+            
         }
     }
     
