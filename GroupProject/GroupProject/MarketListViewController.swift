@@ -8,9 +8,13 @@
 
 import UIKit
 
-class MarketListViewController: UIViewController, MarketTableViewDelegate {
+class MarketListViewController: UIViewController, MarketTableViewDelegate, SearchDelegate {
 
     let store = DataStore.sharedInstance
+    
+    //create a dummy array of results of search
+    //if search for nothing, dummy array = store.markets
+    //or when it loads first time
     
     var passMarket: Market?
     
@@ -22,6 +26,7 @@ class MarketListViewController: UIViewController, MarketTableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         marketTableView.tableDelegate = self
+        searchBar.searchDelegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -44,5 +49,8 @@ class MarketListViewController: UIViewController, MarketTableViewDelegate {
         }
     }
   
+    func search(address: String?, time: String?){
+        //do things here
+    }
 
 }

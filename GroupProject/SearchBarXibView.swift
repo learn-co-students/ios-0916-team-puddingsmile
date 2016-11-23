@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchDelegate {
+protocol SearchDelegate: class {
     
     func search(address: String?, time: String?)
     
@@ -16,7 +16,7 @@ protocol SearchDelegate {
 
 class SearchBarXibView: UIView {
     
-    var delegate: SearchDelegate!
+    weak var searchDelegate: SearchDelegate!
 
     @IBOutlet var contentView: UIView!
 
@@ -26,7 +26,7 @@ class SearchBarXibView: UIView {
     
     @IBAction func searchButton(_ sender: Any) {
         
-        delegate?.search(address: addressTextField.text, time: timeTextField.text)
+        searchDelegate?.search(address: addressTextField.text, time: timeTextField.text)
     }
     
     @IBOutlet weak var advancedSearchLabel: UILabel!

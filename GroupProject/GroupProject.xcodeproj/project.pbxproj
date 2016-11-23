@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41C9EFEF0D58011ADABDA4A5 /* Pods_GroupProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E796F04915D3867E73E5AD /* Pods_GroupProjectTests.framework */; };
 		52118E11BE677BA33E036F3B /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */; };
+		564FEA511DE64BC600F9B28F /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564FEA501DE64BC600F9B28F /* CustomSegue.swift */; };
 		569CBD711DE5F3C100BE502B /* SearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569CBD701DE5F3C100BE502B /* SearchBar.xib */; };
 		569CBD731DE5F3CC00BE502B /* MarketViewPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */; };
 		569CBD751DE5F41E00BE502B /* MarketTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569CBD741DE5F41E00BE502B /* MarketTableCell.swift */; };
@@ -71,6 +72,7 @@
 		237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E14FECD137F0044D1F924B /* Pods-GroupProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		467396D901C55DBB36357A1F /* Pods-GroupProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		564FEA501DE64BC600F9B28F /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		569CBD701DE5F3C100BE502B /* SearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBar.xib; sourceTree = "<group>"; };
 		569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarketViewPrototype.xib; sourceTree = "<group>"; };
 		569CBD741DE5F41E00BE502B /* MarketTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTableCell.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */,
 				C3C6593D1DDBCE7C00C7B533 /* Parser.swift */,
 				C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */,
+				564FEA501DE64BC600F9B28F /* CustomSegue.swift */,
 				B5D2DDA01DDF4D1C001F2CCE /* DateManager.swift */,
 				B5D2DDA21DDFAF1A001F2CCE /* LocationManager.swift */,
 				B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */,
@@ -552,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564FEA511DE64BC600F9B28F /* CustomSegue.swift in Sources */,
 				C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */,
 				C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */,
 				569CBD791DE5F5A200BE502B /* MarketView.swift in Sources */,
