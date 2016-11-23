@@ -9,9 +9,16 @@
 import UIKit
 import MapKit
 
+protocol MarketTableViewDelegate: class {
+    func startSegueRow(market: Market)
+}
+
+
 class MarketTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
     let store = DataStore.sharedInstance
+    
+    weak var tableDelegate: MarketTableViewDelegate!
     
     override func awakeFromNib() {
         print(store.markets.count)
@@ -39,6 +46,9 @@ class MarketTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableDelegate.startSegueRow(market: store.markets[indexPath.row])
+    }
     
 }
 

@@ -8,19 +8,20 @@
 
 import UIKit
 
-class MarketListViewController: UIViewController {
+class MarketListViewController: UIViewController, MarketTableViewDelegate {
 
     let store = DataStore.sharedInstance
     
-    @IBOutlet weak var marketTableView: MarketTableView!
+    var passMarket: Market?
     
+    @IBOutlet weak var marketTableView: MarketTableView!
     
     @IBOutlet weak var searchBar: SearchBarXibView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        marketTableView.tableDelegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -29,14 +30,17 @@ class MarketListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // pass any object as parameter, i.e. the tapped row
-        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "listToViewSegue" {
-                let marketRow = store.markets[indexPath.row]
-                let dest = segue.destination as! MarketInfoViewController
-                dest.market = marketRow
-            }
+    
+    func startSegueRow(market: Market) {
+        passMarket = market
+        performSegue(withIdentifier: "listToViewSegue", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "listToViewSegue" {
+            let dest = segue.destination as! MarketInfoViewController
+            dest.market = passMarket
         }
     }
   
