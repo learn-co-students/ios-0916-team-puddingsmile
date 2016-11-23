@@ -11,7 +11,7 @@ import UIKit
 class CustomSegue: UIStoryboardSegue {
 
     override func perform() {
-        <#code#>
+        print("fill out this custom segue class")
     }
     
     
