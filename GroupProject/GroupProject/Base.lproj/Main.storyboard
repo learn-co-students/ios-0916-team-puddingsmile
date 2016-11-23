@@ -104,7 +104,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZFJ-2r-SnO" id="VEV-oc-3Rr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-nl-jQg" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
@@ -124,7 +124,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="marketView" destination="CxV-nl-jQg" id="Ep6-4t-Vfn"/>
-                                            <segue destination="TwL-4O-INN" kind="show" identifier="listToViewSegue" id="IQB-hy-XBC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -142,6 +141,11 @@
                             <constraint firstItem="dNq-Qn-s6v" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" multiplier="0.7" id="uak-4N-pwV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="marketTableView" destination="dNq-Qn-s6v" id="Ilx-hQ-jxx"/>
+                        <outlet property="searchBar" destination="dGB-BA-vIH" id="2Rk-32-xlv"/>
+                        <segue destination="TwL-4O-INN" kind="show" identifier="listToViewSegue" id="rmz-3I-uA7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJX-hE-cd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,6 +210,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IQB-hy-XBC"/>
+        <segue reference="rmz-3I-uA7"/>
     </inferredMetricsTieBreakers>
 </document>

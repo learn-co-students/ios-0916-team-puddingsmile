@@ -39,6 +39,7 @@ class MarketTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
 }
 
 

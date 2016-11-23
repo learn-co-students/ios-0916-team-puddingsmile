@@ -10,6 +10,12 @@ import UIKit
 
 class MarketListViewController: UIViewController {
 
+    let store = DataStore.sharedInstance
+    
+    @IBOutlet weak var marketTableView: MarketTableView!
+    
+    
+    @IBOutlet weak var searchBar: SearchBarXibView!
     
     
     override func viewDidLoad() {
@@ -23,15 +29,16 @@ class MarketListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // pass any object as parameter, i.e. the tapped row
+        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "listToViewSegue" {
+                let marketRow = store.markets[indexPath.row]
+                let dest = segue.destination as! MarketInfoViewController
+                dest.market = marketRow
+            }
+        }
     }
-    */
+  
 
 }

@@ -23,18 +23,7 @@ class MarketTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "listToViewSegue" {
-            let dest = segue.destination as! MarketInfoViewController
-            if self.marketView.market != nil {
-                dest.market = self.marketView.market
-            } else {
-                print("There is no value for market")
-            }
-            
-        }
-    }
+    
     
 
 }
