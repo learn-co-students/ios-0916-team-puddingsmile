@@ -17,6 +17,7 @@ class MarketInfo: UIView {
     var market: Market!
     
     var mapView: MKMapView!
+    var marketPin: MKMapItem!
     
     var nameLabel: UILabel!
     var addressLabel: UILabel!
@@ -38,8 +39,6 @@ class MarketInfo: UIView {
         self.backgroundColor = UIColor.themeDarkBlue
         createLabels()
         loadContraints()
-        //loadLabels()
-        
         
     }
     
@@ -71,55 +70,7 @@ class MarketInfo: UIView {
         extrasLabel = UILabel()
         self.addSubview(extrasLabel)
     }
-//    func convertMarketsToMapItem() {
-//        for location in locationArray {
-//            let longitude = Double(location.longitude!)
-//            let latitude = Double(location.latitude!)
-//            let placemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(latitude!, longitude!))
-//            mapItemList.append(MKMapItem(placemark: placemark))
-//        }
-//    }
-//    
-//    func addAnnotationsToMap() {
-//        var annotations: [MKAnnotation] = []
-//        for location in locationArray {
-//            
-//            let market = MarketAnnotation(market: location)
-//            annotations.append(market)
-//            
-//            
-//        }
-//        self.addAnnotations(annotations)
-//    }
-//    
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        let identifier = "pin"
-//        var view: MKPinAnnotationView!
-//        if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
-//            dequedView.annotation = annotation
-//        } else {
-//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//            view.canShowCallout = true
-//            view.calloutOffset = CGPoint(x: -5, y: 5)
-//            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as! UIView
-//        }
-//        return view
-//    }
-//    
-//    
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        print("tapped")
-//        
-//        let location = view.annotation as! MarketAnnotation
-//        
-//        //        guard let name = location?.title else { return }
-//        //        print("Name")
-//        //        guard let marketName = name else { return }
-//        //        print("name")
-//        guard let marketToPass = location.market else { return }
-//        print("Market to pass is \(marketToPass.name)")
-//        self.mapDelegate?.getInfo(market: marketToPass)
-//        self.mapDelegate?.transitionToMarketInfoView()
+    
     
     func loadLabels() {
     
@@ -154,6 +105,7 @@ class MarketInfo: UIView {
     
 }
 
+//MARK: - Setup Mapkit view
 extension MarketInfo: CLLocationManagerDelegate {
 
     // MARK: -Location Information
@@ -161,19 +113,32 @@ extension MarketInfo: CLLocationManagerDelegate {
     func setupLocationManager(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
 
-
     func centerMapOnCurrentLocation() {
         let center = CLLocationCoordinate2D(latitude: Double(market.latitude!)!, longitude: Double(market.longitude!)!)
-        let span = MKCoordinateSpanMake(0.01, 0.01) //arbitrary span (about 2X2 miles i think)
+        let span = MKCoordinateSpanMake(0.002, 0.005) //arbitrary span (about 2X2 miles i think)
         let region = MKCoordinateRegion(center: center, span: span)
         self.mapView.setRegion(region, animated: true)
     }
 
+    func convertToMapItem() {
+        let longitude = Double(market.longitude!)
+        let latitude = Double(market.latitude!)
+        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(latitude!, longitude!))
+        marketPin = MKMapItem(placemark: placemark)
+    }
+    
+    func addAnnotationToMap() {
+        
+        let marketAnno = MarketAnnotation(market: self.market)
+        
+        mapView.addAnnotation(marketAnno)
+    }
+    
 }
 
 //MARK: - Create Contraints
