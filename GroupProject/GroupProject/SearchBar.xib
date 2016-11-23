@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchBar" customModule="mapKitTest" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchBar" customModule="GroupProject" customModuleProvider="target">
             <connections>
                 <outlet property="addressTextField" destination="2Lw-0I-aNB" id="cCA-dP-PiQ"/>
                 <outlet property="advancedSearchLabel" destination="Oys-1K-1h8" id="bPk-U5-Xz3"/>
@@ -20,17 +20,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="273"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="224"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LvR-D1-cok" userLabel="timeTextField">
-                    <rect key="frame" x="56.5" y="122.5" width="262.5" height="27.5"/>
+                    <rect key="frame" x="56.5" y="117.5" width="262.5" height="22.5"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcm-g5-xN2" userLabel="SearchButton">
-                    <rect key="frame" x="138" y="180" width="99" height="44"/>
+                    <rect key="frame" x="138" y="170" width="99" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="99" id="5oz-FM-hqg"/>
                         <constraint firstAttribute="height" constant="44" id="yxa-Ab-i7k"/>
@@ -51,7 +51,7 @@
                     <color key="highlightedColor" red="0.042147834260000003" green="0.080047408870000003" blue="0.71422275639999999" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Lw-0I-aNB" userLabel="addressTextField">
-                    <rect key="frame" x="56.5" y="70" width="262.5" height="27.5"/>
+                    <rect key="frame" x="56.5" y="70" width="262.5" height="22.5"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -74,7 +74,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-22.5" y="-121.5"/>
+            <point key="canvasLocation" x="-22.5" y="-146"/>
         </view>
     </objects>
 </document>

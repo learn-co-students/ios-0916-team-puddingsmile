@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,11 +93,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGB-BA-vIH" customClass="SearchBarXibView" customModule="GroupProject" customModuleProvider="target">
-                                <rect key="frame" x="16" y="20" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNq-Qn-s6v" customClass="MarketTableView" customModule="GroupProject" customModuleProvider="target">
-                                <rect key="frame" x="16" y="220" width="375" height="467"/>
+                                <rect key="frame" x="0.0" y="264" width="375" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="marketCell" rowHeight="125" id="ZFJ-2r-SnO" customClass="MarketTableCell" customModule="GroupProject" customModuleProvider="target">
@@ -109,15 +108,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-nl-jQg" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="359" height="108"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="leading" secondItem="VEV-oc-3Rr" secondAttribute="leadingMargin" id="G8Q-Q7-1kQ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="CxV-nl-jQg" secondAttribute="trailing" id="IhT-MU-oJW"/>
-                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="top" secondItem="VEV-oc-3Rr" secondAttribute="topMargin" id="Wgm-Q6-Av7"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="CxV-nl-jQg" secondAttribute="bottom" id="m20-Gw-wvH"/>
+                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="leading" secondItem="VEV-oc-3Rr" secondAttribute="leading" id="DEw-gz-MWj"/>
+                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="top" secondItem="VEV-oc-3Rr" secondAttribute="top" id="DdA-67-2Th"/>
+                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="width" secondItem="VEV-oc-3Rr" secondAttribute="width" id="EbC-zi-GdN"/>
+                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="leading" secondItem="VEV-oc-3Rr" secondAttribute="leading" id="G8Q-Q7-1kQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="CxV-nl-jQg" secondAttribute="trailing" id="Th8-Kz-aeQ"/>
+                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="top" secondItem="VEV-oc-3Rr" secondAttribute="top" id="Wgm-Q6-Av7"/>
+                                                <constraint firstAttribute="bottom" secondItem="CxV-nl-jQg" secondAttribute="bottom" id="nGQ-sg-VAr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -131,11 +133,11 @@
                         <constraints>
                             <constraint firstItem="dGB-BA-vIH" firstAttribute="width" secondItem="XDS-30-ezq" secondAttribute="width" id="2cV-D2-8jH"/>
                             <constraint firstItem="dNq-Qn-s6v" firstAttribute="top" secondItem="dGB-BA-vIH" secondAttribute="bottom" id="4PL-gl-FMM"/>
-                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leadingMargin" id="4nF-1q-PKS"/>
+                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leading" id="4nF-1q-PKS"/>
                             <constraint firstItem="dGB-BA-vIH" firstAttribute="top" secondItem="3sF-1C-Bru" secondAttribute="bottom" id="VFG-bN-Pur"/>
                             <constraint firstItem="dGB-BA-vIH" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" multiplier="0.3" id="fN8-Aq-ogq"/>
                             <constraint firstItem="dNq-Qn-s6v" firstAttribute="width" secondItem="XDS-30-ezq" secondAttribute="width" id="luF-9d-1i5"/>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leadingMargin" id="m1v-Fb-B47"/>
+                            <constraint firstItem="dGB-BA-vIH" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leading" id="m1v-Fb-B47"/>
                             <constraint firstItem="dNq-Qn-s6v" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" multiplier="0.7" id="uak-4N-pwV"/>
                         </constraints>
                     </view>

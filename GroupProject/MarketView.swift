@@ -22,7 +22,10 @@ class MarketView: UIView {
             if let displayName =  market.name{
                 infoLabel.text = "\(displayName)"
             }
-            addressLabel.text = "\(market.address)"
+            if let displayAddress = market.address{
+               addressLabel.text = "\(displayAddress)"
+            }
+            
         }
     }
     
