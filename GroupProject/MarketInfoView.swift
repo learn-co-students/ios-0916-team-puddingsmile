@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MapKit
+import SafariServices
+
 
 class MarketInfo: UIView {
     
@@ -26,6 +28,10 @@ class MarketInfo: UIView {
     var websiteButton: UIButton!
     var extrasLabel: UILabel!
     
+    var thing: SFSafariViewController?
+    
+    var locationManager: CLLocationManager!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     
@@ -33,6 +39,8 @@ class MarketInfo: UIView {
         createLabels()
         loadContraints()
         //loadLabels()
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,8 +71,55 @@ class MarketInfo: UIView {
         extrasLabel = UILabel()
         self.addSubview(extrasLabel)
     }
-    
-
+//    func convertMarketsToMapItem() {
+//        for location in locationArray {
+//            let longitude = Double(location.longitude!)
+//            let latitude = Double(location.latitude!)
+//            let placemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(latitude!, longitude!))
+//            mapItemList.append(MKMapItem(placemark: placemark))
+//        }
+//    }
+//    
+//    func addAnnotationsToMap() {
+//        var annotations: [MKAnnotation] = []
+//        for location in locationArray {
+//            
+//            let market = MarketAnnotation(market: location)
+//            annotations.append(market)
+//            
+//            
+//        }
+//        self.addAnnotations(annotations)
+//    }
+//    
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        let identifier = "pin"
+//        var view: MKPinAnnotationView!
+//        if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+//            dequedView.annotation = annotation
+//        } else {
+//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            view.canShowCallout = true
+//            view.calloutOffset = CGPoint(x: -5, y: 5)
+//            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as! UIView
+//        }
+//        return view
+//    }
+//    
+//    
+//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//        print("tapped")
+//        
+//        let location = view.annotation as! MarketAnnotation
+//        
+//        //        guard let name = location?.title else { return }
+//        //        print("Name")
+//        //        guard let marketName = name else { return }
+//        //        print("name")
+//        guard let marketToPass = location.market else { return }
+//        print("Market to pass is \(marketToPass.name)")
+//        self.mapDelegate?.getInfo(market: marketToPass)
+//        self.mapDelegate?.transitionToMarketInfoView()
     
     func loadLabels() {
     
@@ -78,19 +133,20 @@ class MarketInfo: UIView {
         boroughLabel.text = market.borough
         
         seasonLabel.backgroundColor = UIColor.themeSand
-        seasonLabel.text = "\(market.openDate) \(market.closeDate)"
+        seasonLabel.text = "\(market.openDate!) - \(market.closeDate!)"
         
         daysLabel.backgroundColor = UIColor.themeTealBlue
         daysLabel.text = market.weekDayOpen
         
         timeLabel.backgroundColor = UIColor.themeMedBlue
-        timeLabel.text = "\(market.startTime) - \(market.endTime)"
+        timeLabel.text = "\(market.startTime!) - \(market.endTime!)"
         
         ebtLabel.backgroundColor = UIColor.themeTealBlue
+        print("ebt")
         ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
         
         websiteButton.backgroundColor = UIColor.themeSand
-        websiteButton.setTitle("\(market.marketWebsite)", for: .normal)
+        websiteButton.setTitle("\(market.marketWebsite!)", for: .normal)
         
         extrasLabel.backgroundColor = UIColor.themeBrightBlue
         extrasLabel.text = market.extras
@@ -98,6 +154,27 @@ class MarketInfo: UIView {
     
 }
 
+extension MarketInfo: CLLocationManagerDelegate {
+
+    // MARK: -Location Information
+
+    func setupLocationManager(){
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+
+
+    func centerMapOnCurrentLocation() {
+        let center = CLLocationCoordinate2D(latitude: Double(market.latitude!)!, longitude: Double(market.longitude!)!)
+        let span = MKCoordinateSpanMake(0.01, 0.01) //arbitrary span (about 2X2 miles i think)
+        let region = MKCoordinateRegion(center: center, span: span)
+        self.mapView.setRegion(region, animated: true)
+    }
+
+}
 
 //MARK: - Create Contraints
 extension MarketInfo {
@@ -152,17 +229,17 @@ extension MarketInfo {
         ebtLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         ebtLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
 
-        websiteButton.translatesAutoresizingMaskIntoConstraints = false
-        websiteButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        websiteButton.topAnchor.constraint(equalTo: ebtLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
-        websiteButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
-        websiteButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
-
         extrasLabel.translatesAutoresizingMaskIntoConstraints = false
         extrasLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        extrasLabel.topAnchor.constraint(equalTo: websiteButton.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        extrasLabel.topAnchor.constraint(equalTo: ebtLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
         extrasLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         extrasLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
+
+        websiteButton.translatesAutoresizingMaskIntoConstraints = false
+        websiteButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        websiteButton.topAnchor.constraint(equalTo: extrasLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        websiteButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
+        websiteButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
 
     }
 }
