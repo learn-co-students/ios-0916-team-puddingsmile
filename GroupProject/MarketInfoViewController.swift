@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MarketInfoViewController: UIViewController {
+class MarketInfoViewController: UIViewController, MarketInfoDelegate {
     
     var market: Market!
 
@@ -20,13 +20,15 @@ class MarketInfoViewController: UIViewController {
         
         let marketInfoView = MarketInfo(frame: self.view.frame)
         marketInfoView.market = unwrappedMarket
-        
+        marketInfoView.delegate = self
         self.view = marketInfoView
         marketInfoView.setupMarketInfoView(market: market)
         
     }
     
-    
+    func startSegue() {
+        dismiss(animated: true, completion: nil)
+    }
 
    
 

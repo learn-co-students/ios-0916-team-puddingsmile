@@ -34,7 +34,6 @@ class MapView: MKMapView, MKMapViewDelegate {
             self.convertMarketsToMapItem()
             self.addAnnotationsToMap()
         }
-      
     }
     
     required init?(coder aDecoder: NSCoder) {
