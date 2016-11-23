@@ -153,7 +153,7 @@ extension MarketInfo: CLLocationManagerDelegate {
     func addAnnotationToMap() {
         
         let marketAnno = MarketAnnotation(market: self.market)
-        
+
         mapView.addAnnotation(marketAnno)
     }
     
