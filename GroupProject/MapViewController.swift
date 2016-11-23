@@ -23,6 +23,11 @@ class MapViewController: UIViewController, MapViewDelegate {
         performSegue(withIdentifier: "marketInfoSegue", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as! MarketInfoViewController
+        
+    }
+    
  
 }
 

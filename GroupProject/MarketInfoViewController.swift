@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class MarketInfoViewController: UIViewController {
+    
+    var market: Market!
 
     override func viewDidLoad() {
         super.viewDidLoad()

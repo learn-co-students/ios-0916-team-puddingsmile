@@ -13,6 +13,9 @@ protocol MapViewDelegate: class {
     func transitionToMarketInfoView()
 }
 
+protocol SendMarketInfoDelegate: class {
+    func gatherMarketInfo(market: MKAnnotation)
+}
 
 class MapView: MKMapView, MKMapViewDelegate {
     
@@ -109,6 +112,7 @@ extension MapView: CLLocationManagerDelegate {
         let location = locations.last! as CLLocation
         centerMapOnCurrentLocation(location: location)
     }
+    
     
     func centerMapOnCurrentLocation(location: CLLocation) {
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
