@@ -27,9 +27,13 @@ class MapViewController: UIViewController, MapViewDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dest = segue.destination as! MarketInfoViewController
-        dest.market = passedMarket
-        
+
+        if segue.identifier == "marketInfoSegue" {
+            let dest = segue.destination as! MarketInfoViewController
+            dest.market = passedMarket
+        } else {
+            let dest = segue.destination as! MarketListViewController
+        }
     }
     
  

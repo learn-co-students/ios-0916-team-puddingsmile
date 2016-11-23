@@ -23,6 +23,8 @@ class MarketInfoViewController: UIViewController {
         
         self.view = marketInfoView
         marketInfoView.loadLabels()
+        marketInfoView.setupLocationManager()
+        marketInfoView.centerMapOnCurrentLocation()
     }
     
     
