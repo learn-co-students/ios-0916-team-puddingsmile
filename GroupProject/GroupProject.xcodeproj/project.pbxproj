@@ -39,6 +39,7 @@
 		C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659401DDBCE8300C7B533 /* LandingView.swift */; };
 		C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */; };
 		C3C659451DDBCE8300C7B533 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659421DDBCE8300C7B533 /* SearchView.swift */; };
+		C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */; };
 		FAF45631D2F3047A5F3EA4DB /* Pods_GroupProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A67DF18E84F0E896BFFCF60 /* Pods_GroupProjectUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		C3C659401DDBCE8300C7B533 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoView.swift; sourceTree = "<group>"; };
 		C3C659421DDBCE8300C7B533 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketAnnotation.swift; sourceTree = "<group>"; };
 		CBEB0C8F32A47559618F9456 /* Pods-GroupProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E7301191369CDC6175227298 /* Pods-GroupProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +233,7 @@
 				B5D2DDA01DDF4D1C001F2CCE /* DateManager.swift */,
 				B5D2DDA21DDFAF1A001F2CCE /* LocationManager.swift */,
 				B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */,
+				C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */,
 				C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */,
 				C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */,
 				C3C6593A1DDBCE6700C7B533 /* SearchViewController.swift in Sources */,

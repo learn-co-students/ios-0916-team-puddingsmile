@@ -55,15 +55,10 @@ class MapView: MKMapView, MKMapViewDelegate {
     func addAnnotationsToMap() {
         var annotations: [MKAnnotation] = []
         for location in locationArray {
-            let annotation = MKPointAnnotation()
-            let latitude = Double(location.latitude!)
-            let longitude = Double(location.longitude!)
             
-            
-            annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-            annotation.title = location.name
-            annotation.subtitle = location.address
-            annotations.append(annotation)
+              let market = MarketAnnotation(market: location)
+              annotations.append(market)
+
     
         }
         self.addAnnotations(annotations)
