@@ -11,10 +11,9 @@ import MapKit
 
 class MarketTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
-    let store = MarketDataStore.sharedInstance
+    let store = DataStore.sharedInstance
     
     override func awakeFromNib() {
-        print("Hello! Is anyone home?")
         print(store.markets.count)
         dataSource = self
         delegate = self
@@ -26,13 +25,12 @@ class MarketTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
-        print("creating table section for a second time")
         return store.markets.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath) as! MarketCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath) as! MarketTableCell
         
         let market = store.markets[indexPath.row]
         

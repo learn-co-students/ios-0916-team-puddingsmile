@@ -19,8 +19,8 @@ class MarketView: UIView {
     
     var market: Market!{
         didSet {
-            if let title =  market.title{
-                infoLabel.text = "\(title)"
+            if let displayName =  market.name{
+                infoLabel.text = "\(displayName)"
             }
             addressLabel.text = "\(market.address)"
         }
@@ -38,7 +38,7 @@ class MarketView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("MarketView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("MarketViewPrototype", owner: self, options: nil)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
