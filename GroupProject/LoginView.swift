@@ -67,7 +67,7 @@ class LoginView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.themeBrightBlue
+        self.backgroundColor = UIColor.themeTertiary
         self.loadViews()
         self.setPositions()
     }
@@ -307,7 +307,7 @@ extension LoginView {
     func loadViews() {
         
         let borderWidth: CGFloat = 2
-        let borderColor = UIColor.themeBrightBlue.cgColor
+        let borderColor = UIColor.themeAccent2.cgColor
         
         appTitleLabel1 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.02, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.05))
         appTitleLabel1.textColor = UIColor.black
@@ -335,7 +335,8 @@ extension LoginView {
         firstnameTextField.layer.borderWidth = borderWidth
         firstnameTextField.layer.borderColor = borderColor
         firstnameTextField.autocorrectionType = .no
-        firstnameTextField.backgroundColor = UIColor.themeTealBlue
+        firstnameTextField.backgroundColor = UIColor.themePrimary
+        firstnameTextField.setLeftPaddingPoints(5)
         firstnameTextField.attributedPlaceholder = NSAttributedString(string: "Enter First Name")
         self.addSubview(firstnameTextField)
         
@@ -344,17 +345,19 @@ extension LoginView {
         lastnameTextField.layer.borderWidth = borderWidth
         lastnameTextField.layer.borderColor = borderColor
         lastnameTextField.autocorrectionType = .no
-        lastnameTextField.backgroundColor = UIColor.themeTealBlue
+        lastnameTextField.backgroundColor = UIColor.themePrimary
+        lastnameTextField.setLeftPaddingPoints(5)
         lastnameTextField.attributedPlaceholder = NSAttributedString(string: "Enter Last Name")
         self.addSubview(lastnameTextField)
         
         emailTextField = UITextField(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width * 0.6, height: self.frame.size.height * 0.06))
-        emailTextField.backgroundColor = UIColor.themeTealBlue
+        emailTextField.backgroundColor = UIColor.themePrimary
         emailTextField.layer.cornerRadius = 4
         emailTextField.layer.borderWidth = borderWidth
         emailTextField.layer.borderColor = borderColor
         emailTextField.autocorrectionType = .no
         emailTextField.autocapitalizationType = .none
+        emailTextField.setLeftPaddingPoints(5)
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter email")
         self.addSubview(emailTextField)
         
@@ -365,7 +368,8 @@ extension LoginView {
         passwordTextField.autocorrectionType = .no
         passwordTextField.autocapitalizationType = .none
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.backgroundColor = UIColor.themeTealBlue
+        passwordTextField.backgroundColor = UIColor.themePrimary
+        passwordTextField.setLeftPaddingPoints(5)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter password")
         self.addSubview(passwordTextField)
         
@@ -374,7 +378,7 @@ extension LoginView {
         loginButton.layer.cornerRadius = 7
         loginButton.layer.borderWidth = borderWidth
         loginButton.layer.borderColor = borderColor
-        loginButton.backgroundColor = UIColor.themeMedBlue
+        loginButton.backgroundColor = UIColor.themeSecondary
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(UIColor.black, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
@@ -384,7 +388,7 @@ extension LoginView {
         newuserButton.layer.cornerRadius = 7
         newuserButton.layer.borderWidth = borderWidth
         newuserButton.layer.borderColor = borderColor
-        newuserButton.backgroundColor = UIColor.themeSand
+        newuserButton.backgroundColor = UIColor.themeAccent2
         newuserButton.setTitle("New User", for: .normal)
         newuserButton.setTitleColor(UIColor.black, for: .normal)
         newuserButton.addTarget(self, action: #selector(newuserButtonAction), for: .touchUpInside)
@@ -394,7 +398,7 @@ extension LoginView {
         signupButton.layer.cornerRadius = 7
         signupButton.layer.borderWidth = borderWidth
         signupButton.layer.borderColor = borderColor
-        signupButton.backgroundColor = UIColor.themeSand
+        signupButton.backgroundColor = UIColor.themeAccent2
         signupButton.setTitle("Signup", for: .normal)
         signupButton.setTitleColor(UIColor.black, for: .normal)
         signupButton.addTarget(self, action: #selector(signupButtonAction), for: .touchUpInside)
@@ -404,7 +408,7 @@ extension LoginView {
         cancelButton.layer.borderWidth = borderWidth
         cancelButton.layer.borderColor = borderColor
         self.addSubview(cancelButton)
-        cancelButton.backgroundColor = UIColor.themeDarkBlue
+        cancelButton.backgroundColor = UIColor.themeSecondary
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.setTitleColor(UIColor.black, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)

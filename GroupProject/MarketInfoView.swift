@@ -11,13 +11,20 @@ import UIKit
 import MapKit
 import SafariServices
 
+protocol MarketInfoDelegate: class {
+    func startSegue()
+}
 
 class MarketInfo: UIView {
+    
+    weak var delegate: MarketInfoDelegate!
     
     var market: Market!
     
     var mapView: MKMapView!
     var marketPin: MKMapItem!
+    
+    var backButton: UIButton!
     
     var nameLabel: UILabel!
     var addressLabel: UILabel!
@@ -36,20 +43,33 @@ class MarketInfo: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     
-        self.backgroundColor = UIColor.themeDarkBlue
-        createLabels()
-        loadContraints()
+        self.backgroundColor = UIColor.themePrimary
+        
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
+    
+    func setupMarketInfoView(market: Market) {
+        self.market = market
+        createLabels()
+        loadContraints()
+        loadLabels()
+        setupLocationManager()
+        centerMapOnCurrentLocation()
+        convertToMapItem()
+        addAnnotationToMap()
+    }
+    
     func createLabels() {
         mapView = MKMapView()
         self.addSubview(mapView)
         mapView.isUserInteractionEnabled = false
+        
+        backButton = UIButton()
+        self.addSubview(backButton)
         
         nameLabel = UILabel()
         self.addSubview(nameLabel)
@@ -71,35 +91,71 @@ class MarketInfo: UIView {
         self.addSubview(extrasLabel)
     }
     
+    func backButtonAction() {
+        delegate.startSegue()
+    }
     
     func loadLabels() {
-    
-        nameLabel.backgroundColor = UIColor.themeSand
+        
+        backButton.backgroundColor = UIColor.themeSecondary
+        backButton.layer.borderWidth = 2
+        backButton.layer.cornerRadius = 10
+        backButton.layer.borderColor = UIColor.themeAccent2.cgColor
+        backButton.setTitle("<", for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+        
+        nameLabel.backgroundColor = UIColor.themeSecondary
+        nameLabel.layer.borderWidth = 2
+        nameLabel.layer.cornerRadius = 7
+        nameLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         nameLabel.text = market.name
         
-        addressLabel.backgroundColor = UIColor.themeBrightBlue
+        addressLabel.backgroundColor = UIColor.themeSecondary
+        addressLabel.layer.borderWidth = 2
+        addressLabel.layer.cornerRadius = 7
+        addressLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         addressLabel.text = market.address
         
-        boroughLabel.backgroundColor = UIColor.themeMedBlue
+        boroughLabel.backgroundColor = UIColor.themeSecondary
+        boroughLabel.layer.borderWidth = 2
+        boroughLabel.layer.cornerRadius = 7
+        boroughLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         boroughLabel.text = market.borough
         
-        seasonLabel.backgroundColor = UIColor.themeSand
+        seasonLabel.backgroundColor = UIColor.themeSecondary
+        seasonLabel.layer.borderWidth = 2
+        seasonLabel.layer.cornerRadius = 7
+        seasonLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         seasonLabel.text = "\(market.openDate!) - \(market.closeDate!)"
         
-        daysLabel.backgroundColor = UIColor.themeTealBlue
+        daysLabel.backgroundColor = UIColor.themeSecondary
+        daysLabel.layer.borderWidth = 2
+        daysLabel.layer.cornerRadius = 7
+        daysLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         daysLabel.text = market.weekDayOpen
         
-        timeLabel.backgroundColor = UIColor.themeMedBlue
+        timeLabel.backgroundColor = UIColor.themeSecondary
+        timeLabel.layer.borderWidth = 2
+        timeLabel.layer.cornerRadius = 7
+        timeLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         timeLabel.text = "\(market.startTime!) - \(market.endTime!)"
         
-        ebtLabel.backgroundColor = UIColor.themeTealBlue
-        print("ebt")
+        ebtLabel.backgroundColor = UIColor.themeSecondary
+        ebtLabel.layer.borderWidth = 2
+        ebtLabel.layer.cornerRadius = 7
+        ebtLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
         
-        websiteButton.backgroundColor = UIColor.themeSand
+        websiteButton.backgroundColor = UIColor.themeTertiary
+        websiteButton.layer.borderWidth = 2
+        websiteButton.layer.cornerRadius = 7
+        websiteButton.layer.borderColor = UIColor.themeAccent2.cgColor
         websiteButton.setTitle("\(market.marketWebsite!)", for: .normal)
         
-        extrasLabel.backgroundColor = UIColor.themeBrightBlue
+        extrasLabel.backgroundColor = UIColor.themeSecondary
+        extrasLabel.layer.borderWidth = 2
+        extrasLabel.layer.cornerRadius = 7
+        extrasLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         extrasLabel.text = market.extras
     }
     
@@ -146,11 +202,16 @@ extension MarketInfo {
     func loadContraints() {
         
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.05).isActive = true
+        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
         mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.1).isActive = true
         mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.1).isActive = true
         mapView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.35).isActive = true
         
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.02).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
