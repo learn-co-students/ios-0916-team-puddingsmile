@@ -120,6 +120,9 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="CxV-nl-jQg" secondAttribute="bottom" id="m20-Gw-wvH"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="marketView" destination="CxV-nl-jQg" id="Ep6-4t-Vfn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

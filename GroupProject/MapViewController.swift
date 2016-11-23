@@ -33,7 +33,7 @@ class MapViewController: UIViewController, MapViewDelegate {
             let dest = segue.destination as! MarketInfoViewController
             dest.market = passedMarket
         } else {
-            
+            let dest = segue.destination as! MarketListViewController
         }
     }
     
