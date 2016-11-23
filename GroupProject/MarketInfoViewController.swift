@@ -22,11 +22,7 @@ class MarketInfoViewController: UIViewController {
         marketInfoView.market = unwrappedMarket
         
         self.view = marketInfoView
-        marketInfoView.loadLabels()
-        marketInfoView.setupLocationManager()
-        marketInfoView.centerMapOnCurrentLocation()
-        marketInfoView.convertToMapItem()
-        marketInfoView.addAnnotationToMap()
+        marketInfoView.setupMarketInfoView(market: market)
         
     }
     

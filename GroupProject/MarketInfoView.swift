@@ -19,6 +19,8 @@ class MarketInfo: UIView {
     var mapView: MKMapView!
     var marketPin: MKMapItem!
     
+    var backButton: UIButton!
+    
     var nameLabel: UILabel!
     var addressLabel: UILabel!
     var boroughLabel: UILabel!
@@ -37,19 +39,32 @@ class MarketInfo: UIView {
         super.init(frame: frame)
     
         self.backgroundColor = UIColor.themeDarkBlue
-        createLabels()
-        loadContraints()
+        
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
+    
+    func setupMarketInfoView(market: Market) {
+        self.market = market
+        createLabels()
+        loadContraints()
+        loadLabels()
+        setupLocationManager()
+        centerMapOnCurrentLocation()
+        convertToMapItem()
+        addAnnotationToMap()
+    }
+    
     func createLabels() {
         mapView = MKMapView()
         self.addSubview(mapView)
         mapView.isUserInteractionEnabled = false
+        
+        backButton = UIButton()
+        self.addSubview(backButton)
         
         nameLabel = UILabel()
         self.addSubview(nameLabel)
@@ -73,7 +88,10 @@ class MarketInfo: UIView {
     
     
     func loadLabels() {
-    
+        
+        backButton.backgroundColor = UIColor.themeBrightBlue
+        backButton.setTitle("<", for: .normal)
+        
         nameLabel.backgroundColor = UIColor.themeSand
         nameLabel.text = market.name
         
