@@ -32,7 +32,7 @@ class MarketInfo: UIView {
         self.backgroundColor = UIColor.themeDarkBlue
         createLabels()
         loadContraints()
-        loadLabels()
+        //loadLabels()
     }
     
     required init?(coder aDecoder: NSCoder) {

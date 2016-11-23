@@ -11,11 +11,9 @@ import MapKit
 
 protocol MapViewDelegate: class {
     func transitionToMarketInfoView()
+    func getInfo(market: Market)
 }
 
-protocol SendMarketInfoDelegate: class {
-    func gatherMarketInfo(market: MKAnnotation)
-}
 
 class MapView: MKMapView, MKMapViewDelegate {
     
@@ -84,13 +82,16 @@ class MapView: MKMapView, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("tapped")
-        let location = view.annotation
-        guard let name = location?.title else { return }
-        print("Name")
-        guard let marketName = name else { return }
-        print("name")
-        //print(mapDelegate)
-        //self.infoDelegate.passInTitle(marketName)
+        
+        let location = view.annotation as! MarketAnnotation
+        
+//        guard let name = location?.title else { return }
+//        print("Name")
+//        guard let marketName = name else { return }
+//        print("name")
+        guard let marketToPass = location.market else { return }
+        print("Market to pass is \(marketToPass.name)")
+        self.mapDelegate?.getInfo(market: marketToPass)
         self.mapDelegate?.transitionToMarketInfoView()
     }
     
