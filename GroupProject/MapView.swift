@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import CoreLocation
 
 protocol MapViewDelegate: class {
     func transitionToMarketInfoView()
@@ -27,8 +28,13 @@ class MapView: MKMapView, MKMapViewDelegate {
         delegate = self
         initialSetupForView()
         setupLocationManager()
-        self.convertMarketsToMapItem()
-        self.addAnnotationsToMap()
+        
+        let when = DispatchTime.now() + 4
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.convertMarketsToMapItem()
+            self.addAnnotationsToMap()
+        }
+      
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +45,11 @@ class MapView: MKMapView, MKMapViewDelegate {
     func initialSetupForView() {
         self.showsUserLocation = true
         self.isZoomEnabled = true
+        self.showsUserLocation = true
+        
     }
+    
+    
     
     
 //MARK: -Create annotation pins
@@ -65,32 +75,50 @@ class MapView: MKMapView, MKMapViewDelegate {
         self.addAnnotations(annotations)
     }
     
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        let identifier = "pin"
+//        var view: MKPinAnnotationView!
+//        if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+//            dequedView.annotation = annotation
+//        } else {
+//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            view.canShowCallout = true
+//            view.calloutOffset = CGPoint(x: -5, y: 5)
+//            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+//        }
+//        
+//        let pin = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//        print("apple image")
+//        print(pin.image)
+//        let pinImage = UIImage(named: "appleImage")
+//        view.image = pinImage
+//        print(pin.image)
+//        return view
+//    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "pin"
-        var view: MKPinAnnotationView!
-        if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+        var view: MKAnnotationView!
+        if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
             dequedView.annotation = annotation
         } else {
-            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as! UIView
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+            let pinImage = UIImage(named: "appleImage")
+            view.image = pinImage
+            print(view.image)
+            return view
         }
         return view
     }
     
     
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("tapped")
-        
         let location = view.annotation as! MarketAnnotation
-        
-//        guard let name = location?.title else { return }
-//        print("Name")
-//        guard let marketName = name else { return }
-//        print("name")
         guard let marketToPass = location.market else { return }
-        print("Market to pass is \(marketToPass.name)")
         self.mapDelegate?.getInfo(market: marketToPass)
         self.mapDelegate?.transitionToMarketInfoView()
     }
@@ -112,15 +140,17 @@ extension MapView: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
         centerMapOnCurrentLocation(location: location)
+        manager.stopUpdatingLocation()
     }
-    
+
     
     func centerMapOnCurrentLocation(location: CLLocation) {
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let span = MKCoordinateSpanMake(0.02, 0.02) //arbitrary span (about 2X2 miles i think)
+        let span = MKCoordinateSpanMake(0.02, 0.02)
         let region = MKCoordinateRegion(center: center, span: span)
         self.setRegion(region, animated: true)
     }
+    
     
 }
 
