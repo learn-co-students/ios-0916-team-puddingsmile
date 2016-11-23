@@ -20,15 +20,14 @@ class MapViewController: UIViewController, MapViewDelegate {
     
     func getInfo(market: Market) {
         passedMarket = market
-        print("get info called, market is \(passedMarket.name)")
     }
 
     func transitionToMarketInfoView() {
-        print("in segue")
         performSegue(withIdentifier: "marketInfoSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "marketInfoSegue" {
             let dest = segue.destination as! MarketInfoViewController
             dest.market = passedMarket

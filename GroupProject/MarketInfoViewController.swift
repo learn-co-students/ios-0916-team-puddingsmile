@@ -15,13 +15,12 @@ class MarketInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("!!!market is \(market.name)")
         
         guard let unwrappedMarket = market else { return }
-        print("unwrapped market is \(unwrappedMarket)")
         
         let marketInfoView = MarketInfo(frame: self.view.frame)
         marketInfoView.market = unwrappedMarket
+        
         self.view = marketInfoView
         marketInfoView.loadLabels()
         marketInfoView.setupLocationManager()
