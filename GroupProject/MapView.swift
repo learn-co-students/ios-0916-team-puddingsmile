@@ -107,7 +107,7 @@ class MapView: MKMapView, MKMapViewDelegate {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
             let pinImage = UIImage(named: "apple")
             view.image = pinImage
-            print(view.image)
+            
             return view
         }
         return view

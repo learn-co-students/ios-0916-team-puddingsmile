@@ -29,6 +29,11 @@ extension UIColor {
     
 }
 
+extension UILabel {
+    
+    
+    
+}
 
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
