@@ -17,7 +17,7 @@ class MarketListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        modalTransitionStyle = .flipHorizontal
         //Search Bar
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
