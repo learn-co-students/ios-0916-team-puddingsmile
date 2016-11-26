@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -92,12 +91,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGB-BA-vIH" customClass="SearchBarXibView" customModule="GroupProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNq-Qn-s6v" customClass="MarketTableView" customModule="GroupProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="264" width="375" height="467"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNq-Qn-s6v">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="marketCell" rowHeight="125" id="ZFJ-2r-SnO" customClass="MarketTableCell" customModule="GroupProject" customModuleProvider="target">
@@ -108,7 +103,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-nl-jQg" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
@@ -131,25 +126,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="width" secondItem="XDS-30-ezq" secondAttribute="width" id="2cV-D2-8jH"/>
-                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="top" secondItem="dGB-BA-vIH" secondAttribute="bottom" id="4PL-gl-FMM"/>
                             <constraint firstItem="dNq-Qn-s6v" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leading" id="4nF-1q-PKS"/>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="top" secondItem="3sF-1C-Bru" secondAttribute="bottom" id="VFG-bN-Pur"/>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" multiplier="0.3" id="fN8-Aq-ogq"/>
+                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="centerY" secondItem="XDS-30-ezq" secondAttribute="centerY" id="IwD-Kh-0S3"/>
                             <constraint firstItem="dNq-Qn-s6v" firstAttribute="width" secondItem="XDS-30-ezq" secondAttribute="width" id="luF-9d-1i5"/>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leading" id="m1v-Fb-B47"/>
-                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" multiplier="0.7" id="uak-4N-pwV"/>
+                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" id="uak-4N-pwV"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="marketTableView" destination="dNq-Qn-s6v" id="Ilx-hQ-jxx"/>
-                        <outlet property="searchBar" destination="dGB-BA-vIH" id="2Rk-32-xlv"/>
                         <segue destination="TwL-4O-INN" kind="presentation" identifier="listToViewSegue" id="rmz-3I-uA7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJX-hE-cd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3207" y="116"/>
+            <point key="canvasLocation" x="3205.5999999999999" y="115.59220389805098"/>
         </scene>
         <!--Market Info View Controller-->
         <scene sceneID="Ljr-5G-Ybs">
@@ -193,7 +182,6 @@
         <!--Navigation Controller-->
         <scene sceneID="WYy-9U-EVz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zzk-Hf-Vyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yoy-2Z-YSI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Mb-HI-DZW">
@@ -205,11 +193,12 @@
                         <segue destination="kjh-WV-NQI" kind="relationship" relationship="rootViewController" id="IJ6-qD-dZK"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zzk-Hf-Vyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1412" y="126"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KjW-6N-AGa"/>
+        <segue reference="rmz-3I-uA7"/>
     </inferredMetricsTieBreakers>
 </document>

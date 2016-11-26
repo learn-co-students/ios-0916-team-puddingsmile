@@ -8,49 +8,70 @@
 
 import UIKit
 
-class MarketListViewController: UIViewController, MarketTableViewDelegate, SearchDelegate {
+class MarketListViewController: UITableViewController {
 
+    //MARK: - Properties
     let store = DataStore.sharedInstance
-    
-    //create a dummy array of results of search
-    //if search for nothing, dummy array = store.markets
-    //or when it loads first time
-    
-    var passMarket: Market?
-    
-    @IBOutlet weak var marketTableView: MarketTableView!
-    
-    @IBOutlet weak var searchBar: SearchBarXibView!
-    
-    
+    var filteredMarkets = [Market]()
+    let searchController = UISearchController(searchResultsController: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        marketTableView.tableDelegate = self
-        searchBar.searchDelegate = self
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    func startSegueRow(market: Market) {
-        passMarket = market
-        performSegue(withIdentifier: "listToViewSegue", sender: self)
-    }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "listToViewSegue" {
-            let dest = segue.destination as! MarketInfoViewController
-            dest.market = passMarket
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredMarkets = store.markets.filter { market in
+            guard let unwrappedName = market.name else { return false }
+            return unwrappedName.lowercased().contains(searchText.lowercased())
         }
+        tableView.reloadData()
     }
-  
-    func search(address: String?, time: String?){
-        //do things here
+    
+    // MARK: - Table View
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredMarkets.count
+        }
+        return store.markets.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath)
+        let market: Market
+        if searchController.isActive && searchController.searchBar.text != "" {
+            market = filteredMarkets[indexPath.row]
+        } else {
+            market = store.markets[indexPath.row]
+        }
+        cell.textLabel!.text = market.name
+    
+        return cell
     }
 
+    //MARK: - Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let market: Market
+        if segue.identifier != "listToViewSegue" { return }
+        if let indexPath = tableView.indexPathForSelectedRow {
+            if searchController.isActive && searchController.searchBar.text != "" {
+                market = filteredMarkets[indexPath.row]
+            } else {
+                market = store.markets[indexPath.row]
+            }
+        
+            let dest = segue.destination as! MarketInfoViewController
+            dest.market = market
+        }
+    }
+}
+
+extension MarketListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
 }
