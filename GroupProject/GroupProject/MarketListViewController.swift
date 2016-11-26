@@ -17,11 +17,12 @@ class MarketListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //Search Bar
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        // Do any additional setup after loading the view.
     }
 
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -49,7 +50,6 @@ class MarketListViewController: UITableViewController {
             market = store.markets[indexPath.row]
         }
         cell.textLabel!.text = market.name
-    
         return cell
     }
 
