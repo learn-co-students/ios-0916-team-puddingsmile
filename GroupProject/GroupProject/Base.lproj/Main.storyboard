@@ -83,18 +83,33 @@
         <scene sceneID="r3h-iZ-waC">
             <objects>
                 <tableViewController id="JRR-XM-pzf" customClass="MarketListViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VMm-kb-TE1">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" id="VMm-kb-TE1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="marketCell" id="VBK-CG-Sse">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="marketCell" rowHeight="116" id="VBK-CG-Sse" customClass="MarketTableCell" customModule="GroupProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBK-CG-Sse" id="Kj7-TU-xYl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVK-b0-XpR" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="top" secondItem="Kj7-TU-xYl" secondAttribute="top" id="3ch-QY-m09"/>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="trailing" secondItem="Kj7-TU-xYl" secondAttribute="trailing" id="J0B-XG-uUl"/>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="bottom" secondItem="Kj7-TU-xYl" secondAttribute="bottom" id="ayV-j1-geR"/>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="leading" secondItem="Kj7-TU-xYl" secondAttribute="leading" id="hRh-lG-qcq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="marketView" destination="LVK-b0-XpR" id="qyf-pV-iVw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -105,7 +120,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yft-4p-xpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3173" y="138"/>
+            <point key="canvasLocation" x="3172" y="137.18140929535232"/>
         </scene>
         <!--Market Info View Controller-->
         <scene sceneID="Ljr-5G-Ybs">

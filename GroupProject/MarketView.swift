@@ -25,7 +25,6 @@ class MarketView: UIView {
             if let displayAddress = market.address{
                addressLabel.text = "\(displayAddress)"
             }
-            
         }
     }
     
@@ -46,7 +45,7 @@ class MarketView: UIView {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(contentView)
-        
+        contentView.backgroundColor = UIColor.themePrimary
         contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

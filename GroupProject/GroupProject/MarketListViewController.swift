@@ -42,14 +42,14 @@ class MarketListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath) as! MarketTableCell
         let market: Market
         if searchController.isActive && searchController.searchBar.text != "" {
             market = filteredMarkets[indexPath.row]
         } else {
             market = store.markets[indexPath.row]
         }
-        cell.textLabel!.text = market.name
+        cell.marketView.market = market
         return cell
     }
 
