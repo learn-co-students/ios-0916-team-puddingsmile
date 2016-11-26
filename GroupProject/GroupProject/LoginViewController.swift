@@ -27,12 +27,5 @@ class LoginViewController: UIViewController, LoginViewDelegate {
         
     }
 
-    deinit {
-        print("@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@")
-        
-    }
     
 }

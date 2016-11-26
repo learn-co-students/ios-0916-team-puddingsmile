@@ -21,7 +21,6 @@ class MarketTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     weak var tableDelegate: MarketTableViewDelegate!
     
     override func awakeFromNib() {
-        print(store.markets.count)
         dataSource = self
         delegate = self
         super.awakeFromNib()

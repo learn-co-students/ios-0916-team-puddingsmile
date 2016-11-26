@@ -27,13 +27,7 @@ class LandingViewController: UIViewController, LandingViewDelegate {
         performSegue(withIdentifier: "loginSegue", sender: nil)
     }
     
-    deinit {
-        print("@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@")
-        
-    }
+
     
 }
 

@@ -33,14 +33,12 @@ class DataStore {
     
     
     func saveContext() {
-        print("save context called")
         let context = persistentContainer.viewContext
+        
         if context.hasChanges {
             do {
-                print("doing")
                 try context.save()
             } catch {
-                print("in catch")
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
@@ -49,20 +47,16 @@ class DataStore {
     }
     
     func fetchData() {
-        print("Fetch data called!")
         let context = persistentContainer.viewContext
         
         let marketRequest = NSFetchRequest<Market>(entityName: "Market")
         do {
             markets = try context.fetch(marketRequest)
-            print("in fetch request")
-            
         } catch {
             print("\(error)")
         }
         
         if markets.count == 0 {
-            print("pulled from firebase")
             loadDataFromFirebase()
         }
         
@@ -87,15 +81,12 @@ class DataStore {
                 market.openDate = value["openDate"]
                 market.startTime = value["startTime"]
                 market.marketWebsite = value["website"]
-                print(market)
                 
                 self.markets.append(market)
                 
             }
             self.saveContext()
             self.fetchData()
-            print("second completion")
-            print(markets)
         }
     }
     

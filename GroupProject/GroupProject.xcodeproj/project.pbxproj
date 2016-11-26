@@ -41,7 +41,6 @@
 		C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659351DDBCE6700C7B533 /* MapViewController.swift */; };
 		C3C6593A1DDBCE6700C7B533 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659361DDBCE6700C7B533 /* SearchViewController.swift */; };
 		C3C6593B1DDBCE6700C7B533 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659371DDBCE6700C7B533 /* LandingViewController.swift */; };
-		C3C6593E1DDBCE7C00C7B533 /* FarmersMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6593C1DDBCE7C00C7B533 /* FarmersMarket.swift */; };
 		C3C6593F1DDBCE7C00C7B533 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6593D1DDBCE7C00C7B533 /* Parser.swift */; };
 		C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659401DDBCE8300C7B533 /* LandingView.swift */; };
 		C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */; };
@@ -113,7 +112,6 @@
 		C3C659351DDBCE6700C7B533 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C3C659361DDBCE6700C7B533 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C3C659371DDBCE6700C7B533 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
-		C3C6593C1DDBCE7C00C7B533 /* FarmersMarket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmersMarket.swift; sourceTree = "<group>"; };
 		C3C6593D1DDBCE7C00C7B533 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C3C659401DDBCE8300C7B533 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoView.swift; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 		C3C659221DDBCCC800C7B533 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C3C6593C1DDBCE7C00C7B533 /* FarmersMarket.swift */,
 				C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */,
 				C3C6593D1DDBCE7C00C7B533 /* Parser.swift */,
 				C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */,
@@ -564,7 +561,6 @@
 				B5D2DDA31DDFAF1A001F2CCE /* LocationManager.swift in Sources */,
 				C3C6593B1DDBCE6700C7B533 /* LandingViewController.swift in Sources */,
 				C3C659381DDBCE6700C7B533 /* MarketInfoViewController.swift in Sources */,
-				C3C6593E1DDBCE7C00C7B533 /* FarmersMarket.swift in Sources */,
 				C3C659451DDBCE8300C7B533 /* SearchView.swift in Sources */,
 				C3C6593F1DDBCE7C00C7B533 /* Parser.swift in Sources */,
 				B5D2DDED1DE39B3B001F2CCE /* ColorExtension.swift in Sources */,
