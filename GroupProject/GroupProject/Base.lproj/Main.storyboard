@@ -109,6 +109,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="marketView" destination="LVK-b0-XpR" id="qyf-pV-iVw"/>
+                                    <segue destination="TwL-4O-INN" kind="presentation" identifier="listToViewSegue" id="FhT-4D-4kL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -180,4 +181,7 @@
             <point key="canvasLocation" x="1412" y="126"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="FhT-4D-4kL"/>
+    </inferredMetricsTieBreakers>
 </document>
