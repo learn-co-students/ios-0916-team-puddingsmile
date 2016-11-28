@@ -141,14 +141,6 @@ extension FirebaseAPI {
 
 
 
-
-
-
-
-
-
-
-
 //MARK: - Load Firebase with information from CSV file
 extension FirebaseAPI {
     static func makeMarkets() {
@@ -209,6 +201,36 @@ extension FirebaseAPI {
         }
     }
 }
+
+//MARK: Add market to firebase database
+
+extension FirebaseAPI {
+    static func addMarketToFirebase(name: String, address: String, openDate: String, closeDate: String, openTime: String, closeTime: String) {
+        print("Firebase API Called")
+        let ref = FIRDatabase.database().reference().child("addMarket")
+        
+        let nameChild = ref.child(name)
+        
+        nameChild.child("address").setValue(address)
+        
+        nameChild.child("openDate").setValue(openDate)
+        
+        nameChild.child("closeDate").setValue(closeDate)
+        
+        nameChild.child("openTime").setValue(openTime)
+        
+        nameChild.child("closeTime").setValue(closeTime)
+        
+    }
+    
+}
+
+
+
+
+
+
+
 
 
     
