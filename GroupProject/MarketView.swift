@@ -59,15 +59,14 @@ class MarketView: UIView {
         contentView.backgroundColor = UIColor.lightGray
         
         nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 20)
+        nameLabel.font = UIFont.systemFont(ofSize: 24)
         contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        //nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.3).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.2).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.25).isActive = true
-       
+        nameLabel.textAlignment = NSTextAlignment.center
         
         addressLabel = UILabel()
         contentView.addSubview(addressLabel)
@@ -90,6 +89,7 @@ class MarketView: UIView {
         addressLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.5).isActive = true
         addressLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
         addressLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
+        addressLabel.textAlignment = NSTextAlignment.center
         
         //Time Label
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -103,7 +103,7 @@ class MarketView: UIView {
         dayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
         dayLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
         dayLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.15).isActive = true
-        dayLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.6).isActive = true
+        dayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0.6).isActive = true
     }
     
 }
