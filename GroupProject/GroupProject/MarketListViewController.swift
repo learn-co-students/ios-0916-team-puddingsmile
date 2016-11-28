@@ -17,7 +17,7 @@ class MarketListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        modalTransitionStyle = .flipHorizontal
+        //modalTransitionStyle = .flipHorizontal
         //Search Bar
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -50,7 +50,6 @@ class MarketListViewController: UITableViewController {
             market = store.markets[indexPath.row]
         }
         cell.marketView.market = market
-        cell.rowNumber = indexPath.row 
         return cell
     }
 

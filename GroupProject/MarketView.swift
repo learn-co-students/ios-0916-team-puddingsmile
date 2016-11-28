@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class MarketView: UIView {
    
     @IBOutlet var contentView: UIView!
@@ -20,10 +19,11 @@ class MarketView: UIView {
     
     var market: Market!{
         didSet {
-            if let displayName =  market.name{
+            if let displayName =  market.name {
                 nameLabel.text = "\(displayName)"
+                print(displayName)
             }
-            if let displayAddress = market.address{
+            if let displayAddress = market.address {
                addressLabel.text = "\(displayAddress)"
             }
             if let displayTime =  market.startTime {
@@ -51,8 +51,8 @@ class MarketView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed("MarketViewPrototype", owner: self, options: nil)
         
-        contentView = UIView()
-        addSubview(contentView)
+        //contentView = UIView()
+        self.addSubview(contentView)
         
         nameLabel = UILabel()
         nameLabel.font = UIFont.systemFont(ofSize: 16)
@@ -70,9 +70,8 @@ class MarketView: UIView {
     
     
     func setConstraints() {
-
+        print("constraints have been set")
         //Content View
-        
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
@@ -82,32 +81,29 @@ class MarketView: UIView {
         //Name Label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.02).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.2).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.01).isActive = true
-        
         
         //Address Label
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        addressLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.05).isActive = true
+        addressLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.5).isActive = true
         addressLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         addressLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.01).isActive = true
         
         //Time Label
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.07).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.7).isActive = true
         timeLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
         timeLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.01).isActive = true
         timeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.1).isActive = true
         
         //Day Label
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
-        dayLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.07).isActive = true
+        dayLabel.topAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * 0.7).isActive = true
         dayLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
         dayLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.01).isActive = true
         dayLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.6).isActive = true
     }
-
-
 }
