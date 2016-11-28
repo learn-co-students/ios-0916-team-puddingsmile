@@ -171,14 +171,15 @@ extension MarketInfo {
     
     func loadLabels() {
         
-        let borderWidth: CGFloat = 2
+        let borderWidth: CGFloat = 0
         let cornerRadius: CGFloat = 7
         
-        backButton.backgroundColor = UIColor.themeSecondary
-        backButton.layer.borderWidth = borderWidth
-        backButton.layer.cornerRadius = cornerRadius
-        backButton.layer.borderColor = UIColor.themeAccent2.cgColor
+//        backButton.backgroundColor = UIColor.themeSecondary
+//        backButton.layer.borderWidth = borderWidth
+//        backButton.layer.cornerRadius = cornerRadius
+//        backButton.layer.borderColor = UIColor.themeAccent2.cgColor
         backButton.setTitle("<", for: .normal)
+        backButton.setTitleColor(UIColor.themeAccent2, for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
        
         editButton.backgroundColor = UIColor.themeSecondary
@@ -189,12 +190,12 @@ extension MarketInfo {
         editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         
         
-//        nameTitle.backgroundColor = UIColor.themeSecondary
-        nameTitle.layer.borderWidth = borderWidth
-        nameTitle.layer.cornerRadius = cornerRadius
-        nameTitle.layer.borderColor = UIColor.themeAccent1.cgColor
-//        nameTitle.font = UIFont(name: "System", size: 7)
-        nameTitle.text = "Market:"
+////        nameTitle.backgroundColor = UIColor.themeSecondary
+//        nameTitle.layer.borderWidth = borderWidth
+//        nameTitle.layer.cornerRadius = cornerRadius
+//        nameTitle.layer.borderColor = UIColor.themeAccent1.cgColor
+////        nameTitle.font = UIFont(name: "System", size: 7)
+//        nameTitle.text = "Market:"
         
         nameLabel.backgroundColor = UIColor.themeSecondary
         nameLabel.layer.borderWidth = borderWidth
@@ -238,11 +239,12 @@ extension MarketInfo {
         ebtLabel.layer.borderColor = UIColor.themeAccent2.cgColor
         ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
         
-        websiteButton.backgroundColor = UIColor.themeSecondary
-        websiteButton.layer.borderWidth = borderWidth
-        websiteButton.layer.cornerRadius = cornerRadius
-        websiteButton.layer.borderColor = UIColor.themeAccent2.cgColor
-        websiteButton.setTitle("\(market.marketWebsite!)", for: .normal)
+        websiteButton.backgroundColor = UIColor.themeTertiary
+//        websiteButton.layer.borderWidth = borderWidth
+//        websiteButton.layer.cornerRadius = cornerRadius
+//        websiteButton.layer.borderColor = UIColor.themeAccent2.cgColor
+        websiteButton.setTitle("Check out website", for: .normal)
+        websiteButton.setTitleColor(UIColor.themeAccent2, for: .normal)
         websiteButton.addTarget(self, action: #selector(startSafari), for: .touchUpInside)
         
         extrasLabel.backgroundColor = UIColor.themeSecondary
@@ -275,9 +277,9 @@ extension MarketInfo {
     
     func setMapViewConstraints() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
-        mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.1).isActive = true
-        mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.1).isActive = true
+        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.1).isActive = true
+        mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.05).isActive = true
+        mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.05).isActive = true
         mapView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.35).isActive = true
     }
     
@@ -298,23 +300,23 @@ extension MarketInfo {
     }
     
     func setNameConstraints() {
-        nameTitle.translatesAutoresizingMaskIntoConstraints = false
-        nameTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.03)
-        nameTitle.topAnchor.constraint(equalTo: mapView.bottomAnchor).isActive = true
-        nameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
-        nameTitle.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.02).isActive = true
+//        nameTitle.translatesAutoresizingMaskIntoConstraints = false
+//        nameTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.03)
+//        nameTitle.topAnchor.constraint(equalTo: mapView.bottomAnchor).isActive = true
+//        nameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
+//        nameTitle.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.02).isActive = true
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: self.bounds.height * 0.02).isActive = true
-        nameLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.04).isActive = true
     }
     
     func setAddressConstraints() {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        addressLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        addressLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         addressLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         addressLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
@@ -322,7 +324,7 @@ extension MarketInfo {
     func setBoroughConstraints() {
         boroughLabel.translatesAutoresizingMaskIntoConstraints = false
         boroughLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        boroughLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        boroughLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor).isActive = true
         boroughLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         boroughLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
@@ -330,7 +332,7 @@ extension MarketInfo {
     func setSeasonConstraints() {
         seasonLabel.translatesAutoresizingMaskIntoConstraints = false
         seasonLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        seasonLabel.topAnchor.constraint(equalTo: boroughLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        seasonLabel.topAnchor.constraint(equalTo: boroughLabel.bottomAnchor).isActive = true
         seasonLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         seasonLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
@@ -338,7 +340,7 @@ extension MarketInfo {
     func setDaysConstraints() {
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
         daysLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        daysLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        daysLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor).isActive = true
         daysLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         daysLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
@@ -346,7 +348,7 @@ extension MarketInfo {
     func setTimeConstraints() {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        timeLabel.topAnchor.constraint(equalTo: daysLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: daysLabel.bottomAnchor).isActive = true
         timeLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         timeLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
@@ -354,7 +356,7 @@ extension MarketInfo {
     func setEBTConstraints() {
         ebtLabel.translatesAutoresizingMaskIntoConstraints = false
         ebtLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        ebtLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        ebtLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
         ebtLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         ebtLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
@@ -362,7 +364,7 @@ extension MarketInfo {
     func setExtrasConstraints() {
         extrasLabel.translatesAutoresizingMaskIntoConstraints = false
         extrasLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        extrasLabel.topAnchor.constraint(equalTo: ebtLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        extrasLabel.topAnchor.constraint(equalTo: ebtLabel.bottomAnchor).isActive = true
         extrasLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         extrasLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
@@ -370,7 +372,7 @@ extension MarketInfo {
     func setWebsiteConstraints() {
         websiteButton.translatesAutoresizingMaskIntoConstraints = false
         websiteButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        websiteButton.topAnchor.constraint(equalTo: extrasLabel.bottomAnchor, constant: self.bounds.height * 0.01).isActive = true
+        websiteButton.topAnchor.constraint(equalTo: extrasLabel.bottomAnchor).isActive = true
         websiteButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         websiteButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.05).isActive = true
     }
