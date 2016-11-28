@@ -50,6 +50,7 @@ class MarketListViewController: UITableViewController {
             market = store.markets[indexPath.row]
         }
         cell.marketView.market = market
+        cell.rowNumber = indexPath.row 
         return cell
     }
 

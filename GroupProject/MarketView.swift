@@ -11,6 +11,8 @@ import UIKit
 
 class MarketView: UIView {
    
+    @IBOutlet var contentView: UIView!
+
     var nameLabel: UILabel!
     var addressLabel: UILabel!
     var timeLabel: UILabel!
@@ -43,13 +45,14 @@ class MarketView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+        setConstraints() 
     }
     
     func commonInit() {
         Bundle.main.loadNibNamed("MarketViewPrototype", owner: self, options: nil)
         
-        //contentView = UIView()
-        //addSubview(contentView)
+        contentView = UIView()
+        addSubview(contentView)
         
         nameLabel = UILabel()
         nameLabel.font = UIFont.systemFont(ofSize: 16)

@@ -12,6 +12,8 @@ class MarketTableCell: UITableViewCell {
     
     @IBOutlet weak var marketView: MarketView!
     
+    var rowNumber: Int! 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
