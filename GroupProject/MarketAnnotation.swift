@@ -21,8 +21,8 @@ class MarketAnnotation: NSObject, MKAnnotation {
         self.title = market.name
         self.subtitle = market.address
         
-        var latitude = Double(market.latitude!)
-        var longitude = Double(market.longitude!)
+        let latitude = Double(market.latitude!)
+        let longitude = Double(market.longitude!)
         
         self.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
     }

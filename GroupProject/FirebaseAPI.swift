@@ -95,6 +95,16 @@ extension FirebaseAPI {
 //MARK: - Suggestion structure functions
 extension FirebaseAPI {
     
+    static func getCount() -> String {
+        var childrenCount = 0
+        let testRef = FIRDatabase.database().reference()
+        testRef.observe(.value, with: { (snapshot) in
+            let test = snapshot.childrenCount
+               print("CHILDREN COUNT IS \(childrenCount)")
+        })
+        return "CHILDREN COUNT IS \(childrenCount)"
+    }
+    
 }
 
 

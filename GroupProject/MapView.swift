@@ -29,8 +29,8 @@ class MapView: MKMapView, MKMapViewDelegate {
         initialSetupForView()
         setupLocationManager()
         
-        let when = DispatchTime.now() + 4
-        DispatchQueue.main.asyncAfter(deadline: when) {
+        let delay = DispatchTime.now() + 4
+        DispatchQueue.main.asyncAfter(deadline: delay) {
             self.convertMarketsToMapItem()
             self.addAnnotationsToMap()
         }
@@ -42,14 +42,13 @@ class MapView: MKMapView, MKMapViewDelegate {
     
     
     func initialSetupForView() {
-        self.showsUserLocation = true
+        //self.showsUserLocation = true
         self.isZoomEnabled = true
         self.showsUserLocation = true
         
     }
     
-    
-    
+
     
 //MARK: -Create annotation pins
     
@@ -98,6 +97,9 @@ class MapView: MKMapView, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "pin"
         var view: MKAnnotationView!
+        
+        
+        
         if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
             dequedView.annotation = annotation
         } else {
@@ -107,7 +109,14 @@ class MapView: MKMapView, MKMapViewDelegate {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
             let pinImage = UIImage(named: "apple")
             view.image = pinImage
-            print(view.image)
+            //print(view.image)
+            if (view.annotation?.isKind(of: MKUserLocation.self))! {
+                print("Cannot show callout")
+                view.canShowCallout = false
+            }
+            
+            
+            
             return view
         }
         return view
@@ -118,9 +127,14 @@ class MapView: MKMapView, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let location = view.annotation as! MarketAnnotation
         guard let marketToPass = location.market else { return }
+        
+        
+        
         self.mapDelegate?.getInfo(market: marketToPass)
         self.mapDelegate?.transitionToMarketInfoView()
     }
+    
+    
     
 }
 
@@ -138,6 +152,7 @@ extension MapView: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
+        
         centerMapOnCurrentLocation(location: location)
         manager.stopUpdatingLocation()
     }
