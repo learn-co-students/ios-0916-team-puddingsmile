@@ -96,14 +96,14 @@ class MarketView: UIView {
         timeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
         timeLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         timeLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
-        timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0.1).isActive = true
+        timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.2).isActive = true
         
         //Day Label
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         dayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
         dayLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
         dayLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.15).isActive = true
-        dayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0.6).isActive = true
+        dayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.6).isActive = true
     }
     
 }
