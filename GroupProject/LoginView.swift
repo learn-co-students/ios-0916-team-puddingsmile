@@ -108,7 +108,7 @@ extension LoginView {
             if success {
                 self.delegate.startSegueButton()
             } else {
-                print("womp")
+                // add error control
             }
         
         }
@@ -130,7 +130,7 @@ extension LoginView {
             if success {
                 self.delegate.startSegueButton()
             } else {
-                print("womp")
+                // add error control
             }
         
         })

@@ -8,11 +8,11 @@
 
 import UIKit
 import Firebase
-
+import SafariServices
 class MarketInfoViewController: UIViewController, MarketInfoDelegate {
     
     var market: Market!
-
+    var safari: SFSafariViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +30,9 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
         dismiss(animated: true, completion: nil)
     }
 
-   
+    func showSafariVC(url: URL) {
+        safari = SFSafariViewController(url: url)
+        present(safari, animated: true, completion: nil)
+    }
 
 }

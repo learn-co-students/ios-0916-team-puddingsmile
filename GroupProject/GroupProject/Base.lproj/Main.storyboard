@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -68,7 +67,7 @@
                     <navigationItem key="navigationItem" id="MIu-Iu-CCF">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="7tw-yS-Cvw">
                             <connections>
-                                <segue destination="xr2-rK-8g1" kind="show" identifier="searchTableView" id="M81-pa-EuW"/>
+                                <segue destination="JRR-XM-pzf" kind="presentation" id="fDA-Op-u4N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -81,75 +80,48 @@
             <point key="canvasLocation" x="2322" y="125"/>
         </scene>
         <!--Market List View Controller-->
-        <scene sceneID="owq-EW-RbC">
+        <scene sceneID="r3h-iZ-waC">
             <objects>
-                <viewController id="xr2-rK-8g1" customClass="MarketListViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3sF-1C-Bru"/>
-                        <viewControllerLayoutGuide type="bottom" id="w9W-CI-qja"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XDS-30-ezq">
+                <tableViewController id="JRR-XM-pzf" customClass="MarketListViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" id="VMm-kb-TE1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGB-BA-vIH" customClass="SearchBarXibView" customModule="GroupProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNq-Qn-s6v" customClass="MarketTableView" customModule="GroupProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="264" width="375" height="467"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="marketCell" rowHeight="125" id="ZFJ-2r-SnO" customClass="MarketTableCell" customModule="GroupProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="125"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZFJ-2r-SnO" id="VEV-oc-3Rr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-nl-jQg" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="leading" secondItem="VEV-oc-3Rr" secondAttribute="leading" id="DEw-gz-MWj"/>
-                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="top" secondItem="VEV-oc-3Rr" secondAttribute="top" id="DdA-67-2Th"/>
-                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="width" secondItem="VEV-oc-3Rr" secondAttribute="width" id="EbC-zi-GdN"/>
-                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="leading" secondItem="VEV-oc-3Rr" secondAttribute="leading" id="G8Q-Q7-1kQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="CxV-nl-jQg" secondAttribute="trailing" id="Th8-Kz-aeQ"/>
-                                                <constraint firstItem="CxV-nl-jQg" firstAttribute="top" secondItem="VEV-oc-3Rr" secondAttribute="top" id="Wgm-Q6-Av7"/>
-                                                <constraint firstAttribute="bottom" secondItem="CxV-nl-jQg" secondAttribute="bottom" id="nGQ-sg-VAr"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="marketView" destination="CxV-nl-jQg" id="Ep6-4t-Vfn"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="width" secondItem="XDS-30-ezq" secondAttribute="width" id="2cV-D2-8jH"/>
-                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="top" secondItem="dGB-BA-vIH" secondAttribute="bottom" id="4PL-gl-FMM"/>
-                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leading" id="4nF-1q-PKS"/>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="top" secondItem="3sF-1C-Bru" secondAttribute="bottom" id="VFG-bN-Pur"/>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" multiplier="0.3" id="fN8-Aq-ogq"/>
-                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="width" secondItem="XDS-30-ezq" secondAttribute="width" id="luF-9d-1i5"/>
-                            <constraint firstItem="dGB-BA-vIH" firstAttribute="leading" secondItem="XDS-30-ezq" secondAttribute="leading" id="m1v-Fb-B47"/>
-                            <constraint firstItem="dNq-Qn-s6v" firstAttribute="height" secondItem="XDS-30-ezq" secondAttribute="height" multiplier="0.7" id="uak-4N-pwV"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="marketTableView" destination="dNq-Qn-s6v" id="Ilx-hQ-jxx"/>
-                        <outlet property="searchBar" destination="dGB-BA-vIH" id="2Rk-32-xlv"/>
-                        <segue destination="TwL-4O-INN" kind="show" identifier="listToViewSegue" id="rmz-3I-uA7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fJX-hE-cd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="marketCell" rowHeight="116" id="VBK-CG-Sse" customClass="MarketTableCell" customModule="GroupProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="116"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBK-CG-Sse" id="Kj7-TU-xYl">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVK-b0-XpR" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="top" secondItem="Kj7-TU-xYl" secondAttribute="top" id="3ch-QY-m09"/>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="trailing" secondItem="Kj7-TU-xYl" secondAttribute="trailing" id="J0B-XG-uUl"/>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="bottom" secondItem="Kj7-TU-xYl" secondAttribute="bottom" id="ayV-j1-geR"/>
+                                        <constraint firstItem="LVK-b0-XpR" firstAttribute="leading" secondItem="Kj7-TU-xYl" secondAttribute="leading" id="hRh-lG-qcq"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="marketView" destination="LVK-b0-XpR" id="qyf-pV-iVw"/>
+                                    <segue destination="TwL-4O-INN" kind="presentation" identifier="listToViewSegue" id="FhT-4D-4kL"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JRR-XM-pzf" id="j99-CZ-N4x"/>
+                            <outlet property="delegate" destination="JRR-XM-pzf" id="Yoo-Xw-MuA"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yft-4p-xpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3207" y="116"/>
+            <point key="canvasLocation" x="3172" y="137.18140929535232"/>
         </scene>
         <!--Market Info View Controller-->
         <scene sceneID="Ljr-5G-Ybs">
@@ -210,6 +182,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rmz-3I-uA7"/>
+        <segue reference="FhT-4D-4kL"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		41C9EFEF0D58011ADABDA4A5 /* Pods_GroupProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E796F04915D3867E73E5AD /* Pods_GroupProjectTests.framework */; };
 		52118E11BE677BA33E036F3B /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */; };
+		564FEA511DE64BC600F9B28F /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564FEA501DE64BC600F9B28F /* CustomSegue.swift */; };
 		569CBD711DE5F3C100BE502B /* SearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569CBD701DE5F3C100BE502B /* SearchBar.xib */; };
 		569CBD731DE5F3CC00BE502B /* MarketViewPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */; };
 		569CBD751DE5F41E00BE502B /* MarketTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569CBD741DE5F41E00BE502B /* MarketTableCell.swift */; };
-		569CBD771DE5F42B00BE502B /* MarketTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569CBD761DE5F42B00BE502B /* MarketTableView.swift */; };
 		569CBD791DE5F5A200BE502B /* MarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569CBD781DE5F5A200BE502B /* MarketView.swift */; };
 		569CBD7B1DE5FAE100BE502B /* SearchBarXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569CBD7A1DE5FAE100BE502B /* SearchBarXibView.swift */; };
 		56BE38301DDE560100D5EA17 /* Market.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56BE382E1DDE560100D5EA17 /* Market.xcdatamodeld */; };
@@ -40,7 +40,6 @@
 		C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659351DDBCE6700C7B533 /* MapViewController.swift */; };
 		C3C6593A1DDBCE6700C7B533 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659361DDBCE6700C7B533 /* SearchViewController.swift */; };
 		C3C6593B1DDBCE6700C7B533 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659371DDBCE6700C7B533 /* LandingViewController.swift */; };
-		C3C6593E1DDBCE7C00C7B533 /* FarmersMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6593C1DDBCE7C00C7B533 /* FarmersMarket.swift */; };
 		C3C6593F1DDBCE7C00C7B533 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6593D1DDBCE7C00C7B533 /* Parser.swift */; };
 		C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659401DDBCE8300C7B533 /* LandingView.swift */; };
 		C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */; };
@@ -71,10 +70,10 @@
 		237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E14FECD137F0044D1F924B /* Pods-GroupProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		467396D901C55DBB36357A1F /* Pods-GroupProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		564FEA501DE64BC600F9B28F /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		569CBD701DE5F3C100BE502B /* SearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBar.xib; sourceTree = "<group>"; };
 		569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarketViewPrototype.xib; sourceTree = "<group>"; };
 		569CBD741DE5F41E00BE502B /* MarketTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTableCell.swift; sourceTree = "<group>"; };
-		569CBD761DE5F42B00BE502B /* MarketTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTableView.swift; sourceTree = "<group>"; };
 		569CBD781DE5F5A200BE502B /* MarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketView.swift; sourceTree = "<group>"; };
 		569CBD7A1DE5FAE100BE502B /* SearchBarXibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarXibView.swift; sourceTree = "<group>"; };
 		56BE382F1DDE560100D5EA17 /* Market.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Market.xcdatamodel; sourceTree = "<group>"; };
@@ -111,7 +110,6 @@
 		C3C659351DDBCE6700C7B533 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C3C659361DDBCE6700C7B533 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C3C659371DDBCE6700C7B533 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
-		C3C6593C1DDBCE7C00C7B533 /* FarmersMarket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmersMarket.swift; sourceTree = "<group>"; };
 		C3C6593D1DDBCE7C00C7B533 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C3C659401DDBCE8300C7B533 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoView.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 				C3C659401DDBCE8300C7B533 /* LandingView.swift */,
 				C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */,
 				569CBD781DE5F5A200BE502B /* MarketView.swift */,
-				569CBD761DE5F42B00BE502B /* MarketTableView.swift */,
 				569CBD741DE5F41E00BE502B /* MarketTableCell.swift */,
 				569CBD7A1DE5FAE100BE502B /* SearchBarXibView.swift */,
 				C3C659421DDBCE8300C7B533 /* SearchView.swift */,
@@ -244,10 +241,10 @@
 		C3C659221DDBCCC800C7B533 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C3C6593C1DDBCE7C00C7B533 /* FarmersMarket.swift */,
 				C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */,
 				C3C6593D1DDBCE7C00C7B533 /* Parser.swift */,
 				C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */,
+				564FEA501DE64BC600F9B28F /* CustomSegue.swift */,
 				B5D2DDA01DDF4D1C001F2CCE /* DateManager.swift */,
 				B5D2DDA21DDFAF1A001F2CCE /* LocationManager.swift */,
 				B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */,
@@ -552,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564FEA511DE64BC600F9B28F /* CustomSegue.swift in Sources */,
 				C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */,
 				C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */,
 				569CBD791DE5F5A200BE502B /* MarketView.swift in Sources */,
@@ -560,7 +558,6 @@
 				B5D2DDA31DDFAF1A001F2CCE /* LocationManager.swift in Sources */,
 				C3C6593B1DDBCE6700C7B533 /* LandingViewController.swift in Sources */,
 				C3C659381DDBCE6700C7B533 /* MarketInfoViewController.swift in Sources */,
-				C3C6593E1DDBCE7C00C7B533 /* FarmersMarket.swift in Sources */,
 				C3C659451DDBCE8300C7B533 /* SearchView.swift in Sources */,
 				C3C6593F1DDBCE7C00C7B533 /* Parser.swift in Sources */,
 				B5D2DDED1DE39B3B001F2CCE /* ColorExtension.swift in Sources */,
@@ -579,7 +576,6 @@
 				B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */,
 				B5D2DDC21DE355E3001F2CCE /* RequestChangeViewController.swift in Sources */,
 				C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */,
-				569CBD771DE5F42B00BE502B /* MarketTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,24 +40,8 @@ class LandingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        print("$$$$$$$$$$$$$$$$$")
-    }
-    
-    
-    
     func movetologin(sender: UIButton) {
         delegate?.moveToLoginTapped(with: sender)
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        FirebaseAPI.readCommentFor(market: "john john", completion: { marketComments in
-            
-            for (_, value) in marketComments {
-                print("\(value["comment"] as! String)")
-            }
-            
-        })
     }
     
 

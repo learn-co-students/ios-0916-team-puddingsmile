@@ -109,13 +109,11 @@ class MapView: MKMapView, MKMapViewDelegate {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
             let pinImage = UIImage(named: "apple")
             view.image = pinImage
-            //print(view.image)
+
             if (view.annotation?.isKind(of: MKUserLocation.self))! {
                 print("Cannot show callout")
                 view.canShowCallout = false
             }
-            
-            
             
             return view
         }

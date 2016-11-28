@@ -48,7 +48,6 @@ extension FirebaseAPI {
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as! [String : [String : String]]
-            print("first completion")
             completion(value)
         })
     }
@@ -128,7 +127,6 @@ extension FirebaseAPI {
         
         var count = 0
         for dictionary in returnDictionary {
-            print(count)
             count += 1
             
             let nameChild = marketsRef.child(dictionary["name"]!)
