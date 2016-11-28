@@ -16,23 +16,34 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let unwrappedMarket = market else { return }
-        
         let marketInfoView = MarketInfo(frame: self.view.frame)
-        marketInfoView.market = unwrappedMarket
+        marketInfoView.market = self.market
         marketInfoView.delegate = self
         self.view = marketInfoView
         marketInfoView.setupMarketInfoView(market: market)
         
     }
     
-    func startSegue() {
+    func triggerBackSegue() {
         dismiss(animated: true, completion: nil)
     }
 
+    func triggerEditSegue() {
+        performSegue(withIdentifier: "requestChangeSegue", sender: self)
+    }
+    
     func showSafariVC(url: URL) {
         safari = SFSafariViewController(url: url)
         present(safari, animated: true, completion: nil)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? RequestChangeViewController {
+            dest.market = self.market
+        }
+    }
+    
+    // Add prepare segue
+    // Add another function to protocol for moving to changerequest passing in market
+    
 }
