@@ -8,28 +8,25 @@
 
 import UIKit
 
-class RequestChangeViewController: UIViewController {
+class RequestChangeViewController: UIViewController, RequestChangeDelegate {
 
+    var market: Market!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let requestView = RequestChangeView(frame: self.view.frame)
+        requestView.market = self.market
+        requestView.delegate = self
+        self.view = requestView
+        requestView.setupRequestChangeView(market: market)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func triggerBackSegue() {
+        dismiss(animated: true, completion: nil)
     }
-    */
+   
+    func triggerSaveChanges() {
+        
+    }
 
 }

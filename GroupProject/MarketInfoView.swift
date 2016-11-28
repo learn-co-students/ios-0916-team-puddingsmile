@@ -12,7 +12,8 @@ import MapKit
 import SafariServices
 
 protocol MarketInfoDelegate: class {
-    func startSegue()
+    func triggerBackSegue()
+    func triggerEditSegue()
     func showSafariVC(url: URL)
 }
 
@@ -83,7 +84,11 @@ class MarketInfo: UIView {
 
     
     func backButtonAction() {
-        delegate.startSegue()
+        delegate.triggerBackSegue()
+    }
+    
+    func editButtonAction() {
+        delegate.triggerEditSegue()
     }
     
     func startSafari() {
@@ -176,6 +181,14 @@ extension MarketInfo {
         backButton.setTitle("<", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
        
+        editButton.backgroundColor = UIColor.themeSecondary
+        editButton.layer.borderWidth = borderWidth
+        editButton.layer.cornerRadius = cornerRadius
+        editButton.layer.borderColor = UIColor.themeAccent2.cgColor
+        editButton.setTitle(">", for: .normal)
+        editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
+        
+        
 //        nameTitle.backgroundColor = UIColor.themeSecondary
         nameTitle.layer.borderWidth = borderWidth
         nameTitle.layer.cornerRadius = cornerRadius
@@ -248,6 +261,7 @@ extension MarketInfo {
     func loadContraints() {
         setMapViewConstraints()
         setBackConstraints()
+        setEditContraints()
         setNameConstraints()
         setAddressConstraints()
         setBoroughConstraints()
@@ -273,6 +287,14 @@ extension MarketInfo {
         backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.02).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
+    }
+    //self.bounds.width * -0.02
+    func setEditContraints() {
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        editButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
+        editButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        editButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
+        editButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
     }
     
     func setNameConstraints() {
