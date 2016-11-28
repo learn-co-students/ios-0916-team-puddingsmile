@@ -20,7 +20,7 @@ class MarketView: UIView {
     var market: Market!{
         didSet {
             if let displayName =  market.name {
-                nameLabel.text = "\(displayName)"
+                nameLabel.text = "AARRRGGGHGHGHGHGH"
                 print(displayName)
             }
             if let displayAddress = market.address {
@@ -51,7 +51,7 @@ class MarketView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed("MarketViewPrototype", owner: self, options: nil)
         
-        //contentView = UIView()
+        contentView = UIView()
         self.addSubview(contentView)
         
         nameLabel = UILabel()
