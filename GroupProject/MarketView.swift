@@ -96,7 +96,7 @@ class MarketView: UIView {
         //    containerView.backgroundColor = UIColor(patternImage: image)
         //}
         
-        var background: UIImage! = UIImage(named: "xibBackground.png")
+        let background: UIImage! = UIImage(named: "xibBackground.png")
         containerView.backgroundColor = UIColor(patternImage: background)
         
         //Name Label

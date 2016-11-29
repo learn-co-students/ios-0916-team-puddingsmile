@@ -15,16 +15,16 @@ protocol CommentsViewDelegate: class {
 }
 
 class CommentsView: UIView {
+    
     weak var delegate: CommentsViewDelegate!
     var market: Market!
-    
+    var tableView: UITableView!
     var backButton: UIButton!
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.themePrimary
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,7 +33,7 @@ class CommentsView: UIView {
     
     func setupRequestChangeView(market: Market) {
         self.market = market
-        createLabels()
+        createLayout()
         loadConstraints()
         loadLabels()
         print("\(market.closeDate)")
@@ -47,9 +47,15 @@ class CommentsView: UIView {
 
 //MARK: - create subviews
 extension CommentsView {
-    func createLabels() {
+    func createLayout() {
+        tableView = UITableView()
+        self.addSubview(tableView)
+        //tableView.delegate = self.
+        //tableView.dataSource = self
+        
         backButton = UIButton()
         self.addSubview(backButton)
+        
     }
     
     func loadLabels() {
@@ -59,6 +65,15 @@ extension CommentsView {
         backButton.layer.borderColor = UIColor.themeAccent2.cgColor
         backButton.setTitle("<", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+    }
+    
+    func loadTableView() {
+        //
+        let commentsCount = 10
+        
+        tableView.dequeueReusableCell(withIdentifier: "commentCell")
+        tableView.numberOfRows(inSection: commentsCount)
+ 
     }
 }
 
