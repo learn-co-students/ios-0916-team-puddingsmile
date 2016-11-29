@@ -185,8 +185,9 @@ class AddMarketView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func bringUpNewButton() {
+    func bringUpNewButton(_ sender: UITextField) {
         print("pressed")
+        
     }
     
 
@@ -290,7 +291,6 @@ extension AddMarketView {
         addressTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         addressTextField.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 5).isActive = true
         addressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        //addressTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
         addressTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
 
@@ -333,29 +333,34 @@ extension AddMarketView {
         closeTimeTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
     }
     
-    
-}
-
-
-extension UIView {
-    
-    func constrainEdges(to view: UIView) {
-        
-        leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    func createDatePicker() {
+        let datePicker = UIDatePicker()
         
     }
-    
-    func constrainEdgesWithPadding(view: UIView, top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat) {
-        
-        topAnchor.constraint(equalTo: view.topAnchor, constant: -top).isActive = true
-        
-        
-    }
-    
 }
 
 
 
+
+
+
+// MARK: - add date picker to the Date field
+
+//@IBAction func dateTextfield(_ sender: UITextField) {
+//    
+//    let datePickerView:UIDatePicker = UIDatePicker()
+//    sender.inputView = datePickerView
+//    datePickerView.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+//}
+//
+//func datePickerValueChanged(sender: UIDatePicker) {
+//    
+//    let dateFormatter = DateFormatter()
+//    dateFormatter.dateStyle = DateFormatter.Style.long
+//    dateFormatter.timeStyle = .long
+//    self.activityDate.text = dateFormatter.string(from: sender.date)
+//    
+//}
 
 
 
