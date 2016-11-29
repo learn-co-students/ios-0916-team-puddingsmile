@@ -17,9 +17,10 @@ class MarketListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //modalTransitionStyle = .flipHorizontal
+
         tableView.delegate = self
         tableView.dataSource = self
+        self.tableView.separatorStyle = .none
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
