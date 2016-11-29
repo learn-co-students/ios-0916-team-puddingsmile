@@ -8,9 +8,12 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 
 struct LocationManager {
+    
+    let manager = CLLocationManager()
     
     static func inRange(withDistance: Double, inRadius: Double) -> Bool {
         return withDistance < inRadius
@@ -30,7 +33,42 @@ struct LocationManager {
     }
     
     
+    
 }
+
+class LocationFinder: NSObject, CLLocationManagerDelegate {
+    let manager = CLLocationManager()
+    var geocoder = CLGeocoder()
+    
+    func getLatLong(with address: String) -> (Double, Double) {
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        var returnTuple: (Double, Double) = (1,1)
+        geocoder.geocodeAddressString(address, completionHandler: { (response, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            guard let placemark = response else { return }
+            for place in placemark {
+                
+                let latitude = place.location?.coordinate.latitude
+                let longitude = place.location?.coordinate.longitude
+                
+                guard let unwrappedLatitude = latitude else { return }
+                guard let unwrappedLongitude = longitude else { return }
+                
+                let returnTuple = (Double(unwrappedLatitude), Double(unwrappedLongitude))
+            }
+            
+        })
+        return returnTuple
+    }
+    
+}
+
+
+
 
 // lat , long
 //title / name of market

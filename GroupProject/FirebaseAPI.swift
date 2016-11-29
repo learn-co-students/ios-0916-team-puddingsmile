@@ -206,6 +206,10 @@ extension FirebaseAPI {
 
 extension FirebaseAPI {
     static func addMarketToFirebase(name: String, address: String, openDate: String, closeDate: String, openTime: String, closeTime: String) {
+        
+        let locationFinder = LocationFinder()
+        let latLong = locationFinder.getLatLong(with: address)
+        print (latLong)
         print("Firebase API Called")
         let ref = FIRDatabase.database().reference().child("addMarket")
         
