@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddMarketView: UIView {
+class AddMarketView: UIView, TimePickerDelegate {
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -193,12 +193,17 @@ class AddMarketView: UIView {
     var viewHeightAnchor: NSLayoutConstraint!
     var viewCenterXAnchor: NSLayoutConstraint!
     
+    func stringInfoDelegate(time: String) {
+        print("delegate is working, you rock")
+    }
+    
     
     func bringUpNewButton(_ sender: UITextField) {
         print("pressed")
         let addView = AddMarketPicker()
         
         self.addSubview(addView)
+        addView.delegate = self
         
         addView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -222,7 +227,7 @@ class AddMarketView: UIView {
             
             self.viewTopAnchor.isActive = false
             
-            self.viewTopAnchor = addView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: 10)
+            self.viewTopAnchor = addView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
             
             self.viewTopAnchor.isActive = true
             
@@ -333,9 +338,7 @@ extension AddMarketView {
         addressTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         addressTextField.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 5).isActive = true
         addressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
         addressTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-
     }
 
     func setupHoursOfOperationButton() {

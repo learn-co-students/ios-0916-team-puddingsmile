@@ -9,7 +9,15 @@
 import Foundation
 import UIKit
 
+protocol TimePickerDelegate: class {
+    
+    func stringInfoDelegate(time: String)
+    
+}
+
 class AddMarketPicker: UIView {
+    
+    weak var delegate: TimePickerDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,13 +73,13 @@ class AddMarketPicker: UIView {
     
     func leftDateDidChange(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        //self.headerLabel.text = dateFormatter.string(from: sender.date)
+        delegate?.stringInfoDelegate(time: dateFormatter.string(from: sender.date))
         print("changing")
     }
     
     func rightDateDidChange(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        //self.headerLabel.text = dateFormatter.string(from: sender.date)
+        delegate?.stringInfoDelegate(time: dateFormatter.string(from: sender.date))
         print("changing")
     }
     
