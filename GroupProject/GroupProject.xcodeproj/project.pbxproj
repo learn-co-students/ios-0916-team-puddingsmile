@@ -31,6 +31,7 @@
 		C33604431DE357FF0062453A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33604421DE357FF0062453A /* MapView.swift */; };
 		C35ADA231DECC522000442BB /* AddMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA221DECC522000442BB /* AddMarketView.swift */; };
 		C35ADA251DECC760000442BB /* AddMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA241DECC760000442BB /* AddMarketViewController.swift */; };
+		C35ADA291DEE3330000442BB /* AddMarketPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */; };
 		C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */; };
 		C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C658ED1DDBCC1A00C7B533 /* AppDelegate.swift */; };
 		C3C658F31DDBCC1A00C7B533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C658F11DDBCC1A00C7B533 /* Main.storyboard */; };
@@ -98,6 +99,7 @@
 		C33604421DE357FF0062453A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C35ADA221DECC522000442BB /* AddMarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketView.swift; sourceTree = "<group>"; };
 		C35ADA241DECC760000442BB /* AddMarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketViewController.swift; sourceTree = "<group>"; };
+		C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketPickerView.swift; sourceTree = "<group>"; };
 		C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketDataStore.swift; sourceTree = "<group>"; };
 		C3C658EA1DDBCC1A00C7B533 /* GroupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C658ED1DDBCC1A00C7B533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				569CBD7A1DE5FAE100BE502B /* SearchBarXibView.swift */,
 				C3C659421DDBCE8300C7B533 /* SearchView.swift */,
 				C35ADA221DECC522000442BB /* AddMarketView.swift */,
+				C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				56BE38301DDE560100D5EA17 /* Market.xcdatamodeld in Sources */,
 				C3C658F61DDBCC1A00C7B533 /* GroupProject.xcdatamodeld in Sources */,
 				C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */,
+				C35ADA291DEE3330000442BB /* AddMarketPickerView.swift in Sources */,
 				B5D2DDC01DE35553001F2CCE /* LoginViewController.swift in Sources */,
 				B5D2DDA11DDF4D1C001F2CCE /* DateManager.swift in Sources */,
 				B5D2DDEB1DE3943E001F2CCE /* LoginView.swift in Sources */,

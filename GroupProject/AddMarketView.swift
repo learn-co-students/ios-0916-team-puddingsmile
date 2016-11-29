@@ -185,10 +185,14 @@ class AddMarketView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var pickerViewTopAnchor: NSLayoutConstraint!
-    var pickerViewWidthAnchor: NSLayoutConstraint!
-    var pickerViewHeightAnchor: NSLayoutConstraint!
-    var pickerViewCenterXAnchor: NSLayoutConstraint!
+    
+    
+    
+    var viewTopAnchor: NSLayoutConstraint!
+    var viewWidthAnchor: NSLayoutConstraint!
+    var viewHeightAnchor: NSLayoutConstraint!
+    var viewCenterXAnchor: NSLayoutConstraint!
+    
     
     func bringUpNewButton(_ sender: UITextField) {
         print("pressed")
@@ -199,50 +203,37 @@ class AddMarketView: UIView {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.backgroundColor = UIColor.gray
         
-        pickerViewTopAnchor = datePicker.topAnchor.constraint(equalTo: self.bottomAnchor)
-        pickerViewTopAnchor.isActive = true
+        viewTopAnchor = datePicker.topAnchor.constraint(equalTo: self.bottomAnchor)
+        viewTopAnchor.isActive = true
         
-        pickerViewWidthAnchor = datePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
-        pickerViewWidthAnchor.isActive = true
+        viewWidthAnchor = datePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+        viewWidthAnchor.isActive = true
         
-        pickerViewHeightAnchor = datePicker.heightAnchor.constraint(equalTo: self.widthAnchor, constant: 0.5)
-        pickerViewHeightAnchor.isActive = true
+        viewCenterXAnchor = datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        viewCenterXAnchor.isActive = true
         
-        pickerViewCenterXAnchor = datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        pickerViewCenterXAnchor.isActive = true
+        viewHeightAnchor = datePicker.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
+        viewHeightAnchor.isActive = true
         
-        UIView.animate(withDuration: 1) {
-            print("animating")
-            self.pickerViewTopAnchor.isActive = false
-            self.pickerViewWidthAnchor.isActive = false
-            self.pickerViewHeightAnchor.isActive = false
-            self.pickerViewCenterXAnchor.isActive = false
+        
+        self.layoutIfNeeded()
 
-            self.pickerViewTopAnchor =
+
+        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
             
-            datePicker.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: 10)
-            datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            datePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+            self.viewTopAnchor.isActive = false
+            
+            self.viewTopAnchor = datePicker.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: 10)
+            
+            self.viewTopAnchor.isActive = true
             
             self.layoutIfNeeded()
-        }
-        
-        
-    
-        
-        datePicker.datePickerMode = UIDatePickerMode.time
-        datePicker.minuteInterval = 15
-        datePicker.locale = Locale.current
-        datePicker.addTarget(self, action: #selector(dateDidChange), for: .valueChanged)
-    }
-    
-    func dateDidChange(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        self.headerLabel.text = dateFormatter.string(from: sender.date)
-        print("changing")
-    }
-    
 
+            
+        }, completion: nil)
+
+    }
+    
 }
 
 // MARK: Setup Labels and one button
@@ -395,23 +386,7 @@ extension AddMarketView {
 
 
 
-// MARK: - add date picker to the Date field
 
-//@IBAction func dateTextfield(_ sender: UITextField) {
-//    
-//    let datePickerView:UIDatePicker = UIDatePicker()
-//    sender.inputView = datePickerView
-//    datePickerView.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
-//}
-//
-//func datePickerValueChanged(sender: UIDatePicker) {
-//    
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.dateStyle = DateFormatter.Style.long
-//    dateFormatter.timeStyle = .long
-//    self.activityDate.text = dateFormatter.string(from: sender.date)
-//    
-//}
 
 
 
