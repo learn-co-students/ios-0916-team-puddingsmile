@@ -196,23 +196,22 @@ class AddMarketView: UIView {
     
     func bringUpNewButton(_ sender: UITextField) {
         print("pressed")
-        let datePicker = UIDatePicker()
+        let addView = AddMarketPicker()
         
-        self.addSubview(datePicker)
+        self.addSubview(addView)
         
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.backgroundColor = UIColor.gray
+        addView.translatesAutoresizingMaskIntoConstraints = false
         
-        viewTopAnchor = datePicker.topAnchor.constraint(equalTo: self.bottomAnchor)
+        viewTopAnchor = addView.topAnchor.constraint(equalTo: self.bottomAnchor)
         viewTopAnchor.isActive = true
         
-        viewWidthAnchor = datePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+        viewWidthAnchor = addView.widthAnchor.constraint(equalTo: self.widthAnchor)
         viewWidthAnchor.isActive = true
         
-        viewCenterXAnchor = datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        viewCenterXAnchor = addView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         viewCenterXAnchor.isActive = true
         
-        viewHeightAnchor = datePicker.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
+        viewHeightAnchor = addView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
         viewHeightAnchor.isActive = true
         
         
@@ -223,7 +222,7 @@ class AddMarketView: UIView {
             
             self.viewTopAnchor.isActive = false
             
-            self.viewTopAnchor = datePicker.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: 10)
+            self.viewTopAnchor = addView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: 10)
             
             self.viewTopAnchor.isActive = true
             

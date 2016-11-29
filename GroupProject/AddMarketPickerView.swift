@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 
-class PickerViewHolder: UIView {
+class AddMarketPicker: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.red
         setupOpenTimeLabel()
         setupCloseTimeLabel()
         setupLeftPicker()
@@ -29,15 +30,17 @@ class PickerViewHolder: UIView {
         label.textColor = UIColor.black
         label.backgroundColor = UIColor.white
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let enterCloseDayLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter Open Time"
+        label.text = "Enter Close Time"
         label.textColor = UIColor.black
         label.backgroundColor = UIColor.white
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -46,7 +49,7 @@ class PickerViewHolder: UIView {
         picker.datePickerMode = UIDatePickerMode.time
         picker.minuteInterval = 15
         picker.locale = Locale.current
-        picker.addTarget(self, action: #selector(leftDateDidChange), for: .valueChanged)
+        picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
 
@@ -55,7 +58,8 @@ class PickerViewHolder: UIView {
         picker.datePickerMode = UIDatePickerMode.time
         picker.minuteInterval = 15
         picker.locale = Locale.current
-        picker.addTarget(self, action: #selector(rightDateDidChange), for: .valueChanged)
+        picker.backgroundColor = UIColor.blue
+        picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
     
@@ -73,7 +77,7 @@ class PickerViewHolder: UIView {
     
 }
 
-extension PickerViewHolder {
+extension AddMarketPicker {
     
     func setupOpenTimeLabel() {
         self.addSubview(enterOpenTimeLabel)
@@ -94,19 +98,22 @@ extension PickerViewHolder {
     func setupLeftPicker() {
         self.addSubview(leftDatePicker)
         
-        leftDatePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.45).isActive = true
+        leftDatePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         leftDatePicker.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
         leftDatePicker.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         leftDatePicker.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        leftDatePicker.addTarget(self, action: #selector(leftDateDidChange), for: .valueChanged)
+
     }
     
     func setupRightPicker() {
         self.addSubview(rightDatePicker)
         
-        leftDatePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.45).isActive = true
-        leftDatePicker.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
-        leftDatePicker.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        leftDatePicker.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        rightDatePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        rightDatePicker.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
+        rightDatePicker.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        rightDatePicker.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        rightDatePicker.addTarget(self, action: #selector(rightDateDidChange), for: .valueChanged)
     }
     
     
