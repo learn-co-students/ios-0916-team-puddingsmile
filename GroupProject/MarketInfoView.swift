@@ -13,7 +13,7 @@ import SafariServices
 
 protocol MarketInfoDelegate: class {
     func triggerBackSegue()
-    func triggerEditSegue()
+    func triggerCommentsSegue()
     func showSafariVC(url: URL)
 }
 
@@ -22,16 +22,18 @@ class MarketInfo: UIView {
     weak var delegate: MarketInfoDelegate!
     
     var market: Market!
-    
+    //MARK: - Map objects
     var mapView: MKMapView!
     var marketPin: MKMapItem!
+    //MARK: - Navigation Objects
+    var navigationView : UIView!
     
     var backButton: UIButton!
-    
     var editButton: UIButton!
     var favoriteButton: UIButton!
     var commentsButton: UIButton!
     
+    //MARK: - DetailView Objects
     var detailView: UIView!
     
     var nameButton: UIButton!
@@ -62,10 +64,7 @@ class MarketInfo: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
         self.backgroundColor = UIColor.themePrimary
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,11 +86,16 @@ class MarketInfo: UIView {
     }
     
     func editButtonAction() {
-        delegate.triggerEditSegue()
+        
     }
     
-    func favoriteButtonAction() {}
-    func commentsButtonAction() {}
+    func favoriteButtonAction() {
+    
+    }
+    
+    func commentsButtonAction() {
+        delegate.triggerCommentsSegue()
+    }
     
     func startSafari() {
         let url = URL(string: market.marketWebsite!)
@@ -151,6 +155,7 @@ extension MarketInfo {
     
     func createLabels() {
         createMapView()
+        createNavigationView()
         createBackButton()
         createEditButton()
         createFavoriteButton()
@@ -172,30 +177,37 @@ extension MarketInfo {
         mapView.isUserInteractionEnabled = false
         mapView.layer.cornerRadius = 10
     }
+    
+    func createNavigationView() {
+        navigationView = UIView()
+        self.addSubview(navigationView)
+        navigationView.backgroundColor = UIColor.themeTertiary
+    }
+    
     func createBackButton() {
         backButton = UIButton()
-        self.addSubview(backButton)
+        navigationView.addSubview(backButton)
         backButton.setTitle("⬅", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
     }
     
     func createEditButton() {
         editButton = UIButton()
-        self.addSubview(editButton)
+        navigationView.addSubview(editButton)
         editButton.setTitle("📝", for: .normal)
         editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
     }
     
     func createFavoriteButton() {
         favoriteButton = UIButton()
-        self.addSubview(favoriteButton)
+        navigationView.addSubview(favoriteButton)
         favoriteButton.setTitle("♥️", for: .normal)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
     }
     
     func createCommentsButton() {
         commentsButton = UIButton()
-        self.addSubview(commentsButton)
+        navigationView.addSubview(commentsButton)
         commentsButton.setTitle("💬", for: .normal)
         commentsButton.addTarget(self, action: #selector(commentsButtonAction), for: .touchUpInside)
     }
@@ -304,9 +316,6 @@ extension MarketInfo {
         websiteLabel.font = Constants.themeFont()
         websiteLabel.textAlignment = .center
     }
-
-    
-    
 }
 
 
@@ -315,6 +324,7 @@ extension MarketInfo {
 extension MarketInfo {
     func loadContraints() {
         setMapViewConstraints()
+        setNavigationViewConstraints()
         setBackConstraints()
         setFavoriteConstraints()
         setCommentsConstraints()
@@ -338,36 +348,44 @@ extension MarketInfo {
         mapView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.35).isActive = true
     }
     
+    func setNavigationViewConstraints() {
+        navigationView.translatesAutoresizingMaskIntoConstraints = false
+        navigationView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        navigationView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        navigationView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        navigationView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.1).isActive = true
+    }
+    
     func setBackConstraints() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: navigationView.bounds.width * 0.03).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
     }
   
     func setFavoriteConstraints() {
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        favoriteButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        favoriteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.03).isActive = true
-        favoriteButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        favoriteButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        favoriteButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
+        favoriteButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: navigationView.bounds.width * -0.03).isActive = true
+        favoriteButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        favoriteButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
     }
     
     func setCommentsConstraints() {
         commentsButton.translatesAutoresizingMaskIntoConstraints = false
-        commentsButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        commentsButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: self.bounds.width * -0.02).isActive = true
-        commentsButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        commentsButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        commentsButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
+        commentsButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: navigationView.bounds.width * -0.02).isActive = true
+        commentsButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        commentsButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
     }
     
     func setEditConstraints() {
         editButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        editButton.trailingAnchor.constraint(equalTo: commentsButton.leadingAnchor, constant: self.bounds.width * -0.02).isActive = true
-        editButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        editButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        editButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
+        editButton.trailingAnchor.constraint(equalTo: commentsButton.leadingAnchor, constant: navigationView.bounds.width * -0.02).isActive = true
+        editButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        editButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
     }
     
     func setDetailViewConstraints() {

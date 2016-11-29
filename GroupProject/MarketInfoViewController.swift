@@ -33,7 +33,7 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
         dismiss(animated: true, completion: nil)
     }
 
-    func triggerEditSegue() {
+    func triggerCommentsSegue() {
         performSegue(withIdentifier: "requestChangeSegue", sender: self)
     }
     
@@ -43,7 +43,7 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? RequestChangeViewController {
+        if let dest = segue.destination as? CommentsViewController {
             dest.market = self.market
         }
     }

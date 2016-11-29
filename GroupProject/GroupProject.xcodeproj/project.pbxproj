@@ -21,12 +21,12 @@
 		B5D2DDA11DDF4D1C001F2CCE /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDA01DDF4D1C001F2CCE /* DateManager.swift */; };
 		B5D2DDA31DDFAF1A001F2CCE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDA21DDFAF1A001F2CCE /* LocationManager.swift */; };
 		B5D2DDC01DE35553001F2CCE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDBF1DE35553001F2CCE /* LoginViewController.swift */; };
-		B5D2DDC21DE355E3001F2CCE /* RequestChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDC11DE355E3001F2CCE /* RequestChangeViewController.swift */; };
+		B5D2DDC21DE355E3001F2CCE /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDC11DE355E3001F2CCE /* CommentsViewController.swift */; };
 		B5D2DDC41DE35639001F2CCE /* MarketListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */; };
 		B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */; };
 		B5D2DDEB1DE3943E001F2CCE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDEA1DE3943E001F2CCE /* LoginView.swift */; };
 		B5D2DDED1DE39B3B001F2CCE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDEC1DE39B3B001F2CCE /* ColorExtension.swift */; };
-		B5FFF0F31DEC7A7D004716B8 /* RequestChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFF0F21DEC7A7D004716B8 /* RequestChangeView.swift */; };
+		B5FFF0F31DEC7A7D004716B8 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFF0F21DEC7A7D004716B8 /* CommentsView.swift */; };
 		C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
 		C33604431DE357FF0062453A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33604421DE357FF0062453A /* MapView.swift */; };
@@ -86,12 +86,12 @@
 		B5D2DDA01DDF4D1C001F2CCE /* DateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		B5D2DDA21DDFAF1A001F2CCE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B5D2DDBF1DE35553001F2CCE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = GroupProject/LoginViewController.swift; sourceTree = "<group>"; };
-		B5D2DDC11DE355E3001F2CCE /* RequestChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestChangeViewController.swift; path = GroupProject/RequestChangeViewController.swift; sourceTree = "<group>"; };
+		B5D2DDC11DE355E3001F2CCE /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = GroupProject/CommentsViewController.swift; sourceTree = "<group>"; };
 		B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarketListViewController.swift; path = GroupProject/MarketListViewController.swift; sourceTree = "<group>"; };
 		B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketComment.swift; sourceTree = "<group>"; };
 		B5D2DDEA1DE3943E001F2CCE /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B5D2DDEC1DE39B3B001F2CCE /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
-		B5FFF0F21DEC7A7D004716B8 /* RequestChangeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestChangeView.swift; sourceTree = "<group>"; };
+		B5FFF0F21DEC7A7D004716B8 /* CommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		C00C22163A0DAEAF7038196C /* Pods-GroupProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				C3C659401DDBCE8300C7B533 /* LandingView.swift */,
 				C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */,
 				B5167F681DEDD626005AB062 /* Constants.swift */,
-				B5FFF0F21DEC7A7D004716B8 /* RequestChangeView.swift */,
+				B5FFF0F21DEC7A7D004716B8 /* CommentsView.swift */,
 				569CBD781DE5F5A200BE502B /* MarketView.swift */,
 				569CBD741DE5F41E00BE502B /* MarketTableCell.swift */,
 				569CBD7A1DE5FAE100BE502B /* SearchBarXibView.swift */,
@@ -268,7 +268,7 @@
 				C3C659361DDBCE6700C7B533 /* SearchViewController.swift */,
 				B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */,
 				C3C659341DDBCE6700C7B533 /* MarketInfoViewController.swift */,
-				B5D2DDC11DE355E3001F2CCE /* RequestChangeViewController.swift */,
+				B5D2DDC11DE355E3001F2CCE /* CommentsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -580,9 +580,9 @@
 				569CBD7B1DE5FAE100BE502B /* SearchBarXibView.swift in Sources */,
 				B5D2DDC41DE35639001F2CCE /* MarketListViewController.swift in Sources */,
 				C33604431DE357FF0062453A /* MapView.swift in Sources */,
-				B5FFF0F31DEC7A7D004716B8 /* RequestChangeView.swift in Sources */,
+				B5FFF0F31DEC7A7D004716B8 /* CommentsView.swift in Sources */,
 				B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */,
-				B5D2DDC21DE355E3001F2CCE /* RequestChangeViewController.swift in Sources */,
+				B5D2DDC21DE355E3001F2CCE /* CommentsViewController.swift in Sources */,
 				C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

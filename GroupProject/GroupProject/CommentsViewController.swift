@@ -8,17 +8,17 @@
 
 import UIKit
 
-class RequestChangeViewController: UIViewController, RequestChangeDelegate {
+class CommentsViewController: UIViewController, CommentsViewDelegate {
 
     var market: Market!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let requestView = RequestChangeView(frame: self.view.frame)
-        requestView.market = self.market
-        requestView.delegate = self
-        self.view = requestView
-        requestView.setupRequestChangeView(market: market)
+        let commentsView = CommentsView(frame: self.view.frame)
+        commentsView.market = self.market
+        commentsView.delegate = self
+        self.view = commentsView
+        commentsView.setupRequestChangeView(market: market)
     }
     
     func triggerBackSegue() {

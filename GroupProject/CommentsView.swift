@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-protocol RequestChangeDelegate: class {
+protocol CommentsViewDelegate: class {
     func triggerBackSegue()
     func triggerSaveChanges()
 }
 
-class RequestChangeView: UIView {
-    weak var delegate: RequestChangeDelegate!
+class CommentsView: UIView {
+    weak var delegate: CommentsViewDelegate!
     var market: Market!
     
     var backButton: UIButton!
@@ -46,7 +46,7 @@ class RequestChangeView: UIView {
 
 
 //MARK: - create subviews
-extension RequestChangeView {
+extension CommentsView {
     func createLabels() {
         backButton = UIButton()
         self.addSubview(backButton)
@@ -64,7 +64,7 @@ extension RequestChangeView {
 
 
 //MARK: - create contraints
-extension RequestChangeView {
+extension CommentsView {
     func loadConstraints() {
         setBackConstraints()
     }
