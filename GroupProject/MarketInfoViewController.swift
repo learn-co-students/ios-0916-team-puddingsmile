@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SafariServices
+
 class MarketInfoViewController: UIViewController, MarketInfoDelegate {
     
     var market: Market!
@@ -21,6 +22,10 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
         marketInfoView.delegate = self
         self.view = marketInfoView
         marketInfoView.setupMarketInfoView(market: market)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
     }
     
@@ -42,8 +47,6 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
             dest.market = self.market
         }
     }
-    
-    // Add prepare segue
-    // Add another function to protocol for moving to changerequest passing in market
+
     
 }
