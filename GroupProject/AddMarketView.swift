@@ -57,47 +57,47 @@ class AddMarketView: UIView {
         return field
     }()
     
-    let openDateLabel: UILabel = {
+    let hoursOfOperationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Open Date:"
+        label.text = "Hours of Operation:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
-    let openDateTextField: UITextField = {
-        let field = UITextField()
-        field.placeholder = "Enter Open Date"
-        field.backgroundColor = UIColor.gray
-        field.layer.cornerRadius = 10
-        field.translatesAutoresizingMaskIntoConstraints = false
+    let hoursOfOperationButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Enter Hours of Operation", for: .normal)
+        button.backgroundColor = UIColor.gray
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        return field
+        return button
     }()
-    
-    let closeDateLabel: UILabel = {
+
+    let beginningOfSeasonLabel: UILabel = {
         let label = UILabel()
-        label.text = "Close Date:"
+        label.text = "Beginning of Season:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
-    let closeDateTextField: UITextField = {
-        let field = UITextField()
-        field.placeholder = "Enter Close Date"
-        field.backgroundColor = UIColor.gray
-        field.layer.cornerRadius = 10
-        field.translatesAutoresizingMaskIntoConstraints = false
+    let beginningOfSeasonButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Enter Beginning Of Season", for: .normal)
+        button.backgroundColor = UIColor.gray
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        return field
+        return button
     }()
     
     let openTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Open Time:"
+        label.text = "Hours of Operation"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -142,24 +142,24 @@ class AddMarketView: UIView {
         return button
     }()
     
-    func addMarketToFirebase() {
-        print("Add market pressed")
-        let nameText = nameTextField.text
-        let addressText = addressTextField.text
-        let openDateText = openDateTextField.text
-        let closeDateText = closeDateTextField.text
-        let openTimeText = openTimeTextField.text
-        let closeTimeText = closeTimeTextField.text
-        
-        if nameText != "" && addressText != "" && openDateText != "" && closeDateText != "" && openTimeText != "" && closeTimeText != "" {
-            print("not nil")
-            FirebaseAPI.addMarketToFirebase(name: nameText!, address: addressText!, openDate: openDateText!, closeDate: closeDateText!, openTime: openTimeText!, closeTime: closeTimeText!)
-            
-        } else {
-            print("nil")
-        }
-        
-    }
+//    func addMarketToFirebase() {
+//        print("Add market pressed")
+//        let nameText = nameTextField.text
+//        let addressText = addressTextField.text
+//        //let openDateText = openDateTextField.text
+//        let closeDateText = closeDateTextField.text
+//        let openTimeText = openTimeTextField.text
+//        let closeTimeText = closeTimeTextField.text
+//        
+//        if nameText != "" && addressText != "" && openDateText != "" && closeDateText != "" && openTimeText != "" && closeTimeText != "" {
+//            print("not nil")
+//            FirebaseAPI.addMarketToFirebase(name: nameText!, address: addressText!, openDate: openDateText!, closeDate: closeDateText!, openTime: openTimeText!, closeTime: closeTimeText!)
+//            
+//        } else {
+//            print("nil")
+//        }
+//        
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -170,13 +170,13 @@ class AddMarketView: UIView {
         self.setupAddressLabel()
         self.setupAddressTextField()
         self.setupOpenDateLabel()
-        self.setupOpenDateTextField()
-        self.setupCloseDateLabel()
-        self.setupCloseDateTextField()
-        self.setupOpenTimeLabel()
-        self.setupOpenTimeTextField()
-        self.setupCloseTimeLabel()
-        self.setupCloseTimeTextField()
+        self.setupHoursOfOperationButton()
+        self.setupBeginningOfSeasonLabel()
+        self.setupBeginningOfSeasonButton()
+        //self.setupOpenTimeLabel()
+        //self.setupOpenTimeTextField()
+        //self.setupCloseTimeLabel()
+        //self.setupCloseTimeTextField()
         self.setupSubmitMarketButton()
         print("add market called")
     }
@@ -185,10 +185,18 @@ class AddMarketView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func bringUpNewButton() {
+        print("pressed")
+    }
+    
 
 }
 
 // MARK: Setup Labels and one button
+
+
+
+
 
 extension AddMarketView {
     
@@ -197,15 +205,13 @@ extension AddMarketView {
         
         headerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         headerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
-        headerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupNameLabel() {
         self.addSubview(nameLabel)
         
         nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: self.headerLabel.bottomAnchor, constant: 30).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: self.headerLabel.bottomAnchor, constant: 10).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
@@ -213,31 +219,31 @@ extension AddMarketView {
         self.addSubview(addressLabel)
         
         addressLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        addressLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: 20).isActive = true
-        addressLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        addressLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 10).isActive = true
+        //addressLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupOpenDateLabel() {
-        self.addSubview(openDateLabel)
+        self.addSubview(hoursOfOperationLabel)
         
-        openDateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        openDateLabel.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 20).isActive = true
-        openDateLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        hoursOfOperationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        hoursOfOperationLabel.topAnchor.constraint(equalTo: self.addressTextField.bottomAnchor, constant: 10).isActive = true
+        //openDateLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    func setupCloseDateLabel() {
-        self.addSubview(closeDateLabel)
+    func setupBeginningOfSeasonLabel() {
+        self.addSubview(beginningOfSeasonLabel)
         
-        closeDateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        closeDateLabel.topAnchor.constraint(equalTo: self.openDateLabel.bottomAnchor, constant: 20).isActive = true
-        closeDateLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        beginningOfSeasonLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        beginningOfSeasonLabel.topAnchor.constraint(equalTo: self.hoursOfOperationButton.bottomAnchor, constant: 10).isActive = true
+        //beginningOfSeasonLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupOpenTimeLabel() {
         self.addSubview(openTimeLabel)
         
         openTimeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        openTimeLabel.topAnchor.constraint(equalTo: self.closeDateLabel.bottomAnchor, constant: 20).isActive = true
+        openTimeLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonLabel.bottomAnchor, constant: 20).isActive = true
         openTimeLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
@@ -255,11 +261,13 @@ extension AddMarketView {
         submitMarketButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         submitMarketButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         submitMarketButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        submitMarketButton.addTarget(self, action: #selector(addMarketToFirebase), for: .touchUpInside)
-
+        //submitMarketButton.addTarget(self, action: #selector(addMarketToFirebase), for: .touchUpInside)
     }
     
 }
+
+
+
 
 // MARK: Setup textfield
 
@@ -268,44 +276,50 @@ extension AddMarketView {
     func setupNameTextField() {
         self.addSubview(nameTextField)
         
-        nameTextField.leadingAnchor.constraint(equalTo: self.nameLabel.trailingAnchor, constant: 20).isActive = true
-        nameTextField.topAnchor.constraint(equalTo: self.headerLabel.bottomAnchor, constant: 30).isActive = true
+        nameTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        nameTextField.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: 5).isActive = true
         nameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        nameTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        //nameTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        nameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+
     }
     
     func setupAddressTextField() {
         self.addSubview(addressTextField)
         
-        addressTextField.leadingAnchor.constraint(equalTo: self.nameLabel.trailingAnchor, constant: 20).isActive = true
-        addressTextField.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: 30).isActive = true
+        addressTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        addressTextField.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 5).isActive = true
         addressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        addressTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        //addressTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        
+        addressTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+
     }
 
-    func setupOpenDateTextField() {
-        self.addSubview(openDateTextField)
+    func setupHoursOfOperationButton() {
+        self.addSubview(hoursOfOperationButton)
         
-        openDateTextField.leadingAnchor.constraint(equalTo: self.openDateLabel.trailingAnchor, constant: 20).isActive = true
-        openDateTextField.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 30).isActive = true
-        openDateTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        openDateTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        hoursOfOperationButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        hoursOfOperationButton.topAnchor.constraint(equalTo: self.hoursOfOperationLabel.bottomAnchor, constant: 5).isActive = true
+        hoursOfOperationButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        hoursOfOperationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        hoursOfOperationButton.addTarget(self, action: #selector(bringUpNewButton), for: .touchUpInside)
     }
     
-    func setupCloseDateTextField() {
-        self.addSubview(closeDateTextField)
+    func setupBeginningOfSeasonButton() {
+        self.addSubview(beginningOfSeasonButton)
         
-        closeDateTextField.leadingAnchor.constraint(equalTo: self.closeDateLabel.trailingAnchor, constant: 20).isActive = true
-        closeDateTextField.topAnchor.constraint(equalTo: self.openDateLabel.bottomAnchor, constant: 30).isActive = true
-        closeDateTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        closeDateTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        beginningOfSeasonButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        beginningOfSeasonButton.topAnchor.constraint(equalTo: self.beginningOfSeasonLabel.bottomAnchor, constant: 5).isActive = true
+        beginningOfSeasonButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        beginningOfSeasonButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
     }
     
     func setupOpenTimeTextField() {
         self.addSubview(openTimeTextField)
         
         openTimeTextField.leadingAnchor.constraint(equalTo: self.openTimeLabel.trailingAnchor, constant: 20).isActive = true
-        openTimeTextField.topAnchor.constraint(equalTo: self.closeDateLabel.bottomAnchor, constant: 30).isActive = true
+        openTimeTextField.topAnchor.constraint(equalTo: self.beginningOfSeasonLabel.bottomAnchor, constant: 30).isActive = true
         openTimeTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         openTimeTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
     }
@@ -321,6 +335,7 @@ extension AddMarketView {
     
     
 }
+
 
 extension UIView {
     
