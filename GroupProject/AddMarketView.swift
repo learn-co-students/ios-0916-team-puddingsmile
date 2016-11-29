@@ -185,9 +185,61 @@ class AddMarketView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var pickerViewTopAnchor: NSLayoutConstraint!
+    var pickerViewWidthAnchor: NSLayoutConstraint!
+    var pickerViewHeightAnchor: NSLayoutConstraint!
+    var pickerViewCenterXAnchor: NSLayoutConstraint!
+    
     func bringUpNewButton(_ sender: UITextField) {
         print("pressed")
+        let datePicker = UIDatePicker()
         
+        self.addSubview(datePicker)
+        
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.backgroundColor = UIColor.gray
+        
+        pickerViewTopAnchor = datePicker.topAnchor.constraint(equalTo: self.bottomAnchor)
+        pickerViewTopAnchor.isActive = true
+        
+        pickerViewWidthAnchor = datePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+        pickerViewWidthAnchor.isActive = true
+        
+        pickerViewHeightAnchor = datePicker.heightAnchor.constraint(equalTo: self.widthAnchor, constant: 0.5)
+        pickerViewHeightAnchor.isActive = true
+        
+        pickerViewCenterXAnchor = datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        pickerViewCenterXAnchor.isActive = true
+        
+        UIView.animate(withDuration: 1) {
+            print("animating")
+            self.pickerViewTopAnchor.isActive = false
+            self.pickerViewWidthAnchor.isActive = false
+            self.pickerViewHeightAnchor.isActive = false
+            self.pickerViewCenterXAnchor.isActive = false
+
+            self.pickerViewTopAnchor =
+            
+            datePicker.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: 10)
+            datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            datePicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+            
+            self.layoutIfNeeded()
+        }
+        
+        
+    
+        
+        datePicker.datePickerMode = UIDatePickerMode.time
+        datePicker.minuteInterval = 15
+        datePicker.locale = Locale.current
+        datePicker.addTarget(self, action: #selector(dateDidChange), for: .valueChanged)
+    }
+    
+    func dateDidChange(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        self.headerLabel.text = dateFormatter.string(from: sender.date)
+        print("changing")
     }
     
 
@@ -334,7 +386,6 @@ extension AddMarketView {
     }
     
     func createDatePicker() {
-        let datePicker = UIDatePicker()
         
     }
 }
