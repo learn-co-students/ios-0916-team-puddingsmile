@@ -20,47 +20,45 @@ protocol MarketInfoDelegate: class {
 class MarketInfo: UIView {
     
     weak var delegate: MarketInfoDelegate!
-    
     var market: Market!
+    
     //MARK: - Map objects
-    var mapView: MKMapView!
-    var marketPin: MKMapItem!
+    var mapView:    MKMapView!
+    var marketPin:  MKMapItem!
+    var locationManager: CLLocationManager!
+    
     //MARK: - Navigation Objects
     var navigationView : UIView!
     
-    var backButton: UIButton!
-    var editButton: UIButton!
+    var backButton:     UIButton!
+    var editButton:     UIButton!
     var favoriteButton: UIButton!
     var commentsButton: UIButton!
     
     //MARK: - DetailView Objects
-    var detailView: UIView!
+    var detailView:     UIView!
     
-    var nameButton: UIButton!
-    var nameLabel: UILabel!
+    var nameButton:     UIButton!
+    var nameLabel:      UILabel!
+    var addressButton:  UIButton!
+    var addressLabel:   UILabel!
+    var boroughButton:  UIButton!
+    var boroughLabel:   UILabel!
+    var seasonButton:   UIButton!
+    var seasonLabel:    UILabel!
+    var daysButton:     UIButton!
+    var daysLabel:      UILabel!
+    var timeButton:     UIButton!
+    var timeLabel:      UILabel!
+    var ebtButton:      UIButton!
+    var ebtLabel:       UILabel!
+    var websiteButton:  UIButton!
+    var websiteLabel:   UILabel!
     
-    var addressButton: UIButton!
-    var addressLabel: UILabel!
+    //MARK: - Logic States
+    var editorBox: EditorBox?
+    var isEditing: Bool = false
     
-    var boroughButton: UIButton!
-    var boroughLabel: UILabel!
-    
-    var seasonButton: UIButton!
-    var seasonLabel: UILabel!
-    
-    var daysButton: UIButton!
-    var daysLabel: UILabel!
-    
-    var timeButton: UIButton!
-    var timeLabel: UILabel!
-    
-    var ebtButton: UIButton!
-    var ebtLabel: UILabel!
-    
-    var websiteButton: UIButton!
-    var websiteLabel: UILabel!
-    
-    var locationManager: CLLocationManager!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,7 +71,7 @@ class MarketInfo: UIView {
     
     func setupMarketInfoView(market: Market) {
         self.market = market
-        createLabels()
+        createObjects()
         loadContraints()
         setupLocationManager()
         centerMapOnCurrentLocation()
@@ -81,16 +79,40 @@ class MarketInfo: UIView {
         addAnnotationToMap()
     }
     
+    func toggleButtons(state: Bool) {
+        nameButton.isEnabled = state
+        addressButton.isEnabled = state
+        boroughButton.isEnabled = state
+        seasonButton.isEnabled = state
+        daysButton.isEnabled = state
+        timeButton.isEnabled = state
+        ebtButton.isEnabled = state
+        websiteButton.isEnabled = !state
+    }
+}
+
+//MARK: - ButtonActions
+extension MarketInfo {
     func backButtonAction() {
         delegate.triggerBackSegue()
     }
     
     func editButtonAction() {
+        editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * 0.07, width: self.bounds.width, height: self.bounds.height * 0.36))
+        editorBox?.createObjects()
+        self.addSubview(editorBox!)
+        if isEditing {
+            isEditing = false
+            toggleButtons(state: false)
+        } else {
+            isEditing = true
+            toggleButtons(state: true)
+        }
         
     }
     
     func favoriteButtonAction() {
-    
+        
     }
     
     func commentsButtonAction() {
@@ -103,22 +125,20 @@ class MarketInfo: UIView {
         delegate.showSafariVC(url: uUrl)
     }
     
-    func editNameAction(){}
-    func editAddressAction(){}
-    func editBoroughAction(){}
-    func editSeasonAction(){}
-    func editDaysAction(){}
-    func editTimeAction(){}
-    func editEBTAction(){}
+    func editNameAction() {
+        
+    }
+    func editAddressAction(){print(1)}
+    func editBoroughAction(){print(1)}
+    func editSeasonAction(){print(1)}
+    func editDaysAction(){print(1)}
+    func editTimeAction(){print(1)}
+    func editEBTAction(){print(1)}
     func editWebsiteAction(){}
 }
 
-
 //MARK: - Setup Mapkit view
 extension MarketInfo: CLLocationManagerDelegate {
-
-    // MARK: -Location Information
-
     func setupLocationManager(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -142,9 +162,7 @@ extension MarketInfo: CLLocationManagerDelegate {
     }
     
     func addAnnotationToMap() {
-        
         let marketAnno = MarketAnnotation(market: self.market)
-
         mapView.addAnnotation(marketAnno)
     }
     
@@ -152,8 +170,7 @@ extension MarketInfo: CLLocationManagerDelegate {
 
 //MARK: - Create Subviews
 extension MarketInfo {
-    
-    func createLabels() {
+    func createObjects() {
         createMapView()
         createNavigationView()
         createBackButton()
@@ -218,6 +235,7 @@ extension MarketInfo {
         detailView.backgroundColor = UIColor.themeSecondary
         detailView.layer.cornerRadius = 10
     }
+    
     func createNameButtonView() {
         nameButton = UIButton()
         self.detailView.addSubview(nameButton)
@@ -255,6 +273,7 @@ extension MarketInfo {
         boroughLabel.text = "Borough: \(market.borough!)"
         boroughLabel.font = Constants.themeFont()
     }
+    
     func createSeasonButtonView() {
         seasonButton = UIButton()
         self.detailView.addSubview(seasonButton)
@@ -267,6 +286,7 @@ extension MarketInfo {
         seasonLabel.text = "Season: \(market.openDate!) - \(market.closeDate!)"
         seasonLabel.font = Constants.themeFont()
     }
+    
     func createDaysButtonView() {
         daysButton = UIButton()
         self.detailView.addSubview(daysButton)
@@ -279,6 +299,7 @@ extension MarketInfo {
         daysLabel.text = "Days Open: \(market.weekDayOpen!)"
         daysLabel.font = Constants.themeFont()
     }
+    
     func createTimeButtonView() {
         timeButton = UIButton()
         self.detailView.addSubview(timeButton)
@@ -291,6 +312,7 @@ extension MarketInfo {
         timeLabel.text = "Times Open: \(market.startTime!) - \(market.endTime!)"
         timeLabel.font = Constants.themeFont()
     }
+    
     func createEBTButtonView() {
         ebtButton = UIButton()
         self.detailView.addSubview(ebtButton)
@@ -303,6 +325,7 @@ extension MarketInfo {
         ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
         ebtLabel.font = Constants.themeFont()
     }
+    
     func createWebsiteButtonView() {
         websiteButton = UIButton()
         self.detailView.addSubview(websiteButton)
@@ -317,8 +340,6 @@ extension MarketInfo {
         websiteLabel.textAlignment = .center
     }
 }
-
-
 
 //MARK: - Create Contraints
 extension MarketInfo {
@@ -353,39 +374,39 @@ extension MarketInfo {
         navigationView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         navigationView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         navigationView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        navigationView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.1).isActive = true
+        navigationView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.07).isActive = true
     }
     
     func setBackConstraints() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: navigationView.bounds.width * 0.03).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
     }
   
     func setFavoriteConstraints() {
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        favoriteButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
-        favoriteButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: navigationView.bounds.width * -0.03).isActive = true
-        favoriteButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
-        favoriteButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        favoriteButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
+        favoriteButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: self.bounds.width * -0.03).isActive = true
+        favoriteButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        favoriteButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
     }
     
     func setCommentsConstraints() {
         commentsButton.translatesAutoresizingMaskIntoConstraints = false
-        commentsButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
-        commentsButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: navigationView.bounds.width * -0.02).isActive = true
-        commentsButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
-        commentsButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        commentsButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
+        commentsButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: self.bounds.width * -0.02).isActive = true
+        commentsButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        commentsButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
     }
     
     func setEditConstraints() {
         editButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: navigationView.bounds.height * 0.3).isActive = true
-        editButton.trailingAnchor.constraint(equalTo: commentsButton.leadingAnchor, constant: navigationView.bounds.width * -0.02).isActive = true
-        editButton.widthAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
-        editButton.heightAnchor.constraint(equalToConstant: navigationView.bounds.width * 0.08).isActive = true
+        editButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
+        editButton.trailingAnchor.constraint(equalTo: commentsButton.leadingAnchor, constant: self.bounds.width * -0.02).isActive = true
+        editButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        editButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
     }
     
     func setDetailViewConstraints() {
@@ -396,82 +417,109 @@ extension MarketInfo {
         detailView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: self.bounds.height * -0.02).isActive = true
     }
     
-    func createBottomBorder(forView: UIView) {
-        let bottomBorder = UIView()
-        forView.addSubview(bottomBorder)
-        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorder.leadingAnchor.constraint(equalTo: forView.leadingAnchor).isActive = true
-        bottomBorder.trailingAnchor.constraint(equalTo: forView.trailingAnchor).isActive = true
-        bottomBorder.bottomAnchor.constraint(equalTo: forView.bottomAnchor).isActive = true
-        bottomBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        bottomBorder.backgroundColor = UIColor.themeAccent1
-
-    }
-    
     func setNameConstraints() {
+        nameButton.translatesAutoresizingMaskIntoConstraints = false
+        nameButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        nameButton.topAnchor.constraint(equalTo: detailView.topAnchor, constant: detailView.bounds.height * 0.02).isActive = true
+        nameButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        nameButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: detailView.topAnchor, constant: detailView.bounds.height * 0.02).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        createBottomBorder(forView: nameLabel)
-        
+        nameLabel.createBottomBorder(forView: nameLabel)
     }
     
     func setAddressConstraints() {
+        addressButton.translatesAutoresizingMaskIntoConstraints = false
+        addressButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        addressButton.topAnchor.constraint(equalTo: nameButton.bottomAnchor).isActive = true
+        addressButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        addressButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
         addressLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         addressLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         addressLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        createBottomBorder(forView: addressLabel)
+        addressLabel.createBottomBorder(forView: addressLabel)
     }
     
     func setBoroughConstraints() {
+        boroughButton.translatesAutoresizingMaskIntoConstraints = false
+        boroughButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        boroughButton.topAnchor.constraint(equalTo: addressButton.bottomAnchor).isActive = true
+        boroughButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        boroughButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        
         boroughLabel.translatesAutoresizingMaskIntoConstraints = false
         boroughLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
         boroughLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor).isActive = true
         boroughLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         boroughLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        createBottomBorder(forView: boroughLabel)
+        boroughLabel.createBottomBorder(forView: boroughLabel)
     }
     
     func setSeasonConstraints() {
+        seasonButton.translatesAutoresizingMaskIntoConstraints = false
+        seasonButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        seasonButton.topAnchor.constraint(equalTo: boroughButton.bottomAnchor).isActive = true
+        seasonButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        seasonButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        
         seasonLabel.translatesAutoresizingMaskIntoConstraints = false
         seasonLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
         seasonLabel.topAnchor.constraint(equalTo: boroughLabel.bottomAnchor).isActive = true
         seasonLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         seasonLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        createBottomBorder(forView: seasonLabel)
+        seasonLabel.createBottomBorder(forView: seasonLabel)
     }
     
     func setDaysConstraints() {
+        daysButton.translatesAutoresizingMaskIntoConstraints = false
+        daysButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        daysButton.topAnchor.constraint(equalTo: seasonButton.bottomAnchor).isActive = true
+        daysButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        daysButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
         daysLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
         daysLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor).isActive = true
         daysLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         daysLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        createBottomBorder(forView: daysLabel)
+        daysLabel.createBottomBorder(forView: daysLabel)
     }
     
     func setTimeConstraints() {
+        timeButton.translatesAutoresizingMaskIntoConstraints = false
+        timeButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        timeButton.topAnchor.constraint(equalTo: daysButton.bottomAnchor).isActive = true
+        timeButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        timeButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
         timeLabel.topAnchor.constraint(equalTo: daysLabel.bottomAnchor).isActive = true
         timeLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         timeLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        createBottomBorder(forView: timeLabel)
+        timeLabel.createBottomBorder(forView: timeLabel)
     }
     
     func setEBTConstraints() {
+        ebtButton.translatesAutoresizingMaskIntoConstraints = false
+        ebtButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        ebtButton.topAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
+        ebtButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        ebtButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        
         ebtLabel.translatesAutoresizingMaskIntoConstraints = false
         ebtLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
-        ebtLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
+        ebtLabel.topAnchor.constraint(equalTo: timeButton.bottomAnchor).isActive = true
         ebtLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         ebtLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        createBottomBorder(forView: ebtLabel)
+        ebtLabel.createBottomBorder(forView: ebtLabel)
     }
     
     func setWebsiteConstraints() {
@@ -486,6 +534,5 @@ extension MarketInfo {
         websiteLabel.topAnchor.constraint(equalTo: ebtLabel.bottomAnchor).isActive = true
         websiteLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         websiteLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        
     }
 }
