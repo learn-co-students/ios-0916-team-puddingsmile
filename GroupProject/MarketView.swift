@@ -12,6 +12,7 @@ class MarketView: UIView {
    
     @IBOutlet var contentView: UIView!
 
+    var containerView: UIView!
     var nameLabel: UILabel!
     var addressLabel: UILabel!
     var timeLabel: UILabel!
@@ -39,6 +40,7 @@ class MarketView: UIView {
         super.init(frame:frame)
         commonInit()
         setConstraints()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,12 +63,7 @@ class MarketView: UIView {
         nameLabel = UILabel()
         nameLabel.font = UIFont.systemFont(ofSize: 24)
         contentView.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.2).isActive = true
-        nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.25).isActive = true
-        nameLabel.textAlignment = NSTextAlignment.center
+      
         
         addressLabel = UILabel()
         contentView.addSubview(addressLabel)
@@ -81,7 +78,12 @@ class MarketView: UIView {
     
     func setConstraints() {
         //Name Label
-        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.2).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.25).isActive = true
+        nameLabel.textAlignment = NSTextAlignment.center
         
         //Address Label
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
