@@ -45,6 +45,17 @@ class CommentsView: UIView {
     func backButtonAction() {
         delegate?.triggerBackSegue()
     }
+    
+    //MARK: - Segues
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath) as! CommentTableViewCell
+        let comment: MarketComment!
+        
+        comment = comments[indexPath.row]
+        
+        cell.commentView = comment
+        return cell
+    }
 }
 
 

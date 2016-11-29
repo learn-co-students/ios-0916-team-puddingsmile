@@ -1,20 +1,19 @@
 //
-//  MarketCellTableViewCell.swift
-//  mapKitTest
+//  CommentTableViewCell.swift
+//  GroupProject
 //
-//  Created by Neill Perry on 11/22/16.
-//  Copyright © 2016 PuddingSmile. All rights reserved.
+//  Created by Neill Perry on 11/29/16.
+//  Copyright © 2016 Alexander Mason. All rights reserved.
 //
 
 import UIKit
 
-class MarketTableCell: UITableViewCell {
-    
-    @IBOutlet weak var marketView: MarketView!
+class CommentTableViewCell: UITableViewCell {
+
+    var commentView: MarketComment!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
         // Initialization code
     }
 

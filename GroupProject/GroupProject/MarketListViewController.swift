@@ -25,6 +25,8 @@ class MarketListViewController: UITableViewController {
         setFavoriteContraints()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Set Up Search Bar
         self.tableView.separatorStyle = .none
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false

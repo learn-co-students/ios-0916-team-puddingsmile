@@ -14,9 +14,18 @@ class CommentCellView: UIView {
     //MARK: - Properties
     @IBOutlet var contentView: UIView!
     var containerView: UIView!
-    var nameLabel: UILabel!
     var commentLabel: UILabel!
+    var nameLabel: UILabel!
+    var likesLabel: UILabel!
     
+    var comment: MarketComment!{
+        didSet {
+          commentLabel.text = comment.comment
+          nameLabel.text = comment.name
+          likesLabel.text = String(comment.likes)
+        }
+    }
+
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -39,12 +48,14 @@ class CommentCellView: UIView {
         containerView = UIView()
         contentView.addSubview(containerView)
         
-        nameLabel = UILabel()
-        containerView.addSubview(nameLabel)
-        
         commentLabel = UILabel()
         containerView.addSubview(commentLabel)
+        
+        nameLabel = UILabel()
+        containerView.addSubview(nameLabel)
 
+        likesLabel = UILabel()
+        containerView.addSubview(likesLabel)
     }
     
     func addConstraints() {
