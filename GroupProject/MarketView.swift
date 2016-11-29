@@ -78,7 +78,7 @@ class MarketView: UIView {
         contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        contentView.backgroundColor = UIColor.themeTertiary
+        contentView.backgroundColor = UIColor.themeSecondary
         
         //Container View
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,17 @@ class MarketView: UIView {
         containerView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.9).isActive = true
         containerView.layer.cornerRadius = 10
-        containerView.backgroundColor = UIColor.themePrimary
+        
+        //set backgroundView to custom design pattern
+        //UIGraphicsBeginImageContext(containerView.frame.size)
+        //UIImage(named: "xibBackground")?.draw(in: containerView.bounds)
+        //if let image: UIImage = UIGraphicsGetImageFromCurrentImageContext() {
+        //    UIGraphicsEndImageContext()
+        //    containerView.backgroundColor = UIColor(patternImage: image)
+        //}
+        
+        var background: UIImage! = UIImage(named: "xibBackground.png")
+        containerView.backgroundColor = UIColor(patternImage: background)
         
         //Name Label
         nameLabel.font = UIFont.systemFont(ofSize: 24, weight: 8)
