@@ -206,24 +206,31 @@ extension FirebaseAPI {
 
 extension FirebaseAPI {
     static func addMarketToFirebase(name: String, address: String, openDate: String, closeDate: String, openTime: String, closeTime: String) {
+        var latitude: Double?
+        var longitude: Double?
         
         let locationFinder = LocationFinder()
-        let latLong = locationFinder.getLatLong(with: address)
-        print (latLong)
-        print("Firebase API Called")
-        let ref = FIRDatabase.database().reference().child("addMarket")
-        
-        let nameChild = ref.child(name)
-        
-        nameChild.child("address").setValue(address)
-        
-        nameChild.child("openDate").setValue(openDate)
-        
-        nameChild.child("closeDate").setValue(closeDate)
-        
-        nameChild.child("openTime").setValue(openTime)
-        
-        nameChild.child("closeTime").setValue(closeTime)
+        locationFinder.getLatLong(with: address) { (lat, long) in
+            print("lat is \(lat)")
+            print("long is \(long)")
+            latitude = lat
+            longitude = long
+            
+            print("Firebase API Called")
+            let ref = FIRDatabase.database().reference().child("addMarket")
+            
+            let nameChild = ref.child(name)
+            
+            print("before")
+            guard let unwrappedLatitude = latitude else { return }
+            print("middle")
+            guard let unwrappedLongitude = longitude else { return }
+            print("end")
+            
+            let returnDict = ["address": address, "openDate": openDate, "closeDate": closeDate, "openTime": openTime, "closeTime": closeTime, "latitude": String(describing: unwrappedLatitude), "longitude": String(describing: unwrappedLongitude)]
+            
+            nameChild.setValue(returnDict)
+        }
         
     }
     

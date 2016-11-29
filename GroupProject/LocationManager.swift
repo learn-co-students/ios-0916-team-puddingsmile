@@ -40,18 +40,21 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
     var geocoder = CLGeocoder()
     
-    func getLatLong(with address: String) -> (Double, Double) {
+    func getLatLong(with address: String, completion: @escaping (Double, Double) -> Void) {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        var returnTuple: (Double, Double) = (1,1)
+        print("before geocoder")
         geocoder.geocodeAddressString(address, completionHandler: { (response, error) in
+            print("in geocoder")
             if error != nil {
                 print(error)
                 return
             }
+            
             guard let placemark = response else { return }
             for place in placemark {
                 
+                print("determine placemark")
                 let latitude = place.location?.coordinate.latitude
                 let longitude = place.location?.coordinate.longitude
                 
@@ -59,10 +62,10 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
                 guard let unwrappedLongitude = longitude else { return }
                 
                 let returnTuple = (Double(unwrappedLatitude), Double(unwrappedLongitude))
+                completion(returnTuple.0, returnTuple.1)
             }
-            
         })
-        return returnTuple
+        print("after completion")
     }
     
 }
