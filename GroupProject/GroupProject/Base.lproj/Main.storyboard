@@ -67,7 +67,7 @@
                     <navigationItem key="navigationItem" id="MIu-Iu-CCF">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="7tw-yS-Cvw">
                             <connections>
-                                <segue destination="JRR-XM-pzf" kind="show" id="fDA-Op-u4N"/>
+                                <segue destination="JRR-XM-pzf" kind="presentation" id="fDA-Op-u4N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -92,7 +92,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBK-CG-Sse" id="Kj7-TU-xYl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVK-b0-XpR" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
@@ -182,6 +182,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FhT-4D-4kL"/>
+        <segue reference="KjW-6N-AGa"/>
     </inferredMetricsTieBreakers>
 </document>
