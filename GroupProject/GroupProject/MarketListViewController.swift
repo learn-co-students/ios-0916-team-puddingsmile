@@ -61,7 +61,7 @@ class MarketListViewController: UITableViewController {
     }
     
     overide func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        self.performSegue(withIdentifier: "listToViewSegue", sender: tableView)
     }
     
     
