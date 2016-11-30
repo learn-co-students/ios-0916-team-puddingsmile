@@ -60,6 +60,10 @@ class MarketListViewController: UITableViewController {
         return store.markets.count
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "listToViewSegue", sender: tableView)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath) as! MarketTableCell
         let market: Market
@@ -74,17 +78,21 @@ class MarketListViewController: UITableViewController {
 
     //MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let market: Market
         if segue.identifier != "listToViewSegue" { return }
-        if let indexPath = tableView.indexPathForSelectedRow {
+        
+        let sender = sender as! UITableView
+        let destController = segue.destination as! MarketInfoViewController
+        
+        if let indexPath = sender.indexPathForSelectedRow {
             if searchController.isActive && searchController.searchBar.text != "" {
-                market = filteredMarkets[indexPath.row]
+                destController.market = filteredMarkets[indexPath.row]
+                searchController.isActive = false
             } else {
-                market = store.markets[indexPath.row]
+                destController.market = store.markets[indexPath.row]
             }
         
-            let dest = segue.destination as! MarketInfoViewController
-            dest.market = market
+            //let dest = segue.destination as! MarketInfoViewController
+            //dest.market = market
         }
     }
     
