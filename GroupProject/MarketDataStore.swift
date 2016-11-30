@@ -90,28 +90,6 @@ class DataStore {
         }
     }
     
-<<<<<<< HEAD
-    /*
-    func loadCommentsFromFirebase() {
-        let context = persistentContainer.viewContext
-        FirebaseAPI.readCommentFor(market: <#T##String#>) { (comments) in
-            for (key, value) in comments {
-                var marketComment: MarketComment = NSEntityDescription.insertNewObject(forEntityName: "Comment", into: context) as! MarketComment
-                marketComment.comment = value["comment"]
-                marketComment.likes = value["likes"]
-                marketComment.commentID =
-                marketComment.name
-                marketComment.timeStamp
-                
-            }
-        }
-    }
-
-    */
-=======
-    
-    
->>>>>>> master
 }
 
 
