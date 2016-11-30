@@ -18,6 +18,7 @@ class CommentCellView: UIView {
     var nameLabel: UILabel!
     var likesLabel: UILabel!
     var likesButton: UIButton!
+    var deleteCommentButton: UIButton!
     
     var comment: MarketComment!{
         didSet {
@@ -27,18 +28,14 @@ class CommentCellView: UIView {
         }
     }
 
-    
     override init(frame: CGRect) {
         super.init(frame:frame)
         commonInit()
-       // addConstraints()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        //addConstraints()
     }
     
     func commonInit() {
@@ -60,6 +57,21 @@ class CommentCellView: UIView {
         
         likesButton = UIButton()
         containerView.addSubview(likesButton)
+        
+        deleteCommentButton = UIButton()
+        containerView.addSubview(deleteCommentButton)
+    }
+    
+    func likesButtonAction() {
+        //add the likes function here *******
+    }
+    
+    func unlikesButtonAction() {
+        //add the unlikes function here ********
+    }
+    
+    func deleteCommentButtonAction() {
+        //add the deletes comment function here ********
     }
     
     func addConstraints() {
@@ -89,25 +101,32 @@ class CommentCellView: UIView {
         
         //Name Label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.5).isActive = true
-        nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0.2)
         nameLabel.textAlignment = NSTextAlignment.center
         
         //Likes Label
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
-        likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
-        likesLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        likesLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
-        likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.25).isActive = true
+        likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
+        likesLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
+        likesLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
+        likesLabel.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: contentView.bounds.width * 0.2).isActive = true
+        likesLabel.text = "\(comment.likes) Likes"
         
         //Likes Button
         likesButton.translatesAutoresizingMaskIntoConstraints = false
-        likesButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
-        likesButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        likesButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
+        likesButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
+        likesButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
+        likesButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
         likesButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.25).isActive = true
+        likesButton.setTitle("👍🏽", for: .normal)
+        likesButton.setTitle("Unlike", for: .selected)
+        likesButton.addTarget(self, action: #selector(likesButtonAction), for: .touchUpInside)
+        likesButton.addTarget(self, action: #selector(unlikesButtonAction), for: .touchUpOutside)
+
+        
     }
     
     

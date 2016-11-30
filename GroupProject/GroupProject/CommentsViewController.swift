@@ -18,7 +18,7 @@ class CommentsViewController: UIViewController, CommentsViewDelegate {
         commentsView.market = self.market
         commentsView.delegate = self
         self.view = commentsView
-        commentsView.setupRequestChangeView(market: market)
+        //commentsView.setupRequestChangeView(market: market)
     }
     
     func triggerBackSegue() {

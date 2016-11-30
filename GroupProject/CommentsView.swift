@@ -25,21 +25,20 @@ class CommentsView: UIView {
     var backButton: UIButton!
     var comments = [MarketComment]()
     
-    override init(frame: CGRect) {
+    override init(frame: CGRect){
         super.init(frame: frame)
-        self.backgroundColor = UIColor.themePrimary
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        commonInit()
     }
     
-    func setupRequestChangeView(market: Market) {
-        self.market = market
+    
+    func commonInit() {
         createLayout()
         loadConstraints()
-        loadLabels()
-        print("\(market.closeDate)")
     }
     
     func backButtonAction() {
@@ -48,7 +47,7 @@ class CommentsView: UIView {
     
     //MARK: - Segues
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath) as! CommentTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentTableViewCell
         let comment: MarketComment!
         
         comment = comments[indexPath.row]
@@ -64,17 +63,18 @@ extension CommentsView {
     func createLayout() {
         createFakeData()
         
+        //Add TableView
         tableView = UITableView()
         self.addSubview(tableView)
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
+        let commentsCount = comments.count
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "commentCell")
+        tableView.numberOfRows(inSection: commentsCount)
         
-        
+        //Add Back Button
         backButton = UIButton()
         self.addSubview(backButton)
-    }
-    
-    func loadLabels() {
         backButton.backgroundColor = UIColor.themeSecondary
         backButton.layer.borderWidth = 2
         backButton.layer.cornerRadius = 10
@@ -83,14 +83,6 @@ extension CommentsView {
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
     }
     
-    func loadTableView() {
-        
-        let commentsCount = comments.count
-        
-        tableView.dequeueReusableCell(withIdentifier: "commentCell")
-        tableView.numberOfRows(inSection: commentsCount)
- 
-    }
 }
 
 
