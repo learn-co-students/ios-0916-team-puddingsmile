@@ -142,6 +142,24 @@ class AddMarketView: UIView, TimePickerDelegate {
         return button
     }()
     
+    let openTimeButtonLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Open"
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let closeTimeButtonLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Close"
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
 //    func addMarketToFirebase() {
 //        print("Add market pressed")
 //        let nameText = nameTextField.text
@@ -173,6 +191,8 @@ class AddMarketView: UIView, TimePickerDelegate {
         self.setupHoursOfOperationButton()
         self.setupBeginningOfSeasonLabel()
         self.setupBeginningOfSeasonButton()
+        self.setupOpenButtonLabel()
+        self.setupCloseButtonLabel()
         //self.setupOpenTimeLabel()
         //self.setupOpenTimeTextField()
         //self.setupCloseTimeLabel()
@@ -193,13 +213,22 @@ class AddMarketView: UIView, TimePickerDelegate {
     var viewHeightAnchor: NSLayoutConstraint!
     var viewCenterXAnchor: NSLayoutConstraint!
     
-    func stringInfoDelegate(time: String) {
+    func stringInfoDelegateOpen(time: String) {
         print("delegate is working, you rock")
+        print("Open time is \(time)")
+        openTimeButtonLabel.text = "Open Time: \(time)"
     }
     
+    func stringInfoDelegateClose(time: String) {
+        print("delegate is working, you rock")
+        print("Close time is \(time)")
+        closeTimeButtonLabel.text = "Close Time: \(time)"
+    }
     
     func bringUpNewButton(_ sender: UITextField) {
         print("pressed")
+        hoursOfOperationButton.setTitle("", for: .disabled)
+        hoursOfOperationButton.isEnabled = false
         let addView = AddMarketPicker()
         
         self.addSubview(addView)
@@ -303,6 +332,24 @@ extension AddMarketView {
         closeTimeLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
+    func setupOpenButtonLabel() {
+        self.addSubview(openTimeButtonLabel)
+        
+        openTimeButtonLabel.topAnchor.constraint(equalTo: self.hoursOfOperationLabel.bottomAnchor, constant: 15).isActive = true
+        openTimeButtonLabel.leadingAnchor.constraint(equalTo: hoursOfOperationButton.leadingAnchor).isActive = true
+        openTimeButtonLabel.heightAnchor.constraint(equalToConstant: 20).isActive = false
+    }
+    
+    func setupCloseButtonLabel() {
+        self.addSubview(closeTimeButtonLabel)
+        
+        closeTimeButtonLabel.topAnchor.constraint(equalTo: self.hoursOfOperationLabel.bottomAnchor, constant: 15).isActive = true
+        closeTimeButtonLabel.trailingAnchor.constraint(equalTo: hoursOfOperationButton.trailingAnchor).isActive = true
+        closeTimeButtonLabel.heightAnchor.constraint(equalToConstant: 20).isActive = false
+    }
+    
+    
+    
     func setupSubmitMarketButton() {
         self.addSubview(submitMarketButton)
         
@@ -329,7 +376,6 @@ extension AddMarketView {
         nameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         //nameTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         nameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-
     }
     
     func setupAddressTextField() {

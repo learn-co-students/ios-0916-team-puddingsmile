@@ -11,7 +11,10 @@ import UIKit
 
 protocol TimePickerDelegate: class {
     
-    func stringInfoDelegate(time: String)
+    func stringInfoDelegateOpen(time: String)
+    
+    func stringInfoDelegateClose(time: String)
+
     
 }
 
@@ -66,6 +69,7 @@ class AddMarketPicker: UIView {
         picker.datePickerMode = UIDatePickerMode.time
         picker.minuteInterval = 15
         picker.locale = Locale.current
+        picker.calendar = Calendar.current
         picker.backgroundColor = UIColor.blue
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
@@ -73,14 +77,15 @@ class AddMarketPicker: UIView {
     
     func leftDateDidChange(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        delegate?.stringInfoDelegate(time: dateFormatter.string(from: sender.date))
-        print("changing")
+        dateFormatter.dateFormat = "h:mmaa"
+        delegate?.stringInfoDelegateOpen(time: dateFormatter.string(from: sender.date))
+        
     }
     
     func rightDateDidChange(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        delegate?.stringInfoDelegate(time: dateFormatter.string(from: sender.date))
-        print("changing")
+        dateFormatter.dateFormat = "h:mmaa"
+        delegate?.stringInfoDelegateClose(time: dateFormatter.string(from: sender.date))
     }
     
 }
