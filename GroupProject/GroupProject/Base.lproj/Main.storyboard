@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="669-UR-iPs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -114,7 +114,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVK-b0-XpR" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
@@ -127,7 +127,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="marketView" destination="LVK-b0-XpR" id="qyf-pV-iVw"/>
-                                    <segue destination="TwL-4O-INN" kind="presentation" identifier="listToViewSegue" id="FhT-4D-4kL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -136,6 +135,9 @@
                             <outlet property="delegate" destination="JRR-XM-pzf" id="Yoo-Xw-MuA"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="TwL-4O-INN" kind="presentation" identifier="listToViewSegue" id="bz1-sE-CdD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yft-4p-xpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,10 +164,10 @@
             </objects>
             <point key="canvasLocation" x="2321" y="943"/>
         </scene>
-        <!--Request Change View Controller-->
+        <!--Comments View Controller-->
         <scene sceneID="RFT-SQ-srK">
             <objects>
-                <viewController id="K8F-EE-dkL" customClass="RequestChangeViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="K8F-EE-dkL" customClass="CommentsViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jlU-hg-9DK"/>
                         <viewControllerLayoutGuide type="bottom" id="pZQ-Bx-96K"/>
@@ -200,6 +202,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FhT-4D-4kL"/>
+        <segue reference="bz1-sE-CdD"/>
     </inferredMetricsTieBreakers>
 </document>

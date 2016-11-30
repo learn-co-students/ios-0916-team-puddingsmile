@@ -16,7 +16,6 @@ class LandingViewController: UIViewController, LandingViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         DataStore.sharedInstance.fetchData()
-        FirebaseAPI.getCount()
         let landingView = LandingView(frame: self.view.frame)
         self.view = landingView
         landingView.delegate = self

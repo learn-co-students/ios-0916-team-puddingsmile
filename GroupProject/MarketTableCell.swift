@@ -14,6 +14,7 @@ class MarketTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+       
         // Initialization code
     }
 
@@ -22,8 +23,5 @@ class MarketTableCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
-    
 
 }

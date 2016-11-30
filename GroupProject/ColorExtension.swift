@@ -35,6 +35,19 @@ extension UILabel {
     
 }
 
+extension UIView {
+    func createBottomBorder(forView: UIView) {
+        let bottomBorder = UIView()
+        forView.addSubview(bottomBorder)
+        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
+        bottomBorder.leadingAnchor.constraint(equalTo: forView.leadingAnchor).isActive = true
+        bottomBorder.trailingAnchor.constraint(equalTo: forView.trailingAnchor).isActive = true
+        bottomBorder.bottomAnchor.constraint(equalTo: forView.bottomAnchor).isActive = true
+        bottomBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        bottomBorder.backgroundColor = UIColor.themeAccent1
+    }
+}
+
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
@@ -47,3 +60,16 @@ extension UITextField {
         self.rightViewMode = .always
     }
 }
+
+//extension UILabel {
+//    func setLeftPaddingPoints(_ amount:CGFloat){
+//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+//        self.leftView = paddingView
+//        self.leftViewMode = .always
+//    }
+//    func setRightPaddingPoints(_ amount:CGFloat) {
+//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+//        self.rightView = paddingView
+//        self.rightViewMode = .always
+//    }
+//}
