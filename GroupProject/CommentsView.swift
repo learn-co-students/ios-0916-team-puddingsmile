@@ -19,6 +19,7 @@ class CommentsView: UIView {
     weak var delegate: CommentsViewDelegate?
     weak var tableViewDelegate: UITableViewDelegate?
     weak var tableViewDataSource: UITableViewDataSource?
+    
     var market: Market!
     var tableView: UITableView!
     var backButton: UIButton!
