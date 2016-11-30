@@ -24,7 +24,7 @@ class AddMarketPicker: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = UIColor.gray
         setupOpenTimeLabel()
         setupCloseTimeLabel()
         setupLeftPicker()
@@ -70,7 +70,7 @@ class AddMarketPicker: UIView {
         picker.minuteInterval = 15
         picker.locale = Locale.current
         picker.calendar = Calendar.current
-        picker.backgroundColor = UIColor.blue
+        picker.backgroundColor = UIColor.gray
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()

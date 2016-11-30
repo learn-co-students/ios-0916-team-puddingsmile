@@ -32,6 +32,7 @@
 		C35ADA231DECC522000442BB /* AddMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA221DECC522000442BB /* AddMarketView.swift */; };
 		C35ADA251DECC760000442BB /* AddMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA241DECC760000442BB /* AddMarketViewController.swift */; };
 		C35ADA291DEE3330000442BB /* AddMarketPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */; };
+		C37BA5CF1DEF60FA00AB1DD2 /* AddMarketDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA5CE1DEF60FA00AB1DD2 /* AddMarketDateView.swift */; };
 		C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */; };
 		C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C658ED1DDBCC1A00C7B533 /* AppDelegate.swift */; };
 		C3C658F31DDBCC1A00C7B533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C658F11DDBCC1A00C7B533 /* Main.storyboard */; };
@@ -100,6 +101,7 @@
 		C35ADA221DECC522000442BB /* AddMarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketView.swift; sourceTree = "<group>"; };
 		C35ADA241DECC760000442BB /* AddMarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketViewController.swift; sourceTree = "<group>"; };
 		C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketPickerView.swift; sourceTree = "<group>"; };
+		C37BA5CE1DEF60FA00AB1DD2 /* AddMarketDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketDateView.swift; sourceTree = "<group>"; };
 		C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketDataStore.swift; sourceTree = "<group>"; };
 		C3C658EA1DDBCC1A00C7B533 /* GroupProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C658ED1DDBCC1A00C7B533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				C3C659421DDBCE8300C7B533 /* SearchView.swift */,
 				C35ADA221DECC522000442BB /* AddMarketView.swift */,
 				C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */,
+				C37BA5CE1DEF60FA00AB1DD2 /* AddMarketDateView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				569CBD751DE5F41E00BE502B /* MarketTableCell.swift in Sources */,
 				C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */,
 				569CBD7B1DE5FAE100BE502B /* SearchBarXibView.swift in Sources */,
+				C37BA5CF1DEF60FA00AB1DD2 /* AddMarketDateView.swift in Sources */,
 				B5D2DDC41DE35639001F2CCE /* MarketListViewController.swift in Sources */,
 				C35ADA251DECC760000442BB /* AddMarketViewController.swift in Sources */,
 				C33604431DE357FF0062453A /* MapView.swift in Sources */,
