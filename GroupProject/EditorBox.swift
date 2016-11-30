@@ -40,15 +40,15 @@ class EditorBox: UIView {
     }
     
     func cancelButtonAction() {
-        
+        print(1)
     }
     
     func nextButtonAction() {
-        
+        print(1)
     }
     
     func doneButtonAction() {
-        
+        print(1)
     }
 }
 
@@ -65,11 +65,13 @@ extension EditorBox {
     func createCancelButton() {
         cancelButton = UIButton()
         self.addSubview(cancelButton)
+        cancelButton.backgroundColor = UIColor.themeAccent1
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
+        
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: self.frame.width * 0.2).isActive = true
-        cancelButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * 0.05).isActive = true
+        cancelButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * -0.05).isActive = true
         cancelButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         cancelButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
     }
@@ -77,11 +79,13 @@ extension EditorBox {
     func createNextButton() {
         nextButton = UIButton()
         self.addSubview(nextButton)
+        nextButton.backgroundColor = UIColor.themeAccent1
         nextButton.setTitle("Next", for: .normal)
         nextButton.addTarget(self, action: #selector(nextButtonAction), for: .touchUpInside)
+        
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: self.frame.width * -0.2).isActive = true
-        nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * 0.05).isActive = true
+        nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * -0.05).isActive = true
         nextButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         nextButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
     }
@@ -89,6 +93,7 @@ extension EditorBox {
     func createDoneButton() {
         doneButton = UIButton()
         self.addSubview(doneButton)
+        doneButton.backgroundColor = UIColor.themeAccent1
         doneButton.setTitle("Done", for: .normal)
         doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
         doneButton.isHidden = true

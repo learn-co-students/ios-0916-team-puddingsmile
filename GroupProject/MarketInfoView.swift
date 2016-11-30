@@ -98,17 +98,19 @@ extension MarketInfo {
     }
     
     func editButtonAction() {
-        editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * 0.07, width: self.bounds.width, height: self.bounds.height * 0.36))
-        editorBox?.createObjects()
-        self.addSubview(editorBox!)
-        if isEditing {
-            isEditing = false
-            toggleButtons(state: false)
-        } else {
-            isEditing = true
-            toggleButtons(state: true)
-        }
-        
+//        editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * 0.07, width: self.bounds.width, height: self.bounds.height * 0.36))
+//        editorBox?.createObjects()
+//        self.addSubview(editorBox!)
+//        if isEditing {
+//            isEditing = false
+//            toggleButtons(state: false)
+//        } else {
+//            isEditing = true
+//            toggleButtons(state: true)
+//        }
+        let infoTableView = InfoTableView(frame: CGRect(x: 0, y: self.bounds.height * 0.07, width: self.bounds.width, height: self.bounds.height * 0.36))
+        infoTableView.setupInfoTableView(market: self.market)
+        self.addSubview(infoTableView)
     }
     
     func favoriteButtonAction() {
