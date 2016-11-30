@@ -9,6 +9,8 @@
 import UIKit
 
 class AddMarketView: UIView, TimePickerDelegate {
+    
+    let addView = AddMarketPicker()
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -193,6 +195,7 @@ class AddMarketView: UIView, TimePickerDelegate {
         self.setupBeginningOfSeasonButton()
         self.setupOpenButtonLabel()
         self.setupCloseButtonLabel()
+        self.setupGestureRecognizer()
         //self.setupOpenTimeLabel()
         //self.setupOpenTimeTextField()
         //self.setupCloseTimeLabel()
@@ -205,23 +208,52 @@ class AddMarketView: UIView, TimePickerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    
     var viewTopAnchor: NSLayoutConstraint!
     var viewWidthAnchor: NSLayoutConstraint!
     var viewHeightAnchor: NSLayoutConstraint!
     var viewCenterXAnchor: NSLayoutConstraint!
     
+    func setupGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPickerView))
+        self.addGestureRecognizer(tapGesture)
+    }
+    
+    func dismissPickerView() {
+        
+
+//        self.viewTopAnchor = self.addView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
+//        
+//        viewWidthAnchor = addView.widthAnchor.constraint(equalTo: self.widthAnchor)
+//        
+//        viewCenterXAnchor = addView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+//        
+//        viewHeightAnchor = addView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
+//        
+        self.layoutIfNeeded()
+
+        UIView.animate(withDuration: 1, animations: {
+            print("in animate")
+            self.viewTopAnchor.isActive = false
+            
+            self.viewTopAnchor = self.addView.topAnchor.constraint(equalTo: self.bottomAnchor)
+            
+            self.viewTopAnchor.isActive = true
+            
+            self.layoutIfNeeded()
+            
+        }) { (complete) in
+            self.hoursOfOperationButton.isEnabled = true
+        }
+        
+        
+        
+    }
+    
     func stringInfoDelegateOpen(time: String) {
-        print("delegate is working, you rock")
-        print("Open time is \(time)")
         openTimeButtonLabel.text = "Open Time: \(time)"
     }
     
     func stringInfoDelegateClose(time: String) {
-        print("delegate is working, you rock")
-        print("Close time is \(time)")
         closeTimeButtonLabel.text = "Close Time: \(time)"
     }
     
@@ -229,7 +261,6 @@ class AddMarketView: UIView, TimePickerDelegate {
         print("pressed")
         hoursOfOperationButton.setTitle("", for: .disabled)
         hoursOfOperationButton.isEnabled = false
-        let addView = AddMarketPicker()
         
         self.addSubview(addView)
         addView.delegate = self
@@ -256,7 +287,7 @@ class AddMarketView: UIView, TimePickerDelegate {
             
             self.viewTopAnchor.isActive = false
             
-            self.viewTopAnchor = addView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
+            self.viewTopAnchor = self.addView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
             
             self.viewTopAnchor.isActive = true
             
