@@ -9,14 +9,24 @@
 import Foundation
 import UIKit
 
+protocol MarketDateDelegate: class {
+    
+    func openDateDelegate(date: String)
+    func closeDateDelegate(date: String)
+    
+}
+
 class AddMarketDatePicker: UIView {
     
+    weak var delegate: MarketDateDelegate?
+    var closeDate = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
         setupOpenTimeLabel()
         setupPicker()
+        setupNextDateButon()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,7 +35,6 @@ class AddMarketDatePicker: UIView {
     
     let enterLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter First Day of Season"
         label.textColor = UIColor.black
         label.backgroundColor = UIColor.gray
         label.textAlignment = .center
@@ -44,34 +53,49 @@ class AddMarketDatePicker: UIView {
     
     let nextDateButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Done", for: .normal)
+        button.setTitle("Next", for: .normal)
         button.titleLabel?.textColor = UIColor.blue
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
     
-    func leftDateDidChange(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/d"
-
-//        delegate?.stringInfoDelegateOpen(time: dateFormatter.string(from: sender.date))
-        
-    }
-    
-    func openDateDidChange(sender: UIDatePicker) {
+    func dateDidChange(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/d"
         print("date changing")
-//        delegate?.stringInfoDelegateClose(time: dateFormatter.string(from: sender.date))
+        if closeDate == false {
+            delegate?.openDateDelegate(date: dateFormatter.string(from: sender.date))
+        } else {
+            delegate?.closeDateDelegate(date: dateFormatter.string(from: sender.date))
+        }
+    }
+    
+    func enterCloseDate() {
+        enterLabel.text = "Enter Last Day of Season"
+        closeDate = true
+        
+        nextDateButton.isEnabled = false
+        nextDateButton.setTitle("", for: .disabled)
+        nextDateButton.isHidden = true
+    }
+    
+    func resetView() {
+        nextDateButton.isEnabled = true
+        nextDateButton.isHidden = false
+        enterLabel.text = "Enter First Day of Season"
     }
     
 }
+
 
 extension AddMarketDatePicker {
     
     func setupOpenTimeLabel() {
         self.addSubview(enterLabel)
+        
+        enterLabel.text = "Enter First Day of Season"
         enterLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         enterLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
         enterLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -80,15 +104,22 @@ extension AddMarketDatePicker {
     
     func setupPicker() {
         self.addSubview(dayPicker)
-//        
-//        dayPicker.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-//        dayPicker.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8).isActive = true
+
         dayPicker.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         dayPicker.topAnchor.constraint(equalTo: self.enterLabel.bottomAnchor).isActive = true
         dayPicker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        dayPicker.addTarget(self, action: #selector(openDateDidChange), for: .valueChanged)
+        dayPicker.addTarget(self, action: #selector(dateDidChange), for: .valueChanged)
     }
     
+    func setupNextDateButon() {
+        self.addSubview(nextDateButton)
+        
+        nextDateButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        nextDateButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        nextDateButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        nextDateButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        nextDateButton.addTarget(self, action: #selector(enterCloseDate), for: .touchUpInside)
+    }
     
     
     
