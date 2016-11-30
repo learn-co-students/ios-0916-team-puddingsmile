@@ -25,7 +25,6 @@ class CommentsView: UIView {
     var backButton: UIButton!
     var comments = [MarketComment]()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.themePrimary
@@ -64,10 +63,12 @@ class CommentsView: UIView {
 extension CommentsView {
     func createLayout() {
         createFakeData()
+        
         tableView = UITableView()
         self.addSubview(tableView)
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
+        
         
         backButton = UIButton()
         self.addSubview(backButton)
@@ -96,15 +97,18 @@ extension CommentsView {
 //MARK: - create contraints
 extension CommentsView {
     func loadConstraints() {
-        setBackConstraints()
-    }
-    
-    func setBackConstraints() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
         backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.02).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.3).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        tableView.widthAnchor.constraint(equalToConstant: self.bounds.width).isActive = true
+        tableView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.7).isActive = true
+        tableView.separatorStyle = .none
     }
     
     func createFakeData() {

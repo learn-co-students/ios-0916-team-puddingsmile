@@ -88,14 +88,6 @@ class MarketView: UIView {
         containerView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.9).isActive = true
         containerView.layer.cornerRadius = 10
         
-        //set backgroundView to custom design pattern
-        //UIGraphicsBeginImageContext(containerView.frame.size)
-        //UIImage(named: "xibBackground")?.draw(in: containerView.bounds)
-        //if let image: UIImage = UIGraphicsGetImageFromCurrentImageContext() {
-        //    UIGraphicsEndImageContext()
-        //    containerView.backgroundColor = UIColor(patternImage: image)
-        //}
-        
         let background: UIImage! = UIImage(named: "xibBackground.png")
         containerView.backgroundColor = UIColor(patternImage: background)
         
