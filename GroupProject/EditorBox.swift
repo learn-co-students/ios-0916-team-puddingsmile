@@ -31,12 +31,25 @@ class EditorBox: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = UIColor.themeTertiary
+        alpha = 0.6
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func cancelButtonAction() {
+        
+    }
+    
+    func nextButtonAction() {
+        
+    }
+    
+    func doneButtonAction() {
+        
+    }
 }
 
 //MARK: - Create subview objects
@@ -44,9 +57,48 @@ extension EditorBox {
     func createObjects() {
         setupTextFieldview()
         setupDatePickerView()
-        
+        createCancelButton()
+        createNextButton()
+        createDoneButton()
+    }
+    
+    func createCancelButton() {
+        cancelButton = UIButton()
+        self.addSubview(cancelButton)
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: self.frame.width * 0.2).isActive = true
+        cancelButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * 0.05).isActive = true
+        cancelButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
+        cancelButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+    }
+    
+    func createNextButton() {
+        nextButton = UIButton()
+        self.addSubview(nextButton)
+        nextButton.setTitle("Next", for: .normal)
+        nextButton.addTarget(self, action: #selector(nextButtonAction), for: .touchUpInside)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: self.frame.width * -0.2).isActive = true
+        nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * 0.05).isActive = true
+        nextButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
+        nextButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
     }
 
+    func createDoneButton() {
+        doneButton = UIButton()
+        self.addSubview(doneButton)
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
+        doneButton.isHidden = true
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: self.frame.width * -0.2).isActive = true
+        doneButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * 0.05).isActive = true
+        doneButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
+        doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+    }
+    
 }
 
 
@@ -73,7 +125,7 @@ extension EditorBox {
         textFieldView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         textFieldView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         textFieldView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        textFieldView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        textFieldView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
     }
     
     func constrainTextView() {
@@ -98,8 +150,6 @@ extension EditorBox {
     func createDatePickerView() {
         datePickerView = UIView()
         self.addSubview(datePickerView)
-        datePickerView.backgroundColor = UIColor.cyan
-        datePickerView.alpha = 0.6
     }
     
     func createDatePicker() {
@@ -115,7 +165,7 @@ extension EditorBox {
         datePickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         datePickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         datePickerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        datePickerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        datePickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
     }
     
     func constrainDatePicker() {
