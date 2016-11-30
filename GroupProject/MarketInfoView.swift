@@ -55,14 +55,16 @@ class MarketInfo: UIView {
     var websiteButton:  UIButton!
     var websiteLabel:   UILabel!
     
-    //MARK: - Logic States
-    var editorBox: EditorBox?
+    //MARK: - Editor Objects
+    var editorBox: EditorBox!
+    var infoTableView: InfoTableView!
     var isEditing: Bool = false
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.themePrimary
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,6 +83,15 @@ class MarketInfo: UIView {
         centerMapOnCurrentLocation()
         convertToMapItem()
         addAnnotationToMap()
+        
+        editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
+        editorBox.createObjects()
+        self.addSubview(editorBox!)
+        
+        infoTableView = InfoTableView(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
+        infoTableView.setupInfoTableView(market: self.market)
+        infoTableView.delegate = self
+        self.addSubview(infoTableView!)
     }
     
     func toggleButtons(state: Bool) {
@@ -96,25 +107,90 @@ class MarketInfo: UIView {
 }
 
 //MARK: - ButtonActions
-extension MarketInfo {
+extension MarketInfo: InfoTableDelegate {
     func backButtonAction() {
         delegate.triggerBackSegue()
     }
     
+    func addNewMarketChange() {
+        resetOriginalLabels()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.infoTableView.center.y = self.infoTableView.frame.height * -1
+        }, completion: { (success) in
+            UIView.animate(withDuration: 0.2, animations: {
+                self.editorBox.center.y = self.editorBox.frame.height * 0.7
+            })
+        })
+    }
+    
     func editButtonAction() {
-//        editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * 0.07, width: self.bounds.width, height: self.bounds.height * 0.36))
-//        editorBox?.createObjects()
-//        self.addSubview(editorBox!)
-//        if isEditing {
-//            isEditing = false
-//            toggleButtons(state: false)
-//        } else {
-//            isEditing = true
-//            toggleButtons(state: true)
-//        }
-        let infoTableView = InfoTableView(frame: CGRect(x: 0, y: self.bounds.height * 0.07, width: self.bounds.width, height: self.bounds.height * 0.36))
-        infoTableView.setupInfoTableView(market: self.market)
-        self.addSubview(infoTableView)
+        if isEditing {
+            isEditing = false
+            toggleButtons(state: false)
+            resetOriginalLabels()
+            UIView.animate(withDuration: 0.2, animations: {
+                self.editorBox.center.y = self.editorBox.frame.height * -1
+            })
+            UIView.animate(withDuration: 0.2, animations: {
+                self.infoTableView.center.y = self.infoTableView.frame.height * -1
+            })
+        } else {
+            isEditing = true
+            toggleButtons(state: true)
+            UIView.animate(withDuration: 0.2, animations: {
+                self.infoTableView.center.y = self.infoTableView.frame.height * 0.7
+            })
+        }
+        
+    }
+
+    func sendMarketChanges(marketChanges: MarketChanges) {
+        resetOriginalLabels()
+        if let name = marketChanges.name {
+            nameLabel.text = "Name: \(name)"
+            nameLabel.backgroundColor = UIColor.themePrimary
+        }
+        if let address = marketChanges.address {
+            addressLabel.text = "Address: \(address)"
+            addressLabel.backgroundColor = UIColor.themePrimary
+        }
+        if let borough = marketChanges.borough {
+            boroughLabel.text = "Borough: \(borough)"
+            boroughLabel.backgroundColor = UIColor.themePrimary
+        }
+        if let season = marketChanges.season {
+            seasonLabel.text = "Season: \(season)"
+            seasonLabel.backgroundColor = UIColor.themePrimary
+        }
+        if let days = marketChanges.days {
+            daysLabel.text = "Days Open: \(days)"
+            daysLabel.backgroundColor = UIColor.themePrimary
+        }
+        if let time = marketChanges.times {
+            timeLabel.text = "Times Open: \(time)"
+            timeLabel.backgroundColor = UIColor.themePrimary
+        }
+        if let ebt = marketChanges.ebt {
+            ebtLabel.text = "Accept EBT - \(ebt)"
+            ebtLabel.backgroundColor = UIColor.themePrimary
+        }
+    }
+    
+    func resetOriginalLabels() {
+        nameLabel.text = "Name: \(market.name!)"
+        nameLabel.backgroundColor = UIColor.themeSecondary
+        addressLabel.text = "Address: \(market.address!)"
+        addressLabel.backgroundColor = UIColor.themeSecondary
+        boroughLabel.text = "Borough: \(market.borough!)"
+        boroughLabel.backgroundColor = UIColor.themeSecondary
+        seasonLabel.text = "Season: \(market.openDate!) - \(market.closeDate!)"
+        seasonLabel.backgroundColor = UIColor.themeSecondary
+        daysLabel.text = "Days Open: \(market.weekDayOpen!)"
+        daysLabel.backgroundColor = UIColor.themeSecondary
+        timeLabel.text = "Times Open: \(market.startTime!) - \(market.endTime!)"
+        timeLabel.backgroundColor = UIColor.themeSecondary
+        ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
+        ebtLabel.backgroundColor = UIColor.themeSecondary
     }
     
     func favoriteButtonAction() {
@@ -134,6 +210,7 @@ extension MarketInfo {
     func editNameAction() {
         
     }
+    
     func editAddressAction(){print(1)}
     func editBoroughAction(){print(1)}
     func editSeasonAction(){print(1)}
@@ -254,6 +331,7 @@ extension MarketInfo {
         nameLabel.text = "Name: \(market.name!)"
         nameLabel.font = Constants.themeFont()
     }
+    
     func createAddressButtonView() {
         addressButton = UIButton()
         self.detailView.addSubview(addressButton)

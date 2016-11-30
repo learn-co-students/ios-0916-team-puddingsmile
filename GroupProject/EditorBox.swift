@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 enum EditorState {
-    case textField, datePicker, dayPicker
+    case neutral, textField, datePicker, dayPicker
 }
 
 
