@@ -90,6 +90,7 @@ class DataStore {
         }
     }
     
+<<<<<<< HEAD
     /*
     func loadCommentsFromFirebase() {
         let context = persistentContainer.viewContext
@@ -107,6 +108,10 @@ class DataStore {
     }
 
     */
+=======
+    
+    
+>>>>>>> master
 }
 
 

@@ -124,17 +124,59 @@ extension FirebaseAPI {
     
 }
 
-//MARK: - Suggestion structure functions
+//MARK: - UpdateMarkets structure functions
 extension FirebaseAPI {
     
-    static func getCount() -> String {
-        var childrenCount = 0
-        let testRef = FIRDatabase.database().reference()
-        testRef.observe(.value, with: { (snapshot) in
-            let test = snapshot.childrenCount
-               print("CHILDREN COUNT IS \(childrenCount)")
+    static func writeToUpdate(with marketName: String, changes: [String : String]) {
+        
+        if changes.isEmpty { return }
+        
+        let ref = FIRDatabase.database().reference().child("updateMarkets")
+        
+        ref.child("\(marketName)").childByAutoId().setValue(changes)
+        
+    }
+    
+    static func readFromUpdate(with marketName: String, completion: @escaping ((Bool, [String : Any])) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)")
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.exists() {
+                let results = snapshot.value as! [String : Any]
+                completion((true, results))
+            } else {
+                completion((false,[:]))
+            }
         })
-        return "CHILDREN COUNT IS \(childrenCount)"
+    }
+    
+    static func upvoteInMarket(for marketName: String, with marketID: String, upvoted: Bool) {
+        //make sure people cant upvote same thing over and over and over fuck my life
+        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)")
+        
+        ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
+            var post = currentData.value as! [String : String]
+            var votes = post["votes"]!
+            if upvoted {
+                votes = String(Int(votes)! + 1)
+            } else {
+                votes = String(Int(votes)! - 1)
+            }
+            
+            post["votes"] = votes
+            currentData.value = post
+            
+            return FIRTransactionResult.success(withValue: currentData)
+        }, andCompletionBlock: { (error, committed, snapshot) in
+            if let error = error {
+                print(error)
+            } else {
+                //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+            }
+        })
+        
     }
     
 }
