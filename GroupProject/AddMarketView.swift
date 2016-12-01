@@ -8,8 +8,8 @@
 
 import UIKit
 
-class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
-    
+class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDelegate {
+        
     let addView = AddMarketPicker()
     let addDateView = AddMarketDatePicker()
     var addMarketDayView: AddMarketDayOfWeek!
@@ -433,13 +433,14 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         addMarketDayView = AddMarketDayOfWeek(frame: CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height * 0.3))
         
         self.addSubview(addMarketDayView)
-        
+        addMarketDayView.delegate = self
         addMarketDayView.setupSundayLabel()
         addMarketDayView.setupMondayLabel()
         addMarketDayView.setupTuesdayLabel()
         addMarketDayView.setupWednesdayLabel()
         addMarketDayView.setupThursdayLabel()
         addMarketDayView.setupFridayLabel()
+        addMarketDayView.setupSaturdayLabel()
 
         
         UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
@@ -450,8 +451,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
             
             
         }, completion: nil)
-        
-        
+    }
+    
+    func passClickedDay(tag: Int) -> String {
+        print("DELEGATE clicked")
+        return "Hey"
     }
     
     
