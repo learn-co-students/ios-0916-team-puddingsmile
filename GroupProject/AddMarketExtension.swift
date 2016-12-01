@@ -52,7 +52,6 @@ extension AddMarketView {
     }
     
     
-    
     func setupOpenButtonLabel() {
         self.addSubview(openTimeButtonLabel)
         
@@ -85,6 +84,36 @@ extension AddMarketView {
         closeDateButtonLabel.heightAnchor.constraint(equalToConstant: 20).isActive = false
     }
     
+    func setupAcceptEBTLabel() {
+        self.addSubview(acceptsEBTLabel)
+        
+        acceptsEBTLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonButton.bottomAnchor, constant: 10).isActive = true
+        acceptsEBTLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        acceptsEBTLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
+    }
+    
+    func setupEBTCheckbox() {
+        self.addSubview(ebtCheckbox)
+        print("setupEBTCAlled")
+        ebtCheckbox.centerYAnchor.constraint(equalTo: self.acceptsEBTLabel.centerYAnchor).isActive = true
+        ebtCheckbox.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        ebtCheckbox.leadingAnchor.constraint(equalTo: self.acceptsEBTLabel.trailingAnchor, constant: 10).isActive = true
+        ebtCheckbox.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        ebtCheckbox.addTarget(self, action: #selector(ebtCheckboxClicked), for: .touchUpInside)
+    }
+    
+    func setupEBTCheckboxImage() {
+        self.addSubview(checkboxImage)
+        checkboxImage.centerYAnchor.constraint(equalTo: self.acceptsEBTLabel.centerYAnchor).isActive = true
+        checkboxImage.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        checkboxImage.leadingAnchor.constraint(equalTo: self.acceptsEBTLabel.trailingAnchor, constant: 10).isActive = true
+        checkboxImage.widthAnchor.constraint(equalToConstant: 30).isActive = true
+    }
+    
+    func setupDayOfWeekLabel() {
+        
+    }
+    
     
     
     func setupSubmitMarketButton() {
@@ -93,6 +122,8 @@ extension AddMarketView {
         submitMarketButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         submitMarketButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         submitMarketButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        submitMarketButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        
     }
     
 }
@@ -140,6 +171,8 @@ extension AddMarketView {
         beginningOfSeasonButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         beginningOfSeasonButton.addTarget(self, action: #selector(enterSeason), for: .touchUpInside)
     }
+    
+  
     
 }
 

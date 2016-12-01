@@ -14,6 +14,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
     let addDateView = AddMarketDatePicker()
     var addViewUp = false
     var addDateUp = false
+    var acceptsEBT = false
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -145,6 +146,40 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         return label
     }()
     
+    let acceptsEBTLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Accepts EBT:"
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let ebtCheckbox: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.backgroundColor = UIColor.clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let checkboxImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "uncheckedBox")
+        
+        return image
+    }()
+    
+    let dayOfWeekOpenLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Days of Week Open: "
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     
 //    func addMarketToFirebase() {
 //        print("Add market pressed")
@@ -182,6 +217,10 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         self.setupGestureRecognizer()
         self.setupOpenDateButtonLabel()
         self.setupCloseDateButtonLabel()
+        self.setupAcceptEBTLabel()
+        self.setupEBTCheckbox()
+        self.setupEBTCheckboxImage()
+        
         
         //self.setupOpenTimeLabel()
         //self.setupOpenTimeTextField()
@@ -354,6 +393,23 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         }, completion: nil)
         
     }
+    
+    func ebtCheckboxClicked() {
+        print("clicked")
+        
+        if !acceptsEBT {
+            checkboxImage.image = UIImage(named: "checkedBox")
+            acceptsEBT = true
+        } else {
+            checkboxImage.image = UIImage(named: "uncheckedBox")
+            acceptsEBT = false
+        }
+        
+        
+        
+    }
+    
+    
     
 }
 
