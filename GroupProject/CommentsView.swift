@@ -22,8 +22,13 @@ class CommentsView: UIView {
     
     var market: Market!
     var tableView: UITableView!
-    var backButton: UIButton!
     var comments = [MarketComment]()
+    
+    //MARK: - Navigation Objects
+    var navigationView : UIView!
+    var backButton:     UIButton!
+    var commentButton: UIButton!
+
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -43,6 +48,10 @@ class CommentsView: UIView {
     
     func backButtonAction() {
         delegate?.triggerBackSegue()
+    }
+    
+    func commentButtonAction() {
+        
     }
     
     //MARK: - Segues
@@ -68,39 +77,70 @@ extension CommentsView {
         self.addSubview(tableView)
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
-        let commentsCount = comments.count
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "commentCell")
-        tableView.numberOfRows(inSection: commentsCount)
+        tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
+        tableView.numberOfRows(inSection: comments.count)
+        
+        
+        //Add Navigation Bar
+        navigationView = UIView()
+        self.addSubview(navigationView)
+        navigationView.backgroundColor = UIColor.themeTertiary
         
         //Add Back Button
         backButton = UIButton()
-        self.addSubview(backButton)
-        backButton.backgroundColor = UIColor.themeSecondary
-        backButton.layer.borderWidth = 2
-        backButton.layer.cornerRadius = 10
-        backButton.layer.borderColor = UIColor.themeAccent2.cgColor
-        backButton.setTitle("<", for: .normal)
+        navigationView.addSubview(backButton)
+        backButton.setTitle("⬅️", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+        
+        //Add Comment Button
+        commentButton = UIButton()
+        navigationView.addSubview(commentButton)
+        commentButton.setTitle("Add a Comment", for: .normal)
+        commentButton.addTarget(self, action: #selector(commentButtonAction), for: .touchUpInside)
     }
     
 }
 
 
-//MARK: - create contraints
+//MARK: - Constraints
 extension CommentsView {
     func loadConstraints() {
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.04).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.02).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.06).isActive = true
         
+        //TableView Constraints
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.3).isActive = true
         tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         tableView.widthAnchor.constraint(equalToConstant: self.bounds.width).isActive = true
-        tableView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.7).isActive = true
+        tableView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.93).isActive = true
         tableView.separatorStyle = .none
+        
+        
+        //Navigation Bar Constraints
+        navigationView.translatesAutoresizingMaskIntoConstraints = false
+        navigationView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        navigationView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        navigationView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        navigationView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.07).isActive = true
+        
+        //Back Button Constraints
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        
+        //Comment Button Constraints
+        commentButton.translatesAutoresizingMaskIntoConstraints = false
+        commentButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
+        commentButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.7).isActive = true
+        commentButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.25).isActive = true
+        commentButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        commentButton.backgroundColor = UIColor.themePrimary
+        commentButton.titleLabel?.textColor = UIColor.black
+        commentButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: 10)
+        commentButton.layer.borderWidth = CGFloat(2)
+        commentButton.layer.cornerRadius = CGFloat(7)
+        commentButton.layer.borderColor = UIColor.themeAccent2.cgColor
     }
     
     func createFakeData() {

@@ -18,7 +18,7 @@ class CommentCellView: UIView {
     var nameLabel: UILabel!
     var likesLabel: UILabel!
     var likesButton: UIButton!
-    var deleteCommentButton: UIButton!
+    var reportButton: UIButton!
     
     var comment: MarketComment!{
         didSet {
@@ -58,8 +58,8 @@ class CommentCellView: UIView {
         likesButton = UIButton()
         containerView.addSubview(likesButton)
         
-        deleteCommentButton = UIButton()
-        containerView.addSubview(deleteCommentButton)
+        reportButton = UIButton()
+        containerView.addSubview(reportButton)
     }
     
     func likesButtonAction() {
@@ -70,7 +70,11 @@ class CommentCellView: UIView {
         //add the unlikes function here ********
     }
     
-    func deleteCommentButtonAction() {
+    func reportButtonAction() {
+        //add the deletes comment function here ********
+    }
+    
+    func reportCommentButtonAction() {
         //add the deletes comment function here ********
     }
     
@@ -111,8 +115,8 @@ class CommentCellView: UIView {
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
         likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
         likesLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
-        likesLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
-        likesLabel.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: contentView.bounds.width * 0.2).isActive = true
+        likesLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
+        likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.5).isActive = true
         likesLabel.text = "\(comment.likes) Likes"
         
         //Likes Button
@@ -120,13 +124,21 @@ class CommentCellView: UIView {
         likesButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
         likesButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
         likesButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
-        likesButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.25).isActive = true
+        likesButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.7).isActive = true
         likesButton.setTitle("👍🏽", for: .normal)
         likesButton.setTitle("Unlike", for: .selected)
         likesButton.addTarget(self, action: #selector(likesButtonAction), for: .touchUpInside)
         likesButton.addTarget(self, action: #selector(unlikesButtonAction), for: .touchUpOutside)
 
-        
+        //Report Button
+        reportButton.translatesAutoresizingMaskIntoConstraints = false
+        reportButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
+        reportButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
+        reportButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
+        reportButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.85).isActive = true
+        reportButton.setTitle("Report", for: .normal)
+        reportButton.setTitle("Reported", for: .selected)
+        reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
     }
     
     
