@@ -123,7 +123,6 @@ extension MarketInfo {
     }
     func startEditState() {
         isEditing = true
-        toggleButtons(state: true)
         infoTableView.readForUpdates()
         showInfoTableView()
     }
@@ -138,6 +137,7 @@ extension MarketInfo {
     //MARK: - EditorBoxDelegate methods
     func editorBoxCancel() {
         swapToInfoTable()
+        toggleButtons(state: false)
     }
     
     //MARK: - InfoTableViewDelegate methods
@@ -152,7 +152,7 @@ extension MarketInfo {
             addressLabel.backgroundColor = UIColor.themePrimary
         }
         if let city = marketChanges.city {
-            cityLabel.text = "Borough: \(city)"
+            cityLabel.text = "City: \(city)"
             cityLabel.backgroundColor = UIColor.themePrimary
         }
         if let season = marketChanges.season {
@@ -172,9 +172,12 @@ extension MarketInfo {
             ebtLabel.backgroundColor = UIColor.themePrimary
         }
     }
+    
     func addNewMarketChange() {
         resetOriginalLabels()
         swapToEditorBox()
+        editorBox.setNeutralState()
+        toggleButtons(state: true)
     }
     
     func resetOriginalLabels() {
@@ -195,7 +198,7 @@ extension MarketInfo {
     }
     
     func favoriteButtonAction() {
-        
+        endEditState()
     }
     
     func commentsButtonAction() {
@@ -210,14 +213,24 @@ extension MarketInfo {
     }
     
     func editNameAction() {
-        
+        editorBox.setNameEditState()
     }
     
-    func editAddressAction(){print(1)}
-    func editBoroughAction(){print(1)}
-    func editSeasonAction(){print(1)}
-    func editDaysAction(){print(1)}
-    func editTimeAction(){print(1)}
+    func editAddressAction(){
+        editorBox.setAddressEditState()
+    }
+    func editCityAction(){
+        editorBox.setCityEditState()
+    }
+    func editSeasonAction(){
+        editorBox.setSeasonEditState()
+    }
+    func editDaysAction(){
+        editorBox.setDaysEditState()
+    }
+    func editTimeAction(){
+        editorBox.setTimesEditState()
+    }
     func editEBTAction(){print(1)}
     func editWebsiteAction(){}
 }
@@ -271,7 +284,7 @@ extension MarketInfo {
     
     func toggleEditButton(state: Bool) {
         if state {
-            editButton.layer.borderWidth = 2
+            editButton.layer.borderWidth = 3
         } else {
             editButton.layer.borderWidth = 0
         }
