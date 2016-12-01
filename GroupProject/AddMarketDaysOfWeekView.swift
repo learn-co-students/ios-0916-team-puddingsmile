@@ -87,6 +87,15 @@ class AddMarketDayOfWeek: UIView  {
         return button
     }()
     
+    let mondayImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "uncheckedBox")
+        image.isUserInteractionEnabled = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
     let tuesdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Tue:"
@@ -105,6 +114,15 @@ class AddMarketDayOfWeek: UIView  {
         button.tag = 3
         
         return button
+    }()
+    
+    let tuesdayImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "uncheckedBox")
+        image.isUserInteractionEnabled = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
     }()
     
     let wednesdayLabel: UILabel = {
@@ -127,6 +145,15 @@ class AddMarketDayOfWeek: UIView  {
         return button
     }()
     
+    let wednesdayImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "uncheckedBox")
+        image.isUserInteractionEnabled = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
     let thursdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Th:"
@@ -145,6 +172,15 @@ class AddMarketDayOfWeek: UIView  {
         button.tag = 5
         
         return button
+    }()
+    
+    let thursdayImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "uncheckedBox")
+        image.isUserInteractionEnabled = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
     }()
     
     let fridayLabel: UILabel = {
@@ -167,6 +203,15 @@ class AddMarketDayOfWeek: UIView  {
         return button
     }()
     
+    let fridayImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "uncheckedBox")
+        image.isUserInteractionEnabled = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
     let saturdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Sat:"
@@ -187,9 +232,17 @@ class AddMarketDayOfWeek: UIView  {
         return button
     }()
     
+    let saturdayImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "uncheckedBox")
+        image.isUserInteractionEnabled = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
     func buttonChanged(_ sender: UIButton) {
         let tag = sender.tag
-        
         
     }
     
@@ -255,6 +308,7 @@ extension AddMarketDayOfWeek {
     
     func setupMondayLabel() {
         self.addSubview(mondayLabel)
+        self.addSubview(mondayImage)
         self.addSubview(mondayButton)
         
         mondayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
@@ -267,10 +321,16 @@ extension AddMarketDayOfWeek {
         mondayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         mondayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         mondayButton.addTarget(self, action: #selector(mondayChanged), for: .touchUpInside)
+        
+        mondayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        mondayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.375).isActive = true
+        mondayImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        mondayImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func setupTuesdayLabel() {
         self.addSubview(tuesdayLabel)
+        self.addSubview(tuesdayImage)
         self.addSubview(tuesdayButton)
         
         tuesdayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
@@ -283,10 +343,16 @@ extension AddMarketDayOfWeek {
         tuesdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         tuesdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         tuesdayButton.addTarget(self, action: #selector(tuesdayChanged), for: .touchUpInside)
+        
+        tuesdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        tuesdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.625).isActive = true
+        tuesdayImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        tuesdayImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func setupWednesdayLabel() {
         self.addSubview(wednesdayLabel)
+        self.addSubview(wednesdayImage)
         self.addSubview(wednesdayButton)
         
         wednesdayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
@@ -299,10 +365,16 @@ extension AddMarketDayOfWeek {
         wednesdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         wednesdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         wednesdayButton.addTarget(self, action: #selector(wednesdayChanged), for: .touchUpInside)
+        
+        wednesdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        wednesdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.875).isActive = true
+        wednesdayImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        wednesdayImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func setupThursdayLabel() {
         self.addSubview(thursdayLabel)
+        self.addSubview(thursdayImage)
         self.addSubview(thursdayButton)
         
         thursdayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
@@ -315,10 +387,16 @@ extension AddMarketDayOfWeek {
         thursdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         thursdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         thursdayButton.addTarget(self, action: #selector(thursdayChanged), for: .touchUpInside)
+        
+        thursdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
+        thursdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.25).isActive = true
+        thursdayImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        thursdayImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func setupFridayLabel() {
         self.addSubview(fridayLabel)
+        self.addSubview(fridayImage)
         self.addSubview(fridayButton)
         
         fridayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
@@ -331,10 +409,16 @@ extension AddMarketDayOfWeek {
         fridayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         fridayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         fridayButton.addTarget(self, action: #selector(fridayChanged), for: .touchUpInside)
+        
+        fridayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
+        fridayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.5).isActive = true
+        fridayImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        fridayImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func setupSaturdayLabel() {
         self.addSubview(saturdayLabel)
+        self.addSubview(saturdayImage)
         self.addSubview(saturdayButton)
         
         saturdayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
@@ -347,6 +431,11 @@ extension AddMarketDayOfWeek {
         saturdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         saturdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         saturdayButton.addTarget(self, action: #selector(saturdayChanged), for: .touchUpInside)
+        
+        saturdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
+        saturdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.75).isActive = true
+        saturdayImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        saturdayImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func checkForDay(tag: Int) -> String {
@@ -380,12 +469,54 @@ extension AddMarketDayOfWeek {
                 sundayImage.image = UIImage(named: "checkedBox")
                 sundayChecked = true
             }
-//        case 2:
-//        case 3:
-//        case 4:
-//        case 5:
-//        case 6:
-//        case 7:
+        case 2:
+            if mondayChecked {
+                mondayImage.image = UIImage(named: "uncheckedBox")
+                mondayChecked = false
+            } else {
+                mondayImage.image = UIImage(named: "checkedBox")
+                mondayChecked = true
+            }
+        case 3:
+            if tuesdayChecked {
+                tuesdayImage.image = UIImage(named: "uncheckedBox")
+                tuesdayChecked = false
+            } else {
+                tuesdayImage.image = UIImage(named: "checkedBox")
+                tuesdayChecked = true
+            }
+        case 4:
+            if wednesdayChecked {
+                wednesdayImage.image = UIImage(named: "uncheckedBox")
+                wednesdayChecked = false
+            } else {
+                wednesdayImage.image = UIImage(named: "checkedBox")
+                wednesdayChecked = true
+            }
+        case 5:
+            if thursdayChecked {
+                thursdayImage.image = UIImage(named: "uncheckedBox")
+                thursdayChecked = false
+            } else {
+                thursdayImage.image = UIImage(named: "checkedBox")
+                thursdayChecked = true
+            }
+        case 6:
+            if fridayChecked {
+                fridayImage.image = UIImage(named: "uncheckedBox")
+                fridayChecked = false
+            } else {
+                fridayImage.image = UIImage(named: "checkedBox")
+                fridayChecked = true
+            }
+        case 7:
+            if saturdayChecked {
+                saturdayImage.image = UIImage(named: "uncheckedBox")
+                saturdayChecked = false
+            } else {
+                saturdayImage.image = UIImage(named: "checkedBox")
+                saturdayChecked = true
+            }
         default:
             print("default")
         }
