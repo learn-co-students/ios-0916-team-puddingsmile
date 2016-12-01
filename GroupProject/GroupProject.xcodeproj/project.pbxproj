@@ -30,6 +30,8 @@
 		B5D2DDED1DE39B3B001F2CCE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2DDEC1DE39B3B001F2CCE /* ColorExtension.swift */; };
 		B5F429761DEF6A3A00C91084 /* InfoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F429751DEF6A3A00C91084 /* InfoTableView.swift */; };
 		B5F429781DEF6A4A00C91084 /* EditorBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F429771DEF6A4A00C91084 /* EditorBox.swift */; };
+		B5F4297D1DF0706600C91084 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4297C1DF0706600C91084 /* InfoTableViewCell.swift */; };
+		B5F4297F1DF0A52A00C91084 /* EditorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4297E1DF0A52A00C91084 /* EditorStore.swift */; };
 		B5FFF0F31DEC7A7D004716B8 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFF0F21DEC7A7D004716B8 /* CommentsView.swift */; };
 		C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
@@ -106,6 +108,8 @@
 		B5D2DDEC1DE39B3B001F2CCE /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		B5F429751DEF6A3A00C91084 /* InfoTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableView.swift; sourceTree = "<group>"; };
 		B5F429771DEF6A4A00C91084 /* EditorBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorBox.swift; sourceTree = "<group>"; };
+		B5F4297C1DF0706600C91084 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		B5F4297E1DF0A52A00C91084 /* EditorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorStore.swift; sourceTree = "<group>"; };
 		B5FFF0F21DEC7A7D004716B8 /* CommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		C00C22163A0DAEAF7038196C /* Pods-GroupProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
@@ -206,13 +210,39 @@
 		B5167F6F1DEF68C8005AB062 /* MarketInfoViewGroup */ = {
 			isa = PBXGroup;
 			children = (
+				B5F429791DF0700B00C91084 /* MarketInfoFolder */,
+				B5F4297A1DF0701D00C91084 /* InfoTableFolder */,
+				B5F4297B1DF0702B00C91084 /* EditorFolder */,
+			);
+			name = MarketInfoViewGroup;
+			sourceTree = "<group>";
+		};
+		B5F429791DF0700B00C91084 /* MarketInfoFolder */ = {
+			isa = PBXGroup;
+			children = (
 				C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */,
 				FD55AC751DEFC38A0013C8D5 /* MarketInfoViewSubviews.swift */,
 				FD55AC731DEFC3580013C8D5 /* MarketInfoViewConstraints.swift */,
-				B5F429751DEF6A3A00C91084 /* InfoTableView.swift */,
-				B5F429771DEF6A4A00C91084 /* EditorBox.swift */,
 			);
-			name = MarketInfoViewGroup;
+			name = MarketInfoFolder;
+			sourceTree = "<group>";
+		};
+		B5F4297A1DF0701D00C91084 /* InfoTableFolder */ = {
+			isa = PBXGroup;
+			children = (
+				B5F429751DEF6A3A00C91084 /* InfoTableView.swift */,
+				B5F4297C1DF0706600C91084 /* InfoTableViewCell.swift */,
+			);
+			name = InfoTableFolder;
+			sourceTree = "<group>";
+		};
+		B5F4297B1DF0702B00C91084 /* EditorFolder */ = {
+			isa = PBXGroup;
+			children = (
+				B5F429771DEF6A4A00C91084 /* EditorBox.swift */,
+				B5F4297E1DF0A52A00C91084 /* EditorStore.swift */,
+			);
+			name = EditorFolder;
 			sourceTree = "<group>";
 		};
 		C3C658E11DDBCC1A00C7B533 = {
@@ -606,6 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */,
+				B5F4297D1DF0706600C91084 /* InfoTableViewCell.swift in Sources */,
 				C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */,
 				569CBD791DE5F5A200BE502B /* MarketView.swift in Sources */,
 				C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */,
@@ -631,6 +662,7 @@
 				C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */,
 				C35ADA291DEE3330000442BB /* AddMarketPickerView.swift in Sources */,
 				B5D2DDC01DE35553001F2CCE /* LoginViewController.swift in Sources */,
+				B5F4297F1DF0A52A00C91084 /* EditorStore.swift in Sources */,
 				B5D2DDA11DDF4D1C001F2CCE /* DateManager.swift in Sources */,
 				B5D2DDEB1DE3943E001F2CCE /* LoginView.swift in Sources */,
 				569CBD751DE5F41E00BE502B /* MarketTableCell.swift in Sources */,

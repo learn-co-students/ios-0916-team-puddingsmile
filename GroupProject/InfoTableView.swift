@@ -21,7 +21,7 @@ class InfoTableView: UIView {
     var tableView: UITableView!
     var suggestions: [MarketChanges] = []
     var market: Market!
-    var hasChanges = true
+    var hasChanges = false
     
     var addNewButton: UIButton!
     
@@ -39,13 +39,13 @@ class InfoTableView: UIView {
         self.market = market
         setupTableView()
         setupSubViews()
-        readForUpdates()
     }
     
     //MARK: - Logic functions
     func readForUpdates() {
         FirebaseAPI.readFromUpdate(with: market.name!) { (success, data) in
             if success {
+                self.suggestions.removeAll()
                 for (key, value) in data {
                     let info = value as! [String : String]
                     self.suggestions.append(MarketChanges(info: info, key: key))
@@ -108,7 +108,7 @@ extension InfoTableView: UITableViewDelegate, UITableViewDataSource {
         self.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "infoCell")
+        tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
     }
     
     func setTableViewConstraints() {
@@ -132,12 +132,14 @@ extension InfoTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+
         if hasChanges {
-            cell.textLabel?.text = suggestions[indexPath.row].idKey!
+            cell.titleLabel.text = suggestions[indexPath.row].getCellTitleString()
+            cell.votedLabel.text = suggestions[indexPath.row].votes
         } else {
-            cell.textLabel?.text = "No existing changes."
+            cell.titleLabel.text = "No suggestions for this market"
+            cell.voteButton.isHidden = true
         }
         
         return cell
@@ -158,21 +160,57 @@ struct MarketChanges {
     var idKey: String?
     var name: String?
     var address: String?
-    var borough: String?
+    var city: String?
     var season: String?
     var days: String?
     var times: String?
     var ebt: String?
+    var votes: String?
     
-    init(info: [String : String], key: String) {
+    init(info: [String : String], key: String?) {
         self.idKey = key
         self.name = info["name"]
         self.address = info["address"]
-        self.borough = info["borough"]
+        self.city = info["city"]
         self.season = info["season"]
         self.days = info["days"]
         self.times = info["times"]
         self.ebt = info["ebt"]
+        self.votes = info["votes"]
+    }
+    
+    init() {}
+    
+    func getCellTitleString() -> String {
+        var titleString = ""
+        if let _ = name {
+            titleString += "Name"
+        }
+        if let _ = address {
+            if titleString != "" { titleString += " / " }
+            titleString += "Address"
+        }
+//        if let borough = borough {
+//            
+//        }
+        if let _ = season {
+            if titleString != "" { titleString += " / " }
+            titleString += "Season"
+        }
+        if let _ = days {
+            if titleString != "" { titleString += " / " }
+            titleString += "Days"
+        }
+        if let _ = times {
+            if titleString != "" { titleString += " / " }
+            titleString += "Times"
+        }
+        if let _ = ebt {
+            if titleString != "" { titleString += " / " }
+            titleString += "Ebt"
+        }
+
+        return titleString
     }
     
 }

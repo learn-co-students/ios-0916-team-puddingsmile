@@ -57,12 +57,13 @@ extension FirebaseAPI {
 extension FirebaseAPI {
     
     static func writeCommentFor(market: String, with message: String, from name: String) {
-        
+        let uid = FIRAuth.auth()?.currentUser?.uid
         let ref = FIRDatabase.database().reference().child("comments")
         let marketRef = ref.child("\(market)").childByAutoId()
         marketRef.child("timeStamp").setValue(Date().timeIntervalSince1970)
         marketRef.child("comment").setValue(message)
         marketRef.child("likes").setValue(0)
+        marketRef.child("id").setValue(uid)
         marketRef.child("name").setValue(name)
     }
     
