@@ -11,12 +11,14 @@ import UIKit
 
 protocol CommentsViewDelegate: class {
     func triggerBackSegue()
-    func triggerSaveChanges()
+    func triggerCommentsSegue()
+
 }
+
 
 class CommentsView: UIView {
     
-    weak var delegate: CommentsViewDelegate?
+    weak var delegate: CommentsViewDelegate!
     weak var tableViewDelegate: UITableViewDelegate?
     weak var tableViewDataSource: UITableViewDataSource?
     
@@ -38,20 +40,48 @@ class CommentsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+        if let marketName = market.name {
+            print(marketName)
+        }
+  
     }
-    
     
     func commonInit() {
+        
         createLayout()
         loadConstraints()
+        //Need to assign the comments of a specific market to the comments array
+        readForUpdates()
     }
     
+    //MARK: - Logic functions
+    func readForUpdates() {
+        /*
+        FirebaseAPI.readCommentFor(market: self.market.name!) { (success, data) in
+            if success {
+                for (key, value) in data {
+                    let info = value as! [String : String]
+                    self.comments.append(MarketComment(info: info, key: key))
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+ */
+    }
+
+
     func backButtonAction() {
-        delegate?.triggerBackSegue()
+       delegate?.triggerBackSegue()
     }
     
     func commentButtonAction() {
-        
+        delegate?.triggerCommentsSegue()
     }
     
     //MARK: - Segues
@@ -61,7 +91,7 @@ class CommentsView: UIView {
         
         comment = comments[indexPath.row]
         
-        cell.commentView = comment
+        cell.comment = comment
         return cell
     }
 }

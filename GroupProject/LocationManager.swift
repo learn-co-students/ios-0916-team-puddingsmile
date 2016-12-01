@@ -10,7 +10,6 @@ import Foundation
 import CoreLocation
 import MapKit
 
-
 struct LocationManager {
     
     let manager = CLLocationManager()

@@ -24,9 +24,9 @@ class CommentsViewController: UIViewController, CommentsViewDelegate {
     func triggerBackSegue() {
         dismiss(animated: true, completion: nil)
     }
-   
-    func triggerSaveChanges() {
-        
+    
+    func triggerCommentsSegue() {
+        performSegue(withIdentifier: "addCommentSegue", sender: self)
     }
 
 }
