@@ -127,7 +127,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         cityButton = UIButton()
         self.detailView.addSubview(cityButton)
         cityButton.isEnabled = false
-        cityButton.addTarget(self, action: #selector(editBoroughAction), for: .touchUpInside)
+        cityButton.addTarget(self, action: #selector(editCityAction), for: .touchUpInside)
         
         cityLabel = UILabel()
         self.detailView.addSubview(cityLabel)
