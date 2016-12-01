@@ -80,7 +80,7 @@ class AddMarketDayOfWeek: UIView  {
     let mondayButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 2
         
@@ -109,7 +109,7 @@ class AddMarketDayOfWeek: UIView  {
     let tuesdayButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 3
         
@@ -138,7 +138,7 @@ class AddMarketDayOfWeek: UIView  {
     let wednesdayButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 4
         
@@ -167,7 +167,7 @@ class AddMarketDayOfWeek: UIView  {
     let thursdayButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 5
         
@@ -196,7 +196,7 @@ class AddMarketDayOfWeek: UIView  {
     let fridayButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 6
         
@@ -225,7 +225,7 @@ class AddMarketDayOfWeek: UIView  {
     let saturdayButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
-        button.backgroundColor = UIColor.black
+        button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 7
         
@@ -242,8 +242,9 @@ class AddMarketDayOfWeek: UIView  {
     }()
     
     func buttonChanged(_ sender: UIButton) {
+        print("flip called")
         let tag = sender.tag
-        
+        flipDay(tag: tag)
     }
     
     func sundayChanged() {
@@ -298,7 +299,7 @@ extension AddMarketDayOfWeek {
         sundayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.125).isActive = true
         sundayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         sundayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        sundayButton.addTarget(self, action: #selector(sundayChanged), for: .touchUpInside)
+        sundayButton.addTarget(self, action: #selector(buttonChanged), for: .touchUpInside)
         
         sundayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         sundayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.125).isActive = true
@@ -320,7 +321,7 @@ extension AddMarketDayOfWeek {
         mondayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.375).isActive = true
         mondayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         mondayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        mondayButton.addTarget(self, action: #selector(mondayChanged), for: .touchUpInside)
+        mondayButton.addTarget(self, action: #selector(buttonChanged), for: .touchUpInside)
         
         mondayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         mondayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.375).isActive = true
@@ -342,7 +343,7 @@ extension AddMarketDayOfWeek {
         tuesdayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.625).isActive = true
         tuesdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         tuesdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        tuesdayButton.addTarget(self, action: #selector(tuesdayChanged), for: .touchUpInside)
+        tuesdayButton.addTarget(self, action: #selector(buttonChanged), for: .touchUpInside)
         
         tuesdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         tuesdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.625).isActive = true
@@ -364,7 +365,7 @@ extension AddMarketDayOfWeek {
         wednesdayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.875).isActive = true
         wednesdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         wednesdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        wednesdayButton.addTarget(self, action: #selector(wednesdayChanged), for: .touchUpInside)
+        wednesdayButton.addTarget(self, action: #selector(buttonChanged), for: .touchUpInside)
         
         wednesdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
         wednesdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.875).isActive = true
@@ -386,7 +387,7 @@ extension AddMarketDayOfWeek {
         thursdayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.25).isActive = true
         thursdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         thursdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        thursdayButton.addTarget(self, action: #selector(thursdayChanged), for: .touchUpInside)
+        thursdayButton.addTarget(self, action: #selector(buttonChanged), for: .touchUpInside)
         
         thursdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
         thursdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.25).isActive = true
@@ -408,7 +409,7 @@ extension AddMarketDayOfWeek {
         fridayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.5).isActive = true
         fridayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         fridayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        fridayButton.addTarget(self, action: #selector(fridayChanged), for: .touchUpInside)
+        fridayButton.addTarget(self, action: #selector(buttonChanged), for: .touchUpInside)
         
         fridayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
         fridayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.5).isActive = true
@@ -430,7 +431,7 @@ extension AddMarketDayOfWeek {
         saturdayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.75).isActive = true
         saturdayButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         saturdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        saturdayButton.addTarget(self, action: #selector(saturdayChanged), for: .touchUpInside)
+        saturdayButton.addTarget(self, action: #selector(buttonChanged), for: .touchUpInside)
         
         saturdayImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
         saturdayImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.75).isActive = true
