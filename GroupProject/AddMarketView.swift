@@ -435,6 +435,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         self.addSubview(addMarketDayView)
         
         addMarketDayView.setupSundayLabel()
+        addMarketDayView.setupMondayLabel()
+        addMarketDayView.setupTuesdayLabel()
+        addMarketDayView.setupWednesdayLabel()
+        addMarketDayView.setupThursdayLabel()
+        addMarketDayView.setupFridayLabel()
 
         
         UIView.animate(withDuration: 1, delay: 0, options: [], animations: {

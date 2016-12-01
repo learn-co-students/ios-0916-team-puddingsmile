@@ -44,7 +44,7 @@ class AddMarketDayOfWeek: UIView {
     
     let mondayLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sun:"
+        label.text = "Mon:"
         label.textColor = UIColor.white
         label.backgroundColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -61,12 +61,102 @@ class AddMarketDayOfWeek: UIView {
         return button
     }()
     
+    let tuesdayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Tue:"
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let tuesdayButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.backgroundColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let wednesdayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Wed:"
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let wednesdayButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.backgroundColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let thursdayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Th:"
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let thursdayButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.backgroundColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let fridayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Fri:"
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let fridayButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.backgroundColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    
+    
     func sundayChanged() {
         print("button works")
     }
     
     func mondayChanged() {
         
+    }
+    
+    func tuesdayChanged() {
+        
+    }
+    
+    func wednesdayChanged() {
+        
+    }
+    
+    func thursdayChanged() {
+        print("thursday working")
     }
     
     
@@ -95,18 +185,80 @@ extension AddMarketDayOfWeek {
         self.addSubview(mondayButton)
         
         mondayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
-        mondayLabel.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.125).isActive = true
+        mondayLabel.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.375).isActive = true
         mondayLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         mondayLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
         
         mondayButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
-        mondayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.125).isActive = true
+        mondayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.375).isActive = true
         mondayButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         mondayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         mondayButton.addTarget(self, action: #selector(mondayChanged), for: .touchUpInside)
     }
     
+    func setupTuesdayLabel() {
+        self.addSubview(tuesdayLabel)
+        self.addSubview(tuesdayButton)
+        
+        tuesdayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        tuesdayLabel.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.625).isActive = true
+        tuesdayLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        tuesdayLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        tuesdayButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        tuesdayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.625).isActive = true
+        tuesdayButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        tuesdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        tuesdayButton.addTarget(self, action: #selector(tuesdayChanged), for: .touchUpInside)
+    }
     
+    func setupWednesdayLabel() {
+        self.addSubview(wednesdayLabel)
+        self.addSubview(wednesdayButton)
+        
+        wednesdayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        wednesdayLabel.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.875).isActive = true
+        wednesdayLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        wednesdayLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        wednesdayButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        wednesdayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.875).isActive = true
+        wednesdayButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        wednesdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        wednesdayButton.addTarget(self, action: #selector(wednesdayChanged), for: .touchUpInside)
+    }
+    
+    func setupThursdayLabel() {
+        self.addSubview(thursdayLabel)
+        self.addSubview(thursdayButton)
+        
+        thursdayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
+        thursdayLabel.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.25).isActive = true
+        thursdayLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        thursdayLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        thursdayButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
+        thursdayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.25).isActive = true
+        thursdayButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        thursdayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        thursdayButton.addTarget(self, action: #selector(thursdayChanged), for: .touchUpInside)
+    }
+    
+    func setupFridayLabel() {
+        self.addSubview(fridayLabel)
+        self.addSubview(fridayButton)
+        
+        fridayLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
+        fridayLabel.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.5).isActive = true
+        fridayLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        fridayLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        fridayButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 110).isActive = true
+        fridayButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.5).isActive = true
+        fridayButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        fridayButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        fridayButton.addTarget(self, action: #selector(thursdayChanged), for: .touchUpInside)
+    }
     
     
 }
@@ -120,79 +272,7 @@ extension AddMarketDayOfWeek {
 
 
 
-//func setupAlternateSundayLabel() {
-//    let dayView = DayAndButtonView()
-//    self.addSubview(dayView)
-//    dayView.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
-//    dayView.centerXAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.125).isActive = true
-//    dayView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//    dayView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-//    dayView.setupCheckbox()
-//    dayView.setupSundayLabel()
-//}
 
-
-
-
-
-//class DayAndButtonView: UIView {
-//    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    let dayLabel: UILabel = {
-//        let label = UILabel()
-//        label.textColor = UIColor.black
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        return label
-//    }()
-//    
-//    let checkboxButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("", for: .normal)
-//        button.backgroundColor = UIColor.black
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        return button
-//    }()
-//    
-//    
-//    let checkboxImage: UIImageView = {
-//        let image = UIImageView()
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//        image.image = UIImage(named: "uncheckedBox")
-//        
-//        return image
-//    }()
-//    
-//    func setupSundayLabel() {
-//        self.addSubview(dayLabel)
-//        dayLabel.text = "Sun:"
-//        print("sunday label called")
-//        dayLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-//        dayLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-//        dayLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-//        dayLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-//    }
-//    
-//    func setupCheckbox() {
-//        self.addSubview(checkboxButton)
-//        checkboxButton.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-//        checkboxButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-//        checkboxButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-//        checkboxButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-//        
-//        checkboxButton.addTarget(self, action: #selector(dayOfWeekChanged), for: .touchUpInside)
-//    }
-//    
-//    
-//}
 
 
 
