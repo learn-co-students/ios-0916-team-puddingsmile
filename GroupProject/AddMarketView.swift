@@ -436,11 +436,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         
         addMarketDayView.setupSundayLabel()
 
-
-
-
-
-
         
         UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
             print("date animating")
@@ -450,7 +445,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
             
             
         }, completion: nil)
-        
         
         
     }

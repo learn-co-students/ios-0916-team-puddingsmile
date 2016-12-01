@@ -216,9 +216,9 @@
 			children = (
 				C37BA5D01DEF767400AB1DD2 /* AddMarketExtension.swift */,
 				C35ADA221DECC522000442BB /* AddMarketView.swift */,
+				C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */,
 				C37BA5CE1DEF60FA00AB1DD2 /* AddMarketDatePicker.swift */,
 				C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */,
-				C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */,
 			);
 			name = AddMarketViews;
 			sourceTree = "<group>";
