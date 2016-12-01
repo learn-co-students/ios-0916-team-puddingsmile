@@ -17,14 +17,14 @@ class  CommentTableViewCell: UITableViewCell {
     var nameLabel: UILabel!
     var reportButton: UIButton!
     
-    var comment: MarketComment!{
+    var commentObject: MarketComment!{
         didSet {
             
-            if let displayComment =  comment.comment {
-                print(displayComment)
+            if let displayComment =  commentObject.comment {
+                print("The display content is: \(displayComment)")
                 commentLabel.text = "\(displayComment)"
             }
-            if let displayName =  comment.name {
+            if let displayName =  commentObject.name {
                 nameLabel.text = "\(displayName)"
             }
           //commentLabel.text = comment.id

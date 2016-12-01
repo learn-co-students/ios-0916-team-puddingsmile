@@ -17,7 +17,6 @@ class CommentsViewController: UIViewController, CommentsViewDelegate {
         let commentsView = CommentsView(frame: self.view.frame)
         commentsView.market = self.market
         commentsView.commonInit()
-        print("The market being passed is \(self.market)")
         commentsView.delegate = self
         self.view = commentsView
         //commentsView.setupRequestChangeView(market: market)

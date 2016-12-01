@@ -47,13 +47,11 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: - Logic functions
     func readForComments() {
         self.comments.removeAll()
-        print("The API function is called to load comments")
         FirebaseAPI.readCommentFor(market: market.name!, completion: { commentId in
             for (key, value) in commentId {
                 self.comments.append(MarketComment(id: key, value: value))
             }
             DispatchQueue.main.async {
-                print("The lenght of the comments array is: \(self.comments.count)")
                 self.tableView.reloadData()
             }
         })
@@ -83,7 +81,7 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         comment = comments[indexPath.row]
         
-        cell.comment = comment
+        cell.commentObject = comment
         return cell
     }
 }
