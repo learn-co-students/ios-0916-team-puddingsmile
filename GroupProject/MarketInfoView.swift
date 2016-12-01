@@ -42,8 +42,8 @@ class MarketInfo: UIView {
     var nameLabel:      UILabel!
     var addressButton:  UIButton!
     var addressLabel:   UILabel!
-    var boroughButton:  UIButton!
-    var boroughLabel:   UILabel!
+    var cityButton:     UIButton!
+    var cityLabel:      UILabel!
     var seasonButton:   UIButton!
     var seasonLabel:    UILabel!
     var daysButton:     UIButton!
@@ -71,8 +71,14 @@ class MarketInfo: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        print("bye bye marketinfoview")
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first?.location(in: self) else { return }
+        if touch.y > bounds.height * 0.43 {
+            if isEditing {
+                endEditState()
+            }
+        }
+       
     }
     
     func setupMarketInfoView(market: Market) {
@@ -89,7 +95,7 @@ class MarketInfo: UIView {
     func toggleButtons(state: Bool) {
         nameButton.isEnabled = state
         addressButton.isEnabled = state
-        boroughButton.isEnabled = state
+        cityButton.isEnabled = state
         seasonButton.isEnabled = state
         daysButton.isEnabled = state
         timeButton.isEnabled = state
@@ -99,81 +105,26 @@ class MarketInfo: UIView {
     }
 }
 
-//MARK: - Animation functions
-extension MarketInfo {
-    func showInfoTableView() {
-        self.infoTableView.isHidden = false
-        UIView.animate(withDuration: 0.2, animations: {
-            self.infoTableView.center.y = self.infoTableView.frame.height * 0.7
-        }, completion: { (success) in
-            
-        })
-    }
-    func hideInfoTableView() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.infoTableView.center.y = self.infoTableView.frame.height * -1
-        }, completion: { (success) in
-            self.infoTableView.isHidden = true
-        })
-    }
-    func hideEditorBox() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.editorBox.center.y = self.editorBox.frame.height * -1
-        }, completion: { (success) in
-            self.editorBox.isHidden = true
-        })
-    }
-    func swapInfoTableView() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.infoTableView.center.y = self.infoTableView.frame.height * -1
-        }, completion: { (success) in
-            self.infoTableView.isHidden = true
-            UIView.animate(withDuration: 0.2, animations: {
-                self.editorBox.center.y = self.editorBox.frame.height * 0.7
-            })
-        })
-    }
-    
-    func toggleEditButton(state: Bool) {
-        if state {
-            editButton.layer.borderWidth = 2
-        } else {
-            editButton.layer.borderWidth = 0
-        }
-    }
-}
-
 //MARK: - ButtonActions
-extension MarketInfo: InfoTableDelegate {
+extension MarketInfo {
     func backButtonAction() {
         self.infoTableView.isHidden = true
         self.editorBox.isHidden = true
         delegate.triggerBackSegue()
     }
     
-    func addNewMarketChange() {
-        resetOriginalLabels()
-        self.editorBox.isHidden = false
-        swapInfoTableView()
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isEditing {
-            endEditState()
-        }
-    }
-    
+
     func editButtonAction() {
         if isEditing {
             endEditState()
         } else {
             startEditState()
         }
-        
     }
     func startEditState() {
         isEditing = true
         toggleButtons(state: true)
+        infoTableView.readForUpdates()
         showInfoTableView()
     }
     func endEditState() {
@@ -183,6 +134,13 @@ extension MarketInfo: InfoTableDelegate {
         hideEditorBox()
         hideInfoTableView()
     }
+    
+    //MARK: - EditorBoxDelegate methods
+    func editorBoxCancel() {
+        swapToInfoTable()
+    }
+    
+    //MARK: - InfoTableViewDelegate methods
     func sendMarketChanges(marketChanges: MarketChanges) {
         resetOriginalLabels()
         if let name = marketChanges.name {
@@ -193,9 +151,9 @@ extension MarketInfo: InfoTableDelegate {
             addressLabel.text = "Address: \(address)"
             addressLabel.backgroundColor = UIColor.themePrimary
         }
-        if let borough = marketChanges.borough {
-            boroughLabel.text = "Borough: \(borough)"
-            boroughLabel.backgroundColor = UIColor.themePrimary
+        if let city = marketChanges.city {
+            cityLabel.text = "Borough: \(city)"
+            cityLabel.backgroundColor = UIColor.themePrimary
         }
         if let season = marketChanges.season {
             seasonLabel.text = "Season: \(season)"
@@ -214,14 +172,18 @@ extension MarketInfo: InfoTableDelegate {
             ebtLabel.backgroundColor = UIColor.themePrimary
         }
     }
+    func addNewMarketChange() {
+        resetOriginalLabels()
+        swapToEditorBox()
+    }
     
     func resetOriginalLabels() {
         nameLabel.text = "Name: \(market.name!)"
         nameLabel.backgroundColor = UIColor.themeSecondary
         addressLabel.text = "Address: \(market.address!)"
         addressLabel.backgroundColor = UIColor.themeSecondary
-        boroughLabel.text = "Borough: \(market.borough!)"
-        boroughLabel.backgroundColor = UIColor.themeSecondary
+        cityLabel.text = "Borough: \(market.borough!)"
+        cityLabel.backgroundColor = UIColor.themeSecondary
         seasonLabel.text = "Season: \(market.openDate!) - \(market.closeDate!)"
         seasonLabel.backgroundColor = UIColor.themeSecondary
         daysLabel.text = "Days Open: \(market.weekDayOpen!)"
@@ -260,6 +222,62 @@ extension MarketInfo: InfoTableDelegate {
     func editWebsiteAction(){}
 }
 
+//MARK: - Animation functions
+extension MarketInfo {
+    func showInfoTableView() {
+        self.infoTableView.isHidden = false
+        UIView.animate(withDuration: 0.2, animations: {
+            self.infoTableView.center.y = self.infoTableView.frame.height * 0.7
+        }, completion: { (success) in
+            
+        })
+    }
+    func hideInfoTableView() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.infoTableView.center.y = self.infoTableView.frame.height * -1
+        }, completion: { (success) in
+            self.infoTableView.isHidden = true
+        })
+    }
+    func hideEditorBox() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.editorBox.center.y = self.editorBox.frame.height * -1
+        }, completion: { (success) in
+            self.editorBox.isHidden = true
+        })
+    }
+    func swapToEditorBox() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.infoTableView.center.y = self.infoTableView.frame.height * -1
+        }, completion: { (success) in
+            self.infoTableView.isHidden = true
+            self.editorBox.isHidden = false
+            UIView.animate(withDuration: 0.2, animations: {
+                self.editorBox.center.y = self.editorBox.frame.height * 0.7
+            })
+        })
+    }
+    func swapToInfoTable() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.editorBox.center.y = self.editorBox.frame.height * -1
+        }, completion: { (success) in
+            self.editorBox.isHidden = true
+            self.infoTableView.isHidden = false
+            UIView.animate(withDuration: 0.2, animations: {
+                self.infoTableView.center.y = self.infoTableView.frame.height * 0.7
+            })
+        })
+    }
+    
+    func toggleEditButton(state: Bool) {
+        if state {
+            editButton.layer.borderWidth = 2
+        } else {
+            editButton.layer.borderWidth = 0
+        }
+    }
+}
+
 //MARK: - Setup Mapkit view
 extension MarketInfo: CLLocationManagerDelegate {
     func setupLocationManager(){
@@ -290,7 +308,3 @@ extension MarketInfo: CLLocationManagerDelegate {
     }
     
 }
-
-
-
-

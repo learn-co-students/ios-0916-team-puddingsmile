@@ -10,13 +10,18 @@ import Foundation
 import UIKit
 
 enum EditorState {
-    case neutral, textField, datePicker, dayPicker
+    case neutral, nameEdit, addressEdit, cityEdit, seasonEdit, daysEdit, timesEdit, ebtEdit
 }
 
-
+protocol EditorBoxDelegate: class {
+    func editorBoxCancel()
+}
 
 class EditorBox: UIView {
-    var editorState: EditorState = .datePicker
+    weak var delegate: EditorBoxDelegate!
+    
+    var editorState: EditorState = .neutral
+    var marketChanges = EditorStore()
     
     var textFieldView: UIView!
     var datePickerView: UIView!
@@ -32,7 +37,7 @@ class EditorBox: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.themeTertiary
-        alpha = 0.6
+        alpha = 0.8
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +45,7 @@ class EditorBox: UIView {
     }
     
     func cancelButtonAction() {
-        print(1)
+        delegate.editorBoxCancel()
     }
     
     func nextButtonAction() {
@@ -96,6 +101,7 @@ extension EditorBox {
         doneButton.backgroundColor = UIColor.themeAccent1
         doneButton.setTitle("Done", for: .normal)
         doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
+        
         doneButton.isHidden = true
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: self.frame.width * -0.2).isActive = true
@@ -119,7 +125,7 @@ extension EditorBox {
     func createTextFieldView() {
         textFieldView = UIView()
         self.addSubview(textFieldView)
-        textFieldView.isHidden = true
+        textFieldView.isHidden = false
     }
     func createTextView() {
         textView = UITextView()
@@ -130,15 +136,15 @@ extension EditorBox {
         textFieldView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         textFieldView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         textFieldView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        textFieldView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
+        textFieldView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
     }
     
     func constrainTextView() {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         textView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        textView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
-        textView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
+        textView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
+        textView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
     }
 }
 
@@ -155,6 +161,7 @@ extension EditorBox {
     func createDatePickerView() {
         datePickerView = UIView()
         self.addSubview(datePickerView)
+        datePickerView.isHidden = true
     }
     
     func createDatePicker() {

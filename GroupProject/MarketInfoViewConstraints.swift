@@ -115,30 +115,30 @@ extension MarketInfo {
     }
     
     func setBoroughConstraints() {
-        boroughButton.translatesAutoresizingMaskIntoConstraints = false
-        boroughButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
-        boroughButton.topAnchor.constraint(equalTo: addressButton.bottomAnchor).isActive = true
-        boroughButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
-        boroughButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        cityButton.translatesAutoresizingMaskIntoConstraints = false
+        cityButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        cityButton.topAnchor.constraint(equalTo: addressButton.bottomAnchor).isActive = true
+        cityButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        cityButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
         
-        boroughLabel.translatesAutoresizingMaskIntoConstraints = false
-        boroughLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
-        boroughLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor).isActive = true
-        boroughLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
-        boroughLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
-        boroughLabel.createBottomBorder(forView: boroughLabel)
+        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+        cityLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
+        cityLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor).isActive = true
+        cityLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
+        cityLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
+        cityLabel.createBottomBorder(forView: cityLabel)
     }
     
     func setSeasonConstraints() {
         seasonButton.translatesAutoresizingMaskIntoConstraints = false
         seasonButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
-        seasonButton.topAnchor.constraint(equalTo: boroughButton.bottomAnchor).isActive = true
+        seasonButton.topAnchor.constraint(equalTo: cityButton.bottomAnchor).isActive = true
         seasonButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         seasonButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
         
         seasonLabel.translatesAutoresizingMaskIntoConstraints = false
         seasonLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
-        seasonLabel.topAnchor.constraint(equalTo: boroughLabel.bottomAnchor).isActive = true
+        seasonLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor).isActive = true
         seasonLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         seasonLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
         seasonLabel.createBottomBorder(forView: seasonLabel)

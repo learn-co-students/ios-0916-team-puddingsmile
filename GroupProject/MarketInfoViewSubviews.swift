@@ -8,12 +8,11 @@
 import MapKit
 import Foundation
 import UIKit
+import MapKit
 
 //MARK: - Create Subviews
-extension MarketInfo {
+extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
     func createObjects() {
-        createEditorBox()
-        createInfoTableView()
         createMapView()
         createNavigationView()
         createBackButton()
@@ -23,18 +22,21 @@ extension MarketInfo {
         createDetailView()
         createNameButtonView()
         createAddressButtonView()
-        createBoroughButtonView()
+        createcityButtonView()
         createSeasonButtonView()
         createDaysButtonView()
         createTimeButtonView()
         createEBTButtonView()
         createWebsiteButtonView()
+        createEditorBox()
+        createInfoTableView()
     }
     
     func createEditorBox() {
         editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
         editorBox.createObjects()
         editorBox.isHidden = true
+        editorBox.delegate = self
         self.addSubview(editorBox)
     }
     func createInfoTableView() {
@@ -121,17 +123,17 @@ extension MarketInfo {
         addressLabel.font = Constants.themeFont()
     }
     
-    func createBoroughButtonView() {
-        boroughButton = UIButton()
-        self.detailView.addSubview(boroughButton)
-        boroughButton.isEnabled = false
-        boroughButton.addTarget(self, action: #selector(editBoroughAction), for: .touchUpInside)
+    func createcityButtonView() {
+        cityButton = UIButton()
+        self.detailView.addSubview(cityButton)
+        cityButton.isEnabled = false
+        cityButton.addTarget(self, action: #selector(editBoroughAction), for: .touchUpInside)
         
-        boroughLabel = UILabel()
-        self.detailView.addSubview(boroughLabel)
-        boroughLabel.backgroundColor = UIColor.themeSecondary
-        boroughLabel.text = "Borough: \(market.borough!)"
-        boroughLabel.font = Constants.themeFont()
+        cityLabel = UILabel()
+        self.detailView.addSubview(cityLabel)
+        cityLabel.backgroundColor = UIColor.themeSecondary
+        cityLabel.text = "Borough: \(market.borough!)"
+        cityLabel.font = Constants.themeFont()
     }
     
     func createSeasonButtonView() {
