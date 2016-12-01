@@ -16,11 +16,9 @@ protocol CommentsViewDelegate: class {
 }
 
 
-class CommentsView: UIView {
+class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     weak var delegate: CommentsViewDelegate!
-    weak var tableViewDelegate: UITableViewDelegate?
-    weak var tableViewDataSource: UITableViewDataSource?
     
     var market: Market!
     var tableView: UITableView!
@@ -34,45 +32,31 @@ class CommentsView: UIView {
     
     override init(frame: CGRect){
         super.init(frame: frame)
-        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
-        if let marketName = market.name {
-            print(marketName)
-        }
-  
     }
     
     func commonInit() {
-        
         createLayout()
         loadConstraints()
-        //Need to assign the comments of a specific market to the comments array
-        readForUpdates()
+        readForComments()
     }
     
     //MARK: - Logic functions
-    func readForUpdates() {
-        /*
-        FirebaseAPI.readCommentFor(market: self.market.name!) { (success, data) in
-            if success {
-                for (key, value) in data {
-                    let info = value as! [String : String]
-                    self.comments.append(MarketComment(info: info, key: key))
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+    func readForComments() {
+        self.comments.removeAll()
+        print("The API function is called to load comments")
+        FirebaseAPI.readCommentFor(market: market.name!, completion: { commentId in
+            for (key, value) in commentId {
+                self.comments.append(MarketComment(id: key, value: value))
             }
-        }
- */
+            DispatchQueue.main.async {
+                print("The lenght of the comments array is: \(self.comments.count)")
+                self.tableView.reloadData()
+            }
+        })
     }
 
 
@@ -82,6 +66,14 @@ class CommentsView: UIView {
     
     func commentButtonAction() {
         delegate?.triggerCommentsSegue()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     //MARK: - Segues
@@ -100,16 +92,12 @@ class CommentsView: UIView {
 //MARK: - create subviews
 extension CommentsView {
     func createLayout() {
-        createFakeData()
-        
         //Add TableView
         tableView = UITableView()
         self.addSubview(tableView)
-        tableView.delegate = tableViewDelegate
-        tableView.dataSource = tableViewDataSource
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
-        tableView.numberOfRows(inSection: comments.count)
-        
         
         //Add Navigation Bar
         navigationView = UIView()
@@ -127,6 +115,8 @@ extension CommentsView {
         navigationView.addSubview(commentButton)
         commentButton.setTitle("Add a Comment", for: .normal)
         commentButton.addTarget(self, action: #selector(commentButtonAction), for: .touchUpInside)
+        commentButton.titleEdgeInsets.left = 5
+        commentButton.titleEdgeInsets.right = 5
     }
     
 }
@@ -162,13 +152,14 @@ extension CommentsView {
         //Comment Button Constraints
         commentButton.translatesAutoresizingMaskIntoConstraints = false
         commentButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        commentButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.7).isActive = true
-        commentButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.25).isActive = true
+        commentButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.55).isActive = true
+        commentButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.4).isActive = true
         commentButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
         commentButton.backgroundColor = UIColor.themePrimary
         commentButton.titleLabel?.textColor = UIColor.black
         commentButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: 10)
         commentButton.layer.borderWidth = CGFloat(2)
+        
         commentButton.layer.cornerRadius = CGFloat(7)
         commentButton.layer.borderColor = UIColor.themeAccent2.cgColor
     }

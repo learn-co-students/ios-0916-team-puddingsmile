@@ -15,16 +15,25 @@ class  CommentTableViewCell: UITableViewCell {
     var containerView: UIView!
     var commentLabel: UILabel!
     var nameLabel: UILabel!
-    var likesLabel: UILabel!
-    var likesButton: UIButton!
     var reportButton: UIButton!
     
     var comment: MarketComment!{
         didSet {
-          commentLabel.text = comment.comment
-          nameLabel.text = comment.name
-          likesLabel.text = String(comment.likes)
+            
+            if let displayComment =  comment.comment {
+                print(displayComment)
+                commentLabel.text = "\(displayComment)"
+            }
+            if let displayName =  comment.name {
+                nameLabel.text = "\(displayName)"
+            }
+          //commentLabel.text = comment.id
+          //nameLabel.text = comment.name
         }
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,9 +42,10 @@ class  CommentTableViewCell: UITableViewCell {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("DisplayComment", owner: self, options: nil)
+        self.backgroundColor = UIColor.themeTertiary
         
         containerView = UIView()
+        containerView.backgroundColor = UIColor.themeSecondary
         self.addSubview(containerView)
         
         commentLabel = UILabel()
@@ -43,12 +53,6 @@ class  CommentTableViewCell: UITableViewCell {
         
         nameLabel = UILabel()
         containerView.addSubview(nameLabel)
-
-        likesLabel = UILabel()
-        containerView.addSubview(likesLabel)
-        
-        likesButton = UIButton()
-        containerView.addSubview(likesButton)
         
         reportButton = UIButton()
         containerView.addSubview(reportButton)
@@ -66,10 +70,6 @@ class  CommentTableViewCell: UITableViewCell {
         //add the deletes comment function here ********
     }
     
-    func reportCommentButtonAction() {
-        //add the deletes comment function here ********
-    }
-    
     func addConstraints() {
         //Container View
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ class  CommentTableViewCell: UITableViewCell {
         commentLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         commentLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.1).isActive = true
         commentLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        commentLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.7).isActive = true
+        commentLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.6).isActive = true
         commentLabel.textAlignment = NSTextAlignment.justified
         
         //Name Label
@@ -94,14 +94,14 @@ class  CommentTableViewCell: UITableViewCell {
         nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0.2)
         nameLabel.textAlignment = NSTextAlignment.center
-        
+        /*
         //Likes Label
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
         likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
         likesLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
         likesLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
         likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.5).isActive = true
-        likesLabel.text = "\(comment.likes) Likes"
+        likesLabel.text = "10 Likes"
         
         //Likes Button
         likesButton.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +113,7 @@ class  CommentTableViewCell: UITableViewCell {
         likesButton.setTitle("Unlike", for: .selected)
         likesButton.addTarget(self, action: #selector(likesButtonAction), for: .touchUpInside)
         likesButton.addTarget(self, action: #selector(unlikesButtonAction), for: .touchUpOutside)
-
+         */
         //Report Button
         reportButton.translatesAutoresizingMaskIntoConstraints = false
         reportButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
