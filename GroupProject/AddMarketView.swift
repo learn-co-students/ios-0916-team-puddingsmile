@@ -12,6 +12,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
     
     let addView = AddMarketPicker()
     let addDateView = AddMarketDatePicker()
+    var addMarketDayView: AddMarketDayOfWeek!
     var addViewUp = false
     var addDateUp = false
     var acceptsEBT = false
@@ -180,6 +181,16 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         return label
     }()
     
+    let daysOfWeekButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Enter Days of Week", for: .normal)
+        button.backgroundColor = UIColor.gray
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     
 //    func addMarketToFirebase() {
 //        print("Add market pressed")
@@ -217,9 +228,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         self.setupGestureRecognizer()
         self.setupOpenDateButtonLabel()
         self.setupCloseDateButtonLabel()
-        self.setupAcceptEBTLabel()
-        self.setupEBTCheckbox()
-        self.setupEBTCheckboxImage()
+        self.setupDaysOfWeekLabel()
+        self.setupDaysOfWeekButton()
+        //self.setupAcceptEBTLabel()
+        //self.setupEBTCheckbox()
+        //self.setupEBTCheckboxImage()
         
         
         //self.setupOpenTimeLabel()
@@ -404,11 +417,43 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
             checkboxImage.image = UIImage(named: "uncheckedBox")
             acceptsEBT = false
         }
+    }
+    
+    var dayOfWeekViewTopAnchor: NSLayoutConstraint!
+    var dayOfWeekViewWidthAnchor: NSLayoutConstraint!
+    var dayOfWeekViewHeightAnchor: NSLayoutConstraint!
+    var dayOfWeekViewCenterXAnchor: NSLayoutConstraint!
+    
+
+    
+    func daysOfWeekButtonPressed() {
+        print("days of week button pressed")
+        daysOfWeekButton.isEnabled = false
+        daysOfWeekButton.setTitle("", for: .disabled)
+        addMarketDayView = AddMarketDayOfWeek(frame: CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height * 0.3))
+        
+        self.addSubview(addMarketDayView)
+        
+        addMarketDayView.setupSundayLabel()
+
+
+
+
+
+
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+            print("date animating")
+
+            
+            self.addMarketDayView.center.y = self.bounds.height - self.addMarketDayView.bounds.height * 0.75
+            
+            
+        }, completion: nil)
         
         
         
     }
-    
     
     
 }

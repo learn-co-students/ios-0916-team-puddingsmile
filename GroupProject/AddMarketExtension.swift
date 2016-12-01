@@ -94,7 +94,6 @@ extension AddMarketView {
     
     func setupEBTCheckbox() {
         self.addSubview(ebtCheckbox)
-        print("setupEBTCAlled")
         ebtCheckbox.centerYAnchor.constraint(equalTo: self.acceptsEBTLabel.centerYAnchor).isActive = true
         ebtCheckbox.heightAnchor.constraint(equalToConstant: 30).isActive = true
         ebtCheckbox.leadingAnchor.constraint(equalTo: self.acceptsEBTLabel.trailingAnchor, constant: 10).isActive = true
@@ -110,10 +109,22 @@ extension AddMarketView {
         checkboxImage.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
-    func setupDayOfWeekLabel() {
-        
+    func setupDaysOfWeekLabel() {
+        self.addSubview(dayOfWeekOpenLabel)
+        dayOfWeekOpenLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonButton.bottomAnchor, constant: 10).isActive = true
+//        dayOfWeekOpenLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        dayOfWeekOpenLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
     }
     
+    func setupDaysOfWeekButton() {
+        self.addSubview(daysOfWeekButton)
+        
+        daysOfWeekButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        daysOfWeekButton.topAnchor.constraint(equalTo: self.dayOfWeekOpenLabel.bottomAnchor, constant: 5).isActive = true
+        daysOfWeekButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        daysOfWeekButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        daysOfWeekButton.addTarget(self, action: #selector(daysOfWeekButtonPressed), for: .touchUpInside)
+    }
     
     
     func setupSubmitMarketButton() {

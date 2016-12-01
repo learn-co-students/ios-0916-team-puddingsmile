@@ -55,6 +55,7 @@
 		C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659401DDBCE8300C7B533 /* LandingView.swift */; };
 		C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */; };
 		C3C659451DDBCE8300C7B533 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659421DDBCE8300C7B533 /* SearchView.swift */; };
+		C3F66D211DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */; };
 		C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */; };
 		FAF45631D2F3047A5F3EA4DB /* Pods_GroupProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A67DF18E84F0E896BFFCF60 /* Pods_GroupProjectUITests.framework */; };
 /* End PBXBuildFile section */
@@ -136,6 +137,7 @@
 		C3C659401DDBCE8300C7B533 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoView.swift; sourceTree = "<group>"; };
 		C3C659421DDBCE8300C7B533 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketDaysOfWeekView.swift; sourceTree = "<group>"; };
 		C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketAnnotation.swift; sourceTree = "<group>"; };
 		CBEB0C8F32A47559618F9456 /* Pods-GroupProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E7301191369CDC6175227298 /* Pods-GroupProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				C35ADA221DECC522000442BB /* AddMarketView.swift */,
 				C37BA5CE1DEF60FA00AB1DD2 /* AddMarketDatePicker.swift */,
 				C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */,
+				C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */,
 			);
 			name = AddMarketViews;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */,
 				56A0716B1DEE13A100318D35 /* CommentCellView.swift in Sources */,
 				56BE38301DDE560100D5EA17 /* Market.xcdatamodeld in Sources */,
+				C3F66D211DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift in Sources */,
 				C3C658F61DDBCC1A00C7B533 /* GroupProject.xcdatamodeld in Sources */,
 				C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */,
 				C35ADA291DEE3330000442BB /* AddMarketPickerView.swift in Sources */,
