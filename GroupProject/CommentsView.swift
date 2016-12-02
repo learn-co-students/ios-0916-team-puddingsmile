@@ -70,6 +70,10 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         return comments.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -95,6 +99,7 @@ extension CommentsView {
         self.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        //tableView.allowsSelection = false
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
         
         //Add Navigation Bar
@@ -126,7 +131,7 @@ extension CommentsView {
         
         //TableView Constraints
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.3).isActive = true
+        tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.07).isActive = true
         tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         tableView.widthAnchor.constraint(equalToConstant: self.bounds.width).isActive = true
         tableView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.93).isActive = true
