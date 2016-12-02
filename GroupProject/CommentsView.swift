@@ -157,7 +157,7 @@ extension CommentsView {
         commentButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
         commentButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.55).isActive = true
         commentButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.4).isActive = true
-        commentButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        commentButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.07).isActive = true
         commentButton.backgroundColor = UIColor.themePrimary
         commentButton.titleLabel?.textColor = UIColor.black
         commentButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: 10)

@@ -77,26 +77,37 @@ class  CommentTableViewCell: UITableViewCell {
         containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         containerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.95).isActive = true
+        containerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.9).isActive = true
         containerView.layer.cornerRadius = 10
         
         //Comment Label
         commentLabel.translatesAutoresizingMaskIntoConstraints = false
         commentLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        commentLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        //commentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.1).isActive = true
+        commentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.2).isActive = true
         commentLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.9).isActive = true
         commentLabel.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
         commentLabel.textAlignment = NSTextAlignment.justified
         
         //Name Label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: self.bounds.height * 0.75).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.1).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0.2)
         nameLabel.textAlignment = NSTextAlignment.center
-        nameLabel.backgroundColor = UIColor.yellow
+        
+        
+        //Report Button
+        reportButton.translatesAutoresizingMaskIntoConstraints = false
+        reportButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: self.bounds.height * 0.65).isActive = true
+        reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
+        reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
+        reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.5).isActive = true
+        reportButton.setTitle("Report", for: .normal)
+        reportButton.setTitle("Reported", for: .selected)
+        reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
+        reportButton.backgroundColor = UIColor.black
+        
         /*
         //Likes Label
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -117,16 +128,7 @@ class  CommentTableViewCell: UITableViewCell {
         likesButton.addTarget(self, action: #selector(likesButtonAction), for: .touchUpInside)
         likesButton.addTarget(self, action: #selector(unlikesButtonAction), for: .touchUpOutside)
          */
-        //Report Button
-        reportButton.translatesAutoresizingMaskIntoConstraints = false
-        reportButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: self.bounds.height * 0.65).isActive = true
-        reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.1).isActive = true
-        reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
-        reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.5).isActive = true
-        reportButton.setTitle("Report", for: .normal)
-        reportButton.setTitle("Reported", for: .selected)
-        reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
-        reportButton.backgroundColor = UIColor.black
+        
     }
     
     
