@@ -21,7 +21,7 @@ class EditorBox: UIView {
     weak var delegate: EditorBoxDelegate!
     
     var editorState: EditorState = .neutral
-    var marketChanges = EditorStore()
+    var editorStore = EditorStore()
     var placeholderLabel = UILabel()
     
     //MARK: - TextField View
@@ -59,15 +59,70 @@ class EditorBox: UIView {
     }
     
     func cancelButtonAction() {
-        delegate.editorBoxCancel()
+        if editorState != .neutral {
+            setNeutralState()
+        } else {
+            print("leave")
+            editorStore.resetProperties()
+            delegate.editorBoxCancel()
+        }
+        
     }
     
     func nextButtonAction() {
-        
+        switch editorState {
+        case .seasonEdit:
+            nextButton.isHidden = true
+            doneButton.isHidden = false
+            editorStore.startSeason = "\(datePicker.date)"
+        case .timesEdit:
+            nextButton.isHidden = true
+            doneButton.isHidden = false
+            editorStore.startTimes = "\(datePicker.date)"
+        default:
+            return
+        }
     }
     
     func doneButtonAction() {
-        
+        switch editorState {
+        case .neutral:
+            //call firebase function to push up, must check for geolocation
+            delegate.editorBoxCancel()
+        case .nameEdit:
+            editorStore.name = textView.text
+            setNeutralState()
+        case .addressEdit:
+            editorStore.address = textView.text
+            setNeutralState()
+        case .cityEdit:
+            editorStore.city = textView.text
+            setNeutralState()
+        case .seasonEdit:
+            editorStore.endSeason = "\(datePicker.date)"
+            setNeutralState()
+        case .daysEdit:
+            
+            setNeutralState()
+        case .timesEdit:
+            editorStore.endSeason = "\(datePicker.date)"
+            setNeutralState()
+        case .ebtEdit:
+            return
+        }
+    }
+    
+    
+    
+    
+    
+    
+    func textHasInput() -> Bool {
+        if textView.text != "" {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -76,14 +131,17 @@ extension EditorBox {
     func setNeutralState() {
         manageHiddenViews(with: .neutral)
         placeholderLabel.text = "Press On A Field Below To Start Changing Them"
-        textView.isUserInteractionEnabled = false
+        textView.isHidden = true
         textView.text = ""
+        if editorStore.hasValue() {
+            doneButton.isHidden = false
+        }
     }
     func setNameEditState() {
         if editorState != .nameEdit {
             manageHiddenViews(with: .nameEdit)
             placeholderLabel.text = "Enter a new name for the market."
-            textView.isUserInteractionEnabled = true
+            textView.isHidden = false
             textView.text = ""
         }
     }
@@ -91,7 +149,7 @@ extension EditorBox {
         if editorState != .addressEdit {
             manageHiddenViews(with: .addressEdit)
             placeholderLabel.text = "Enter a new address for the market."
-            textView.isUserInteractionEnabled = true
+            textView.isHidden = false
             textView.text = ""
         }
     }
@@ -99,7 +157,7 @@ extension EditorBox {
         if editorState != .cityEdit {
             manageHiddenViews(with: .cityEdit)
             placeholderLabel.text = "Enter a new city for the market."
-            textView.isUserInteractionEnabled = true
+            textView.isHidden = false
             textView.text = ""
         }
     }
