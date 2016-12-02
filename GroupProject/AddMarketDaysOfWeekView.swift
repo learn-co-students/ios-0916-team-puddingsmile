@@ -12,7 +12,7 @@ import UIKit
 protocol DayOfWeekDelegate: class {
     
     func passClickedDay(tag: Int) -> String
-    func doneButtonPressed()
+    func doneButtonPressed(stringForFirebase: String, stringForDisplay: String)
 }
 
 class AddMarketDayOfWeek: UIView  {
@@ -260,8 +260,58 @@ class AddMarketDayOfWeek: UIView  {
     func doneButtonPressed() {
         //Create string that will be displayed to user
         //Create string that will be sent to Firebase
+        print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
+
+        var daysCheckedArray = [String]()
+
+        if sundayChecked {
+            daysCheckedArray.append("Sunday")
+            print("sunday checked")
+        }
+        if mondayChecked {
+            daysCheckedArray.append("Monday")
+            print("monday checked")
+        }
+        if tuesdayChecked {
+            daysCheckedArray.append("Tuesday")
+        }
+        if wednesdayChecked {
+            daysCheckedArray.append("Wednesday")
+        }
+        if thursdayChecked {
+            daysCheckedArray.append("Thursday")
+        }
+        if fridayChecked {
+            daysCheckedArray.append("Friday")
+        }
+        if saturdayChecked {
+            daysCheckedArray.append("Saturday")
+        }
         
+        let firebaseDayArray = daysStringForFirebase(dayArray: daysCheckedArray)
+        let displayDayArray = dayStringForUI(dayArray: daysCheckedArray)
         
+        delegate?.doneButtonPressed(stringForFirebase: firebaseDayArray, stringForDisplay: displayDayArray)
+    }
+    
+    func daysStringForFirebase(dayArray: [String]) -> String {
+        var dayString = ""
+        for day in dayArray {
+            dayString += "\(day)/"
+        }
+        dayString.remove(at: dayString.index(before: dayString.endIndex))
+        return dayString
+    }
+    
+    func dayStringForUI(dayArray: [String]) -> String {
+        var dayString = ""
+        for day in dayArray {
+            dayString += "\(day), "
+        }
+        dayString.remove(at: dayString.index(before: dayString.endIndex))
+        dayString.remove(at: dayString.index(before: dayString.endIndex))
+        
+        return dayString
     }
     
 

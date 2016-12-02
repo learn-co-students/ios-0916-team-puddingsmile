@@ -16,6 +16,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     var addViewUp = false
     var addDateUp = false
     var acceptsEBT = false
+    var firebaseDayString: String?
     
     var sundayChecked = false
     var mondayChecked = false
@@ -465,12 +466,14 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     func passClickedDay(tag: Int) -> String {
         print("DELEGATE clicked, tag is \(tag)")
         flipDay(tag: tag)
-        print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
+        //print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
         return "Hey"
     }
     
-    func doneButtonPressed() {
-        
+    func doneButtonPressed(stringForFirebase: String, stringForDisplay: String) {
+        firebaseDayString = stringForFirebase
+        daysOfWeekButton.isEnabled = true
+        daysOfWeekButton.setTitle(stringForDisplay, for: .normal)
     }
     
     func flipDay(tag: Int) {

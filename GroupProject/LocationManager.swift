@@ -37,10 +37,14 @@ struct LocationManager {
 }
 
 class LocationFinder: NSObject, CLLocationManagerDelegate {
-    let manager = CLLocationManager()
-    var geocoder = CLGeocoder()
+    static let sharedInstance = LocationFinder()
+    private override init() {}
     
-    func getLatLong(with address: String, completion: @escaping (Double, Double) -> Void) {
+    private var manager = CLLocationManager()
+    private var geocoder = CLGeocoder()
+    
+    func getLatLong(with address: String, completion: @escaping (Bool, (Double, Double)?) -> Void) {
+        var isAcceptableLocation = true
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         print("before geocoder")
@@ -62,7 +66,13 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
                 guard let unwrappedLongitude = longitude else { return }
                 
                 let returnTuple = (Double(unwrappedLatitude), Double(unwrappedLongitude))
-                completion(returnTuple.0, returnTuple.1)
+                
+                if returnTuple == (0,0) {
+                    isAcceptableLocation = false
+                    completion(isAcceptableLocation, nil)
+                }
+                
+                completion(isAcceptableLocation, (returnTuple.0, returnTuple.1))
             }
         })
         print("after completion")
