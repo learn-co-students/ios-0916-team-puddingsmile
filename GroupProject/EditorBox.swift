@@ -10,29 +10,48 @@ import Foundation
 import UIKit
 
 enum EditorState {
-    case neutral, textField, datePicker, dayPicker
+    case neutral, nameEdit, addressEdit, cityEdit, seasonEdit, daysEdit, timesEdit, ebtEdit
 }
 
-
+protocol EditorBoxDelegate: class {
+    func editorBoxCancel()
+}
 
 class EditorBox: UIView {
-    var editorState: EditorState = .datePicker
+    weak var delegate: EditorBoxDelegate!
     
-    var textFieldView: UIView!
-    var datePickerView: UIView!
-    var dayPickerView: UIView!
+    var editorState: EditorState = .neutral
+    var marketChanges = EditorStore()
+    var placeholderLabel = UILabel()
     
-    var textView: UITextView!
-    var datePicker: UIDatePicker!
+    //MARK: - TextField View
+    var textFieldView = UIView()
+    var textView = UITextView()
     
-    var cancelButton: UIButton!
-    var nextButton: UIButton!
-    var doneButton: UIButton!
+    //MARK: - DatePicker View
+    var datePickerView = UIView()
+    var datePicker = UIDatePicker()
+    
+    //MARK: - Day picker checkbox view
+    var dayPickerView = UIView()
+    var sunButton = UIButton()
+    var monButton = UIButton()
+    var tueButton = UIButton()
+    var wedButton = UIButton()
+    var thuButton = UIButton()
+    var friButton = UIButton()
+    var satButton = UIButton()
+    
+    //MARK: - ebt checkbox view
+    
+    var cancelButton = UIButton()
+    var nextButton = UIButton()
+    var doneButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.themeTertiary
-        alpha = 0.6
+        alpha = 0.9
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,148 +59,143 @@ class EditorBox: UIView {
     }
     
     func cancelButtonAction() {
-        print(1)
+        delegate.editorBoxCancel()
     }
     
     func nextButtonAction() {
-        print(1)
+        
     }
     
     func doneButtonAction() {
-        print(1)
+        
     }
 }
 
-//MARK: - Create subview objects
+//MARK: - State management
 extension EditorBox {
-    func createObjects() {
-        setupTextFieldview()
-        setupDatePickerView()
-        createCancelButton()
-        createNextButton()
-        createDoneButton()
+    func setNeutralState() {
+        manageHiddenViews(with: .neutral)
+        placeholderLabel.text = "Press On A Field Below To Start Changing Them"
+        textView.isUserInteractionEnabled = false
+        textView.text = ""
+    }
+    func setNameEditState() {
+        if editorState != .nameEdit {
+            manageHiddenViews(with: .nameEdit)
+            placeholderLabel.text = "Enter a new name for the market."
+            textView.isUserInteractionEnabled = true
+            textView.text = ""
+        }
+    }
+    func setAddressEditState() {
+        if editorState != .addressEdit {
+            manageHiddenViews(with: .addressEdit)
+            placeholderLabel.text = "Enter a new address for the market."
+            textView.isUserInteractionEnabled = true
+            textView.text = ""
+        }
+    }
+    func setCityEditState() {
+        if editorState != .cityEdit {
+            manageHiddenViews(with: .cityEdit)
+            placeholderLabel.text = "Enter a new city for the market."
+            textView.isUserInteractionEnabled = true
+            textView.text = ""
+        }
     }
     
-    func createCancelButton() {
-        cancelButton = UIButton()
-        self.addSubview(cancelButton)
-        cancelButton.backgroundColor = UIColor.themeAccent1
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
-        
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: self.frame.width * 0.2).isActive = true
-        cancelButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * -0.05).isActive = true
-        cancelButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
-        cancelButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+    func setSeasonEditState() {
+        if editorState != .seasonEdit {
+            manageHiddenViews(with: .seasonEdit)
+            placeholderLabel.text = "Enter the season for the market."
+            datePicker.datePickerMode = .date
+        }
     }
     
-    func createNextButton() {
-        nextButton = UIButton()
-        self.addSubview(nextButton)
-        nextButton.backgroundColor = UIColor.themeAccent1
-        nextButton.setTitle("Next", for: .normal)
-        nextButton.addTarget(self, action: #selector(nextButtonAction), for: .touchUpInside)
-        
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: self.frame.width * -0.2).isActive = true
-        nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * -0.05).isActive = true
-        nextButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
-        nextButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+    func setDaysEditState() {
+        if editorState != .daysEdit {
+            manageHiddenViews(with: .daysEdit)
+            placeholderLabel.text = "Enter the days for the market."
+        }
     }
-
-    func createDoneButton() {
-        doneButton = UIButton()
-        self.addSubview(doneButton)
-        doneButton.backgroundColor = UIColor.themeAccent1
-        doneButton.setTitle("Done", for: .normal)
-        doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
-        doneButton.isHidden = true
-        doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: self.frame.width * -0.2).isActive = true
-        doneButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: self.frame.height * 0.05).isActive = true
-        doneButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
-        doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+    
+    func setTimesEditState() {
+        if editorState != .timesEdit {
+            manageHiddenViews(with: .timesEdit)
+            placeholderLabel.text = "Enter the times for the market."
+            datePicker.datePickerMode = .time
+        }
+    }
+    
+    func setEBTEditState() {
+        
+    }
+    
+    func manageHiddenViews(with state: EditorState) {
+        switch state {
+        case .neutral:
+            editorState = .neutral
+            textFieldView.isHidden = false
+            datePickerView.isHidden = true
+            dayPickerView.isHidden = true
+            nextButton.isHidden = true
+            doneButton.isHidden = true
+        case .nameEdit:
+            editorState = .nameEdit
+            textFieldView.isHidden = false
+            datePickerView.isHidden = true
+            dayPickerView.isHidden = true
+            nextButton.isHidden = true
+            doneButton.isHidden = false
+        case .addressEdit:
+            editorState = .addressEdit
+            textFieldView.isHidden = false
+            datePickerView.isHidden = true
+            dayPickerView.isHidden = true
+            nextButton.isHidden = true
+            doneButton.isHidden = false
+        case .cityEdit:
+            editorState = .cityEdit
+            textFieldView.isHidden = false
+            datePickerView.isHidden = true
+            dayPickerView.isHidden = true
+            nextButton.isHidden = true
+            doneButton.isHidden = false
+        case .seasonEdit:
+            editorState = .seasonEdit
+            textFieldView.isHidden = true
+            datePickerView.isHidden = false
+            dayPickerView.isHidden = true
+            nextButton.isHidden = false
+            doneButton.isHidden = true
+        case .daysEdit:
+            editorState = .daysEdit
+            textFieldView.isHidden = true
+            datePickerView.isHidden = true
+            dayPickerView.isHidden = false
+            nextButton.isHidden = true
+            doneButton.isHidden = false
+        case .timesEdit:
+            editorState = .timesEdit
+            textFieldView.isHidden = true
+            datePickerView.isHidden = false
+            dayPickerView.isHidden = true
+            nextButton.isHidden = false
+            doneButton.isHidden = true
+        case .ebtEdit:
+            editorState = .ebtEdit
+            textFieldView.isHidden = true
+            datePickerView.isHidden = true
+            dayPickerView.isHidden = false
+            nextButton.isHidden = true
+            doneButton.isHidden = true
+        }
     }
     
 }
 
 
-//MARK: - Create and setup for textfieldView
-extension EditorBox {
-    func setupTextFieldview() {
-        createTextFieldView()
-        createTextView()
-        
-        constrainTextFieldView()
-        constrainTextView()
-    }
-    func createTextFieldView() {
-        textFieldView = UIView()
-        self.addSubview(textFieldView)
-        textFieldView.isHidden = true
-    }
-    func createTextView() {
-        textView = UITextView()
-        textFieldView.addSubview(textView)
-    }
-    func constrainTextFieldView() {
-        textFieldView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        textFieldView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        textFieldView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        textFieldView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
-    }
-    
-    func constrainTextView() {
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        textView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        textView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
-        textView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
-    }
-}
 
-//MARK: - Create and setup for datepickerview
-extension EditorBox {
-    func setupDatePickerView() {
-        createDatePickerView()
-        createDatePicker()
-        
-        constrainDatePickerView()
-        constrainDatePicker()
-    }
-    
-    func createDatePickerView() {
-        datePickerView = UIView()
-        self.addSubview(datePickerView)
-    }
-    
-    func createDatePicker() {
-        datePicker = UIDatePicker()
-        self.datePickerView.addSubview(datePicker)
-        datePicker.datePickerMode = .time
-        datePicker.setValue(UIColor.blue, forKeyPath: "textColor")
-        
-    }
-    
-    func constrainDatePickerView() {
-        datePickerView.translatesAutoresizingMaskIntoConstraints = false
-        datePickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        datePickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        datePickerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        datePickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
-    }
-    
-    func constrainDatePicker() {
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.centerXAnchor.constraint(equalTo: datePickerView.centerXAnchor).isActive = true
-        datePicker.centerYAnchor.constraint(equalTo: datePickerView.centerYAnchor).isActive = true
-        datePicker.heightAnchor.constraint(equalTo: datePickerView.heightAnchor, multiplier: 0.7).isActive = true
-        datePicker.widthAnchor.constraint(equalTo: datePickerView.widthAnchor, multiplier: 0.7).isActive = true
-        
-    }
-}
 
 
 

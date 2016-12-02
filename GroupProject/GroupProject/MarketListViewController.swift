@@ -9,7 +9,7 @@
 import UIKit
 
 class MarketListViewController: UITableViewController {
-
+    
     //MARK: - Properties
     let store = DataStore.sharedInstance
     var filteredMarkets = [Market]()

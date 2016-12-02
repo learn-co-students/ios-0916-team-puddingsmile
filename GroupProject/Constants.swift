@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 struct Constants {
-    static func themeFont(size: CGFloat = 12) -> UIFont? {
+    static func themeFont(size: CGFloat = 14) -> UIFont? {
         return UIFont(name: "Avenir Next", size: size)
     }
+    
+    
 }
