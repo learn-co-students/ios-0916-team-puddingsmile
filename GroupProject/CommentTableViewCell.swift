@@ -13,7 +13,7 @@ class  CommentTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     var containerView: UIView!
-    var commentLabel: UILabel!
+    var commentView: UITextView!
     var nameLabel: UILabel!
     var reportButton: UIButton!
     var likesLabel: UILabel!
@@ -22,7 +22,7 @@ class  CommentTableViewCell: UITableViewCell {
     var commentObject: MarketComment!{
         didSet {
             if let displayComment =  commentObject.comment {
-                commentLabel.text = "\(displayComment)"
+                commentView.text = "\(displayComment)"
             }
             if let displayName =  commentObject.name {
                 nameLabel.text = "- \(displayName)"
@@ -49,8 +49,8 @@ class  CommentTableViewCell: UITableViewCell {
         containerView.backgroundColor = UIColor.themeSecondary
         self.addSubview(containerView)
         
-        commentLabel = UILabel()
-        containerView.addSubview(commentLabel)
+        commentView = UITextView()
+        containerView.addSubview(commentView)
         
         nameLabel = UILabel()
         nameLabel.font = UIFont.italicSystemFont(ofSize: 14)
@@ -58,6 +58,12 @@ class  CommentTableViewCell: UITableViewCell {
         
         reportButton = UIButton()
         containerView.addSubview(reportButton)
+        
+        likesLabel = UILabel()
+        containerView.addSubview(likesLabel)
+        
+        likesButton = UIButton()
+        containerView.addSubview(likesButton)
     }
     
     
@@ -79,12 +85,12 @@ class  CommentTableViewCell: UITableViewCell {
         containerView.layer.cornerRadius = 10
         
         //Comment Label
-        commentLabel.translatesAutoresizingMaskIntoConstraints = false
-        commentLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        commentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.1).isActive = true
-        commentLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.9).isActive = true
-        commentLabel.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
-        commentLabel.textAlignment = NSTextAlignment.justified
+        commentView.translatesAutoresizingMaskIntoConstraints = false
+        commentView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        commentView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.1).isActive = true
+        commentView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.9).isActive = true
+        commentView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
+        commentView.textAlignment = NSTextAlignment.justified
         
         //Name Label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -109,18 +115,18 @@ class  CommentTableViewCell: UITableViewCell {
     
         //Likes Label
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
-        likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
-        likesLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
-        likesLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
-        likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.5).isActive = true
+        likesLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.85).isActive = true
+        likesLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.15).isActive = true
+        likesLabel.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.15).isActive = true
+        likesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.5).isActive = true
         likesLabel.text = "10 Likes"
         
         //Likes Button
         likesButton.translatesAutoresizingMaskIntoConstraints = false
-        likesButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
-        likesButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
-        likesButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.1).isActive = true
-        likesButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.7).isActive = true
+        likesButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
+        likesButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.1).isActive = true
+        likesButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.1).isActive = true
+        likesButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.7).isActive = true
         likesButton.setTitle("👍🏽", for: .normal)
         likesButton.setTitle("Unlike", for: .selected)
         likesButton.addTarget(self, action: #selector(likesButtonAction), for: .touchUpInside)
