@@ -215,7 +215,6 @@ extension MarketInfo {
     func editNameAction() {
         editorBox.setNameEditState()
     }
-    
     func editAddressAction(){
         editorBox.setAddressEditState()
     }

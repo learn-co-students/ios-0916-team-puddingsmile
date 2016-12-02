@@ -23,10 +23,10 @@ class EditorBox: UIView {
     var editorState: EditorState = .neutral
     var marketChanges = EditorStore()
     var placeholderLabel: UILabel!
+    
     //MARK: - TextField View
     var textFieldView: UIView!
     var textView: UITextView!
-    
     
     //MARK: - DatePicker View
     var datePickerView: UIView!
@@ -63,11 +63,11 @@ class EditorBox: UIView {
     }
     
     func nextButtonAction() {
-        print(1)
+        
     }
     
     func doneButtonAction() {
-        print(1)
+        
     }
 }
 
@@ -357,37 +357,87 @@ extension EditorBox {
     }
     func createSunButton() {
         sunButton = UIButton()
-        datePickerView.addSubview(sunButton)
+        dayPickerView.addSubview(sunButton)
+        sunButton.setTitle("Sun", for: .normal)
+        sunButton.backgroundColor = UIColor.themeAccent2
         
+        sunButton.translatesAutoresizingMaskIntoConstraints = false
+        sunButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * -0.33).isActive = true
+        sunButton.centerYAnchor.constraint(equalTo: dayPickerView.centerYAnchor, constant: bounds.height * -0.28).isActive = true
+        sunButton.widthAnchor.constraint(equalTo: dayPickerView.widthAnchor, multiplier: 0.16).isActive = true
+        sunButton.heightAnchor.constraint(equalTo: dayPickerView.heightAnchor, multiplier: 0.2).isActive = true
     }
     func createMonButton() {
         monButton = UIButton()
-        datePickerView.addSubview(monButton)
+        dayPickerView.addSubview(monButton)
+        monButton.setTitle("Mon", for: .normal)
+        monButton.backgroundColor = UIColor.themeAccent2
         
+        monButton.translatesAutoresizingMaskIntoConstraints = false
+        monButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * -0.11).isActive = true
+        monButton.centerYAnchor.constraint(equalTo: dayPickerView.centerYAnchor, constant: bounds.height * -0.28).isActive = true
+        monButton.widthAnchor.constraint(equalTo: dayPickerView.widthAnchor, multiplier: 0.16).isActive = true
+        monButton.heightAnchor.constraint(equalTo: dayPickerView.heightAnchor, multiplier: 0.2).isActive = true
     }
     func createTueButton() {
         tueButton = UIButton()
-        datePickerView.addSubview(tueButton)
+        dayPickerView.addSubview(tueButton)
+        tueButton.setTitle("Tue", for: .normal)
+        tueButton.backgroundColor = UIColor.themeAccent2
+        
+        tueButton.translatesAutoresizingMaskIntoConstraints = false
+        tueButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.11).isActive = true
+        tueButton.centerYAnchor.constraint(equalTo: dayPickerView.centerYAnchor, constant: bounds.height * -0.28).isActive = true
+        tueButton.widthAnchor.constraint(equalTo: dayPickerView.widthAnchor, multiplier: 0.16).isActive = true
+        tueButton.heightAnchor.constraint(equalTo: dayPickerView.heightAnchor, multiplier: 0.2).isActive = true
     }
     func createWedButton() {
         wedButton = UIButton()
-        datePickerView.addSubview(wedButton)
+        dayPickerView.addSubview(wedButton)
+        wedButton.setTitle("Wed", for: .normal)
+        wedButton.backgroundColor = UIColor.themeAccent2
         
+        wedButton.translatesAutoresizingMaskIntoConstraints = false
+        wedButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.33).isActive = true
+        wedButton.centerYAnchor.constraint(equalTo: dayPickerView.centerYAnchor, constant: bounds.height * -0.28).isActive = true
+        wedButton.widthAnchor.constraint(equalTo: dayPickerView.widthAnchor, multiplier: 0.16).isActive = true
+        wedButton.heightAnchor.constraint(equalTo: dayPickerView.heightAnchor, multiplier: 0.2).isActive = true
     }
     func createThuButton() {
         thuButton = UIButton()
-        datePickerView.addSubview(thuButton)
+        dayPickerView.addSubview(thuButton)
+        thuButton.setTitle("Thur", for: .normal)
+        thuButton.backgroundColor = UIColor.themeAccent2
         
+        thuButton.translatesAutoresizingMaskIntoConstraints = false
+        thuButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * -0.19).isActive = true
+        thuButton.centerYAnchor.constraint(equalTo: dayPickerView.centerYAnchor, constant: bounds.height * -0.1).isActive = true
+        thuButton.widthAnchor.constraint(equalTo: dayPickerView.widthAnchor, multiplier: 0.16).isActive = true
+        thuButton.heightAnchor.constraint(equalTo: dayPickerView.heightAnchor, multiplier: 0.2).isActive = true
     }
     func createFriButton() {
         friButton = UIButton()
-        datePickerView.addSubview(friButton)
+        dayPickerView.addSubview(friButton)
+        friButton.setTitle("Fri", for: .normal)
+        friButton.backgroundColor = UIColor.themeAccent2
         
+        friButton.translatesAutoresizingMaskIntoConstraints = false
+        friButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.0).isActive = true
+        friButton.centerYAnchor.constraint(equalTo: dayPickerView.centerYAnchor, constant: bounds.height * -0.1).isActive = true
+        friButton.widthAnchor.constraint(equalTo: dayPickerView.widthAnchor, multiplier: 0.16).isActive = true
+        friButton.heightAnchor.constraint(equalTo: dayPickerView.heightAnchor, multiplier: 0.2).isActive = true
     }
     func createSatButton() {
         satButton = UIButton()
-        datePickerView.addSubview(satButton)
+        dayPickerView.addSubview(satButton)
+        satButton.setTitle("Sat", for: .normal)
+        satButton.backgroundColor = UIColor.themeAccent2
         
+        satButton.translatesAutoresizingMaskIntoConstraints = false
+        satButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.19).isActive = true
+        satButton.centerYAnchor.constraint(equalTo: dayPickerView.centerYAnchor, constant: bounds.height * -0.1).isActive = true
+        satButton.widthAnchor.constraint(equalTo: dayPickerView.widthAnchor, multiplier: 0.16).isActive = true
+        satButton.heightAnchor.constraint(equalTo: dayPickerView.heightAnchor, multiplier: 0.2).isActive = true
     }
 }
 
