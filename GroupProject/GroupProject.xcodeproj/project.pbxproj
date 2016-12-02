@@ -10,6 +10,7 @@
 		41C9EFEF0D58011ADABDA4A5 /* Pods_GroupProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E796F04915D3867E73E5AD /* Pods_GroupProjectTests.framework */; };
 		52118E11BE677BA33E036F3B /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */; };
 		5633056A1DEF5F6400E54561 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563305691DEF5F6400E54561 /* AddCommentView.swift */; };
+		567EFF661DF227B600525A3E /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567EFF651DF227B600525A3E /* AddCommentViewController.swift */; };
 		569CBD731DE5F3CC00BE502B /* MarketViewPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */; };
 		569CBD751DE5F41E00BE502B /* MarketTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569CBD741DE5F41E00BE502B /* MarketTableCell.swift */; };
 		569CBD791DE5F5A200BE502B /* MarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569CBD781DE5F5A200BE502B /* MarketView.swift */; };
@@ -87,6 +88,7 @@
 		42E14FECD137F0044D1F924B /* Pods-GroupProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		467396D901C55DBB36357A1F /* Pods-GroupProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		563305691DEF5F6400E54561 /* AddCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCommentView.swift; path = GroupProject/AddCommentView.swift; sourceTree = "<group>"; };
+		567EFF651DF227B600525A3E /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCommentViewController.swift; path = GroupProject/AddCommentViewController.swift; sourceTree = "<group>"; };
 		569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarketViewPrototype.xib; sourceTree = "<group>"; };
 		569CBD741DE5F41E00BE502B /* MarketTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketTableCell.swift; sourceTree = "<group>"; };
 		569CBD781DE5F5A200BE502B /* MarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketView.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */,
 				C3C659341DDBCE6700C7B533 /* MarketInfoViewController.swift */,
 				C35ADA241DECC760000442BB /* AddMarketViewController.swift */,
+				567EFF651DF227B600525A3E /* AddCommentViewController.swift */,
 				B5D2DDC11DE355E3001F2CCE /* CommentsViewController.swift */,
 			);
 			name = Controller;
@@ -688,6 +691,7 @@
 				B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */,
 				B5D2DDC21DE355E3001F2CCE /* CommentsViewController.swift in Sources */,
 				C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */,
+				567EFF661DF227B600525A3E /* AddCommentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
