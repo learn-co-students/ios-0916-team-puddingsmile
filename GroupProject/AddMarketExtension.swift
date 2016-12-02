@@ -87,8 +87,8 @@ extension AddMarketView {
     func setupAcceptEBTLabel() {
         self.addSubview(acceptsEBTLabel)
         
-        acceptsEBTLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonButton.bottomAnchor, constant: 10).isActive = true
-        acceptsEBTLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        acceptsEBTLabel.topAnchor.constraint(equalTo: self.daysOfWeekButton.bottomAnchor, constant: 10).isActive = true
+        acceptsEBTLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         acceptsEBTLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
     }
     

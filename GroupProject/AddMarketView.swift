@@ -239,9 +239,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.setupCloseDateButtonLabel()
         self.setupDaysOfWeekLabel()
         self.setupDaysOfWeekButton()
-        //self.setupAcceptEBTLabel()
-        //self.setupEBTCheckbox()
-        //self.setupEBTCheckboxImage()
+        self.setupAcceptEBTLabel()
+        self.setupEBTCheckbox()
+        self.setupEBTCheckboxImage()
         
         
         //self.setupOpenTimeLabel()
@@ -474,6 +474,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         firebaseDayString = stringForFirebase
         daysOfWeekButton.isEnabled = true
         daysOfWeekButton.setTitle(stringForDisplay, for: .normal)
+        
+        UIView.animate(withDuration: 1) {
+            print("animating down")
+            self.addMarketDayView.center.y = self.bounds.height + self.addMarketDayView.bounds.height * 0.5
+        }
     }
     
     func flipDay(tag: Int) {
