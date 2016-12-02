@@ -186,7 +186,6 @@
 			children = (
 				B5167F6F1DEF68C8005AB062 /* MarketInfoViewGroup */,
 				C35793AA1DEF9032000931F2 /* AddMarketViews */,
-				B5F429771DEF6A4A00C91084 /* EditorBox.swift */,
 				B5167F681DEDD626005AB062 /* Constants.swift */,
 				B5F429751DEF6A3A00C91084 /* InfoTableView.swift */,
 				C33604421DE357FF0062453A /* MapView.swift */,
@@ -246,6 +245,7 @@
 			children = (
 				B5F429801DF1BE0E00C91084 /* EditorBoxSubviews.swift */,
 				B5F4297E1DF0A52A00C91084 /* EditorStore.swift */,
+				B5F429771DEF6A4A00C91084 /* EditorBox.swift */,
 			);
 			name = EditorFolder;
 			sourceTree = "<group>";
@@ -254,8 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */,
-				C37BA5D01DEF767400AB1DD2 /* AddMarketExtension.swift */,
 				C35ADA221DECC522000442BB /* AddMarketView.swift */,
+				C37BA5D01DEF767400AB1DD2 /* AddMarketExtension.swift */,
 				C37BA5CE1DEF60FA00AB1DD2 /* AddMarketDatePicker.swift */,
 				C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */,
 			);

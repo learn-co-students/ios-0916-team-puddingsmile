@@ -24,9 +24,9 @@ class AddMarketDatePicker: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
-        setupOpenTimeLabel()
-        setupPicker()
-        setupNextDateButon()
+//        setupOpenTimeLabel()
+//        setupPicker()
+//        setupNextDateButon()
     }
     
     required init?(coder aDecoder: NSCoder) {
