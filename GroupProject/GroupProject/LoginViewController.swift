@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, LoginViewDelegate {
         let loginView = LoginView(frame: self.view.frame)
         loginView.delegate = self
         self.view = loginView
-        
+        print("&&&&&&&&&&&&&&")
     }
     
     func startSegueButton() {
