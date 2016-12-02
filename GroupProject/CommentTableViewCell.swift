@@ -22,10 +22,9 @@ class  CommentTableViewCell: UITableViewCell {
             if let displayComment =  commentObject.comment {
                 commentLabel.text = "\(displayComment)"
             }
-//            if let displayName =  commentObject.name {
-//                print("setting the displayName to \(displayName)")
-//                nameLabel.text = "\(displayName)"
-//            }
+            if let displayName =  commentObject.name {
+                nameLabel.text = "\(displayName)"
+            }
         }
     }
     
@@ -96,10 +95,10 @@ class  CommentTableViewCell: UITableViewCell {
         nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: self.bounds.height * 0.65).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, multiplier: 0.9)
+        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: self.bounds.width * 0.3).isActive = true
         nameLabel.textAlignment = NSTextAlignment.center
         nameLabel.textColor = UIColor.blue
-        nameLabel.text = "Name Label"
+        //nameLabel.text = "Name Label"
         
         //Report Button
         reportButton.translatesAutoresizingMaskIntoConstraints = false
