@@ -100,7 +100,6 @@ class MarketInfo: UIView {
         daysButton.isEnabled = state
         timeButton.isEnabled = state
         ebtButton.isEnabled = state
-        websiteButton.isEnabled = !state
         toggleEditButton(state: state)
     }
 }
@@ -207,9 +206,11 @@ extension MarketInfo {
     }
     
     func startSafari() {
-        let url = URL(string: market.marketWebsite!)
-        guard let uUrl = url else { return }
-        delegate.showSafariVC(url: uUrl)
+        if !isEditing {
+            let url = URL(string: market.marketWebsite!)
+            guard let uUrl = url else { return }
+            delegate.showSafariVC(url: uUrl)
+        }
     }
     
     func editNameAction() {
