@@ -92,17 +92,17 @@ class  CommentTableViewCell: UITableViewCell {
         
         //Name Label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: self.bounds.height * 0.65).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.6).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: self.bounds.width * 0.3).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.6).isActive = true
         nameLabel.textAlignment = NSTextAlignment.center
         nameLabel.textColor = UIColor.blue
         //nameLabel.text = "Name Label"
         
         //Report Button
         reportButton.translatesAutoresizingMaskIntoConstraints = false
-        reportButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.8).isActive = true
+        reportButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.6).isActive = true
         reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
         reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.6).isActive = true
