@@ -10,21 +10,23 @@ import UIKit
 
 class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDelegate {
         
-    let addView = AddMarketPicker()
-    let addDateView = AddMarketDatePicker()
+    var addView: AddMarketPicker!
+    var addDateView: AddMarketDatePicker!
     var addMarketDayView: AddMarketDayOfWeek!
     var addViewUp = false
     var addDateUp = false
-    var acceptsEBT = false
-    var firebaseDayString: String?
     
-    var sundayChecked = false
-    var mondayChecked = false
-    var tuesdayChecked = false
-    var wednesdayChecked = false
-    var thursdayChecked = false
-    var fridayChecked = false
-    var saturdayChecked = false
+    var marketName: String?
+    var marketAddress: String?
+    var openTime: String?
+    var closeTime: String?
+    var openDate: String?
+    var closeDate: String?
+    var firebaseDayString: String?
+    var acceptsEBT = false
+    var ebtString = ""
+    var lat: Double?
+    var long: Double?
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -201,24 +203,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     }()
     
     
-//    func addMarketToFirebase() {
-//        print("Add market pressed")
-//        let nameText = nameTextField.text
-//        let addressText = addressTextField.text
-//        //let openDateText = openDateTextField.text
-//        let closeDateText = closeDateTextField.text
-//        let openTimeText = openTimeTextField.text
-//        let closeTimeText = closeTimeTextField.text
-//        
-//        if nameText != "" && addressText != "" && openDateText != "" && closeDateText != "" && openTimeText != "" && closeTimeText != "" {
-//            print("not nil")
-//            FirebaseAPI.addMarketToFirebase(name: nameText!, address: addressText!, openDate: openDateText!, closeDate: closeDateText!, openTime: openTimeText!, closeTime: closeTimeText!)
-//            
-//        } else {
-//            print("nil")
-//        }
-//        
-//    }
+    func addMarketToFirebase() {
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -239,9 +226,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.setupCloseDateButtonLabel()
         self.setupDaysOfWeekLabel()
         self.setupDaysOfWeekButton()
-        //self.setupAcceptEBTLabel()
-        //self.setupEBTCheckbox()
-        //self.setupEBTCheckboxImage()
+        self.setupAcceptEBTLabel()
+        self.setupEBTCheckbox()
+        self.setupEBTCheckboxImage()
         
         
         //self.setupOpenTimeLabel()
@@ -273,13 +260,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             UIView.animate(withDuration: 1, animations: {
                 print("in animate")
                 
-                self.viewTopAnchor.isActive = false
-                
-                self.viewTopAnchor = self.addView.topAnchor.constraint(equalTo: self.bottomAnchor)
-                
-                self.viewTopAnchor.isActive = true
-                
-                self.layoutIfNeeded()
+                self.addView.center.y = self.bounds.height + self.addView.bounds.height * 0.5
                 
             }) { (complete) in
                 self.hoursOfOperationButton.setTitle("", for: .normal)
@@ -291,16 +272,10 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         print("beforeAnimation")
         
         if addDateUp == true {
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 print("in animate")
-                
-                self.dateViewTopAnchor.isActive = false
-                
-                self.dateViewTopAnchor = self.addDateView.topAnchor.constraint(equalTo: self.bottomAnchor)
-                
-                self.dateViewTopAnchor.isActive = true
-                
-                self.layoutIfNeeded()
+                self.addDateView.center.y = self.bounds.height + self.addDateView.bounds.height * 0.5
+               
                 
             }) { (complete) in
                 self.beginningOfSeasonButton.setTitle("", for: .normal)
@@ -313,106 +288,69 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     }
 
     func stringInfoDelegateOpen(time: String) {
+        openTime = time
         openTimeButtonLabel.text = "Open Time: \(time)"
     }
     
     func stringInfoDelegateClose(time: String) {
+        closeTime = time
         closeTimeButtonLabel.text = "Close Time: \(time)"
     }
     
     func bringUpTimePicker(_ sender: UITextField) {
         print("pressed")
         addViewUp = true
+        
         hoursOfOperationButton.setTitle("", for: .disabled)
         hoursOfOperationButton.isEnabled = false
         
+        addView = AddMarketPicker(frame: CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height * 0.3))
         self.addSubview(addView)
         addView.delegate = self
         
-        addView.translatesAutoresizingMaskIntoConstraints = false
-        
-        viewTopAnchor = addView.topAnchor.constraint(equalTo: self.bottomAnchor)
-        viewTopAnchor.isActive = true
-        
-        viewWidthAnchor = addView.widthAnchor.constraint(equalTo: self.widthAnchor)
-        viewWidthAnchor.isActive = true
-        
-        viewCenterXAnchor = addView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        viewCenterXAnchor.isActive = true
-        
-        viewHeightAnchor = addView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
-        viewHeightAnchor.isActive = true
-        
-        
-        self.layoutIfNeeded()
+        addView.setupOpenTimeLabel()
+        addView.setupCloseTimeLabel()
+        addView.setupLeftPicker()
+        addView.setupRightPicker()
 
 
-        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
             
-            self.viewTopAnchor.isActive = false
-            
-            self.viewTopAnchor = self.addView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
-            
-            self.viewTopAnchor.isActive = true
-            
-            self.layoutIfNeeded()
-
+            self.addView.center.y = self.bounds.height - self.addView.bounds.height * 0.5
             
         }, completion: nil)
     }
     
-    var dateViewTopAnchor: NSLayoutConstraint!
-    var dateViewWidthAnchor: NSLayoutConstraint!
-    var dateViewHeightAnchor: NSLayoutConstraint!
-    var dateViewCenterXAnchor: NSLayoutConstraint!
-    
     func openDateDelegate(date: String) {
         print("open delegate")
         print("date is \(date)")
+        openDate = date
         openDateButtonLabel.text = "Open: \(date)"
     }
     
     func closeDateDelegate(date: String) {
         print("close delegate")
         print("date is \(date)")
+        closeDate = date
         closeDateButtonLabel.text = "Close: \(date)"
     }
     
     func enterSeason() {
-        self.addSubview(addDateView)
         addDateUp = true
         beginningOfSeasonButton.setTitle("", for: .disabled)
         beginningOfSeasonButton.isEnabled = false
+        addDateView = AddMarketDatePicker(frame: CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height * 0.3))
+        
+        self.addSubview(addDateView)
         addDateView.delegate = self
+        addDateView.setupOpenTimeLabel()
+        addDateView.setupPicker()
+        addDateView.setupNextDateButon()
         
-        addDateView.translatesAutoresizingMaskIntoConstraints = false
-        
-        dateViewTopAnchor = addDateView.topAnchor.constraint(equalTo: self.bottomAnchor)
-        dateViewTopAnchor.isActive = true
-        
-        dateViewWidthAnchor = addDateView.widthAnchor.constraint(equalTo: self.widthAnchor)
-        dateViewWidthAnchor.isActive = true
-        
-        dateViewCenterXAnchor = addDateView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        dateViewCenterXAnchor.isActive = true
-        
-        dateViewHeightAnchor = addDateView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
-        dateViewHeightAnchor.isActive = true
-        
-        self.layoutIfNeeded()
-        
-        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
-            print("date animating")
-            self.dateViewTopAnchor.isActive = false
-            
-            self.dateViewTopAnchor = self.addDateView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
-            
-            self.dateViewTopAnchor.isActive = true
-            
-            self.layoutIfNeeded()
-            
-            
-        }, completion: nil)
+        UIView.animate(withDuration: 0.5) {
+            print("animating")
+            self.addDateView.center.y = self.bounds.height - self.addDateView.bounds.height * 0.5
+        }
         
     }
     
@@ -453,7 +391,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         addMarketDayView.setupDoneButton()
 
         
-        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
             print("date animating")
 
             
@@ -465,8 +403,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     func passClickedDay(tag: Int) -> String {
         print("DELEGATE clicked, tag is \(tag)")
-        flipDay(tag: tag)
-        //print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
+//        flipDay(tag: tag)
         return "Hey"
     }
     
@@ -474,56 +411,55 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         firebaseDayString = stringForFirebase
         daysOfWeekButton.isEnabled = true
         daysOfWeekButton.setTitle(stringForDisplay, for: .normal)
-    }
-    
-    func flipDay(tag: Int) {
-        switch tag {
-        case 1:
-            if sundayChecked {
-                sundayChecked = false
-            } else {
-                sundayChecked = true
-            }
-        case 2:
-            if mondayChecked {
-                mondayChecked = false
-            } else {
-                mondayChecked = true
-            }
-        case 3:
-            if tuesdayChecked {
-                tuesdayChecked = false
-            } else {
-                tuesdayChecked = true
-            }
-        case 4:
-            if wednesdayChecked {
-                wednesdayChecked = false
-            } else {
-                wednesdayChecked = true
-            }
-        case 5:
-            if thursdayChecked {
-                thursdayChecked = false
-            } else {
-                thursdayChecked = true
-            }
-        case 6:
-            if fridayChecked {
-                fridayChecked = false
-            } else {
-                fridayChecked = true
-            }
-        case 7:
-            if saturdayChecked {
-                saturdayChecked = false
-            } else {
-                saturdayChecked = true
-            }
-        default:
-            print("default")
+        
+        UIView.animate(withDuration: 0.5) {
+            print("animating down")
+            self.addMarketDayView.center.y = self.bounds.height + self.addMarketDayView.bounds.height * 0.5
         }
     }
+    
+//    func submitNewMarketButtonClicked() {
+//        print("Add market pressed")
+//        let nameText = nameTextField.text
+//        guard let addressText = addressTextField.text else { return }
+//        var stringLat: String!
+//        var stringLong: String!
+//        
+//        LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
+//            if success {
+//                self.lat = coordinateTuple!.0
+//                self.long = coordinateTuple!.1
+//                print(self.lat)
+//                print(self.long)
+//            } else {
+//                print("unacceptable address")
+//            }
+//        }
+//        
+//        
+//        if acceptsEBT {
+//            ebtString = "EBT"
+//        } else {
+//            ebtString = "_"
+//        }
+//        print(marketName)
+//        print(marketAddress)
+//        print(latString)
+//        print(longString)
+//        print(openTime)
+//        print(closeTime)
+//        print(openDate)
+//        print(closeDate)
+//        
+//        if marketName != nil && marketAddress != nil && lat != nil && long != nil && openTime != nil && closeTime != nil && openDate != nil && closeDate != nil && firebaseDayString != nil {
+//            FirebaseAPI.addMarketToFirebase(name: marketName!, address: marketAddress!, lat: latString, long: longString, openDate: openDate!, closeDate: closeDate!, openTime: openTime!, closeTime: closeTime!, acceptEBT: ebtString)
+//            print("You sent data up succesfully, you're the fuckin man")
+//            
+//        } else {
+//            print("NOT ACCEPTABLE!")
+//        }
+//
+//    }
     
     
 }

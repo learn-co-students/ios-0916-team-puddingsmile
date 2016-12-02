@@ -24,10 +24,10 @@ class AddMarketPicker: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
-        setupOpenTimeLabel()
-        setupCloseTimeLabel()
-        setupLeftPicker()
-        setupRightPicker()
+//        setupOpenTimeLabel()
+//        setupCloseTimeLabel()
+//        setupLeftPicker()
+//        setupRightPicker()
     }
     
     required init?(coder aDecoder: NSCoder) {

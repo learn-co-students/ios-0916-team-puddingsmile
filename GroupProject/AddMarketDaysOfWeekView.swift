@@ -295,6 +295,10 @@ class AddMarketDayOfWeek: UIView  {
     }
     
     func daysStringForFirebase(dayArray: [String]) -> String {
+        if dayArray.isEmpty {
+            print("ARRAY IS EMPTY")
+            return ""
+        }
         var dayString = ""
         for day in dayArray {
             dayString += "\(day)/"
@@ -305,6 +309,10 @@ class AddMarketDayOfWeek: UIView  {
     
     func dayStringForUI(dayArray: [String]) -> String {
         var dayString = ""
+        if dayArray.isEmpty {
+            print("ARRAY IS EMPTY")
+            return ""
+        }
         for day in dayArray {
             dayString += "\(day), "
         }

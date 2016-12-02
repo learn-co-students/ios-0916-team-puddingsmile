@@ -248,34 +248,18 @@ extension FirebaseAPI {
 //MARK: Add market to firebase database
 
 extension FirebaseAPI {
-    static func addMarketToFirebase(name: String, address: String, openDate: String, closeDate: String, openTime: String, closeTime: String) {
-        var latitude: Double?
-        var longitude: Double?
+    static func addMarketToFirebase(name: String, address: String, lat: String, long: String, openDate: String, closeDate: String, openTime: String, closeTime: String, acceptEBT: String) {
         
-        LocationFinder.sharedInstance.getLatLong(with: address) { (acceptable, coordinateTuple) in
-            if !acceptable {
-                print("Not an acceptable address")
-            }
-            
-            latitude = coordinateTuple!.0
-            longitude = coordinateTuple!.1
-            
-            let ref = FIRDatabase.database().reference().child("addMarket")
-            
-            let nameChild = ref.child(name)
-            
-            print("before")
-            guard let unwrappedLatitude = latitude else { return }
-            print("middle")
-            guard let unwrappedLongitude = longitude else { return }
-            print("end")
-            
-            let returnDict = ["address": address, "openDate": openDate, "closeDate": closeDate, "openTime": openTime, "closeTime": closeTime, "latitude": String(describing: unwrappedLatitude), "longitude": String(describing: unwrappedLongitude)]
-            
-            nameChild.setValue(returnDict)
-            
-        }
-    
+        
+        let ref = FIRDatabase.database().reference().child("addMarket")
+        
+        let nameChild = ref.child(name)
+        
+        
+        let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "openTime": openTime, "closeTime": closeTime, "ebt": acceptEBT]
+        
+        nameChild.setValue(returnDict)
+        
     }
     
 }
@@ -288,4 +272,6 @@ extension FirebaseAPI {
 
 
 
-    
+
+
+
