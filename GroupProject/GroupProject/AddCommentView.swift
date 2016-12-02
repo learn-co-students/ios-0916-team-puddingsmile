@@ -10,7 +10,7 @@ import UIKit
 
 class AddCommentView: UIView {
 
-    @IBOutlet var contentView: UIView!
+    var contentView: UIView!
     var addCommentButton: UIButton!
     var cancelCommentButton: UIButton!
     var commentField: UITextField! 

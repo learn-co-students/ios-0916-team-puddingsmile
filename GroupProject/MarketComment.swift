@@ -10,17 +10,17 @@ import Foundation
 
 
 struct MarketComment {
-    let comment: String
-    var likes: Int
-    let timeStamp: Double
-    let name: String
+    let comment: String?
+    //var likes: Int
+    //let timeStamp: Double
+    let name: String?
     let commentID: String
     
     init(id: String, value: [String:Any]) {
-        comment = value["comment"] as! String
-        likes = value["likes"] as! Int
-        timeStamp = value["timeStamp"] as! Double
-        name = value["name"] as! String
+        comment = value["comment"] as? String
+        //likes = value["likes"] as! Int
+        //timeStamp = value["timeStamp"] as! Double
+        name = value["name"] as? String
         commentID = id
     }
 }
