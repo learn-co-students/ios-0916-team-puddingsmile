@@ -16,6 +16,8 @@ class  CommentTableViewCell: UITableViewCell {
     var commentLabel: UILabel!
     var nameLabel: UILabel!
     var reportButton: UIButton!
+    var likesLabel: UILabel!
+    var likesButton: UIButton!
     
     var commentObject: MarketComment!{
         didSet {
@@ -75,13 +77,6 @@ class  CommentTableViewCell: UITableViewCell {
     func addConstraints() {
         containerView.frame = CGRect(x: self.bounds.width * 0.05, y: self.bounds.height * 0.05, width: self.bounds.width * 0.9, height: self.bounds.height * 0.9)
         containerView.layer.cornerRadius = 10
-        //Container View
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
-//        containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-//        containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-//        containerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
-//        containerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.9).isActive = true
-//        containerView.layer.cornerRadius = 10
         
         //Comment Label
         commentLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -112,8 +107,6 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
         reportButton.setTitleColor(UIColor.red, for: .normal)
     
-        
-        /*
         //Likes Label
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
         likesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.85).isActive = true
@@ -132,8 +125,6 @@ class  CommentTableViewCell: UITableViewCell {
         likesButton.setTitle("Unlike", for: .selected)
         likesButton.addTarget(self, action: #selector(likesButtonAction), for: .touchUpInside)
         likesButton.addTarget(self, action: #selector(unlikesButtonAction), for: .touchUpOutside)
-         */
-        
     }
     
     
