@@ -107,6 +107,8 @@ class MapView: MKMapView, MKMapViewDelegate {
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+            
+            //Create an instance of UIImage, load in data store. Then set pinImage to that instance
             let pinImage = UIImage(named: "apple")
             view.image = pinImage
 

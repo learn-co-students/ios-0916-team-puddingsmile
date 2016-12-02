@@ -27,13 +27,29 @@ extension UIColor {
         return UIColor(colorLiteralRed: 16/255, green: 34/255, blue: 43/255, alpha: 1)
     }
     
+    static var buttonText: UIColor {
+        return UIColor(colorLiteralRed: 50/255, green: 50/255, blue: 70/255, alpha: 1)
+    }
+    
+}
+
+extension UIButton {
+    func setToTheme() {
+        self.setTitleColor(UIColor.buttonText, for: .normal)
+        self.titleLabel?.font = Constants.themeFont(size: 15)
+        self.layer.cornerRadius = 7
+    }
+   
 }
 
 extension UILabel {
-    
-    
+    func setToTheme() {
+        self.textColor = UIColor.buttonText
+        self.font = Constants.themeFont(size: 15)
+    }
     
 }
+
 
 extension UIView {
     func createBottomBorder(forView: UIView) {
@@ -61,15 +77,4 @@ extension UITextField {
     }
 }
 
-//extension UILabel {
-//    func setLeftPaddingPoints(_ amount:CGFloat){
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.leftView = paddingView
-//        self.leftViewMode = .always
-//    }
-//    func setRightPaddingPoints(_ amount:CGFloat) {
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.rightView = paddingView
-//        self.rightViewMode = .always
-//    }
-//}
+

@@ -252,14 +252,14 @@ extension FirebaseAPI {
         var latitude: Double?
         var longitude: Double?
         
-        let locationFinder = LocationFinder()
-        locationFinder.getLatLong(with: address) { (lat, long) in
-            print("lat is \(lat)")
-            print("long is \(long)")
-            latitude = lat
-            longitude = long
+        LocationFinder.sharedInstance.getLatLong(with: address) { (acceptable, coordinateTuple) in
+            if !acceptable {
+                print("Not an acceptable address")
+            }
             
-            print("Firebase API Called")
+            latitude = coordinateTuple!.0
+            longitude = coordinateTuple!.1
+            
             let ref = FIRDatabase.database().reference().child("addMarket")
             
             let nameChild = ref.child(name)
@@ -273,8 +273,9 @@ extension FirebaseAPI {
             let returnDict = ["address": address, "openDate": openDate, "closeDate": closeDate, "openTime": openTime, "closeTime": closeTime, "latitude": String(describing: unwrappedLatitude), "longitude": String(describing: unwrappedLongitude)]
             
             nameChild.setValue(returnDict)
+            
         }
-        
+    
     }
     
 }

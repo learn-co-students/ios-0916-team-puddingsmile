@@ -8,12 +8,23 @@
 
 import UIKit
 
-class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
-    
+class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDelegate {
+        
     let addView = AddMarketPicker()
     let addDateView = AddMarketDatePicker()
+    var addMarketDayView: AddMarketDayOfWeek!
     var addViewUp = false
     var addDateUp = false
+    var acceptsEBT = false
+    var firebaseDayString: String?
+    
+    var sundayChecked = false
+    var mondayChecked = false
+    var tuesdayChecked = false
+    var wednesdayChecked = false
+    var thursdayChecked = false
+    var fridayChecked = false
+    var saturdayChecked = false
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -145,6 +156,50 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         return label
     }()
     
+    let acceptsEBTLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Accepts EBT:"
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let ebtCheckbox: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.backgroundColor = UIColor.clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let checkboxImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "uncheckedBox")
+        
+        return image
+    }()
+    
+    let dayOfWeekOpenLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Days of Week Open: "
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let daysOfWeekButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Enter Days of Week", for: .normal)
+        button.backgroundColor = UIColor.gray
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     
 //    func addMarketToFirebase() {
 //        print("Add market pressed")
@@ -182,6 +237,12 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         self.setupGestureRecognizer()
         self.setupOpenDateButtonLabel()
         self.setupCloseDateButtonLabel()
+        self.setupDaysOfWeekLabel()
+        self.setupDaysOfWeekButton()
+        //self.setupAcceptEBTLabel()
+        //self.setupEBTCheckbox()
+        //self.setupEBTCheckboxImage()
+        
         
         //self.setupOpenTimeLabel()
         //self.setupOpenTimeTextField()
@@ -354,6 +415,116 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate {
         }, completion: nil)
         
     }
+    
+    func ebtCheckboxClicked() {
+        print("clicked")
+        
+        if !acceptsEBT {
+            checkboxImage.image = UIImage(named: "checkedBox")
+            acceptsEBT = true
+        } else {
+            checkboxImage.image = UIImage(named: "uncheckedBox")
+            acceptsEBT = false
+        }
+    }
+    
+    var dayOfWeekViewTopAnchor: NSLayoutConstraint!
+    var dayOfWeekViewWidthAnchor: NSLayoutConstraint!
+    var dayOfWeekViewHeightAnchor: NSLayoutConstraint!
+    var dayOfWeekViewCenterXAnchor: NSLayoutConstraint!
+    
+
+    
+    func daysOfWeekButtonPressed() {
+        print("days of week button pressed")
+        daysOfWeekButton.isEnabled = false
+        daysOfWeekButton.setTitle("", for: .disabled)
+        addMarketDayView = AddMarketDayOfWeek(frame: CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height * 0.3))
+        
+        self.addSubview(addMarketDayView)
+        addMarketDayView.delegate = self
+        addMarketDayView.setupSundayLabel()
+        addMarketDayView.setupMondayLabel()
+        addMarketDayView.setupTuesdayLabel()
+        addMarketDayView.setupWednesdayLabel()
+        addMarketDayView.setupThursdayLabel()
+        addMarketDayView.setupFridayLabel()
+        addMarketDayView.setupSaturdayLabel()
+        addMarketDayView.setupDoneButton()
+
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+            print("date animating")
+
+            
+            self.addMarketDayView.center.y = self.bounds.height - self.addMarketDayView.bounds.height * 0.5
+            
+            
+        }, completion: nil)
+    }
+    
+    func passClickedDay(tag: Int) -> String {
+        print("DELEGATE clicked, tag is \(tag)")
+        flipDay(tag: tag)
+        //print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
+        return "Hey"
+    }
+    
+    func doneButtonPressed(stringForFirebase: String, stringForDisplay: String) {
+        firebaseDayString = stringForFirebase
+        daysOfWeekButton.isEnabled = true
+        daysOfWeekButton.setTitle(stringForDisplay, for: .normal)
+    }
+    
+    func flipDay(tag: Int) {
+        switch tag {
+        case 1:
+            if sundayChecked {
+                sundayChecked = false
+            } else {
+                sundayChecked = true
+            }
+        case 2:
+            if mondayChecked {
+                mondayChecked = false
+            } else {
+                mondayChecked = true
+            }
+        case 3:
+            if tuesdayChecked {
+                tuesdayChecked = false
+            } else {
+                tuesdayChecked = true
+            }
+        case 4:
+            if wednesdayChecked {
+                wednesdayChecked = false
+            } else {
+                wednesdayChecked = true
+            }
+        case 5:
+            if thursdayChecked {
+                thursdayChecked = false
+            } else {
+                thursdayChecked = true
+            }
+        case 6:
+            if fridayChecked {
+                fridayChecked = false
+            } else {
+                fridayChecked = true
+            }
+        case 7:
+            if saturdayChecked {
+                saturdayChecked = false
+            } else {
+                saturdayChecked = true
+            }
+        default:
+            print("default")
+        }
+    }
+    
     
 }
 

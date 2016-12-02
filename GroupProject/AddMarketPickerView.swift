@@ -15,7 +15,6 @@ protocol TimePickerDelegate: class {
     
     func stringInfoDelegateClose(time: String)
 
-    
 }
 
 class AddMarketPicker: UIView {
