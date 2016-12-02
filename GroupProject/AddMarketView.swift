@@ -16,6 +16,14 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     var addViewUp = false
     var addDateUp = false
     var acceptsEBT = false
+    
+    var sundayChecked = false
+    var mondayChecked = false
+    var tuesdayChecked = false
+    var wednesdayChecked = false
+    var thursdayChecked = false
+    var fridayChecked = false
+    var saturdayChecked = false
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -441,21 +449,77 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         addMarketDayView.setupThursdayLabel()
         addMarketDayView.setupFridayLabel()
         addMarketDayView.setupSaturdayLabel()
+        addMarketDayView.setupDoneButton()
 
         
         UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
             print("date animating")
 
             
-            self.addMarketDayView.center.y = self.bounds.height - self.addMarketDayView.bounds.height * 0.75
+            self.addMarketDayView.center.y = self.bounds.height - self.addMarketDayView.bounds.height * 0.5
             
             
         }, completion: nil)
     }
     
     func passClickedDay(tag: Int) -> String {
-        print("DELEGATE clicked")
+        print("DELEGATE clicked, tag is \(tag)")
+        flipDay(tag: tag)
+        print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
         return "Hey"
+    }
+    
+    func doneButtonPressed() {
+        
+    }
+    
+    func flipDay(tag: Int) {
+        switch tag {
+        case 1:
+            if sundayChecked {
+                sundayChecked = false
+            } else {
+                sundayChecked = true
+            }
+        case 2:
+            if mondayChecked {
+                mondayChecked = false
+            } else {
+                mondayChecked = true
+            }
+        case 3:
+            if tuesdayChecked {
+                tuesdayChecked = false
+            } else {
+                tuesdayChecked = true
+            }
+        case 4:
+            if wednesdayChecked {
+                wednesdayChecked = false
+            } else {
+                wednesdayChecked = true
+            }
+        case 5:
+            if thursdayChecked {
+                thursdayChecked = false
+            } else {
+                thursdayChecked = true
+            }
+        case 6:
+            if fridayChecked {
+                fridayChecked = false
+            } else {
+                fridayChecked = true
+            }
+        case 7:
+            if saturdayChecked {
+                saturdayChecked = false
+            } else {
+                saturdayChecked = true
+            }
+        default:
+            print("default")
+        }
     }
     
     

@@ -12,7 +12,7 @@ import UIKit
 protocol DayOfWeekDelegate: class {
     
     func passClickedDay(tag: Int) -> String
-    
+    func doneButtonPressed()
 }
 
 class AddMarketDayOfWeek: UIView  {
@@ -241,45 +241,92 @@ class AddMarketDayOfWeek: UIView  {
         return image
     }()
     
+    let doneButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Done", for: .normal)
+        button.titleLabel?.textColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+        
+    }()
+    
     func buttonChanged(_ sender: UIButton) {
         print("flip called")
         let tag = sender.tag
         flipDay(tag: tag)
-    }
-    
-    func sundayChanged() {
-        print("sunday button works")
-        //delegate?.passClickedDay(tag: 1)
-        flipDay(tag: 1)
-    }
-    
-    func mondayChanged(_ sender: UIButton) {
-        print("monday")
-        print(sender.tag)
-        tag = sender.tag
         delegate?.passClickedDay(tag: tag)
     }
     
-    func tuesdayChanged() {
+    func doneButtonPressed() {
+        //Create string that will be displayed to user
+        //Create string that will be sent to Firebase
+        
         
     }
     
-    func wednesdayChanged() {
-        
+
+    func flipDay(tag: Int) {
+        switch tag {
+        case 1:
+            if sundayChecked {
+                sundayImage.image = UIImage(named: "uncheckedBox")
+                sundayChecked = false
+            } else {
+                sundayImage.image = UIImage(named: "checkedBox")
+                sundayChecked = true
+            }
+        case 2:
+            if mondayChecked {
+                mondayImage.image = UIImage(named: "uncheckedBox")
+                mondayChecked = false
+            } else {
+                mondayImage.image = UIImage(named: "checkedBox")
+                mondayChecked = true
+            }
+        case 3:
+            if tuesdayChecked {
+                tuesdayImage.image = UIImage(named: "uncheckedBox")
+                tuesdayChecked = false
+            } else {
+                tuesdayImage.image = UIImage(named: "checkedBox")
+                tuesdayChecked = true
+            }
+        case 4:
+            if wednesdayChecked {
+                wednesdayImage.image = UIImage(named: "uncheckedBox")
+                wednesdayChecked = false
+            } else {
+                wednesdayImage.image = UIImage(named: "checkedBox")
+                wednesdayChecked = true
+            }
+        case 5:
+            if thursdayChecked {
+                thursdayImage.image = UIImage(named: "uncheckedBox")
+                thursdayChecked = false
+            } else {
+                thursdayImage.image = UIImage(named: "checkedBox")
+                thursdayChecked = true
+            }
+        case 6:
+            if fridayChecked {
+                fridayImage.image = UIImage(named: "uncheckedBox")
+                fridayChecked = false
+            } else {
+                fridayImage.image = UIImage(named: "checkedBox")
+                fridayChecked = true
+            }
+        case 7:
+            if saturdayChecked {
+                saturdayImage.image = UIImage(named: "uncheckedBox")
+                saturdayChecked = false
+            } else {
+                saturdayImage.image = UIImage(named: "checkedBox")
+                saturdayChecked = true
+            }
+        default:
+            print("default")
+        }
     }
-    
-    func thursdayChanged() {
-        print("thursday working")
-    }
-    
-    func fridayChanged() {
-        
-    }
-    
-    func saturdayChanged() {
-        
-    }
-    
     
 }
 
@@ -439,89 +486,18 @@ extension AddMarketDayOfWeek {
         saturdayImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
-    func checkForDay(tag: Int) -> String {
-        switch tag {
-        case 1:
-            return "Sunday"
-        case 2:
-            return "Monday"
-        case 3:
-            return "Tuesday"
-        case 4:
-            return "Wednesday"
-        case 5:
-            return "Thursday"
-        case 6:
-            return "Friday"
-        case 7:
-            return "Saturday"
-        default:
-            return "Default"
-        }
+    func setupDoneButton() {
+        self.addSubview(doneButton)
+        
+        doneButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        doneButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        doneButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        doneButton.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
     }
     
-    func flipDay(tag: Int) {
-        switch tag {
-        case 1:
-            if sundayChecked {
-                sundayImage.image = UIImage(named: "uncheckedBox")
-                sundayChecked = false
-            } else {
-                sundayImage.image = UIImage(named: "checkedBox")
-                sundayChecked = true
-            }
-        case 2:
-            if mondayChecked {
-                mondayImage.image = UIImage(named: "uncheckedBox")
-                mondayChecked = false
-            } else {
-                mondayImage.image = UIImage(named: "checkedBox")
-                mondayChecked = true
-            }
-        case 3:
-            if tuesdayChecked {
-                tuesdayImage.image = UIImage(named: "uncheckedBox")
-                tuesdayChecked = false
-            } else {
-                tuesdayImage.image = UIImage(named: "checkedBox")
-                tuesdayChecked = true
-            }
-        case 4:
-            if wednesdayChecked {
-                wednesdayImage.image = UIImage(named: "uncheckedBox")
-                wednesdayChecked = false
-            } else {
-                wednesdayImage.image = UIImage(named: "checkedBox")
-                wednesdayChecked = true
-            }
-        case 5:
-            if thursdayChecked {
-                thursdayImage.image = UIImage(named: "uncheckedBox")
-                thursdayChecked = false
-            } else {
-                thursdayImage.image = UIImage(named: "checkedBox")
-                thursdayChecked = true
-            }
-        case 6:
-            if fridayChecked {
-                fridayImage.image = UIImage(named: "uncheckedBox")
-                fridayChecked = false
-            } else {
-                fridayImage.image = UIImage(named: "checkedBox")
-                fridayChecked = true
-            }
-        case 7:
-            if saturdayChecked {
-                saturdayImage.image = UIImage(named: "uncheckedBox")
-                saturdayChecked = false
-            } else {
-                saturdayImage.image = UIImage(named: "checkedBox")
-                saturdayChecked = true
-            }
-        default:
-            print("default")
-        }
-    }
+    
+
     
 }
 
