@@ -383,36 +383,36 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         addDateUp = true
         beginningOfSeasonButton.setTitle("", for: .disabled)
         beginningOfSeasonButton.isEnabled = false
-        addDateView.delegate = self
-        
-        addDateView.translatesAutoresizingMaskIntoConstraints = false
-        
-        dateViewTopAnchor = addDateView.topAnchor.constraint(equalTo: self.bottomAnchor)
-        dateViewTopAnchor.isActive = true
-        
-        dateViewWidthAnchor = addDateView.widthAnchor.constraint(equalTo: self.widthAnchor)
-        dateViewWidthAnchor.isActive = true
-        
-        dateViewCenterXAnchor = addDateView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        dateViewCenterXAnchor.isActive = true
-        
-        dateViewHeightAnchor = addDateView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
-        dateViewHeightAnchor.isActive = true
-        
-        self.layoutIfNeeded()
-        
-        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
-            print("date animating")
-            self.dateViewTopAnchor.isActive = false
-            
-            self.dateViewTopAnchor = self.addDateView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
-            
-            self.dateViewTopAnchor.isActive = true
-            
-            self.layoutIfNeeded()
-            
-            
-        }, completion: nil)
+//        addDateView.delegate = self
+//        
+//        addDateView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        dateViewTopAnchor = addDateView.topAnchor.constraint(equalTo: self.bottomAnchor)
+//        dateViewTopAnchor.isActive = true
+//        
+//        dateViewWidthAnchor = addDateView.widthAnchor.constraint(equalTo: self.widthAnchor)
+//        dateViewWidthAnchor.isActive = true
+//        
+//        dateViewCenterXAnchor = addDateView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+//        dateViewCenterXAnchor.isActive = true
+//        
+//        dateViewHeightAnchor = addDateView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3)
+//        dateViewHeightAnchor.isActive = true
+//        
+//        self.layoutIfNeeded()
+//        
+//        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+//            print("date animating")
+//            self.dateViewTopAnchor.isActive = false
+//            
+//            self.dateViewTopAnchor = self.addDateView.bottomAnchor.constraint(equalTo: self.submitMarketButton.topAnchor, constant: -10)
+//            
+//            self.dateViewTopAnchor.isActive = true
+//            
+//            self.layoutIfNeeded()
+//            
+//            
+//        }, completion: nil)
         
     }
     
@@ -453,7 +453,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         addMarketDayView.setupDoneButton()
 
         
-        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
             print("date animating")
 
             
@@ -466,7 +466,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     func passClickedDay(tag: Int) -> String {
         print("DELEGATE clicked, tag is \(tag)")
         flipDay(tag: tag)
-        //print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
         return "Hey"
     }
     
@@ -475,7 +474,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         daysOfWeekButton.isEnabled = true
         daysOfWeekButton.setTitle(stringForDisplay, for: .normal)
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             print("animating down")
             self.addMarketDayView.center.y = self.bounds.height + self.addMarketDayView.bounds.height * 0.5
         }
