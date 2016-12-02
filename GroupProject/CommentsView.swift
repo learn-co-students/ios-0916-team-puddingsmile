@@ -86,6 +86,9 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         comment = comments[indexPath.row]
         
         cell.commentObject = comment
+        cell.addConstraints()
+        print("The frame is \(cell.containerView.frame)")
+        print("The bounds are \(cell.containerView.bounds)")
         return cell
     }
 }
