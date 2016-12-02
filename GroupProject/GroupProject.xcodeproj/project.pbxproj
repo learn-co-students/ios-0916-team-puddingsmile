@@ -246,7 +246,6 @@
 		B5F4297B1DF0702B00C91084 /* EditorFolder */ = {
 			isa = PBXGroup;
 			children = (
-				B5F429771DEF6A4A00C91084 /* EditorBox.swift */,
 				B5F429801DF1BE0E00C91084 /* EditorBoxSubviews.swift */,
 				B5F4297E1DF0A52A00C91084 /* EditorStore.swift */,
 				B5F429771DEF6A4A00C91084 /* EditorBox.swift */,
