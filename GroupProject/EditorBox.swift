@@ -134,7 +134,6 @@ extension EditorBox {
     func manageHiddenViews(with state: EditorState) {
         switch state {
         case .neutral:
-            editorState = .neutral
             textFieldView.isHidden = false
             datePickerView.isHidden = true
             dayPickerView.isHidden = true
