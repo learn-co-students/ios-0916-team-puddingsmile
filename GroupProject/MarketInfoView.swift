@@ -76,6 +76,7 @@ class MarketInfo: UIView {
         if touch.y > bounds.height * 0.43 {
             if isEditing {
                 endEditState()
+                toggleEditButton(state: false)
             }
         }
        
@@ -100,7 +101,6 @@ class MarketInfo: UIView {
         daysButton.isEnabled = state
         timeButton.isEnabled = state
         ebtButton.isEnabled = state
-        toggleEditButton(state: state)
     }
 }
 
@@ -116,8 +116,10 @@ extension MarketInfo {
     func editButtonAction() {
         if isEditing {
             endEditState()
+            toggleEditButton(state: false)
         } else {
             startEditState()
+            toggleEditButton(state: true)
         }
     }
     func startEditState() {
@@ -135,6 +137,7 @@ extension MarketInfo {
     
     //MARK: - EditorBoxDelegate methods
     func editorBoxCancel() {
+        print(1)
         swapToInfoTable()
         toggleButtons(state: false)
     }
@@ -184,7 +187,7 @@ extension MarketInfo {
         nameLabel.backgroundColor = UIColor.themeSecondary
         addressLabel.text = "Address: \(market.address!)"
         addressLabel.backgroundColor = UIColor.themeSecondary
-        cityLabel.text = "Borough: \(market.borough!)"
+        cityLabel.text = "City: \(market.borough!)"
         cityLabel.backgroundColor = UIColor.themeSecondary
         seasonLabel.text = "Season: \(market.openDate!) - \(market.closeDate!)"
         seasonLabel.backgroundColor = UIColor.themeSecondary
@@ -214,7 +217,9 @@ extension MarketInfo {
     }
     
     func editNameAction() {
-        editorBox.setNameEditState()
+        if editorBox.editorState != .nameEdit {
+            editorBox.setNameEditState()
+        }
     }
     func editAddressAction(){
         editorBox.setAddressEditState()

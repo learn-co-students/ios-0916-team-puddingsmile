@@ -187,7 +187,6 @@
 				B5167F6F1DEF68C8005AB062 /* MarketInfoViewGroup */,
 				C35793AA1DEF9032000931F2 /* AddMarketViews */,
 				B5167F681DEDD626005AB062 /* Constants.swift */,
-				B5F429751DEF6A3A00C91084 /* InfoTableView.swift */,
 				C33604421DE357FF0062453A /* MapView.swift */,
 				B5D2DDEC1DE39B3B001F2CCE /* UIClassExtensions.swift */,
 				B5D2DDEA1DE3943E001F2CCE /* LoginView.swift */,
@@ -236,6 +235,7 @@
 		B5F4297A1DF0701D00C91084 /* InfoTableFolder */ = {
 			isa = PBXGroup;
 			children = (
+				B5F429751DEF6A3A00C91084 /* InfoTableView.swift */,
 				B5F4297C1DF0706600C91084 /* InfoTableViewCell.swift */,
 			);
 			name = InfoTableFolder;
