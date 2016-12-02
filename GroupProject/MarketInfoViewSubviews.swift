@@ -132,7 +132,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         cityLabel = UILabel()
         self.detailView.addSubview(cityLabel)
         cityLabel.backgroundColor = UIColor.themeSecondary
-        cityLabel.text = "Borough: \(market.borough!)"
+        cityLabel.text = "City: \(market.borough!)"
         cityLabel.font = Constants.themeFont()
     }
     

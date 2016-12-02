@@ -22,6 +22,7 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
         marketInfoView.delegate = self
         self.view = marketInfoView
         marketInfoView.setupMarketInfoView(market: market)
+        marketInfoView.editorBox.vcDelegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +42,15 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
         safari = SFSafariViewController(url: url)
         present(safari, animated: true, completion: nil)
     }
-
+    
+    func addressAlert() {
+        let alert = UIAlertController(title: "Woops", message: "Address couldn't be read! \n Please try with another one.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action) in
+            
+        }))
+        present(alert, animated: true, completion: {})
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? CommentsViewController {
             dest.market = self.market

@@ -12,14 +12,19 @@ import MapKit
 import SafariServices
 
 protocol MarketInfoDelegate: class {
+    //InfoView Functions
     func triggerBackSegue()
     func triggerCommentsSegue()
     func showSafariVC(url: URL)
+    
+    //EditorBox Functions
+    func addressAlert()
 }
 
 class MarketInfo: UIView {
     
     weak var delegate: MarketInfoDelegate!
+    
     var market: Market!
     
     //MARK: - Map objects
@@ -58,13 +63,13 @@ class MarketInfo: UIView {
     //MARK: - Editor Objects
     var editorBox: EditorBox!
     var infoTableView: InfoTableView!
-    var isEditing: Bool = false
+    var isEditingFields: Bool = false
+    var isShowingTable: Bool = false
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.themePrimary
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,12 +79,15 @@ class MarketInfo: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first?.location(in: self) else { return }
         if touch.y > bounds.height * 0.43 {
-            if isEditing {
+            //TODO: - Add proper logic after fixing bools
+            if isEditingFields {
                 endEditState()
+                startTableState()
                 toggleEditButton(state: false)
+            } else if isShowingTable {
+                endTableState()
             }
         }
-       
     }
     
     func setupMarketInfoView(market: Market) {
@@ -112,37 +120,167 @@ extension MarketInfo {
         delegate.triggerBackSegue()
     }
     
-
     func editButtonAction() {
-        if isEditing {
+        if isShowingTable || isEditingFields {
+            endTableState()
             endEditState()
             toggleEditButton(state: false)
         } else {
-            startEditState()
-            toggleEditButton(state: true)
+            startTableState()
         }
     }
-    func startEditState() {
-        isEditing = true
+    
+    func startTableState() {
+        isShowingTable = true
         infoTableView.readForUpdates()
         showInfoTableView()
     }
-    func endEditState() {
-        isEditing = false
-        toggleButtons(state: false)
+    
+    func endTableState() {
+        isShowingTable = false
         resetOriginalLabels()
-        hideEditorBox()
         hideInfoTableView()
     }
     
-    //MARK: - EditorBoxDelegate methods
-    func editorBoxCancel() {
-        print(1)
-        swapToInfoTable()
-        toggleButtons(state: false)
+    func startEditState() {
+        isEditingFields = true
+        toggleButtons(state: true)
+        editorBox.setNeutralState()
+        showEditorBox()
     }
     
-    //MARK: - InfoTableViewDelegate methods
+    func endEditState() {
+        isEditingFields = false
+        toggleButtons(state: false)
+        resetOriginalLabels()
+        hideEditorBox()
+    }
+    
+
+    
+
+    
+    func resetOriginalLabels() {
+        nameLabel.text = "Name: \(market.name!)"
+        nameLabel.backgroundColor = UIColor.themeSecondary
+        addressLabel.text = "Address: \(market.address!)"
+        addressLabel.backgroundColor = UIColor.themeSecondary
+        cityLabel.text = "City: \(market.borough!)"
+        cityLabel.backgroundColor = UIColor.themeSecondary
+        seasonLabel.text = "Season: \(market.openDate!) - \(market.closeDate!)"
+        seasonLabel.backgroundColor = UIColor.themeSecondary
+        daysLabel.text = "Days Open: \(market.weekDayOpen!)"
+        daysLabel.backgroundColor = UIColor.themeSecondary
+        timeLabel.text = "Times Open: \(market.startTime!) - \(market.endTime!)"
+        timeLabel.backgroundColor = UIColor.themeSecondary
+        ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
+        ebtLabel.backgroundColor = UIColor.themeSecondary
+    }
+    
+    func favoriteButtonAction() {
+        endTableState()
+        endEditState()
+    }
+    
+    func commentsButtonAction() {
+        endTableState()
+        endEditState()
+        delegate.triggerCommentsSegue()
+    }
+    
+    func startSafari() {
+        if !isEditingFields && !isShowingTable {
+            let url = URL(string: market.marketWebsite!)
+            guard let uUrl = url else { return }
+            delegate.showSafariVC(url: uUrl)
+        }
+    }
+    
+    func editNameAction() {
+        if editorBox.editorState != .nameEdit {
+            editorBox.setNameEditState()
+        }
+    }
+    func editAddressAction(){
+        if editorBox.editorState != .addressEdit {
+            editorBox.setAddressEditState()
+        }
+    }
+    func editCityAction(){
+        if editorBox.editorState != .cityEdit {
+            editorBox.setCityEditState()
+        }
+    }
+    func editSeasonAction(){
+        if editorBox.editorState != .seasonEdit {
+            editorBox.setSeasonEditState()
+        }
+    }
+    func editDaysAction(){
+        if editorBox.editorState != .daysEdit {
+            editorBox.setDaysEditState()
+        }
+    }
+    func editTimeAction(){
+        if editorBox.editorState != .timesEdit {
+            editorBox.setTimesEditState()
+        }
+    }
+    func editEBTAction(){
+        if editorBox.editorState != .ebtEdit {
+            editorBox.setEBTEditState()
+        }
+    }
+    
+    func editWebsiteAction(){}
+}
+
+
+//MARK: - EditorBoxDelegate methods
+extension MarketInfo {
+    func editorBoxCancel() {
+        endEditState()
+        startTableState()
+    }
+    
+    func editorBoxDone() {
+        switch editorBox.editorState {
+        case .neutral:
+            //send to firebase
+            return
+        case .nameEdit:
+            nameLabel.text = "Name: \(editorBox.editorStore.name!)"
+            nameLabel.backgroundColor = UIColor.themePrimary
+            return
+        case .addressEdit:
+            addressLabel.text = "Address: \(editorBox.editorStore.address!)"
+            addressLabel.backgroundColor = UIColor.themePrimary
+            return
+        case .cityEdit:
+            cityLabel.text = "City: \(editorBox.editorStore.city!)"
+            cityLabel.backgroundColor = UIColor.themePrimary
+            return
+        case .seasonEdit:
+            seasonLabel.text = "Season: \(editorBox.editorStore.startSeason!) - \(editorBox.editorStore.endSeason!)"
+            seasonLabel.backgroundColor = UIColor.themePrimary
+            return
+        case .daysEdit:
+            seasonLabel.text = "Days: \(editorBox.editorStore.days!)"
+            seasonLabel.backgroundColor = UIColor.themePrimary
+            return
+        case .timesEdit:
+            timeLabel.text = "Times: \(editorBox.editorStore.startTimes!) - \(editorBox.editorStore.endTimes!)"
+            timeLabel.backgroundColor = UIColor.themePrimary
+            return
+        case .ebtEdit:
+            return
+        }
+    }
+}
+
+
+//MARK: - InfoTableViewDelegate methods
+extension MarketInfo {
     func sendMarketChanges(marketChanges: MarketChanges) {
         resetOriginalLabels()
         if let name = marketChanges.name {
@@ -176,153 +314,19 @@ extension MarketInfo {
     }
     
     func addNewMarketChange() {
-        resetOriginalLabels()
-        swapToEditorBox()
+        endTableState()
+        startEditState()
         editorBox.setNeutralState()
-        toggleButtons(state: true)
-    }
-    
-    func resetOriginalLabels() {
-        nameLabel.text = "Name: \(market.name!)"
-        nameLabel.backgroundColor = UIColor.themeSecondary
-        addressLabel.text = "Address: \(market.address!)"
-        addressLabel.backgroundColor = UIColor.themeSecondary
-        cityLabel.text = "City: \(market.borough!)"
-        cityLabel.backgroundColor = UIColor.themeSecondary
-        seasonLabel.text = "Season: \(market.openDate!) - \(market.closeDate!)"
-        seasonLabel.backgroundColor = UIColor.themeSecondary
-        daysLabel.text = "Days Open: \(market.weekDayOpen!)"
-        daysLabel.backgroundColor = UIColor.themeSecondary
-        timeLabel.text = "Times Open: \(market.startTime!) - \(market.endTime!)"
-        timeLabel.backgroundColor = UIColor.themeSecondary
-        ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
-        ebtLabel.backgroundColor = UIColor.themeSecondary
-    }
-    
-    func favoriteButtonAction() {
-        endEditState()
-    }
-    
-    func commentsButtonAction() {
-        endEditState()
-        delegate.triggerCommentsSegue()
-    }
-    
-    func startSafari() {
-        if !isEditing {
-            let url = URL(string: market.marketWebsite!)
-            guard let uUrl = url else { return }
-            delegate.showSafariVC(url: uUrl)
-        }
-    }
-    
-    func editNameAction() {
-        if editorBox.editorState != .nameEdit {
-            editorBox.setNameEditState()
-        }
-    }
-    func editAddressAction(){
-        editorBox.setAddressEditState()
-    }
-    func editCityAction(){
-        editorBox.setCityEditState()
-    }
-    func editSeasonAction(){
-        editorBox.setSeasonEditState()
-    }
-    func editDaysAction(){
-        editorBox.setDaysEditState()
-    }
-    func editTimeAction(){
-        editorBox.setTimesEditState()
-    }
-    func editEBTAction(){print(1)}
-    func editWebsiteAction(){}
-}
-
-//MARK: - Animation functions
-extension MarketInfo {
-    func showInfoTableView() {
-        self.infoTableView.isHidden = false
-        UIView.animate(withDuration: 0.2, animations: {
-            self.infoTableView.center.y = self.infoTableView.frame.height * 0.7
-        }, completion: { (success) in
-            
-        })
-    }
-    func hideInfoTableView() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.infoTableView.center.y = self.infoTableView.frame.height * -1
-        }, completion: { (success) in
-            self.infoTableView.isHidden = true
-        })
-    }
-    func hideEditorBox() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.editorBox.center.y = self.editorBox.frame.height * -1
-        }, completion: { (success) in
-            self.editorBox.isHidden = true
-        })
-    }
-    func swapToEditorBox() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.infoTableView.center.y = self.infoTableView.frame.height * -1
-        }, completion: { (success) in
-            self.infoTableView.isHidden = true
-            self.editorBox.isHidden = false
-            UIView.animate(withDuration: 0.2, animations: {
-                self.editorBox.center.y = self.editorBox.frame.height * 0.7
-            })
-        })
-    }
-    func swapToInfoTable() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.editorBox.center.y = self.editorBox.frame.height * -1
-        }, completion: { (success) in
-            self.editorBox.isHidden = true
-            self.infoTableView.isHidden = false
-            UIView.animate(withDuration: 0.2, animations: {
-                self.infoTableView.center.y = self.infoTableView.frame.height * 0.7
-            })
-        })
-    }
-    
-    func toggleEditButton(state: Bool) {
-        if state {
-            editButton.layer.borderWidth = 3
-        } else {
-            editButton.layer.borderWidth = 0
-        }
     }
 }
 
-//MARK: - Setup Mapkit view
-extension MarketInfo: CLLocationManagerDelegate {
-    func setupLocationManager(){
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-    }
 
-    func centerMapOnCurrentLocation() {
-        let center = CLLocationCoordinate2D(latitude: Double(market.latitude!)!, longitude: Double(market.longitude!)!)
-        let span = MKCoordinateSpanMake(0.002, 0.005) //arbitrary span (about 2X2 miles i think)
-        let region = MKCoordinateRegion(center: center, span: span)
-        self.mapView.setRegion(region, animated: true)
-    }
 
-    func convertToMapItem() {
-        let longitude = Double(market.longitude!)
-        let latitude = Double(market.latitude!)
-        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(latitude!, longitude!))
-        marketPin = MKMapItem(placemark: placemark)
-    }
-    
-    func addAnnotationToMap() {
-        let marketAnno = MarketAnnotation(market: self.market)
-        mapView.addAnnotation(marketAnno)
-    }
-    
-}
+
+
+
+
+
+
+
+

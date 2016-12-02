@@ -15,11 +15,12 @@ enum EditorState {
 
 protocol EditorBoxDelegate: class {
     func editorBoxCancel()
+    func editorBoxDone()
 }
 
 class EditorBox: UIView {
     weak var delegate: EditorBoxDelegate!
-    
+    weak var vcDelegate: MarketInfoDelegate!
     var editorState: EditorState = .neutral
     var editorStore = EditorStore()
     var placeholderLabel = UILabel()
@@ -91,28 +92,87 @@ class EditorBox: UIView {
             delegate.editorBoxCancel()
         case .nameEdit:
             editorStore.name = textView.text
+            delegate.editorBoxDone()
             setNeutralState()
         case .addressEdit:
-            editorStore.address = textView.text
-            setNeutralState()
+            LocationFinder.sharedInstance.getLatLong(with: textView.text, completion: { (success, coord) in
+                if success {
+                    self.editorStore.name = self.textView.text
+                    self.setNeutralState()
+                } else {
+                    self.vcDelegate.addressAlert()
+                }
+            })
         case .cityEdit:
             editorStore.city = textView.text
+            delegate.editorBoxDone()
             setNeutralState()
         case .seasonEdit:
             editorStore.endSeason = "\(datePicker.date)"
+            delegate.editorBoxDone()
             setNeutralState()
         case .daysEdit:
-            
+            editorStore.days = daysSelected()
+            delegate.editorBoxDone()
+            print(daysSelected())
             setNeutralState()
         case .timesEdit:
-            editorStore.endSeason = "\(datePicker.date)"
+            editorStore.endTimes = "\(datePicker.date)"
+            delegate.editorBoxDone()
             setNeutralState()
         case .ebtEdit:
             return
         }
     }
     
+    func sunButtonAction() { sunButton.isSelected = sunButton.isSelected ? false : true }
+    func monButtonAction() { monButton.isSelected = monButton.isSelected ? false : true }
+    func tueButtonAction() { tueButton.isSelected = tueButton.isSelected ? false : true }
+    func wedButtonAction() { wedButton.isSelected = wedButton.isSelected ? false : true }
+    func thuButtonAction() { thuButton.isSelected = thuButton.isSelected ? false : true }
+    func friButtonAction() { friButton.isSelected = friButton.isSelected ? false : true }
+    func satButtonAction() { satButton.isSelected = satButton.isSelected ? false : true }
     
+    func daysSelected() -> String {
+        var tempString = ""
+        if sunButton.isSelected {
+            if tempString != "" {
+                tempString += "/"
+            }
+            tempString += "Sunday"
+        }
+        if monButton.isSelected {
+            if tempString != "" {
+                tempString += "/"
+            }
+            tempString += "Monday"
+        }
+        if tueButton.isSelected {
+            if tempString != "" {
+                tempString += "/"
+            }
+            tempString += "Tuesday"
+        }
+        if wedButton.isSelected {
+            if tempString != "" {
+                tempString += "/"
+            }
+            tempString += "Wednesday"
+        }
+        if thuButton.isSelected {
+            if tempString != "" {
+                tempString += "/"
+            }
+            tempString += "Thursday"
+        }
+        if satButton.isSelected {
+            if tempString != "" {
+                tempString += "/"
+            }
+            tempString += "Saturday"
+        }
+        return tempString
+    }
     
     
     

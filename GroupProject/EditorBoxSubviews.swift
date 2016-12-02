@@ -188,6 +188,7 @@ extension EditorBox {
         sunButton.setTitle("Sun", for: .normal)
         sunButton.backgroundColor = UIColor.themeAccent1
         sunButton.setToTheme()
+        sunButton.addTarget(self, action: #selector(sunButtonAction), for: .touchUpInside)
         
         sunButton.translatesAutoresizingMaskIntoConstraints = false
         sunButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * -0.33).isActive = true
@@ -200,6 +201,7 @@ extension EditorBox {
         monButton.setTitle("Mon", for: .normal)
         monButton.backgroundColor = UIColor.themeAccent1
         monButton.setToTheme()
+        monButton.addTarget(self, action: #selector(monButtonAction), for: .touchUpInside)
         
         monButton.translatesAutoresizingMaskIntoConstraints = false
         monButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * -0.11).isActive = true
@@ -212,6 +214,7 @@ extension EditorBox {
         tueButton.setTitle("Tue", for: .normal)
         tueButton.backgroundColor = UIColor.themeAccent1
         tueButton.setToTheme()
+        tueButton.addTarget(self, action: #selector(tueButtonAction), for: .touchUpInside)
         
         tueButton.translatesAutoresizingMaskIntoConstraints = false
         tueButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.11).isActive = true
@@ -224,6 +227,7 @@ extension EditorBox {
         wedButton.setTitle("Wed", for: .normal)
         wedButton.backgroundColor = UIColor.themeAccent1
         wedButton.setToTheme()
+        wedButton.addTarget(self, action: #selector(wedButtonAction), for: .touchUpInside)
         
         wedButton.translatesAutoresizingMaskIntoConstraints = false
         wedButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.33).isActive = true
@@ -236,6 +240,7 @@ extension EditorBox {
         thuButton.setTitle("Thur", for: .normal)
         thuButton.backgroundColor = UIColor.themeAccent1
         thuButton.setToTheme()
+        thuButton.addTarget(self, action: #selector(thuButtonAction), for: .touchUpInside)
         
         thuButton.translatesAutoresizingMaskIntoConstraints = false
         thuButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * -0.22).isActive = true
@@ -248,6 +253,7 @@ extension EditorBox {
         friButton.setTitle("Fri", for: .normal)
         friButton.backgroundColor = UIColor.themeAccent1
         friButton.setToTheme()
+        friButton.addTarget(self, action: #selector(friButtonAction), for: .touchUpInside)
         
         friButton.translatesAutoresizingMaskIntoConstraints = false
         friButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.0).isActive = true
@@ -260,6 +266,7 @@ extension EditorBox {
         satButton.setTitle("Sat", for: .normal)
         satButton.backgroundColor = UIColor.themeAccent1
         satButton.setToTheme()
+        satButton.addTarget(self, action: #selector(satButtonAction), for: .touchUpInside)
         
         satButton.translatesAutoresizingMaskIntoConstraints = false
         satButton.centerXAnchor.constraint(equalTo: dayPickerView.centerXAnchor, constant: bounds.width * 0.22).isActive = true
