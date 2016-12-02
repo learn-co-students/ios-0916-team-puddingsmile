@@ -102,7 +102,7 @@ extension CommentsView {
         self.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.allowsSelection = false
+        tableView.allowsSelection = false
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
         
         //Add Navigation Bar

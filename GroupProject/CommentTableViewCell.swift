@@ -23,7 +23,7 @@ class  CommentTableViewCell: UITableViewCell {
                 commentLabel.text = "\(displayComment)"
             }
             if let displayName =  commentObject.name {
-                nameLabel.text = "\(displayName)"
+                nameLabel.text = "- \(displayName)"
             }
         }
     }
@@ -51,6 +51,7 @@ class  CommentTableViewCell: UITableViewCell {
         containerView.addSubview(commentLabel)
         
         nameLabel = UILabel()
+        nameLabel.font = UIFont.italicSystemFont(ofSize: 14)
         containerView.addSubview(nameLabel)
         
         reportButton = UIButton()
@@ -105,15 +106,13 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.6).isActive = true
         reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.3).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
-        reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.6).isActive = true
+        reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.2).isActive = true
         reportButton.setTitle("Report", for: .normal)
         reportButton.setTitle("Reported", for: .selected)
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
         reportButton.setTitleColor(UIColor.red, for: .normal)
+    
         
-        
-        print("The frame is \(reportButton.frame)")
-        print("The bounds are \(reportButton.bounds)")
         /*
         //Likes Label
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
