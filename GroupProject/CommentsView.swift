@@ -12,9 +12,7 @@ import UIKit
 protocol CommentsViewDelegate: class {
     func triggerBackSegue()
     func triggerCommentsSegue()
-
 }
-
 
 class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
@@ -29,7 +27,6 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     var backButton:     UIButton!
     var commentButton: UIButton!
 
-    
     override init(frame: CGRect){
         super.init(frame: frame)
     }
@@ -57,7 +54,6 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         })
     }
 
-
     func backButtonAction() {
        delegate?.triggerBackSegue()
     }
@@ -67,7 +63,11 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comments.count
+        if comments.count > 0 {
+            return comments.count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -82,9 +82,11 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentTableViewCell
         let comment: MarketComment!
-        
-        comment = comments[indexPath.row]
-        
+        if comments.count > 0 {
+            comment = comments[indexPath.row]
+        } else {
+            comment = MarketComment(id: "13423423", value: ["comment": "There are no comments for this market at this time", "user": "system"])
+        }
         cell.commentObject = comment
         cell.addConstraints()
         return cell
