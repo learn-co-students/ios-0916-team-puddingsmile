@@ -98,6 +98,7 @@ class EditorBox: UIView {
             LocationFinder.sharedInstance.getLatLong(with: textView.text, completion: { (success, coord) in
                 if success {
                     self.editorStore.name = self.textView.text
+                    print(coord)
                     self.setNeutralState()
                 } else {
                     self.vcDelegate.addressAlert()

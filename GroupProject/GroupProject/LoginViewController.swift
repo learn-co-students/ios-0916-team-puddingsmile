@@ -15,17 +15,11 @@ class LoginViewController: UIViewController, LoginViewDelegate {
         let loginView = LoginView(frame: self.view.frame)
         loginView.delegate = self
         self.view = loginView
-        print("&&&&&&&&&&&&&&")
     }
     
     func startSegueButton() {
        
         NotificationCenter.default.post(name: Notification.Name.mapVC, object: nil)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-    }
-
-    
 }
