@@ -83,9 +83,9 @@ class MarketInfo: UIView {
             if isEditingFields {
                 endEditState()
                 startTableState()
-                toggleEditButton(state: false)
             } else if isShowingTable {
                 endTableState()
+                toggleEditButton(state: false)
             }
         }
     }
@@ -127,6 +127,7 @@ extension MarketInfo {
             toggleEditButton(state: false)
         } else {
             startTableState()
+            toggleEditButton(state: true)
         }
     }
     

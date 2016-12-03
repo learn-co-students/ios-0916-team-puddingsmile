@@ -16,6 +16,7 @@ class MapViewController: UIViewController, MapViewDelegate {
         let mapView = MapView(frame: self.view.frame)
         mapView.mapDelegate = self
         self.view = mapView
+        
     }
     
     func getInfo(market: Market) {

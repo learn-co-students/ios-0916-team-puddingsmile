@@ -35,6 +35,12 @@ class FirebaseAPI {
             }
         })
     }
+    
+    static func userIsLoggedIn() -> Bool {
+        
+        return FIRAuth.auth()?.currentUser != nil ? true : false
+        
+    }
 }
 
 

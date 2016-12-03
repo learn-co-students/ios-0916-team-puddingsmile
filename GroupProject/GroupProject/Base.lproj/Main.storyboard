@@ -22,13 +22,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <connections>
-                        <segue destination="iHh-QM-2cc" kind="show" identifier="loginSegue" id="X1e-FA-x8k"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-316" y="125"/>
+            <point key="canvasLocation" x="340" y="-91"/>
         </scene>
         <!--Add Market View Controller-->
         <scene sceneID="4xp-fW-TA7">
@@ -46,12 +43,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDh-7h-G9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-316" y="832"/>
+            <point key="canvasLocation" x="3569" y="-91"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="wCA-wY-CQV">
             <objects>
-                <viewController id="iHh-QM-2cc" customClass="LoginViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginvc" id="iHh-QM-2cc" customClass="LoginViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8eZ-a2-zWC"/>
                         <viewControllerLayoutGuide type="bottom" id="aYc-NC-Eof"/>
@@ -61,18 +58,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <segue destination="Yoy-2Z-YSI" kind="show" identifier="mapViewSegue" id="VwL-BD-zLn"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uS-CZ-MTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="548" y="127"/>
+            <point key="canvasLocation" x="1098" y="733"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="QcV-Lj-XCd">
             <objects>
-                <viewController id="kjh-WV-NQI" customClass="MapViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapvc" id="kjh-WV-NQI" customClass="MapViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PQ0-wx-Nwh"/>
                         <viewControllerLayoutGuide type="bottom" id="AP5-08-5wK"/>
@@ -83,19 +77,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="MIu-Iu-CCF">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="7tw-yS-Cvw">
-                            <connections>
-                                <segue destination="JRR-XM-pzf" kind="presentation" id="fDA-Op-u4N"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="7tw-yS-Cvw"/>
                     </navigationItem>
                     <connections>
                         <segue destination="TwL-4O-INN" kind="presentation" identifier="marketInfoSegue" id="KjW-6N-AGa"/>
+                        <segue destination="JRR-XM-pzf" kind="presentation" id="o2I-Af-3ah"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Rm-yg-puH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2322" y="125"/>
+            <point key="canvasLocation" x="1754" y="-91"/>
         </scene>
         <!--Market List View Controller-->
         <scene sceneID="r3h-iZ-waC">
@@ -141,7 +132,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yft-4p-xpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3172" y="137.18140929535232"/>
+            <point key="canvasLocation" x="2646" y="-91"/>
         </scene>
         <!--Market Info View Controller-->
         <scene sceneID="Ljr-5G-Ybs">
@@ -162,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="taU-YS-QBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2321" y="943"/>
+            <point key="canvasLocation" x="2202" y="733"/>
         </scene>
         <!--Comments View Controller-->
         <scene sceneID="RFT-SQ-srK">
@@ -183,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygu-xC-l2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3244" y="942"/>
+            <point key="canvasLocation" x="3081" y="733"/>
         </scene>
         <!--Add Comment View Controller-->
         <scene sceneID="Lqx-Ww-TJ0">
@@ -201,28 +192,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cyi-d0-7Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4129" y="942"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WYy-9U-EVz">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yoy-2Z-YSI" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Mb-HI-DZW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="kjh-WV-NQI" kind="relationship" relationship="rootViewController" id="IJ6-qD-dZK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zzk-Hf-Vyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1412" y="126"/>
+            <point key="canvasLocation" x="3916" y="733"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bz1-sE-CdD"/>
+        <segue reference="KjW-6N-AGa"/>
     </inferredMetricsTieBreakers>
 </document>
