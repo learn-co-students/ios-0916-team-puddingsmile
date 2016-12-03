@@ -27,6 +27,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     var ebtString = ""
     var lat: Double?
     var long: Double?
+    var stringLat: String?
+    var stringLong: String?
+  
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -418,50 +421,61 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
     }
     
-//    func submitNewMarketButtonClicked() {
-//        print("Add market pressed")
-//        let nameText = nameTextField.text
-//        guard let addressText = addressTextField.text else { return }
-//        var stringLat: String!
-//        var stringLong: String!
-//        
-//        LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
-//            if success {
-//                self.lat = coordinateTuple!.0
-//                self.long = coordinateTuple!.1
-//                print(self.lat)
-//                print(self.long)
-//            } else {
-//                print("unacceptable address")
-//            }
-//        }
-//        
-//        
-//        if acceptsEBT {
-//            ebtString = "EBT"
-//        } else {
-//            ebtString = "_"
-//        }
-//        print(marketName)
-//        print(marketAddress)
-//        print(latString)
-//        print(longString)
-//        print(openTime)
-//        print(closeTime)
-//        print(openDate)
-//        print(closeDate)
-//        
-//        if marketName != nil && marketAddress != nil && lat != nil && long != nil && openTime != nil && closeTime != nil && openDate != nil && closeDate != nil && firebaseDayString != nil {
-//            FirebaseAPI.addMarketToFirebase(name: marketName!, address: marketAddress!, lat: latString, long: longString, openDate: openDate!, closeDate: closeDate!, openTime: openTime!, closeTime: closeTime!, acceptEBT: ebtString)
-//            print("You sent data up succesfully, you're the fuckin man")
-//            
-//        } else {
-//            print("NOT ACCEPTABLE!")
-//        }
-//
-//    }
-    
-    
+    func submitNewMarketButtonClicked() {
+        print("Add market pressed")
+     
+        let nameText = nameTextField.text
+        guard let addressText = addressTextField.text else { return }
+        
+        if self.acceptsEBT {
+            self.ebtString = "EBT"
+        } else {
+            self.ebtString = "_"
+        }
+        
+        print("before")
+        LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
+            var unwrappedLat: String?
+            var unwrappedLong: String?
+            print("in")
+            if success {
+                guard let unwrappedTuple = coordinateTuple else { return }
+                
+               
+                let latString = "\(unwrappedTuple.0)"
+                let longString = "\(unwrappedTuple.1)"
+                
+                
+                self.marketName = self.nameTextField.text
+                self.marketAddress = self.addressTextField.text
+                print("after")
+                
+                print(self.marketName)
+                print(self.marketAddress)
+                print(latString)
+                print(longString)
+                print(self.openTime)
+                print(self.closeTime)
+                print(self.openDate)
+                print(self.closeDate)
+                
+                if self.marketName != nil && self.marketAddress != nil && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
+                    
+                    
+                    FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: latString, long: longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!)
+                    print("You sent data up succesfully, you're the fuckin man")
+                    
+                } else {
+                    print("NOT ACCEPTABLE!")
+                }
+                
+                
+            } else {
+                print("unacceptable address"
+                )
+            }
+        }
+    }
 }
 
 
