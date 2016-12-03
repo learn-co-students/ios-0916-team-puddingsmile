@@ -234,6 +234,13 @@ extension EditorBox {
         if editorState != .daysEdit {
             manageHiddenViews(with: .daysEdit)
             placeholderLabel.text = "Enter the days for the market."
+            sunButton.isSelected = false
+            monButton.isSelected = false
+            tueButton.isSelected = false
+            wedButton.isSelected = false
+            thuButton.isSelected = false
+            friButton.isSelected = false
+            satButton.isSelected = false
         }
     }
     
