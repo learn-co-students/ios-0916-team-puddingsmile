@@ -325,7 +325,7 @@ extension LoginView {
         
         appTitleLabel3 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.11, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.05))
         appTitleLabel3.textColor = UIColor.black
-        appTitleLabel3.text = "Grower"
+        appTitleLabel3.text = "Fresh"
         appTitleLabel3.font = UIFont(name: "AvenirNext-Heavy", size: 20)
         appTitleLabel3.textAlignment = .center
         self.addSubview(appTitleLabel3)
