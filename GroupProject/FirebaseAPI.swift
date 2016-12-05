@@ -164,7 +164,7 @@ extension FirebaseAPI {
     }
     
     static func upvoteInMarket(for marketName: String, with marketID: String, upvoted: Bool) {
-        //make sure people cant upvote same thing over and over and over fuck my life
+        //make sure people cant upvote same thing over and over and over 
         let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)")
         
         ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in

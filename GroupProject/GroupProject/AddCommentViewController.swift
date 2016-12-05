@@ -12,6 +12,7 @@ class AddCommentViewController: UIViewController, AddCommentDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        modalTransitionStyle = .crossDissolve
         let addCommentView = AddCommentView(frame: self.view.frame)
         self.view = addCommentView
         print("view loaded")
@@ -23,13 +24,10 @@ class AddCommentViewController: UIViewController, AddCommentDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //create Add Comment button
-    //create Cancel button
-    //create large text field
+
     
     func triggerBackSegue() {
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "addCommentSegue", sender: self)
     }
     
 }
