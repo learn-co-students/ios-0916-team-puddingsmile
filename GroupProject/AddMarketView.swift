@@ -18,6 +18,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     var marketName: String?
     var marketAddress: String?
+    var websiteAddress: String?
     var openTime: String?
     var closeTime: String?
     var openDate: String?
@@ -205,10 +206,25 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         return button
     }()
     
-    
-    func addMarketToFirebase() {
+    let websiteLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Enter Website:"
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
         
-    }
+        return label
+    }()
+    
+    let websiteTextField: UITextField = {
+        let field = UITextField()
+        field.placeholder = "Enter Website"
+        field.backgroundColor = UIColor.gray
+        field.layer.cornerRadius = 10
+        field.translatesAutoresizingMaskIntoConstraints = false
+        
+        return field
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -232,6 +248,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.setupAcceptEBTLabel()
         self.setupEBTCheckbox()
         self.setupEBTCheckboxImage()
+        self.setupWebsiteLabel()
+        self.setupWebsiteTextField()
         
         
         //self.setupOpenTimeLabel()
@@ -432,6 +450,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             self.ebtString = "_"
         }
         
+        print("before location finder")
         LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
             
             if success {
@@ -444,14 +463,20 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 
                 self.marketName = self.nameTextField.text
                 self.marketAddress = self.addressTextField.text
+                self.websiteAddress = self.websiteTextField.text
                 print("after")
                 
+                print(self.marketName)
+                print(self.marketAddress)
+                print(self.websiteAddress)
                 
-                if self.marketName != nil && self.marketAddress != nil && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
+                
+                if (self.marketName != nil || self.marketName != "") && (self.marketAddress != nil || self.marketAddress != "") && (self.websiteAddress != nil || self.websiteAddress != "") && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
                     
-                    FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: latString, long: longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!)
-                    print("You sent data up succesfully, you're the fuckin man")
+                    FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: latString, long: longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)
+                    
+                    print("You sent data up succesfully")
                     
                 } else {
                     print("NOT ACCEPTABLE!")
@@ -459,10 +484,10 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 
                 
             } else {
-                print("unacceptable address"
-                )
+                print("blew it")
             }
         }
+        print("after location finder")
     }
 }
 

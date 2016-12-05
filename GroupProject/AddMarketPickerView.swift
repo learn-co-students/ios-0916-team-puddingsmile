@@ -57,7 +57,7 @@ class AddMarketPicker: UIView {
     let leftDatePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = UIDatePickerMode.time
-        picker.minuteInterval = 15
+        picker.minuteInterval = 30
         picker.locale = Locale.current
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
@@ -66,7 +66,7 @@ class AddMarketPicker: UIView {
     let rightDatePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = UIDatePickerMode.time
-        picker.minuteInterval = 15
+        picker.minuteInterval = 30
         picker.locale = Locale.current
         picker.calendar = Calendar.current
         picker.backgroundColor = UIColor.gray

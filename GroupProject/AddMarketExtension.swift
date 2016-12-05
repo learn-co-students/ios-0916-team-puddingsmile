@@ -92,6 +92,15 @@ extension AddMarketView: UITextFieldDelegate {
         acceptsEBTLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
     }
     
+    func setupWebsiteLabel() {
+        self.addSubview(websiteLabel)
+        
+        websiteLabel.topAnchor.constraint(equalTo: self.acceptsEBTLabel.bottomAnchor, constant: 10).isActive = true
+        websiteLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        websiteLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
+        websiteLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+    }
+    
     func setupEBTCheckbox() {
         self.addSubview(ebtCheckbox)
         ebtCheckbox.centerYAnchor.constraint(equalTo: self.acceptsEBTLabel.centerYAnchor).isActive = true
@@ -115,6 +124,7 @@ extension AddMarketView: UITextFieldDelegate {
 //        dayOfWeekOpenLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         dayOfWeekOpenLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
     }
+    
     
     func setupDaysOfWeekButton() {
         self.addSubview(daysOfWeekButton)
@@ -184,90 +194,19 @@ extension AddMarketView {
         beginningOfSeasonButton.addTarget(self, action: #selector(enterSeason), for: .touchUpInside)
     }
     
+    func setupWebsiteTextField() {
+        self.addSubview(websiteTextField)
+        
+        websiteTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        websiteTextField.topAnchor.constraint(equalTo: self.websiteLabel.bottomAnchor, constant: 5).isActive = true
+        websiteTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        websiteTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        
+    }
+    
   
     
 }
 
 
-//    let openTimeTextField: UITextField = {
-//        let field = UITextField()
-//        field.placeholder = "Enter Open Time"
-//        field.backgroundColor = UIColor.gray
-//        field.layer.cornerRadius = 10
-//        field.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return field
-//    }()
-//
-//    let closeTimeLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Close time:"
-//        label.textColor = UIColor.black
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return label
-//    }()
-//
-//    let closeTimeTextField: UITextField = {
-//        let field = UITextField()
-//        field.placeholder = "Enter Close Time"
-//        field.backgroundColor = UIColor.gray
-//        field.layer.cornerRadius = 10
-//        field.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return field
-//    }()
 
-
-//    let openTimeLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Hours of Operation"
-//        label.textColor = UIColor.black
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return label
-//    }()
-
-
-
-
-
-//    func setupOpenTimeLabel() {
-//        self.addSubview(openTimeLabel)
-//
-//        openTimeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-//        openTimeLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonLabel.bottomAnchor, constant: 20).isActive = true
-//        openTimeLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//    }
-
-
-//    func setupCloseTimeLabel() {
-//        self.addSubview(closeTimeLabel)
-//
-//        closeTimeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-//        closeTimeLabel.topAnchor.constraint(equalTo: self.openTimeLabel.bottomAnchor, constant: 20).isActive = true
-//        closeTimeLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//    }
-
-
-
-
-
-
-//    func setupOpenTimeTextField() {
-//        self.addSubview(openTimeTextField)
-//
-//        openTimeTextField.leadingAnchor.constraint(equalTo: self.openTimeLabel.trailingAnchor, constant: 20).isActive = true
-//        openTimeTextField.topAnchor.constraint(equalTo: self.beginningOfSeasonLabel.bottomAnchor, constant: 30).isActive = true
-//        openTimeTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        openTimeTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-//    }
-//
-//    func setupCloseTimeTextField() {
-//        self.addSubview(closeTimeTextField)
-//
-//        closeTimeTextField.leadingAnchor.constraint(equalTo: self.closeTimeLabel.trailingAnchor, constant: 20).isActive = true
-//        closeTimeTextField.topAnchor.constraint(equalTo: self.openTimeLabel.bottomAnchor, constant: 30).isActive = true
-//        closeTimeTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        closeTimeTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-//    }
