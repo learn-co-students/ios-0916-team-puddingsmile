@@ -74,16 +74,18 @@ extension AddMarketView: UITextFieldDelegate {
         self.addSubview(openDateButtonLabel)
         
         openDateButtonLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonLabel.bottomAnchor, constant: 15).isActive = true
-        openDateButtonLabel.leadingAnchor.constraint(equalTo: beginningOfSeasonButton.leadingAnchor).isActive = true
+        openDateButtonLabel.leadingAnchor.constraint(equalTo: beginningOfSeasonButton.leadingAnchor, constant: 5).isActive = true
         openDateButtonLabel.heightAnchor.constraint(equalToConstant: 20).isActive = false
+        openDateButtonLabel.isHidden = true
     }
     
     func setupCloseDateButtonLabel() {
         self.addSubview(closeDateButtonLabel)
         
         closeDateButtonLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonLabel.bottomAnchor, constant: 15).isActive = true
-        closeDateButtonLabel.trailingAnchor.constraint(equalTo: beginningOfSeasonButton.trailingAnchor).isActive = true
+        closeDateButtonLabel.trailingAnchor.constraint(equalTo: beginningOfSeasonButton.trailingAnchor, constant: -5).isActive = true
         closeDateButtonLabel.heightAnchor.constraint(equalToConstant: 20).isActive = false
+        closeDateButtonLabel.isHidden = true
     }
     
     func setupAcceptEBTLabel() {

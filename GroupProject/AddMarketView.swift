@@ -360,6 +360,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     func enterSeason() {
         addDateUp = true
+        openDateButtonLabel.isHidden = false
+        closeDateButtonLabel.isHidden = false
+        
         beginningOfSeasonButton.setTitle("", for: .disabled)
         beginningOfSeasonButton.isEnabled = false
         addDateView = AddMarketDatePicker(frame: CGRect(x: 0, y: self.bounds.height, width: self.bounds.width, height: self.bounds.height * 0.3))
@@ -511,6 +514,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         if openTime == nil || closeTime == nil {
             self.hoursOfOperationButton.shake(count: 3, for: 0.15, withTranslation: 7)
             self.hoursOfOperationButton.pulse(count: 1, for: 0.15, withTranslation: 5)
+        }
+        
+        if openDate == nil || closeDate == nil {
+            self.beginningOfSeasonButton.shake(count: 3, for: 0.15, withTranslation: 7)
+            self.beginningOfSeasonButton.pulse(count: 1, for: 0.15, withTranslation: 5)
         }
         
     }
