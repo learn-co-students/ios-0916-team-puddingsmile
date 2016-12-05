@@ -235,8 +235,13 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.setupNameTextField()
         self.setupAddressLabel()
         self.setupAddressTextField()
+        
+        self.setupWebsiteLabel()
+        self.setupWebsiteTextField()
+        
         self.setupOpenDateLabel()
         self.setupHoursOfOperationButton()
+        
         self.setupBeginningOfSeasonLabel()
         self.setupBeginningOfSeasonButton()
         self.setupOpenButtonLabel()
@@ -249,13 +254,13 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.setupAcceptEBTLabel()
         self.setupEBTCheckbox()
         self.setupEBTCheckboxImage()
-        self.setupWebsiteLabel()
-        self.setupWebsiteTextField()
+        
+        
         
         nameTextField.delegate = self
         addressTextField.delegate = self
         websiteTextField.delegate = self
-
+        
         self.setupSubmitMarketButton()
         print("add market called")
     }

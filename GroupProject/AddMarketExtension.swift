@@ -41,7 +41,7 @@ extension AddMarketView {
         self.addSubview(hoursOfOperationLabel)
         
         hoursOfOperationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        hoursOfOperationLabel.topAnchor.constraint(equalTo: self.addressTextField.bottomAnchor, constant: 10).isActive = true
+        hoursOfOperationLabel.topAnchor.constraint(equalTo: self.websiteTextField.bottomAnchor, constant: 10).isActive = true
     }
     
     func setupBeginningOfSeasonLabel() {
@@ -99,9 +99,9 @@ extension AddMarketView {
     func setupWebsiteLabel() {
         self.addSubview(websiteLabel)
         
-        websiteLabel.topAnchor.constraint(equalTo: self.acceptsEBTLabel.bottomAnchor, constant: 10).isActive = true
+        websiteLabel.topAnchor.constraint(equalTo: self.addressTextField.bottomAnchor, constant: 10).isActive = true
         websiteLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        websiteLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
+        websiteLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         websiteLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
@@ -227,6 +227,7 @@ extension AddMarketView {
 //        }
 //    }
 //    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(true)
         return false
@@ -237,6 +238,8 @@ extension AddMarketView {
     }
     
 }
+
+
 
 
 
