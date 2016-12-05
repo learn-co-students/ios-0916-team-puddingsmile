@@ -229,6 +229,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         setupAddMarketView()
+        self.backgroundColor = UIColor.themePrimary
         nameTextField.delegate = self
         addressTextField.delegate = self
         websiteTextField.delegate = self
@@ -253,7 +254,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     func dismissPickerView() {
         
         if addViewUp == true {
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 print("in animate")
                 
                 self.addView.center.y = self.bounds.height + self.addView.bounds.height * 0.5
@@ -312,7 +313,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         addView.setupRightPicker()
 
 
-        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: [], animations: {
             
             self.addView.center.y = self.bounds.height - self.addView.bounds.height * 0.5
             
@@ -348,7 +349,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         addDateView.setupPicker()
         addDateView.setupNextDateButon()
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.25) {
             print("animating")
             self.addDateView.center.y = self.bounds.height - self.addDateView.bounds.height * 0.5
         }
@@ -385,7 +386,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         addMarketDayView.setupDoneButton()
 
         
-        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: [], animations: {
             print("date animating")
 
             
@@ -405,7 +406,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         daysOfWeekButton.isEnabled = true
         daysOfWeekButton.setTitle(stringForDisplay, for: .normal)
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.25) {
             print("animating down")
             self.addMarketDayView.center.y = self.bounds.height + self.addMarketDayView.bounds.height * 0.5
         }

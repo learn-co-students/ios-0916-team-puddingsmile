@@ -262,10 +262,9 @@ extension FirebaseAPI {
         let nameChild = ref.child(name)
         
         
-        let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "startTime": openTime, "endTime": closeTime, "ebt": acceptEBT, "days": days, "website": website]
+        let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "startTime": openTime, "endTime": closeTime, "ebt": acceptEBT, "days": days, "website": website, "votes": "1"]
         
         nameChild.setValue(returnDict)
-        
     }
     
 }

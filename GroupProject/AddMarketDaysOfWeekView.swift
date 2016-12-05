@@ -29,7 +29,8 @@ class AddMarketDayOfWeek: UIView  {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = UIColor.themeAccent1
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,8 +42,8 @@ class AddMarketDayOfWeek: UIView  {
     let sundayLabel: UILabel = {
         let label = UILabel()
         label.text = "Sun:"
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.black
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -70,8 +71,8 @@ class AddMarketDayOfWeek: UIView  {
     let mondayLabel: UILabel = {
         let label = UILabel()
         label.text = "Mon:"
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.black
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -99,8 +100,8 @@ class AddMarketDayOfWeek: UIView  {
     let tuesdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Tue:"
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.black
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -128,8 +129,8 @@ class AddMarketDayOfWeek: UIView  {
     let wednesdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Wed:"
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.black
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -157,8 +158,8 @@ class AddMarketDayOfWeek: UIView  {
     let thursdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Th:"
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.black
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -186,8 +187,8 @@ class AddMarketDayOfWeek: UIView  {
     let fridayLabel: UILabel = {
         let label = UILabel()
         label.text = "Fri:"
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.black
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -215,8 +216,8 @@ class AddMarketDayOfWeek: UIView  {
     let saturdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Sat:"
-        label.textColor = UIColor.white
-        label.backgroundColor = UIColor.black
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -245,6 +246,7 @@ class AddMarketDayOfWeek: UIView  {
         let button = UIButton()
         button.setTitle("Done", for: .normal)
         button.titleLabel?.textColor = UIColor.black
+        button.backgroundColor = UIColor.themeAccent2
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
         
@@ -550,7 +552,7 @@ extension AddMarketDayOfWeek {
         doneButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         doneButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         doneButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        doneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         doneButton.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
         
     }
