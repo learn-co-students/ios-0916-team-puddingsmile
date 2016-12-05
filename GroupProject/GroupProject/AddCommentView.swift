@@ -88,6 +88,7 @@ class AddCommentView: UIView {
     }
     
     func backButtonAction() {
+        print("back button is pressed")
         delegate?.triggerBackSegue()
     }
 
@@ -106,8 +107,7 @@ class AddCommentView: UIView {
         backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        
-        
+
         //Comment Field
         commentField.translatesAutoresizingMaskIntoConstraints = false
         commentField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true

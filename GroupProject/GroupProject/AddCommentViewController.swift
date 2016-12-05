@@ -27,7 +27,8 @@ class AddCommentViewController: UIViewController, AddCommentDelegate {
 
     
     func triggerBackSegue() {
-        performSegue(withIdentifier: "addCommentSegue", sender: self)
+        print("Trigger Back Segue is called")
+        dismiss(animated: true, completion: nil)
     }
     
 }
