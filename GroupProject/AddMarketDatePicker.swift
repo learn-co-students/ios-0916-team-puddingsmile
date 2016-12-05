@@ -24,6 +24,8 @@ class AddMarketDatePicker: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
+        self.layer.borderColor = UIColor.black.cgColor
+        self.backgroundColor = UIColor.themeTertiary
 //        setupOpenTimeLabel()
 //        setupPicker()
 //        setupNextDateButon()
@@ -48,6 +50,7 @@ class AddMarketDatePicker: UIView {
         picker.datePickerMode = UIDatePickerMode.date
         picker.locale = Locale.current
         picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.layer.borderColor = UIColor.black.cgColor
         return picker
     }()
     
@@ -96,7 +99,7 @@ extension AddMarketDatePicker {
         self.addSubview(enterLabel)
         
         enterLabel.text = "Enter First Day of Season"
-        enterLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        enterLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
         enterLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
         enterLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         enterLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

@@ -284,7 +284,7 @@ extension FirebaseAPI {
 //MARK: Add market to firebase database
 
 extension FirebaseAPI {
-    static func addMarketToFirebase(name: String, address: String, lat: String, long: String, openDate: String, closeDate: String, openTime: String, closeTime: String, acceptEBT: String, days: String) {
+    static func addMarketToFirebase(name: String, address: String, lat: String, long: String, openDate: String, closeDate: String, openTime: String, closeTime: String, acceptEBT: String, days: String, website: String) {
         
         
         let ref = FIRDatabase.database().reference().child("addMarket")
@@ -292,10 +292,9 @@ extension FirebaseAPI {
         let nameChild = ref.child(name)
         
         
-        let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "startTime": openTime, "endTime": closeTime, "ebt": acceptEBT, "days": days]
+        let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "startTime": openTime, "endTime": closeTime, "ebt": acceptEBT, "days": days, "website": website, "votes": "1"]
         
         nameChild.setValue(returnDict)
-        
     }
     
 }
