@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 extension UIColor {
     static var themePrimary: UIColor {
         return UIColor(colorLiteralRed: 149/255, green: 171/255, blue: 99/255, alpha: 1)

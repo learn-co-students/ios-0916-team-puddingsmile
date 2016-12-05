@@ -16,6 +16,7 @@ class AddCommentView: UIView {
 
     weak var delegate: AddCommentDelegate!
     
+    var market: Market!
     var backButton: UIButton!
     var contentView: UIView!
     var addCommentButton: UIButton!
@@ -27,6 +28,7 @@ class AddCommentView: UIView {
         super.init(frame:frame)
         commonInit()
         addConstraints()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,7 +86,10 @@ class AddCommentView: UIView {
     
     func addCommentButtonAction() {
         print("User has pressed the add comment button")
-        //FirebaseAPI.writeCommentFor(market: <#T##String#>, with: <#T##String#>, from: <#T##String#>)
+        if commentField.becomeFirstResponder() && commentField.text != "" {
+            print("User is typing things!!")
+            //FirebaseAPI.writeCommentFor(market: <#T##String#>, with: <#T##String#>, from: <#T##String#>)
+        }
     }
     
     func backButtonAction() {

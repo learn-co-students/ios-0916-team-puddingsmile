@@ -16,8 +16,8 @@ class  CommentTableViewCell: UITableViewCell {
     var commentView: UITextView!
     var nameLabel: UILabel!
     var reportButton: UIButton!
-  //  var likesLabel: UILabel!
-  //  var likesButton: UIButton!
+    var market: Market!
+    var marketLabel: UILabel!
     
     var commentObject: MarketComment!{
         didSet {
@@ -33,13 +33,11 @@ class  CommentTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
-       // addConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        //addConstraints()
     }
     
     func commonInit() {
@@ -50,6 +48,8 @@ class  CommentTableViewCell: UITableViewCell {
         self.addSubview(containerView)
         
         commentView = UITextView()
+        commentView.backgroundColor = UIColor.themeSecondary
+        commentView.font = UIFont.systemFont(ofSize: 20)
         commentView.textAlignment = NSTextAlignment.justified
         containerView.addSubview(commentView)
         
@@ -63,6 +63,7 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.setTitle("Report Comment", for: .normal)
         reportButton.setTitle("Reported", for: .selected)
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
+        reportButton.backgroundColor = UIColor.lightGray
         reportButton.setTitleColor(UIColor.red, for: .normal)
         reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 13)
         containerView.addSubview(reportButton)
@@ -75,8 +76,6 @@ class  CommentTableViewCell: UITableViewCell {
 //        likesButton = UIButton()
 //        containerView.addSubview(likesButton)
     }
-    
-    
     
     func likesButtonAction() {
         //add the likes function here *******

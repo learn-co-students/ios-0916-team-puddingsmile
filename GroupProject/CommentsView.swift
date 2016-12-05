@@ -24,7 +24,7 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Navigation Objects
     var navigationView : UIView!
-    var backButton:     UIButton!
+    var backButton:  UIButton!
     var commentButton: UIButton!
 
     override init(frame: CGRect){
@@ -85,11 +85,18 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         if comments.count > 0 {
             comment = comments[indexPath.row]
         } else {
-            comment = MarketComment(id: "13423423", value: ["comment": "There are no comments for this market"])
+            comment = MarketComment(id: "13423423", value: ["comment": "There are no comments for \(self.market.name!)"])
         }
+        cell.market = market
         cell.commentObject = comment
         cell.addConstraints()
         return cell
+    }
+    
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != "addCommentSegue" { return }
+        let dest = segue.destination as! AddCommentView
+        dest.market = market
     }
 }
 
