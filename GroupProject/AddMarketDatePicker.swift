@@ -24,6 +24,8 @@ class AddMarketDatePicker: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
+        self.layer.borderColor = UIColor.black.cgColor
+        self.backgroundColor = UIColor.themeTertiary
 //        setupOpenTimeLabel()
 //        setupPicker()
 //        setupNextDateButon()
@@ -48,6 +50,7 @@ class AddMarketDatePicker: UIView {
         picker.datePickerMode = UIDatePickerMode.date
         picker.locale = Locale.current
         picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.layer.borderColor = UIColor.black.cgColor
         return picker
     }()
     

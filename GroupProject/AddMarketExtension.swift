@@ -208,26 +208,6 @@ extension AddMarketView {
         websiteTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
     }
     
-//   @nonobjc func textFieldShouldReturn(_ textField: UITextField) {
-//        print("Field returned^^^^^^^^")
-//    
-//        guard let address = textField.text else { return }
-//    
-//    LocationFinder.sharedInstance.getLatLong(with: address) { (success, coordinateTuple) in
-//        
-//        if success {
-//            guard let unwrappedTuple = coordinateTuple else { return }
-//            
-//            self.latString = "\(unwrappedTuple.0)"
-//            self.longString = "\(unwrappedTuple.1)"
-//            self.addressIsAcceptable = true
-//        } else {
-//            print("blew it")
-//            self.addressIsAcceptable = false
-//        }
-//    }
-//    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(true)
         return false
@@ -239,7 +219,33 @@ extension AddMarketView {
     
 }
 
-
-
+extension AddMarketView {
+    
+    
+    func setupAddMarketView() {
+        self.setupHeaderLabel()
+        self.setupNameLabel()
+        self.setupNameTextField()
+        self.setupAddressLabel()
+        self.setupAddressTextField()
+        self.setupWebsiteLabel()
+        self.setupWebsiteTextField()
+        self.setupOpenDateLabel()
+        self.setupHoursOfOperationButton()
+        self.setupBeginningOfSeasonLabel()
+        self.setupBeginningOfSeasonButton()
+        self.setupOpenButtonLabel()
+        self.setupCloseButtonLabel()
+        self.setupGestureRecognizer()
+        self.setupOpenDateButtonLabel()
+        self.setupCloseDateButtonLabel()
+        self.setupDaysOfWeekLabel()
+        self.setupDaysOfWeekButton()
+        self.setupAcceptEBTLabel()
+        self.setupEBTCheckbox()
+        self.setupEBTCheckboxImage()
+        self.setupSubmitMarketButton()
+    }
+}
 
 

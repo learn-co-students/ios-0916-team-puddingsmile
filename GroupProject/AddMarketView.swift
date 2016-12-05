@@ -26,8 +26,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     var firebaseDayString: String?
     var acceptsEBT = false
     var ebtString = ""
-    var lat: Double?
-    var long: Double?
     var latString: String!
     var longString: String!
     var addressIsAcceptable = false
@@ -230,39 +228,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
-        self.setupHeaderLabel()
-        self.setupNameLabel()
-        self.setupNameTextField()
-        self.setupAddressLabel()
-        self.setupAddressTextField()
-        
-        self.setupWebsiteLabel()
-        self.setupWebsiteTextField()
-        
-        self.setupOpenDateLabel()
-        self.setupHoursOfOperationButton()
-        
-        self.setupBeginningOfSeasonLabel()
-        self.setupBeginningOfSeasonButton()
-        self.setupOpenButtonLabel()
-        self.setupCloseButtonLabel()
-        self.setupGestureRecognizer()
-        self.setupOpenDateButtonLabel()
-        self.setupCloseDateButtonLabel()
-        self.setupDaysOfWeekLabel()
-        self.setupDaysOfWeekButton()
-        self.setupAcceptEBTLabel()
-        self.setupEBTCheckbox()
-        self.setupEBTCheckboxImage()
-        
-        
-        
+        setupAddMarketView()
         nameTextField.delegate = self
         addressTextField.delegate = self
         websiteTextField.delegate = self
         
-        self.setupSubmitMarketButton()
-        print("add market called")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -397,13 +367,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
     }
     
-    var dayOfWeekViewTopAnchor: NSLayoutConstraint!
-    var dayOfWeekViewWidthAnchor: NSLayoutConstraint!
-    var dayOfWeekViewHeightAnchor: NSLayoutConstraint!
-    var dayOfWeekViewCenterXAnchor: NSLayoutConstraint!
-    
-
-    
     func daysOfWeekButtonPressed() {
         print("days of week button pressed")
         daysOfWeekButton.isEnabled = false
@@ -434,7 +397,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     func passClickedDay(tag: Int) -> String {
         print("DELEGATE clicked, tag is \(tag)")
-//        flipDay(tag: tag)
         return "Hey"
     }
     
@@ -465,6 +427,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.marketAddress = self.addressTextField.text
         self.websiteAddress = self.websiteTextField.text
         
+        self.checkForErrors()
+
+        
         LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
             
             if success {
@@ -483,8 +448,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 print(self.openDate)
                 print(self.closeDate)
                 
-                
-                self.checkForErrors()
                 
                 if (self.marketName != nil || self.marketName != "") && (self.marketAddress != nil || self.marketAddress != "") && (self.websiteAddress != nil || self.websiteAddress != "") && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
@@ -537,39 +500,13 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
         
     }
-    
+
     
 }
 
-public extension UIView {
-    
-    func shake(count : Float? = nil,for duration : TimeInterval? = nil,withTranslation translation : Float? = nil) {
-        let animation : CABasicAnimation = CABasicAnimation(keyPath: "transform.translation.x")
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        animation.repeatCount = count ?? 2
-        animation.duration = (duration ?? 0.5)/TimeInterval(animation.repeatCount)
-        animation.autoreverses = true
-        animation.byValue = translation ?? -5
-        
-        layer.add(animation, forKey: "shake")
 
-    }
-    
-    func pulse(count : Float? = nil,for duration : TimeInterval? = nil,withTranslation translation : Float? = nil) {
-        let colorAnimation: CABasicAnimation = CABasicAnimation(keyPath: "backgroundColor")
-        colorAnimation.fromValue = UIColor.gray.cgColor
-        colorAnimation.toValue = UIColor.red.cgColor
-        colorAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        colorAnimation.repeatCount = count ?? 2
-        colorAnimation.duration = (duration ?? 0.5)/TimeInterval(colorAnimation.repeatCount)
-        colorAnimation.autoreverses = true
-        colorAnimation.byValue = translation ?? -5
-        
-        layer.add(colorAnimation, forKey: "pulse")
-    }
-    
-    
-}
+
+
 
 
 
