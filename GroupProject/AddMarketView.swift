@@ -521,6 +521,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             self.beginningOfSeasonButton.pulse(count: 1, for: 0.15, withTranslation: 5)
         }
         
+        if firebaseDayString == nil {
+            self.daysOfWeekButton.shake(count: 3, for: 0.15, withTranslation: 7)
+            self.daysOfWeekButton.pulse(count: 1, for: 0.15, withTranslation: 5)
+        }
+        
     }
     
     
