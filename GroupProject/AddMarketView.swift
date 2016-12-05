@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDelegate {
+class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDelegate, UITextFieldDelegate {
         
     var addView: AddMarketPicker!
     var addDateView: AddMarketDatePicker!
@@ -28,8 +28,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     var ebtString = ""
     var lat: Double?
     var long: Double?
-    var stringLat: String?
-    var stringLong: String?
+    var latString: String!
+    var longString: String!
   
 
     let headerLabel: UILabel = {
@@ -251,11 +251,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.setupWebsiteLabel()
         self.setupWebsiteTextField()
         
-        
-        //self.setupOpenTimeLabel()
-        //self.setupOpenTimeTextField()
-        //self.setupCloseTimeLabel()
-        //self.setupCloseTimeTextField()
+        addressTextField.delegate = self
+
         self.setupSubmitMarketButton()
         print("add market called")
     }
@@ -466,20 +463,20 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 guard let unwrappedTuple = coordinateTuple else { return }
                 
                
-                let latString = "\(unwrappedTuple.0)"
-                let longString = "\(unwrappedTuple.1)"
+                self.latString = "\(unwrappedTuple.0)"
+                self.longString = "\(unwrappedTuple.1)"
                 
                 print(self.marketName)
                 print(self.marketAddress)
                 print(self.websiteAddress)
-                print(latString)
+                print(self.latString)
                 
                 self.checkForErrors()
                 
                 if (self.marketName != nil || self.marketName != "") && (self.marketAddress != nil || self.marketAddress != "") && (self.websiteAddress != nil || self.websiteAddress != "") && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
                     
-                    FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: latString, long: longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)
+                    FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: self.latString, long: self.longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)
                     
                     print("You sent data up succesfully")
                     
@@ -497,6 +494,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
         print("after location finder")
     }
+    
     
     func checkForErrors() {
         if (self.marketName == nil || self.marketName == "") {

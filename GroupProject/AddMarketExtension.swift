@@ -13,7 +13,7 @@ import UIKit
 // MARK: Setup Labels and one button
 
 
-extension AddMarketView: UITextFieldDelegate {
+extension AddMarketView {
     
     func setupHeaderLabel() {
         self.addSubview(headerLabel)
@@ -176,6 +176,7 @@ extension AddMarketView {
         addressTextField.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 5).isActive = true
         addressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         addressTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        
     }
     
     func setupHoursOfOperationButton() {
@@ -205,6 +206,25 @@ extension AddMarketView {
         websiteTextField.topAnchor.constraint(equalTo: self.websiteLabel.bottomAnchor, constant: 5).isActive = true
         websiteTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         websiteTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("Field did end editing")
+        guard let address = textField.text else { return }
+        
+        LocationFinder.sharedInstance.getLatLong(with: address) { (success, coordinateTuple) in
+            
+            if success {
+                guard let unwrappedTuple = coordinateTuple else { return }
+                
+                self.latString = "\(unwrappedTuple.0)"
+                self.longString = "\(unwrappedTuple.1)"
+            
+            } else {
+                print("blew it")
+                
+            }
+        }
         
     }
     
