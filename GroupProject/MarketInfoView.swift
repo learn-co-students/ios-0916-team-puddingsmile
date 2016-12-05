@@ -153,13 +153,17 @@ extension MarketInfo {
     func endEditState() {
         isEditingFields = false
         toggleButtons(state: false)
-        resetOriginalLabels()
+        labelSwitch()
         hideEditorBox()
     }
     
-
-    
-
+    func labelSwitch() {
+        if !editorBox.editorStore.hasValue() {
+            resetOriginalLabels()
+        }
+        
+        
+    }
     
     func resetOriginalLabels() {
         nameLabel.text = "Name: \(market.name!)"

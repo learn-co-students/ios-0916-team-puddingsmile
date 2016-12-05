@@ -29,20 +29,19 @@ final class LandingViewController: UIViewController {
             DispatchQueue.main.async {
                 self.loadNewViewController(with: "mapvc")
             }
-            
         } else {
             DispatchQueue.main.async {
                 self.loadNewViewController(with: "loginvc")
             }
-            
         }
-        
     }
     
+    //Listening for posts
     func addNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.loginVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.mapVC, object: nil)
     }
+    
     
     func observerNotification(with notification: Notification) {
         switch notification.name {
