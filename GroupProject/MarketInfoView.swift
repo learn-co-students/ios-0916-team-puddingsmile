@@ -260,7 +260,7 @@ extension MarketInfo {
         switch editorBox.editorState {
         case .neutral:
             //send to firebase
-            FirebaseAPI.writeToUpdate(with: market.name!, changes: editorBox.editorStore.packageData())
+            FirebaseAPI.writeToUpdate(withName: market.name!, changes: editorBox.editorStore.packageData())
             endEditState()
             startTableState()
             return

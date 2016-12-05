@@ -25,6 +25,7 @@ class EditorStore {
     
     init() {}
     
+    //Package data in to a dictionary to prep it for firebase
     func packageData() -> [String : String] {
         var data: [String : String] = [:]
         if let name = self.name {
@@ -59,7 +60,7 @@ class EditorStore {
             data["latitude"] = lat
             data["longitude"] = long
         }
-        
+        data["votes"] = "1"
         return data
     }
     
