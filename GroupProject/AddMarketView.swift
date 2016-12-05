@@ -321,6 +321,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     func bringUpTimePicker(_ sender: UITextField) {
         print("pressed")
         addViewUp = true
+        openTimeButtonLabel.isHidden = false
+        closeTimeButtonLabel.isHidden = false
         
         hoursOfOperationButton.setTitle("", for: .disabled)
         hoursOfOperationButton.isEnabled = false
@@ -451,6 +453,10 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
         
         print("before location finder")
+        self.marketName = self.nameTextField.text
+        self.marketAddress = self.addressTextField.text
+        self.websiteAddress = self.websiteTextField.text
+        
         LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
             
             if success {
@@ -460,16 +466,12 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 let latString = "\(unwrappedTuple.0)"
                 let longString = "\(unwrappedTuple.1)"
                 
-                
-                self.marketName = self.nameTextField.text
-                self.marketAddress = self.addressTextField.text
-                self.websiteAddress = self.websiteTextField.text
-                print("after")
-                
                 print(self.marketName)
                 print(self.marketAddress)
                 print(self.websiteAddress)
+                print(latString)
                 
+                self.checkForErrors()
                 
                 if (self.marketName != nil || self.marketName != "") && (self.marketAddress != nil || self.marketAddress != "") && (self.websiteAddress != nil || self.websiteAddress != "") && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
@@ -485,12 +487,66 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 
             } else {
                 print("blew it")
+                self.checkForErrors()
+                self.addressTextField.shake(count: 3, for: 0.15, withTranslation: 7)
+                self.addressTextField.pulse(count: 1, for: 0.15, withTranslation: 5)
             }
         }
         print("after location finder")
     }
+    
+    func checkForErrors() {
+        if (self.marketName == nil || self.marketName == "") {
+            print("shake called")
+            self.nameTextField.shake(count: 3, for: 0.15, withTranslation: 7)
+            self.nameTextField.pulse(count: 1, for: 0.15, withTranslation: 5)
+        }
+        
+        if (self.websiteAddress == nil || self.websiteAddress == "") {
+            print(websiteAddress)
+            self.websiteTextField.shake(count: 3, for: 0.15, withTranslation: 7)
+            self.websiteTextField.pulse(count: 1, for: 0.15, withTranslation: 5)
+        }
+        
+        if openTime == nil || closeTime == nil {
+            self.hoursOfOperationButton.shake(count: 3, for: 0.15, withTranslation: 7)
+            self.hoursOfOperationButton.pulse(count: 1, for: 0.15, withTranslation: 5)
+        }
+        
+    }
+    
+    
 }
 
+public extension UIView {
+    
+    func shake(count : Float? = nil,for duration : TimeInterval? = nil,withTranslation translation : Float? = nil) {
+        let animation : CABasicAnimation = CABasicAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.repeatCount = count ?? 2
+        animation.duration = (duration ?? 0.5)/TimeInterval(animation.repeatCount)
+        animation.autoreverses = true
+        animation.byValue = translation ?? -5
+        
+        layer.add(animation, forKey: "shake")
+
+    }
+    
+    func pulse(count : Float? = nil,for duration : TimeInterval? = nil,withTranslation translation : Float? = nil) {
+        let colorAnimation: CABasicAnimation = CABasicAnimation(keyPath: "backgroundColor")
+        colorAnimation.fromValue = UIColor.gray.cgColor
+        colorAnimation.toValue = UIColor.red.cgColor
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        colorAnimation.repeatCount = count ?? 2
+        colorAnimation.duration = (duration ?? 0.5)/TimeInterval(colorAnimation.repeatCount)
+        colorAnimation.autoreverses = true
+        colorAnimation.byValue = translation ?? -5
+        
+        layer.add(colorAnimation, forKey: "pulse")
+    }
+    
+    
+}
 
 
 

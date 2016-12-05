@@ -56,16 +56,18 @@ extension AddMarketView: UITextFieldDelegate {
         self.addSubview(openTimeButtonLabel)
         
         openTimeButtonLabel.topAnchor.constraint(equalTo: self.hoursOfOperationLabel.bottomAnchor, constant: 15).isActive = true
-        openTimeButtonLabel.leadingAnchor.constraint(equalTo: hoursOfOperationButton.leadingAnchor).isActive = true
+        openTimeButtonLabel.leadingAnchor.constraint(equalTo: hoursOfOperationButton.leadingAnchor, constant: 5).isActive = true
         openTimeButtonLabel.heightAnchor.constraint(equalToConstant: 20).isActive = false
+        openTimeButtonLabel.isHidden = true
     }
     
     func setupCloseButtonLabel() {
         self.addSubview(closeTimeButtonLabel)
         
         closeTimeButtonLabel.topAnchor.constraint(equalTo: self.hoursOfOperationLabel.bottomAnchor, constant: 15).isActive = true
-        closeTimeButtonLabel.trailingAnchor.constraint(equalTo: hoursOfOperationButton.trailingAnchor).isActive = true
+        closeTimeButtonLabel.trailingAnchor.constraint(equalTo: hoursOfOperationButton.trailingAnchor, constant: -5).isActive = true
         closeTimeButtonLabel.heightAnchor.constraint(equalToConstant: 20).isActive = false
+        closeTimeButtonLabel.isHidden = true
     }
     
     func setupOpenDateButtonLabel() {
