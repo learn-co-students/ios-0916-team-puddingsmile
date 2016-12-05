@@ -77,6 +77,10 @@ extension FirebaseAPI {
         
         let ref = FIRDatabase.database().reference().child("comments").child("\(market)")
         ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard snapshot.exists() else {
+                print("Comments don't exist")
+                return
+            }
             let value = snapshot.value as! [String : [String : Any]]
             completion(value)
         })
