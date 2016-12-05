@@ -424,7 +424,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     func submitNewMarketButtonClicked() {
         print("Add market pressed")
      
-        let nameText = nameTextField.text
         guard let addressText = addressTextField.text else { return }
         
         if self.acceptsEBT {
@@ -433,11 +432,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             self.ebtString = "_"
         }
         
-        print("before")
         LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
-            var unwrappedLat: String?
-            var unwrappedLong: String?
-            print("in")
+            
             if success {
                 guard let unwrappedTuple = coordinateTuple else { return }
                 
@@ -450,14 +446,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 self.marketAddress = self.addressTextField.text
                 print("after")
                 
-                print(self.marketName)
-                print(self.marketAddress)
-                print(latString)
-                print(longString)
-                print(self.openTime)
-                print(self.closeTime)
-                print(self.openDate)
-                print(self.closeDate)
                 
                 if self.marketName != nil && self.marketAddress != nil && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
