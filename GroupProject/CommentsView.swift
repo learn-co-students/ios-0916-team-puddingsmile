@@ -85,7 +85,7 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         if comments.count > 0 {
             comment = comments[indexPath.row]
         } else {
-            comment = MarketComment(id: "13423423", value: ["comment": "There are no comments for this market at this time", "user": "system"])
+            comment = MarketComment(id: "13423423", value: ["comment": "There are no comments for this market"])
         }
         cell.commentObject = comment
         cell.addConstraints()
@@ -99,6 +99,7 @@ extension CommentsView {
     func createLayout() {
         //Add TableView
         tableView = UITableView()
+        
         self.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self

@@ -77,6 +77,10 @@ extension FirebaseAPI {
         
         let ref = FIRDatabase.database().reference().child("comments").child("\(market)")
         ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard snapshot.exists() else {
+                print("Comments don't exist")
+                return
+            }
             let value = snapshot.value as! [String : [String : Any]]
             completion(value)
         })
@@ -160,7 +164,7 @@ extension FirebaseAPI {
     }
     
     static func upvoteInMarket(for marketName: String, with marketID: String, upvoted: Bool) {
-        //make sure people cant upvote same thing over and over and over fuck my life
+        //make sure people cant upvote same thing over and over and over 
         let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)")
         
         ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
