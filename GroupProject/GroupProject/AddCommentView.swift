@@ -21,7 +21,7 @@ class AddCommentView: UIView {
     var addCommentButton: UIButton!
     var cancelButton: UIButton!
     var commentLabel: UILabel!
-    var commentField: UITextField! 
+    var commentField: UITextView!
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -37,22 +37,22 @@ class AddCommentView: UIView {
     
     func commonInit() {
         contentView = UIView()
-        contentView.backgroundColor = UIColor.themeSecondary
+        contentView.backgroundColor = UIColor.themeTertiary
         addSubview(contentView)
         
         //Add Comment Text Field
-        commentField = UITextField()
+        commentField = UITextView()
         commentField.backgroundColor = UIColor.lightGray
         commentField.autocorrectionType = .yes
         commentField.textAlignment = NSTextAlignment.center
-        commentField.placeholder = "Add comment"
-        commentField.isEnabled = true
+        commentField.font = UIFont.systemFont(ofSize: 22)
+        commentField.textContainer.lineBreakMode = .byWordWrapping
         contentView.addSubview(commentField)
         
         //Add Comment Label
         commentLabel = UILabel()
-        commentLabel.text = "Comment"
-        commentLabel.font = UIFont.systemFont(ofSize: 18)
+        commentLabel.text = "Add a Comment"
+        commentLabel.font = UIFont.systemFont(ofSize: 32)
         commentLabel.textColor = UIColor.black
         contentView.addSubview(commentLabel)
         
@@ -76,8 +76,8 @@ class AddCommentView: UIView {
         cancelButton = UIButton()
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
-        cancelButton.setTitleColor(UIColor.red, for: .normal)
-        cancelButton.titleLabel!.font = UIFont.systemFont(ofSize: 22)
+        cancelButton.backgroundColor = UIColor.red
+        cancelButton.titleLabel!.font = UIFont.systemFont(ofSize: 18)
         cancelButton.titleLabel!.textColor = UIColor.white
         contentView.addSubview(cancelButton)
     }
@@ -111,27 +111,33 @@ class AddCommentView: UIView {
         //Comment Field
         commentField.translatesAutoresizingMaskIntoConstraints = false
         commentField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        commentField.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.width * 0.2).isActive = true
+        commentField.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.width * 0.3).isActive = true
         commentField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
         commentField.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
         commentField.layer.cornerRadius = CGFloat(7)
+        
+        //Comment Label
+        commentLabel.translatesAutoresizingMaskIntoConstraints = false
+        commentLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        commentLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.width * 0.15).isActive = true
+        commentLabel.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
+        commentLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
         
         //Add Comment
         addCommentButton.translatesAutoresizingMaskIntoConstraints = false
         addCommentButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
         addCommentButton.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
-        addCommentButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.2).isActive = true
-        //addCommentButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        addCommentButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        //addCommentButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: contentView.bounds.width * 0.25).isActive = true
+        addCommentButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: self.bounds.width * 0.15).isActive = true
+        addCommentButton.topAnchor.constraint(equalTo: commentField.bottomAnchor, constant: self.bounds.width * 0.09).isActive = true
         addCommentButton.layer.cornerRadius = CGFloat(7)
         
         //Cancel Button
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        cancelButton.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.35).isActive = true
-        cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.6).isActive = true
-        cancelButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: contentView.bounds.width * 0.25).isActive = true
+        cancelButton.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
+        cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: self.bounds.width * 0.55).isActive = true
+        cancelButton.topAnchor.constraint(equalTo: commentField.bottomAnchor, constant: self.bounds.width * 0.09).isActive = true
+        cancelButton.layer.cornerRadius = CGFloat(7)
     }
 }
 
