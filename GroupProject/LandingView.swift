@@ -48,10 +48,6 @@ class LandingView: UIView {
 }
 
 
-
-
-
-
 extension LandingView {
     func createButtons() {
         

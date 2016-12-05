@@ -13,7 +13,7 @@ import UIKit
 // MARK: Setup Labels and one button
 
 
-extension AddMarketView {
+extension AddMarketView: UITextFieldDelegate {
     
     func setupHeaderLabel() {
         self.addSubview(headerLabel)
@@ -134,7 +134,7 @@ extension AddMarketView {
         submitMarketButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         submitMarketButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         submitMarketButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        //submitMarketButton.addTarget(self, action: #selector(submitNewMarketButtonClicked), for: .touchUpInside)
+        submitMarketButton.addTarget(self, action: #selector(submitNewMarketButtonClicked), for: .touchUpInside)
     }
     
 }
@@ -153,7 +153,6 @@ extension AddMarketView {
         //nameTextField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         nameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         
-        marketName = nameTextField.text
     }
     
     func setupAddressTextField() {
@@ -163,8 +162,6 @@ extension AddMarketView {
         addressTextField.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 5).isActive = true
         addressTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         addressTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        
-        marketAddress = addressTextField.text
     }
     
     func setupHoursOfOperationButton() {
