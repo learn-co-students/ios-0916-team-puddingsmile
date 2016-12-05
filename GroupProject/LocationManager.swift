@@ -50,8 +50,8 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
         geocoder.geocodeAddressString(address, completionHandler: { (response, error) in
             print("in geocoder")
             if error != nil {
-                print(error)
-                return
+                isAcceptableLocation = false
+                completion(isAcceptableLocation, nil)
             }
             
             guard let placemark = response else { return }

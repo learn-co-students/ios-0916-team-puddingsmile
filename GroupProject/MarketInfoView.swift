@@ -18,7 +18,7 @@ protocol MarketInfoDelegate: class {
     func showSafariVC(url: URL)
     
     //EditorBox Functions
-    func addressAlert()
+    func openAlert(title: String, message: String)
 }
 
 class MarketInfo: UIView {
@@ -131,31 +131,7 @@ extension MarketInfo {
         }
     }
     
-    func startTableState() {
-        isShowingTable = true
-        infoTableView.readForUpdates()
-        showInfoTableView()
-    }
-    
-    func endTableState() {
-        isShowingTable = false
-        resetOriginalLabels()
-        hideInfoTableView()
-    }
-    
-    func startEditState() {
-        isEditingFields = true
-        toggleButtons(state: true)
-        editorBox.setNeutralState()
-        showEditorBox()
-    }
-    
-    func endEditState() {
-        isEditingFields = false
-        toggleButtons(state: false)
-        labelSwitch()
-        hideEditorBox()
-    }
+
     
     func labelSwitch() {
         if !editorBox.editorStore.hasValue() {
@@ -240,6 +216,36 @@ extension MarketInfo {
     func editWebsiteAction(){}
 }
 
+//MARK: - Switching View States Methods
+extension MarketInfo {
+    func startTableState() {
+        isShowingTable = true
+        infoTableView.readForUpdates()
+        showInfoTableView()
+    }
+    
+    func endTableState() {
+        isShowingTable = false
+        resetOriginalLabels()
+        hideInfoTableView()
+    }
+    
+    func startEditState() {
+        isEditingFields = true
+        toggleButtons(state: true)
+        editorBox.setNeutralState()
+        showEditorBox()
+    }
+    
+    func endEditState() {
+        isEditingFields = false
+        toggleButtons(state: false)
+        labelSwitch()
+        hideEditorBox()
+    }
+}
+
+
 
 //MARK: - EditorBoxDelegate methods
 extension MarketInfo {
@@ -270,17 +276,18 @@ extension MarketInfo {
             seasonLabel.backgroundColor = UIColor.themePrimary
             return
         case .daysEdit:
-            seasonLabel.text = "Days: \(editorBox.editorStore.days!)"
-            seasonLabel.backgroundColor = UIColor.themePrimary
+            daysLabel.text = "Days Open: \(editorBox.editorStore.days!)"
+            daysLabel.backgroundColor = UIColor.themePrimary
             return
         case .timesEdit:
-            timeLabel.text = "Times: \(editorBox.editorStore.startTimes!) - \(editorBox.editorStore.endTimes!)"
+            timeLabel.text = "Times Open: \(editorBox.editorStore.startTimes!) - \(editorBox.editorStore.endTimes!)"
             timeLabel.backgroundColor = UIColor.themePrimary
             return
         case .ebtEdit:
             return
         }
     }
+    
 }
 
 

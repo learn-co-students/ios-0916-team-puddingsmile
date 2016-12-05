@@ -103,6 +103,16 @@ extension Date {
     var minute: Int {
         return Calendar.current.component(.minute, from: self)
     }
+    var getHourMinute: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mmaa"
+        return "\(dateFormatter.string(from: self))"
+    }
+    var getMonthDay: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M/d"
+        return "\(dateFormatter.string(from: self))"
+    }
 }
 
 
