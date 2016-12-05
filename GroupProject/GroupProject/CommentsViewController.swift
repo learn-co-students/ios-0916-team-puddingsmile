@@ -12,6 +12,7 @@ class CommentsViewController: UIViewController, CommentsViewDelegate {
 
     var market: Market!
     var comments = [MarketComment]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let commentsView = CommentsView(frame: self.view.frame)

@@ -53,10 +53,11 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
                 isAcceptableLocation = false
                 completion(isAcceptableLocation, nil)
             }
-            
+        
             guard let placemark = response else { return }
+   
             for place in placemark {
-                
+             
                 print("determine placemark")
                 let latitude = place.location?.coordinate.latitude
                 let longitude = place.location?.coordinate.longitude

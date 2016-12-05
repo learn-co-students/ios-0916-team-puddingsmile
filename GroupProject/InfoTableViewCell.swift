@@ -9,21 +9,25 @@
 import UIKit
 
 class InfoTableViewCell: UITableViewCell {
-
-    var titleLabel: UILabel!
-    var votedLabel: UILabel!
-    var voteButton: UIButton!
+    
+    var mainLabel = UILabel()
+    var titleLabel = UILabel()
+    var votedLabel = UILabel()
+    var voteButton = UIButton()
+    var reportButton = UIButton()
+    
+    var marketName: String = ""
+    var market: MarketChanges!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupCell()
+        createSubviews()
+        setConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,11 +40,34 @@ class InfoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCell() {
-        createSubviews()
-        setConstraints()
-        voteButton.isHidden = false
+    func setupCell(with market: MarketChanges?, named: String) {
+        marketName = named
+        if market != nil {
+            self.market = market
+            titleLabel.text = market?.getCellTitleString()
+            votedLabel.text = market?.votes
+            
+            voteButton.isHidden = false
+            reportButton.isHidden = false
+            votedLabel.isHidden = false
+        } else {
+            titleLabel.text = "No suggestions for this market"
+            voteButton.isHidden = true
+            reportButton.isHidden = true
+            votedLabel.isHidden = true
+        }
     }
+    
+    func voteForSuggestion() {
+        print(marketName)
+        print(market.idKey!)
+        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: true)
+    }
+    
+    func reportSuggestion() {
+        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: false)
+    }
+    
 }
 
 //MARK: - Subviews
@@ -49,18 +76,26 @@ extension InfoTableViewCell {
         createTitleLabel()
         createVotedLabel()
         createVoteButton()
+        createReportButton()
     }
     func createTitleLabel() {
-        titleLabel = UILabel()
         contentView.addSubview(titleLabel)
     }
     func createVotedLabel() {
-        votedLabel = UILabel()
         contentView.addSubview(votedLabel)
+        votedLabel.backgroundColor = UIColor.cyan
     }
     func createVoteButton() {
-        voteButton = UIButton()
         contentView.addSubview(voteButton)
+        voteButton.backgroundColor = UIColor.blue
+        voteButton.setTitle("⬆", for: .normal)
+        voteButton.addTarget(self, action: #selector(voteForSuggestion), for: .touchUpInside)
+    }
+    func createReportButton() {
+        contentView.addSubview(reportButton)
+        reportButton.backgroundColor = UIColor.red
+        reportButton.setTitle("🚫", for: .normal)
+        reportButton.addTarget(self, action: #selector(reportSuggestion), for: .touchUpInside)
     }
 }
 
@@ -70,6 +105,7 @@ extension InfoTableViewCell {
         setTitleLabelConstraints()
         setVotedLabelConstraints()
         setVoteButtonConstraints()
+        setReportButtonConstraints()
     }
     func setTitleLabelConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -82,15 +118,22 @@ extension InfoTableViewCell {
         votedLabel.translatesAutoresizingMaskIntoConstraints = false
         votedLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         votedLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        votedLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        votedLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
         votedLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
     }
     func setVoteButtonConstraints() {
         voteButton.translatesAutoresizingMaskIntoConstraints = false
         voteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         voteButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        voteButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
+        voteButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
         voteButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
+    }
+    func setReportButtonConstraints() {
+        reportButton.translatesAutoresizingMaskIntoConstraints = false
+        reportButton.trailingAnchor.constraint(equalTo: voteButton.leadingAnchor).isActive = true
+        reportButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        reportButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        reportButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
     }
 }
 

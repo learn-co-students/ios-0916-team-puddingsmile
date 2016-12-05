@@ -8,11 +8,15 @@
 
 import UIKit
 
-class AddCommentViewController: UIViewController {
+class AddCommentViewController: UIViewController, AddCommentDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        modalTransitionStyle = .crossDissolve
+        let addCommentView = AddCommentView(frame: self.view.frame)
+        self.view = addCommentView
+        print("view loaded")
+        //modalTransitionStyle = .crossDissolve
         // Do any additional setup after loading the view.
     }
 
@@ -20,16 +24,10 @@ class AddCommentViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func triggerBackSegue() {
+        performSegue(withIdentifier: "addCommentSegue", sender: self)
     }
-    */
-
+    
 }

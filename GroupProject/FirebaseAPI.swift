@@ -77,6 +77,10 @@ extension FirebaseAPI {
         
         let ref = FIRDatabase.database().reference().child("comments").child("\(market)")
         ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard snapshot.exists() else {
+                print("Comments don't exist")
+                return
+            }
             let value = snapshot.value as! [String : [String : Any]]
             completion(value)
         })
@@ -134,7 +138,7 @@ extension FirebaseAPI {
 //MARK: - UpdateMarkets structure functions
 extension FirebaseAPI {
     
-    static func writeToUpdate(with marketName: String, changes: [String : String]) {
+    static func writeToUpdate(withName marketName: String, changes: [String : String]) {
         
         if changes.isEmpty { return }
         
@@ -159,26 +163,52 @@ extension FirebaseAPI {
         })
     }
     
-    static func upvoteInMarket(for marketName: String, with marketID: String, upvoted: Bool) {
-        //make sure people cant upvote same thing over and over and over fuck my life
-        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)")
-        
+    static func upvoteInMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
+        //make sure people cant upvote same thing over and over and over 
+        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)").child("votes")
+        print(marketName)
+        print(marketID)
         ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
-            var post = currentData.value as! [String : String]
-            var votes = post["votes"]!
-            if upvoted {
-                votes = String(Int(votes)! + 1)
-            } else {
-                votes = String(Int(votes)! - 1)
+            
+            print("TRANSACTION")
+            if let data = currentData.value {
+                print("CURRENTDATA")
+                if let value = data as? String {
+                    print("AS STRING")
+                    if let votes = Int(value) {
+                        print("AS INTEGER")
+                        var count = votes
+                        if upvoted {
+                            count += 1
+                        } else {
+                            count -= 1
+                        }
+                        print("BOOLS COMPLETED")
+                        currentData.value = "\(count)"
+                        
+                    }
+                    
+                }
+                
             }
             
-            post["votes"] = votes
-            currentData.value = post
-            
+            //            print(currentData.value)
+            //            if let votes = currentData.value {
+//                print(currentData.value)
+//            }
+//            var votes = currentData.value as! String
+//        
+//            if upvoted {
+//                votes = String(Int(votes)! + 1)
+//            } else {
+//                votes = String(Int(votes)! - 1)
+//            }
+//            currentData.value = votes
+//            
             return FIRTransactionResult.success(withValue: currentData)
         }, andCompletionBlock: { (error, committed, snapshot) in
             if let error = error {
-                print(error)
+//                print(error)
             } else {
                 //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
             }
