@@ -43,8 +43,8 @@ class MarketInfoViewController: UIViewController, MarketInfoDelegate {
         present(safari, animated: true, completion: nil)
     }
     
-    func addressAlert() {
-        let alert = UIAlertController(title: "Woops", message: "Address couldn't be read! \n Please try with another one.", preferredStyle: .alert)
+    func openAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action) in
             
         }))

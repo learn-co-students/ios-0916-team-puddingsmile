@@ -75,11 +75,13 @@ class EditorBox: UIView {
         case .seasonEdit:
             nextButton.isHidden = true
             doneButton.isHidden = false
-            editorStore.startSeason = "\(datePicker.date)"
+            editorStore.startSeason = datePicker.date.getMonthDay
+            print(datePicker.date.getMonthDay)
         case .timesEdit:
             nextButton.isHidden = true
             doneButton.isHidden = false
-            editorStore.startTimes = "\(datePicker.date)"
+            editorStore.startTimes = datePicker.date.getHourMinute
+            print(datePicker.date.getHourMinute)
         default:
             return
         }
@@ -101,7 +103,7 @@ class EditorBox: UIView {
                     print(coord)
                     self.setNeutralState()
                 } else {
-                    self.vcDelegate.addressAlert()
+                    self.vcDelegate.openAlert(title: "Woops", message: "Address couldn't be read! \n Please try with another one.")
                 }
             })
         case .cityEdit:
@@ -109,16 +111,24 @@ class EditorBox: UIView {
             delegate.editorBoxDone()
             setNeutralState()
         case .seasonEdit:
-            editorStore.endSeason = "\(datePicker.date)"
+            editorStore.endSeason = datePicker.date.getMonthDay
+            print(datePicker.date.getMonthDay)
             delegate.editorBoxDone()
             setNeutralState()
         case .daysEdit:
-            editorStore.days = daysSelected()
-            delegate.editorBoxDone()
-            print(daysSelected())
-            setNeutralState()
+            let days = daysSelected()
+            if days != "" {
+                editorStore.days = days
+                delegate.editorBoxDone()
+                print(days)
+                setNeutralState()
+            } else {
+                self.vcDelegate.openAlert(title: "Woops", message: "You need to select at least one day!")
+            }
+            
         case .timesEdit:
-            editorStore.endTimes = "\(datePicker.date)"
+            editorStore.endTimes = datePicker.date.getHourMinute
+            print(datePicker.date.getHourMinute)
             delegate.editorBoxDone()
             setNeutralState()
         case .ebtEdit:
@@ -165,6 +175,12 @@ class EditorBox: UIView {
                 tempString += "/"
             }
             tempString += "Thursday"
+        }
+        if friButton.isSelected {
+            if tempString != "" {
+                tempString += "/"
+            }
+            tempString += "Friday"
         }
         if satButton.isSelected {
             if tempString != "" {
@@ -250,6 +266,7 @@ extension EditorBox {
             manageHiddenViews(with: .timesEdit)
             placeholderLabel.text = "Enter the times for the market."
             datePicker.datePickerMode = .time
+            datePicker.minuteInterval = 15
         }
     }
     
