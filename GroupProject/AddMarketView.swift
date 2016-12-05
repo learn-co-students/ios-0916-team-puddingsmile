@@ -30,6 +30,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     var long: Double?
     var latString: String!
     var longString: String!
+    var addressIsAcceptable = false
   
 
     let headerLabel: UILabel = {
@@ -251,7 +252,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         self.setupWebsiteLabel()
         self.setupWebsiteTextField()
         
+        nameTextField.delegate = self
         addressTextField.delegate = self
+        websiteTextField.delegate = self
 
         self.setupSubmitMarketButton()
         print("add market called")

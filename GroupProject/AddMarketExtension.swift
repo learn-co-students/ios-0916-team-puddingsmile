@@ -208,27 +208,33 @@ extension AddMarketView {
         websiteTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("Field did end editing")
-        guard let address = textField.text else { return }
-        
-        LocationFinder.sharedInstance.getLatLong(with: address) { (success, coordinateTuple) in
-            
-            if success {
-                guard let unwrappedTuple = coordinateTuple else { return }
-                
-                self.latString = "\(unwrappedTuple.0)"
-                self.longString = "\(unwrappedTuple.1)"
-            
-            } else {
-                print("blew it")
-                
-            }
-        }
-        
+//   @nonobjc func textFieldShouldReturn(_ textField: UITextField) {
+//        print("Field returned^^^^^^^^")
+//    
+//        guard let address = textField.text else { return }
+//    
+//    LocationFinder.sharedInstance.getLatLong(with: address) { (success, coordinateTuple) in
+//        
+//        if success {
+//            guard let unwrappedTuple = coordinateTuple else { return }
+//            
+//            self.latString = "\(unwrappedTuple.0)"
+//            self.longString = "\(unwrappedTuple.1)"
+//            self.addressIsAcceptable = true
+//        } else {
+//            print("blew it")
+//            self.addressIsAcceptable = false
+//        }
+//    }
+//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.endEditing(true)
+        return false
     }
     
-  
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.endEditing(true)
+    }
     
 }
 
