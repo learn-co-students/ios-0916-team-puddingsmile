@@ -355,8 +355,39 @@ extension FirebaseAPI {
         
     }
     
-    static func pullAddedMarketFromFirebase() {
-        
+    static func pullAddedMarketFromFirebase(completion:@escaping ([AddMarket])-> Void) {
+        print("In pull added market from firebase")
+        var addedMarketArray = [AddMarket]()
+        let ref = FIRDatabase.database().reference().child("addMarket")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            let names = snapshot.value as! [String: [String: String]]
+            var nameArray = [String]()
+            
+            for (key, value) in names {
+                nameArray.append(key as! String)
+                
+                let marketName = key
+                
+                guard let startTime = value["startTime"] else { return }
+                guard let endTime = value["endTime"] else { return }
+                guard let openDate = value["openDate"] else { return }
+                guard let closeDate = value["closeDate"] else { return }
+                guard let address = value["address"] else { return }
+                guard let latitude = value["latitude"] else { return }
+                guard let longitude = value["longitude"] else { return }
+                guard let ebt = value["ebt"] else { return }
+                guard let website = value["website"] else { return }
+                guard let days = value["days"] else { return }
+                
+                let addedMarket = AddMarket(marketName: marketName, startTime: startTime, endTime: endTime, openDate: openDate, closeDate: closeDate, address: address, latitude: latitude, longitude: longitude, ebt: ebt, website: website, days: days)
+                
+                addedMarketArray.append(addedMarket)
+            }
+            
+            completion(addedMarketArray)
+            
+        })
+
     }
     
     

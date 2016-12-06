@@ -10,6 +10,8 @@ import UIKit
 
 class ProposedMarketView: UIView {
     
+    var addedMarketArray = [AddMarket]()
+    
     var containerView: UIView!
     var nameLabel: UILabel!
     var addressLabel: UILabel!
@@ -34,24 +36,37 @@ class ProposedMarketView: UIView {
     
     func commonInit() {
         
+        FirebaseAPI.pullAddedMarketFromFirebase { (addedMarket) in
+            self.addedMarketArray = addedMarket
+            print("set that bitch up")
+            print("Added markets is \(self.addedMarketArray)")
+            for market in self.addedMarketArray {
+                print(market["marketName"])
+            }
+        }
+        
         Bundle.main.loadNibNamed("AddedMarket", owner: self, options: nil)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(contentView)
-                
-        containerView = UIView()
-        contentView.addSubview(containerView)
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        print("Right before we pull those markets")
         
-        nameLabel = UILabel()
-        containerView.addSubview(nameLabel)
+        print("added market array in view is ===>\(self.addedMarketArray)")
+        self.addSubview(self.contentView)
         
-        addressLabel = UILabel()
-        containerView.addSubview(addressLabel)
+        self.containerView = UIView()
+        self.contentView.addSubview(self.containerView)
         
-        timeLabel = UILabel()
-        containerView.addSubview(timeLabel)
+        self.nameLabel = UILabel()
+        self.containerView.addSubview(self.nameLabel)
         
-        dayLabel = UILabel()
-        containerView.addSubview(dayLabel)
+        self.addressLabel = UILabel()
+        self.containerView.addSubview(self.addressLabel)
+        
+        self.timeLabel = UILabel()
+        self.containerView.addSubview(self.timeLabel)
+        
+        self.dayLabel = UILabel()
+        self.containerView.addSubview(self.dayLabel)
+    
     }
     
     func setConstraints() {
