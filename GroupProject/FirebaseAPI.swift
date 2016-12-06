@@ -73,7 +73,7 @@ extension FirebaseAPI {
         })
     }
     
-    static func replaceMarketInfo(withName marketName: String, replaceWith data: [String : String], completion: () -> () ) {
+    static func replaceMarketInfo(withName marketName: String, replaceWith data: [String : String], completion: @escaping () -> () ) {
         
         let ref = FIRDatabase.database().reference().child("markets")
         
@@ -93,6 +93,8 @@ extension FirebaseAPI {
                     
                 }
                 
+                ref.child(marketName).removeValue()
+                
             })
             
         } else {
@@ -107,6 +109,9 @@ extension FirebaseAPI {
                 
             }
         }
+        
+        completion()
+        
     }
     
     static func readMarket(withName market: String, completion: @escaping ([String:String]) -> () ) {
@@ -223,7 +228,7 @@ extension FirebaseAPI {
         })
     }
     
-    static func upvoteInMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
+    static func upvoteInUpdateMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
         //make sure people cant upvote same thing over and over and over 
         let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)")
         
@@ -268,13 +273,22 @@ extension FirebaseAPI {
                                     
                                     ref.removeValue()
                                     
+                                    self.removeVoteForUpdate(marketID: marketID)
+                                    
                                 })
-                                
+                               
                             } else if num <= -5 {
                                 
                                 ref.removeValue()
                                 
+                                self.removeVoteForUpdate(marketID: marketID)
+                                
+                            } else {
+                                
+                                self.willVoteForUpdate(marketID: marketID)
+                                
                             }
+                            
                         }
                     }
                 }
@@ -284,7 +298,149 @@ extension FirebaseAPI {
     
 }
 
+//MARK: - Favorites methods for firebase
+extension FirebaseAPI {
+    
+    static func willFavorite(marketName: String) {
+        
+        let ref = FIRDatabase.database().reference().child("favoritedMarkets").child(self.getCurrentUserID()!)
+        
+        ref.child(marketName).setValue(true)
+        
+    }
+    
+    static func removeFavorite(marketName: String) {
+        
+        let ref = FIRDatabase.database().reference().child("favoritedMarkets").child(self.getCurrentUserID()!)
+        
+        ref.child(marketName).removeValue()
+        
+    }
+    
+    static func hasFavorited(marketName: String, isTrue: @escaping (Bool) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("favoritedMarkets").child(self.getCurrentUserID()!)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let markets = snapshot.value as? [String : Bool] {
+                
+                if markets[marketName] != nil {
+                    
+                    isTrue(true)
+                    
+                } else {
+                    
+                    isTrue(false)
+                    
+                }
+            } else {
+                
+                isTrue(false)
+                
+            }
+            
+            
+            
+        })
+    }
+}
 
+//MARK: - Vote for updateMarkets
+extension FirebaseAPI {
+    
+    static func willVoteForUpdate(marketID: String) {
+        
+        let ref = FIRDatabase.database().reference().child("votedUpdates").child(self.getCurrentUserID()!)
+        
+        ref.child(marketID).setValue(true)
+        
+    }
+    
+    static func removeVoteForUpdate(marketID: String) {
+        
+        let ref = FIRDatabase.database().reference().child("votedUpdates").child(self.getCurrentUserID()!)
+        
+        ref.child(marketID).removeValue()
+        
+    }
+    
+    static func hasVotedForUpdate(marketID: String, isTrue: @escaping (Bool) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("votedUpdates").child(self.getCurrentUserID()!)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let markets = snapshot.value as? [String : Bool] {
+                
+                if markets[marketID] != nil {
+                    
+                    isTrue(true)
+                    
+                } else {
+                    
+                    isTrue(false)
+
+                }
+                
+            } else {
+                
+                isTrue(false)
+
+            }
+        })
+    }
+    
+}
+
+//MARK: - Vote for comments under markets
+extension FirebaseAPI {
+    
+    static func willVoteForComments(commentID: String) {
+        
+        let ref = FIRDatabase.database().reference().child("votedComments").child(self.getCurrentUserID()!)
+        
+        ref.child(commentID).setValue(true)
+        
+    }
+    
+    static func removeVoteForComments(commentID: String) {
+        
+        let ref = FIRDatabase.database().reference().child("votedComments").child(self.getCurrentUserID()!)
+        
+        ref.child(commentID).removeValue()
+        
+    }
+    
+    static func hasVotedForComments(commentID: String, isTrue: @escaping (Bool) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("votedComments").child(self.getCurrentUserID()!)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let comments = snapshot.value as? [String : Bool] {
+                
+                if comments[commentID] != nil {
+                    
+                    isTrue(true)
+                    
+                } else {
+                    
+                    isTrue(false)
+                    
+                }
+            } else {
+             
+                isTrue(false)
+                
+            }
+        })
+    }
+    
+    
+    
+    
+}
 
 //MARK: - Load Firebase with information from CSV file
 extension FirebaseAPI {
