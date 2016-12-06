@@ -15,10 +15,11 @@ class ProposedMarketTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let market = AddMarket(marketName: "Test", startTime: "1", endTime: "1", openDate: "1", closeDate: "1", address: "1", latitude: "1", longitude: "1", ebt: "1", website: "1", days: "1", votes: "1")
-        addedMarketArray.append(market)
+        //addedMarketArray.append(market)
         
         FirebaseAPI.pullAddedMarketFromFirebase { (addedMarket) in
             self.addedMarketArray = addedMarket
+            self.tableView.reloadData()
             print("firebase called ===============")
         }
         
