@@ -17,6 +17,23 @@ class ProposedMarketView: UIView {
     var addressLabel: UILabel!
     var timeLabel: UILabel!
     var dayLabel: UILabel!
+    
+    var addedMarket: AddMarket!{
+        didSet {
+            if let displayName =  addedMarket.marketName {
+                nameLabel.text = "\(displayName)"
+            }
+            if let displayAddress = addedMarket.address {
+                addressLabel.text = "\(displayAddress)"
+            }
+            if let displayTime =  addedMarket.startTime {
+                timeLabel.text = "\(displayTime)"
+            }
+            if let displayDay = addedMarket.days {
+                dayLabel.text = "\(displayDay)"
+            }
+        }
+    }
 
     @IBOutlet var contentView: UIView!
     
@@ -35,10 +52,6 @@ class ProposedMarketView: UIView {
     }
     
     func commonInit() {
-        
-        FirebaseAPI.pullAddedMarketFromFirebase { (addedMarket) in
-            self.addedMarketArray = addedMarket
-        }
         
         Bundle.main.loadNibNamed("AddedMarket", owner: self, options: nil)
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
