@@ -356,6 +356,65 @@ extension FirebaseAPI {
         nameChild.setValue(returnDict)
     }
     
+    static func upvoteAddedMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
+        //make sure people cant upvote same thing over and over and over
+        let ref = FIRDatabase.database().reference().child("addMarket").child("\(marketName)")
+        
+        ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
+            
+            if let json = currentData.value as? [String : String] {
+                
+                if let value = json["votes"] {
+                    
+                    if let votes = Int(value) {
+                        
+                        var returnValue = json
+                        
+                        returnValue["votes"] = upvoted ? "\(votes + 1)" : "\(votes - 1)"
+                        
+                        currentData.value = returnValue
+                        
+                    }
+                }
+            }
+            
+            return FIRTransactionResult.success(withValue: currentData)
+            
+        }, andCompletionBlock: { (error, committed, snapshot) in
+            
+            if let error = error {
+                
+                print(error)
+                
+            } else {
+                
+                //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+                if let json = snapshot?.value as? [String : String] {
+                    
+                    if let votes = json["votes"] {
+                        
+                        if let num = Int(votes) {
+                            
+                            if num >= 5 {
+                                
+                                self.replaceMarketInfo(withName: marketName, replaceWith: json, completion: {
+                                    
+                                    ref.removeValue()
+                                    
+                                })
+                                
+                            } else if num <= -5 {
+                                
+                                ref.removeValue()
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
 }
 
 
