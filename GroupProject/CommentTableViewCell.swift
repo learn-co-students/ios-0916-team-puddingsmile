@@ -49,7 +49,7 @@ class  CommentTableViewCell: UITableViewCell {
         
         commentView = UITextView()
         commentView.backgroundColor = UIColor.themeSecondary
-        commentView.font = UIFont.systemFont(ofSize: 20)
+        commentView.font = UIFont.systemFont(ofSize: 18)
         commentView.textAlignment = NSTextAlignment.justified
         containerView.addSubview(commentView)
         
@@ -63,7 +63,7 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.setTitle("Report Comment", for: .normal)
         reportButton.setTitle("Reported", for: .selected)
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
-        reportButton.backgroundColor = UIColor.lightGray
+        reportButton.backgroundColor = UIColor.themePrimary
         reportButton.setTitleColor(UIColor.red, for: .normal)
         reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 13)
         containerView.addSubview(reportButton)
@@ -114,6 +114,7 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.35).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
         reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.1).isActive = true
+        reportButton.layer.cornerRadius = 10
     
         //Likes Label
 //        likesLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -85,9 +85,10 @@ class AddCommentView: UIView {
     }
     
     func addCommentButtonAction() {
-        print("User has pressed the add comment button")
+        let commentString = commentField.text
         if commentField.becomeFirstResponder() && commentField.text != "" {
-            print("User is typing things!!")
+            print("commentString is \(commentString!)")
+            let currentUser = FirebaseAPI
             //FirebaseAPI.writeCommentFor(market: <#T##String#>, with: <#T##String#>, from: <#T##String#>)
         }
     }
