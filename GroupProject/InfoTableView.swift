@@ -182,9 +182,15 @@ struct MarketChanges {
         self.name = info["name"]
         self.address = info["address"]
         self.city = info["city"]
-        self.season = info["season"]
+        if let open = info["openDate"],
+            let close = info["closeDate"] {
+            self.season = "\(open) - \(close)"
+        }
         self.days = info["days"]
-        self.times = info["times"]
+        if let start = info["startTime"],
+            let end = info["endTime"] {
+            self.times = "\(start) - \(end)"
+        }
         self.ebt = info["ebt"]
         self.votes = info["votes"]
         self.hasVoted = voted
