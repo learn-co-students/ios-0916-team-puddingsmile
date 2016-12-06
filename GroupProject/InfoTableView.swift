@@ -120,7 +120,9 @@ extension InfoTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return tableView.bounds.height / 3
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

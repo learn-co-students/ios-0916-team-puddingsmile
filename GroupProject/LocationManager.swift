@@ -72,7 +72,7 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
                     completion(isAcceptableLocation, nil)
                 }
                 
-                completion(isAcceptableLocation, (returnTuple.0, returnTuple.1))
+                completion(isAcceptableLocation, returnTuple)
             }
         })
         print("after completion")

@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, LoginViewDelegate {
     func startSegueButton() {
        
         NotificationCenter.default.post(name: Notification.Name.mapVC, object: nil)
+        
     }
         
 }
