@@ -38,7 +38,7 @@ class AddMarketDatePicker: UIView {
     let enterLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.black
-        label.backgroundColor = UIColor.gray
+        label.backgroundColor = UIColor.themePrimary
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -58,6 +58,7 @@ class AddMarketDatePicker: UIView {
         let button = UIButton()
         button.setTitle("Next", for: .normal)
         button.titleLabel?.textColor = UIColor.blue
+        button.backgroundColor = UIColor.themePrimary
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
