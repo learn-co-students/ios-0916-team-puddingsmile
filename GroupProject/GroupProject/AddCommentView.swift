@@ -96,8 +96,9 @@ class AddCommentView: UIView {
         let commentString = commentField.text
         if commentField.becomeFirstResponder() && commentField.text != "" {
             print("commentString is \(commentString!)")
-            guard let currentUser = FirebaseAPI.getCurrentUserID() else { return }
-            FirebaseAPI.writeCommentFor(market: self.market.name!, with: commentString!, from: currentUser)
+            FirebaseAPI.getCurrentUserName(completion: { (currentUsername) in
+                FirebaseAPI.writeCommentFor(market: self.market.name!, with: commentString!, from: currentUsername)
+            })
         }
         delegate?.triggerBackSegue()
     }

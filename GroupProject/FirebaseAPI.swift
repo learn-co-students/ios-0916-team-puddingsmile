@@ -48,6 +48,14 @@ class FirebaseAPI {
         
     }
     
+    static func getCurrentUserName(completion: @escaping (String) -> Void) {
+        let ref = FIRDatabase.database().reference().child("users").child(self.getCurrentUserID()!)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let returnData = snapshot.value as! [String: String]
+            completion(returnData["name"]!)
+        })
+    }
+    
 }
 
 

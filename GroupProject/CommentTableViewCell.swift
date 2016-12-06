@@ -60,7 +60,7 @@ class  CommentTableViewCell: UITableViewCell {
         containerView.addSubview(nameLabel)
         
         reportButton = UIButton()
-        reportButton.setTitle("Report Comment", for: .normal)
+        reportButton.setTitle("Report", for: .normal)
         reportButton.setTitle("Reported", for: .selected)
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
         reportButton.backgroundColor = UIColor.themePrimary
