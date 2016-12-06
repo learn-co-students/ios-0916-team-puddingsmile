@@ -81,6 +81,18 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         navigationView.addSubview(favoriteButton)
         favoriteButton.setTitle("♥️", for: .normal)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
+        FirebaseAPI.hasFavorited(marketName: market.name!, isTrue: { isTrue in
+            if isTrue {
+                
+                self.favoriteButton.isUserInteractionEnabled = false
+                self.favoriteButton.alpha = 0.5
+                
+            } else {
+                
+                self.favoriteButton.isUserInteractionEnabled = true
+                
+            }
+        })
     }
     
     func createCommentsButton() {
@@ -101,7 +113,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         nameButton = UIButton()
         self.detailView.addSubview(nameButton)
         nameButton.isEnabled = false
-        nameButton.addTarget(self, action: #selector(editNameAction), for: .touchUpInside)
+//        nameButton.addTarget(self, action: #selector(editNameAction), for: .touchUpInside)
         
         nameLabel = UILabel()
         self.detailView.addSubview(nameLabel)

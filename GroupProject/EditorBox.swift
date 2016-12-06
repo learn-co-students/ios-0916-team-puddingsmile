@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 enum EditorState {
-    case neutral, nameEdit, addressEdit, cityEdit, seasonEdit, daysEdit, timesEdit, ebtEdit
+    case neutral, addressEdit, cityEdit, seasonEdit, daysEdit, timesEdit, ebtEdit
 }
 
 protocol EditorBoxDelegate: class {
@@ -95,18 +95,18 @@ class EditorBox: UIView {
             delegate.editorBoxDone()
             editorStore.resetProperties()
             
-        case .nameEdit:
-            doneButton.isUserInteractionEnabled = false
-            if let name = textView.text {
-                if name != "" {
-                    editorStore.name = name
-                    delegate.editorBoxDone()
-                    setNeutralState()
-                } else {
-                    vcDelegate.openAlert(title: "Woops", message: "We need a name for this market.")
-                    doneButton.isUserInteractionEnabled = true
-                }
-            }
+//        case .nameEdit:
+//            doneButton.isUserInteractionEnabled = false
+//            if let name = textView.text {
+//                if name != "" {
+//                    editorStore.name = name
+//                    delegate.editorBoxDone()
+//                    setNeutralState()
+//                } else {
+//                    vcDelegate.openAlert(title: "Woops", message: "We need a name for this market.")
+//                    doneButton.isUserInteractionEnabled = true
+//                }
+//            }
         case .addressEdit:
             doneButton.isUserInteractionEnabled = false
             if let address = textView.text {
@@ -250,14 +250,14 @@ extension EditorBox {
             doneButton.isHidden = false
         }
     }
-    func setNameEditState() {
-        if editorState != .nameEdit {
-            manageHiddenViews(with: .nameEdit)
-            placeholderLabel.text = "Enter a new name for the market."
-            textView.isHidden = false
-            textView.text = ""
-        }
-    }
+//    func setNameEditState() {
+//        if editorState != .nameEdit {
+//            manageHiddenViews(with: .nameEdit)
+//            placeholderLabel.text = "Enter a new name for the market."
+//            textView.isHidden = false
+//            textView.text = ""
+//        }
+//    }
     func setAddressEditState() {
         if editorState != .addressEdit {
             manageHiddenViews(with: .addressEdit)
@@ -319,13 +319,13 @@ extension EditorBox {
             dayPickerView.isHidden = true
             nextButton.isHidden = true
             doneButton.isHidden = true
-        case .nameEdit:
-            editorState = .nameEdit
-            textFieldView.isHidden = false
-            datePickerView.isHidden = true
-            dayPickerView.isHidden = true
-            nextButton.isHidden = true
-            doneButton.isHidden = false
+//        case .nameEdit:
+//            editorState = .nameEdit
+//            textFieldView.isHidden = false
+//            datePickerView.isHidden = true
+//            dayPickerView.isHidden = true
+//            nextButton.isHidden = true
+//            doneButton.isHidden = false
         case .addressEdit:
             editorState = .addressEdit
             textFieldView.isHidden = false
