@@ -91,6 +91,8 @@ class  CommentTableViewCell: UITableViewCell {
     }
     
     func addConstraints() {
+        
+        //Container View
         containerView.frame = CGRect(x: self.bounds.width * 0.05, y: self.bounds.height * 0.05, width: self.bounds.width * 0.9, height: self.bounds.height * 0.9)
         containerView.layer.cornerRadius = 10
         

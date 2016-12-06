@@ -16,13 +16,21 @@ class AddCommentView: UIView {
 
     weak var delegate: AddCommentDelegate!
     
-    var market: Market!
     var backButton: UIButton!
     var contentView: UIView!
     var addCommentButton: UIButton!
     var cancelButton: UIButton!
     var commentLabel: UILabel!
     var commentField: UITextView!
+    
+    var market: Market!{
+        didSet {
+            if let displayName =  market.name {
+                commentLabel.text = "\(displayName)"
+            }
+        }
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -53,7 +61,7 @@ class AddCommentView: UIView {
         
         //Add Comment Label
         commentLabel = UILabel()
-        commentLabel.text = "Add a Comment"
+        commentLabel.numberOfLines = 2
         commentLabel.font = UIFont.systemFont(ofSize: 32)
         commentLabel.textColor = UIColor.black
         contentView.addSubview(commentLabel)
@@ -88,13 +96,13 @@ class AddCommentView: UIView {
         let commentString = commentField.text
         if commentField.becomeFirstResponder() && commentField.text != "" {
             print("commentString is \(commentString!)")
-            let currentUser = FirebaseAPI
-            //FirebaseAPI.writeCommentFor(market: <#T##String#>, with: <#T##String#>, from: <#T##String#>)
+            guard let currentUser = FirebaseAPI.getCurrentUserID() else { return }
+            FirebaseAPI.writeCommentFor(market: self.market.name!, with: commentString!, from: currentUser)
         }
+        delegate?.triggerBackSegue()
     }
     
     func backButtonAction() {
-        print("back button is pressed")
         delegate?.triggerBackSegue()
     }
 

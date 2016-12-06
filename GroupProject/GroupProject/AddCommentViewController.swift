@@ -10,12 +10,15 @@ import UIKit
 
 class AddCommentViewController: UIViewController, AddCommentDelegate {
 
+    var market: Market!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         modalTransitionStyle = .crossDissolve
         let addCommentView = AddCommentView(frame: self.view.frame)
+        addCommentView.market = self.market
         self.view = addCommentView
-        print("view loaded")
+        addCommentView.delegate = self
         //modalTransitionStyle = .crossDissolve
         // Do any additional setup after loading the view.
     }
@@ -30,5 +33,7 @@ class AddCommentViewController: UIViewController, AddCommentDelegate {
         print("Trigger Back Segue is called")
         dismiss(animated: true, completion: nil)
     }
+    
+   
     
 }

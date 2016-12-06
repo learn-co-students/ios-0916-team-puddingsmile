@@ -12,6 +12,7 @@ import UIKit
 protocol CommentsViewDelegate: class {
     func triggerBackSegue()
     func triggerCommentsSegue()
+    func prepare(for segue: UIStoryboardSegue, sender: Any?)
 }
 
 class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -38,8 +39,9 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     func commonInit() {
         createLayout()
         loadConstraints()
-        readForComments()
     }
+    
+    
     
     //MARK: - Logic functions
     func readForComments() {
@@ -71,8 +73,14 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 160
     }
+    
+    /*
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+    */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -90,14 +98,11 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         cell.market = market
         cell.commentObject = comment
         cell.addConstraints()
+        cell.updateConstraintsIfNeeded()
         return cell
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "addCommentSegue" { return }
-        let dest = segue.destination as! AddCommentView
-        dest.market = market
-    }
+   
 }
 
 
@@ -111,6 +116,7 @@ extension CommentsView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
         
         //Add Navigation Bar

@@ -20,7 +20,6 @@ class CommentsViewController: UIViewController, CommentsViewDelegate {
         commentsView.commonInit()
         commentsView.delegate = self
         self.view = commentsView
-        //commentsView.setupRequestChangeView(market: market)
     }
     
     func triggerBackSegue() {
@@ -30,9 +29,19 @@ class CommentsViewController: UIViewController, CommentsViewDelegate {
     func triggerCommentsSegue() {
         performSegue(withIdentifier: "addCommentSegue", sender: self)
     }
-
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let tableView = self.view as! CommentsView
+        tableView.readForComments()
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != "addCommentSegue" { return }
+        let dest = segue.destination as! AddCommentViewController
+        dest.market = market
+    }
+   
 }
 
 
