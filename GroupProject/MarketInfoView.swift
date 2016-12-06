@@ -89,7 +89,6 @@ class MarketInfo: UIView {
                 endTableState()
                 toggleEditButton(state: false)
             }
-            print("\(editorBox.editorStore.hasValue())")
         }
     }
     
