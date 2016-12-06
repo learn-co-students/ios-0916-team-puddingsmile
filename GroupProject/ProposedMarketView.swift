@@ -12,6 +12,15 @@ class ProposedMarketView: UIView {
 
     @IBOutlet var contentView: UIView!
     
+    let label: UILabel = {
+        let label = UILabel()
+        
+        
+        
+        
+        return label
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,13 +32,12 @@ class ProposedMarketView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        fatalError("init(coder:) has not been implemented")
         print("decoder init")
     }
     
     func commonInit() {
         
-        Bundle.main.loadNibNamed("AddMarket", owner: self, options: nil)
+        Bundle.main.loadNibNamed("AddedMarket", owner: self, options: nil)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -37,7 +45,6 @@ class ProposedMarketView: UIView {
         
         print("Setting up contentView")
 
-        
         contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

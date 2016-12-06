@@ -37,10 +37,10 @@
 		C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
 		C33604431DE357FF0062453A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33604421DE357FF0062453A /* MapView.swift */; };
-		C33BDB3A1DF720650038072C /* ProposedMarketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BDB391DF720650038072C /* ProposedMarketsViewController.swift */; };
 		C33BDB3C1DF735350038072C /* AddedMarket.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33BDB3B1DF735350038072C /* AddedMarket.xib */; };
 		C33BDB3E1DF738220038072C /* ProposedMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BDB3D1DF738220038072C /* ProposedMarketView.swift */; };
 		C33BDB421DF749B30038072C /* ProposedMarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BDB411DF749B30038072C /* ProposedMarketCell.swift */; };
+		C33BDB441DF759A90038072C /* ProposedMarketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BDB431DF759A90038072C /* ProposedMarketTableViewController.swift */; };
 		C35ADA231DECC522000442BB /* AddMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA221DECC522000442BB /* AddMarketView.swift */; };
 		C35ADA251DECC760000442BB /* AddMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA241DECC760000442BB /* AddMarketViewController.swift */; };
 		C35ADA291DEE3330000442BB /* AddMarketPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */; };
@@ -122,10 +122,10 @@
 		C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C33604421DE357FF0062453A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		C33BDB391DF720650038072C /* ProposedMarketsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketsViewController.swift; sourceTree = "<group>"; };
 		C33BDB3B1DF735350038072C /* AddedMarket.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddedMarket.xib; sourceTree = "<group>"; };
 		C33BDB3D1DF738220038072C /* ProposedMarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketView.swift; sourceTree = "<group>"; };
 		C33BDB411DF749B30038072C /* ProposedMarketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketCell.swift; sourceTree = "<group>"; };
+		C33BDB431DF759A90038072C /* ProposedMarketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketTableViewController.swift; sourceTree = "<group>"; };
 		C35ADA221DECC522000442BB /* AddMarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketView.swift; sourceTree = "<group>"; };
 		C35ADA241DECC760000442BB /* AddMarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketViewController.swift; sourceTree = "<group>"; };
 		C35ADA281DEE3330000442BB /* AddMarketPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketPickerView.swift; sourceTree = "<group>"; };
@@ -389,7 +389,7 @@
 				C35ADA241DECC760000442BB /* AddMarketViewController.swift */,
 				567EFF651DF227B600525A3E /* AddCommentViewController.swift */,
 				B5D2DDC11DE355E3001F2CCE /* CommentsViewController.swift */,
-				C33BDB391DF720650038072C /* ProposedMarketsViewController.swift */,
+				C33BDB431DF759A90038072C /* ProposedMarketTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -678,7 +678,6 @@
 			files = (
 				C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */,
 				B5F4297D1DF0706600C91084 /* InfoTableViewCell.swift in Sources */,
-				C33BDB3A1DF720650038072C /* ProposedMarketsViewController.swift in Sources */,
 				C39323BB1DDF57BB009ECD23 /* MarketDataStore.swift in Sources */,
 				569CBD791DE5F5A200BE502B /* MarketView.swift in Sources */,
 				C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */,
@@ -718,6 +717,7 @@
 				B5D2DDC41DE35639001F2CCE /* MarketListViewController.swift in Sources */,
 				C35ADA251DECC760000442BB /* AddMarketViewController.swift in Sources */,
 				C33604431DE357FF0062453A /* MapView.swift in Sources */,
+				C33BDB441DF759A90038072C /* ProposedMarketTableViewController.swift in Sources */,
 				B5FFF0F31DEC7A7D004716B8 /* CommentsView.swift in Sources */,
 				C33BDB3E1DF738220038072C /* ProposedMarketView.swift in Sources */,
 				B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */,
