@@ -41,6 +41,13 @@ class FirebaseAPI {
         return FIRAuth.auth()?.currentUser != nil ? true : false
         
     }
+    
+    static func getCurrentUserID() -> String? {
+        
+        return FIRAuth.auth()?.currentUser?.uid
+        
+    }
+    
 }
 
 
@@ -55,6 +62,52 @@ extension FirebaseAPI {
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as! [String : [String : String]]
             completion(value)
+        })
+    }
+    
+    static func replaceMarketInfo(withName marketName: String, replaceWith data: [String : String], completion: () -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("markets")
+        
+        if let newMarketName = data["name"] {
+            
+            self.readMarket(withName: marketName, completion: { (currentData) in
+                
+                ref.child(newMarketName).setValue(currentData)
+                
+                for (key, value) in data {
+                    
+                    if key != "votes" && key != "name" {
+                        print("newMarket")
+                        ref.child(marketName).child(key).setValue(value)
+                        
+                    }
+                    
+                }
+                
+            })
+            
+        } else {
+            
+            for (key, value) in data {
+             
+                if key != "votes" {
+                    print("replacing")
+                    ref.child(marketName).child(key).setValue(value)
+                    
+                }
+                
+            }
+        }
+    }
+    
+    static func readMarket(withName market: String, completion: @escaping ([String:String]) -> () ) {
+        let ref = FIRDatabase.database().reference().child("markets").child(market)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let json = snapshot.value as? [String : String] {
+                dump(json)
+                completion(json)
+            }
         })
     }
 }
@@ -163,51 +216,63 @@ extension FirebaseAPI {
         })
     }
     
-    static func upvoteInMarket(forName marketName: String, withId marketID: String, upvoted: Bool, completion: @escaping (String) -> ()) {
+    static func upvoteInMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
         //make sure people cant upvote same thing over and over and over 
-        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)").child("votes")
-
+        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)")
+        
         ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
             
-            if let data = currentData.value {
-                if let value = data as? String {
+            if let json = currentData.value as? [String : String] {
+                
+                if let value = json["votes"] {
+                    
                     if let votes = Int(value) {
-                        var count = votes
-                        if upvoted {
-                            count += 1
-                        } else {
-                            count -= 1
-                        }
-                        currentData.value = "\(count)"
+                        
+                        var returnValue = json
+                        
+                        returnValue["votes"] = upvoted ? "\(votes + 1)" : "\(votes - 1)"
+                        
+                        currentData.value = returnValue
                         
                     }
-                    
                 }
-                
             }
-
+            
             return FIRTransactionResult.success(withValue: currentData)
+            
         }, andCompletionBlock: { (error, committed, snapshot) in
+            
             if let error = error {
+                
                 print(error)
+                
             } else {
-                       //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
-                if let value = snapshot?.value as? String {
-                    if let votes = Int(value) {
-                        if votes >= 5 {
+                
+                //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+                if let json = snapshot?.value as? [String : String] {
+                    
+                    if let votes = json["votes"] {
+                        
+                        if let num = Int(votes) {
                             
-                        } else if votes <= 5 {
-                            
-                        } else {
-                            completion("\(votes)")
+                            if num >= 5 {
+                                
+                                self.replaceMarketInfo(withName: marketName, replaceWith: json, completion: {
+                                    
+                                    ref.removeValue()
+                                    
+                                })
+                                
+                            } else if num <= -5 {
+                                
+                                ref.removeValue()
+                                
+                            }
                         }
                     }
-                    
                 }
-         
             }
         })
-        
     }
     
 }
