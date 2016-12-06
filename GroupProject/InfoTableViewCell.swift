@@ -61,11 +61,17 @@ class InfoTableViewCell: UITableViewCell {
     func voteForSuggestion() {
         print(marketName)
         print(market.idKey!)
-        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: true)
+        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: true) { (votes) in
+            self.market.votes = votes
+            self.votedLabel.text = votes
+        }
     }
     
     func reportSuggestion() {
-        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: false)
+        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: false) { (votes) in
+            self.market.votes = votes
+            self.votedLabel.text = votes
+        }
     }
     
 }

@@ -163,27 +163,21 @@ extension FirebaseAPI {
         })
     }
     
-    static func upvoteInMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
+    static func upvoteInMarket(forName marketName: String, withId marketID: String, upvoted: Bool, completion: @escaping (String) -> ()) {
         //make sure people cant upvote same thing over and over and over 
         let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)").child("votes")
-        print(marketName)
-        print(marketID)
+
         ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
             
-            print("TRANSACTION")
             if let data = currentData.value {
-                print("CURRENTDATA")
                 if let value = data as? String {
-                    print("AS STRING")
                     if let votes = Int(value) {
-                        print("AS INTEGER")
                         var count = votes
                         if upvoted {
                             count += 1
                         } else {
                             count -= 1
                         }
-                        print("BOOLS COMPLETED")
                         currentData.value = "\(count)"
                         
                     }
@@ -191,26 +185,26 @@ extension FirebaseAPI {
                 }
                 
             }
-            
-            //            print(currentData.value)
-            //            if let votes = currentData.value {
-//                print(currentData.value)
-//            }
-//            var votes = currentData.value as! String
-//        
-//            if upvoted {
-//                votes = String(Int(votes)! + 1)
-//            } else {
-//                votes = String(Int(votes)! - 1)
-//            }
-//            currentData.value = votes
-//            
+
             return FIRTransactionResult.success(withValue: currentData)
         }, andCompletionBlock: { (error, committed, snapshot) in
             if let error = error {
-//                print(error)
+                print(error)
             } else {
-                //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+                       //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+                if let value = snapshot?.value as? String {
+                    if let votes = Int(value) {
+                        if votes >= 5 {
+                            
+                        } else if votes <= 5 {
+                            
+                        } else {
+                            completion("\(votes)")
+                        }
+                    }
+                    
+                }
+         
             }
         })
         
