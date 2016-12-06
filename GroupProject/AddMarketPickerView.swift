@@ -24,6 +24,8 @@ class AddMarketPicker: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 3
 //        setupOpenTimeLabel()
 //        setupCloseTimeLabel()
 //        setupLeftPicker()
@@ -38,7 +40,7 @@ class AddMarketPicker: UIView {
         let label = UILabel()
         label.text = "Enter Open Time"
         label.textColor = UIColor.black
-        label.backgroundColor = UIColor.white
+        label.backgroundColor = UIColor.themePrimary
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,7 +50,7 @@ class AddMarketPicker: UIView {
         let label = UILabel()
         label.text = "Enter Close Time"
         label.textColor = UIColor.black
-        label.backgroundColor = UIColor.white
+        label.backgroundColor = UIColor.themePrimary
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -57,8 +59,11 @@ class AddMarketPicker: UIView {
     let leftDatePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = UIDatePickerMode.time
-        picker.minuteInterval = 15
+        picker.minuteInterval = 30
+        picker.backgroundColor = UIColor.themeAccent1
         picker.locale = Locale.current
+        picker.layer.borderColor = UIColor.themeAccent2.cgColor
+        picker.layer.borderWidth = 3
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
@@ -66,10 +71,12 @@ class AddMarketPicker: UIView {
     let rightDatePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = UIDatePickerMode.time
-        picker.minuteInterval = 15
+        picker.minuteInterval = 30
         picker.locale = Locale.current
         picker.calendar = Calendar.current
-        picker.backgroundColor = UIColor.gray
+        picker.backgroundColor = UIColor.themeAccent1
+        picker.layer.borderColor = UIColor.themeAccent2.cgColor
+        picker.layer.borderWidth = 3
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
