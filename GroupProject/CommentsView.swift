@@ -116,7 +116,7 @@ extension CommentsView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
-        
+        tableView.backgroundColor = UIColor.themeTertiary
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
         
         //Add Navigation Bar

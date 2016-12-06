@@ -240,16 +240,12 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         fatalError("init(coder:) has not been implemented")
     }
     
-    var viewTopAnchor: NSLayoutConstraint!
-    var viewWidthAnchor: NSLayoutConstraint!
-    var viewHeightAnchor: NSLayoutConstraint!
-    var viewCenterXAnchor: NSLayoutConstraint!
+    //When user taps on screen when time picker or date picker are up, will dismiss
     
     func setupGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPickerView))
         self.addGestureRecognizer(tapGesture)
     }
-    
     
     func dismissPickerView() {
         
@@ -273,7 +269,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 print("in animate")
                 self.addDateView.center.y = self.bounds.height + self.addDateView.bounds.height * 0.5
                
-                
             }) { (complete) in
                 self.beginningOfSeasonButton.setTitle("", for: .normal)
                 self.beginningOfSeasonButton.isEnabled = true
@@ -283,6 +278,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             }
         }
     }
+    
+    //Set time of open and close date
 
     func stringInfoDelegateOpen(time: String) {
         openTime = time
@@ -293,6 +290,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         closeTime = time
         closeTimeButtonLabel.text = "Close Time: \(time)"
     }
+    
+    //Bring up time picker when clicked
     
     func bringUpTimePicker(_ sender: UITextField) {
         print("pressed")
@@ -320,6 +319,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }, completion: nil)
     }
     
+    //Adjust open and close dates
+    
     func openDateDelegate(date: String) {
         print("open delegate")
         print("date is \(date)")
@@ -333,6 +334,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         closeDate = date
         closeDateButtonLabel.text = "Close: \(date)"
     }
+    
+    //Bring up add date
     
     func enterSeason() {
         addDateUp = true
@@ -356,6 +359,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         
     }
     
+    //Check or uncheck EBT Box
+    
     func ebtCheckboxClicked() {
         print("clicked")
         
@@ -367,6 +372,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             acceptsEBT = false
         }
     }
+    
+    //Bring up days of week view
     
     func daysOfWeekButtonPressed() {
         print("days of week button pressed")
@@ -388,18 +395,16 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         
         UIView.animate(withDuration: 0.25, delay: 0, options: [], animations: {
             print("date animating")
-
             
             self.addMarketDayView.center.y = self.bounds.height - self.addMarketDayView.bounds.height * 0.5
-            
             
         }, completion: nil)
     }
     
-    func passClickedDay(tag: Int) -> String {
-        print("DELEGATE clicked, tag is \(tag)")
-        return "Hey"
-    }
+//    func passClickedDay(tag: Int) -> String {
+//        print("DELEGATE clicked, tag is \(tag)")
+//        return "Hey"
+//    }
     
     func doneButtonPressed(stringForFirebase: String, stringForDisplay: String) {
         firebaseDayString = stringForFirebase

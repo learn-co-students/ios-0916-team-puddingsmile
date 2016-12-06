@@ -20,7 +20,7 @@ class AddCommentView: UIView {
     var contentView: UIView!
     var addCommentButton: UIButton!
     var cancelButton: UIButton!
-    var commentLabel: UILabel!
+    var commentLabel: UITextView!
     var commentField: UITextView!
     
     var market: Market!{
@@ -47,22 +47,27 @@ class AddCommentView: UIView {
     
     func commonInit() {
         contentView = UIView()
-        contentView.backgroundColor = UIColor.themeTertiary
+        contentView.backgroundColor = UIColor.themeSecondary
         addSubview(contentView)
         
         //Add Comment Text Field
         commentField = UITextView()
-        commentField.backgroundColor = UIColor.lightGray
+        commentField.backgroundColor = UIColor.themeTertiary
         commentField.autocorrectionType = .yes
         commentField.textAlignment = NSTextAlignment.center
         commentField.font = UIFont.systemFont(ofSize: 22)
+        commentField.layer.borderColor = UIColor.black.cgColor
+        commentField.layer.borderWidth = 2
         commentField.textContainer.lineBreakMode = .byWordWrapping
+        
         contentView.addSubview(commentField)
         
         //Add Comment Label
-        commentLabel = UILabel()
-        commentLabel.numberOfLines = 2
-        commentLabel.font = UIFont.systemFont(ofSize: 32)
+        commentLabel = UITextView()
+        commentLabel.backgroundColor = UIColor.themeSecondary
+        commentLabel.textAlignment = NSTextAlignment.center
+        commentLabel.textContainer.lineBreakMode = .byWordWrapping
+        commentLabel.font = UIFont.systemFont(ofSize: 20)
         commentLabel.textColor = UIColor.black
         contentView.addSubview(commentLabel)
         
@@ -96,8 +101,9 @@ class AddCommentView: UIView {
         let commentString = commentField.text
         if commentField.becomeFirstResponder() && commentField.text != "" {
             print("commentString is \(commentString!)")
-            guard let currentUser = FirebaseAPI.getCurrentUserID() else { return }
-            FirebaseAPI.writeCommentFor(market: self.market.name!, with: commentString!, from: currentUser)
+            FirebaseAPI.getCurrentUserName(completion: { (currentUsername) in
+                FirebaseAPI.writeCommentFor(market: self.market.name!, with: commentString!, from: currentUsername)
+            })
         }
         delegate?.triggerBackSegue()
     }
@@ -125,7 +131,7 @@ class AddCommentView: UIView {
         //Comment Field
         commentField.translatesAutoresizingMaskIntoConstraints = false
         commentField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        commentField.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.width * 0.3).isActive = true
+        commentField.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: self.bounds.width * 0.04).isActive = true
         commentField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
         commentField.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.45).isActive = true
         commentField.layer.cornerRadius = CGFloat(7)
@@ -134,8 +140,8 @@ class AddCommentView: UIView {
         commentLabel.translatesAutoresizingMaskIntoConstraints = false
         commentLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         commentLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.width * 0.15).isActive = true
-        commentLabel.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1).isActive = true
-        commentLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
+        commentLabel.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.2).isActive = true
+        commentLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8).isActive = true
         
         //Add Comment
         addCommentButton.translatesAutoresizingMaskIntoConstraints = false

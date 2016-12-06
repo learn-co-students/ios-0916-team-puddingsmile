@@ -11,7 +11,6 @@ import UIKit
 
 protocol DayOfWeekDelegate: class {
     
-    func passClickedDay(tag: Int) -> String
     func doneButtonPressed(stringForFirebase: String, stringForDisplay: String)
 }
 
@@ -256,12 +255,12 @@ class AddMarketDayOfWeek: UIView  {
         print("flip called")
         let tag = sender.tag
         flipDay(tag: tag)
-        delegate?.passClickedDay(tag: tag)
     }
     
+    //Create string that will be displayed to user
+    //Create string that will be sent to Firebase
+    
     func doneButtonPressed() {
-        //Create string that will be displayed to user
-        //Create string that will be sent to Firebase
         print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
 
         var daysCheckedArray = [String]()
