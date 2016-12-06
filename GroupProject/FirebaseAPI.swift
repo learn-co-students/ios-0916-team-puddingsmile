@@ -367,7 +367,7 @@ extension FirebaseAPI {
                 nameArray.append(key as! String)
                 
                 let marketName = key
-                
+                print("Market name is \(marketName)")
                 guard let startTime = value["startTime"] else { return }
                 guard let endTime = value["endTime"] else { return }
                 guard let openDate = value["openDate"] else { return }
@@ -378,8 +378,10 @@ extension FirebaseAPI {
                 guard let ebt = value["ebt"] else { return }
                 guard let website = value["website"] else { return }
                 guard let days = value["days"] else { return }
+                guard let votes = value["votes"] else { return }
                 
-                let addedMarket = AddMarket(marketName: marketName, startTime: startTime, endTime: endTime, openDate: openDate, closeDate: closeDate, address: address, latitude: latitude, longitude: longitude, ebt: ebt, website: website, days: days)
+                let addedMarket = AddMarket(marketName: marketName, startTime: startTime, endTime: endTime, openDate: openDate, closeDate: closeDate, address: address, latitude: latitude, longitude: longitude, ebt: ebt, website: website, days: days, votes: votes)
+                
                 
                 addedMarketArray.append(addedMarket)
             }

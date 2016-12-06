@@ -38,11 +38,6 @@ class ProposedMarketView: UIView {
         
         FirebaseAPI.pullAddedMarketFromFirebase { (addedMarket) in
             self.addedMarketArray = addedMarket
-            print("set that bitch up")
-            print("Added markets is \(self.addedMarketArray)")
-            for market in self.addedMarketArray {
-                print(market["marketName"])
-            }
         }
         
         Bundle.main.loadNibNamed("AddedMarket", owner: self, options: nil)

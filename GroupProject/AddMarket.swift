@@ -21,8 +21,9 @@ struct AddMarket {
     let ebt: String?
     let website: String?
     let days: String?
+    let votes: String?
     
-    init(marketName: String, startTime: String, endTime: String, openDate: String, closeDate: String, address: String, latitude: String, longitude: String, ebt: String, website: String, days: String) {
+    init(marketName: String, startTime: String, endTime: String, openDate: String, closeDate: String, address: String, latitude: String, longitude: String, ebt: String, website: String, days: String, votes: String) {
         self.marketName = marketName
         self.startTime = startTime
         self.endTime = endTime
@@ -34,6 +35,7 @@ struct AddMarket {
         self.ebt = ebt
         self.website = website
         self.days = days
+        self.votes = votes
     }
     
     
