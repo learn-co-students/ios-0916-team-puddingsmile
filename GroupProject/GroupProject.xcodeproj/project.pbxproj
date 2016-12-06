@@ -62,6 +62,7 @@
 		C3C659431DDBCE8300C7B533 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659401DDBCE8300C7B533 /* LandingView.swift */; };
 		C3C659441DDBCE8300C7B533 /* MarketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */; };
 		C3C659451DDBCE8300C7B533 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C659421DDBCE8300C7B533 /* SearchView.swift */; };
+		C3DF76681DF7654200D66958 /* AddMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF76671DF7654200D66958 /* AddMarket.swift */; };
 		C3F66D211DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */; };
 		C3FB68061DE5E17E00F0926C /* MarketAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */; };
 		FAF45631D2F3047A5F3EA4DB /* Pods_GroupProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A67DF18E84F0E896BFFCF60 /* Pods_GroupProjectUITests.framework */; };
@@ -153,6 +154,7 @@
 		C3C659401DDBCE8300C7B533 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C3C659411DDBCE8300C7B533 /* MarketInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoView.swift; sourceTree = "<group>"; };
 		C3C659421DDBCE8300C7B533 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C3DF76671DF7654200D66958 /* AddMarket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarket.swift; sourceTree = "<group>"; };
 		C3F66D201DF08853004DFDF0 /* AddMarketDaysOfWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarketDaysOfWeekView.swift; sourceTree = "<group>"; };
 		C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketAnnotation.swift; sourceTree = "<group>"; };
 		CBEB0C8F32A47559618F9456 /* Pods-GroupProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -366,12 +368,13 @@
 		C3C659221DDBCCC800C7B533 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C3DF76671DF7654200D66958 /* AddMarket.swift */,
+				B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */,
 				C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */,
 				C3C6593D1DDBCE7C00C7B533 /* Parser.swift */,
 				C39323BA1DDF57BB009ECD23 /* MarketDataStore.swift */,
 				B5D2DDA01DDF4D1C001F2CCE /* DateManager.swift */,
 				B5D2DDA21DDFAF1A001F2CCE /* LocationManager.swift */,
-				B5D2DDC51DE3729E001F2CCE /* MarketComment.swift */,
 				C3FB68051DE5E17E00F0926C /* MarketAnnotation.swift */,
 			);
 			name = Models;
@@ -706,6 +709,7 @@
 				C3C658F61DDBCC1A00C7B533 /* GroupProject.xcdatamodeld in Sources */,
 				C3C659391DDBCE6700C7B533 /* MapViewController.swift in Sources */,
 				C35ADA291DEE3330000442BB /* AddMarketPickerView.swift in Sources */,
+				C3DF76681DF7654200D66958 /* AddMarket.swift in Sources */,
 				B5D2DDC01DE35553001F2CCE /* LoginViewController.swift in Sources */,
 				B5F4297F1DF0A52A00C91084 /* EditorStore.swift in Sources */,
 				B5D2DDA11DDF4D1C001F2CCE /* DateManager.swift in Sources */,

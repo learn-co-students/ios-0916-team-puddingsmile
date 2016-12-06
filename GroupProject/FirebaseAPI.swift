@@ -355,6 +355,11 @@ extension FirebaseAPI {
         
     }
     
+    static func pullAddedMarketFromFirebase() {
+        
+    }
+    
+    
     static func upvoteAddedMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
         //make sure people cant upvote same thing over and over and over
         let ref = FIRDatabase.database().reference().child("addMarket").child("\(marketName)")

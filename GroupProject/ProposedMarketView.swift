@@ -18,22 +18,11 @@ class ProposedMarketView: UIView {
 
     @IBOutlet var contentView: UIView!
     
-//    let testLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Its working"
-//        label.textColor = UIColor.white
-//        label.backgroundColor = UIColor.black
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        return label
-//    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
         setConstraints()
         print("view created")
-
     }
     
     required init?(coder aDecoder: NSCoder) {
