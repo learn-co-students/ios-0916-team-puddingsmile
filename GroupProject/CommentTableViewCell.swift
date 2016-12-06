@@ -63,9 +63,9 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.setTitle("Report", for: .normal)
         reportButton.setTitle("Reported", for: .selected)
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
-        reportButton.backgroundColor = UIColor.themePrimary
-        reportButton.setTitleColor(UIColor.red, for: .normal)
-        reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 13)
+        // ☎️
+        reportButton.setTitleColor(UIColor.darkGray, for: .normal)
+        reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 10)
         containerView.addSubview(reportButton)
         
         //Like Label - to be completed later, perhaps
@@ -115,7 +115,7 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerView.bounds.height * 0.65).isActive = true
         reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.35).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
-        reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.1).isActive = true
+        reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.05).isActive = true
         reportButton.layer.cornerRadius = 10
     
         //Likes Label
