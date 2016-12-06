@@ -44,11 +44,11 @@ class InfoTableViewCell: UITableViewCell {
         marketName = named
         if market != nil {
             self.market = market
-            titleLabel.text = market?.getCellTitleString()
-            votedLabel.text = market?.votes
+            titleLabel.text = market!.getCellTitleString()
+            votedLabel.text = market!.votes
             
-            voteButton.isHidden = false
-            reportButton.isHidden = false
+            voteButton.isHidden = market!.hasVoted ? true : false
+            reportButton.isHidden = market!.hasVoted ? true : false
             votedLabel.isHidden = false
         } else {
             titleLabel.text = "No suggestions for this market"
@@ -59,13 +59,40 @@ class InfoTableViewCell: UITableViewCell {
     }
     
     func voteForSuggestion() {
-        print(marketName)
-        print(market.idKey!)
-        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: true)
+        
+        FirebaseAPI.upvoteInUpdateMarket(forName: marketName, withId: market.idKey!, upvoted: true)
+        
+        votedLabel.text = changeVotes(increment: true)
+        
+        voteButton.isHidden = true
+        
+        reportButton.isHidden = true
+        
     }
     
     func reportSuggestion() {
-        FirebaseAPI.upvoteInMarket(forName: marketName, withId: market.idKey!, upvoted: false)
+        
+        FirebaseAPI.upvoteInUpdateMarket(forName: marketName, withId: market.idKey!, upvoted: false)
+        
+        votedLabel.text = changeVotes(increment: false)
+        
+        voteButton.isHidden = true
+        
+        reportButton.isHidden = true
+        
+    }
+    
+    func changeVotes(increment: Bool) -> String {
+        
+        var newVotes = ""
+        
+        if let votes = Int(votedLabel.text!) {
+            
+            newVotes = increment ? "\(votes + 1)" : "\(votes - 1)"
+            
+        }
+        
+        return newVotes
     }
     
 }

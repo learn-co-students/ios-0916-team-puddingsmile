@@ -335,6 +335,7 @@ extension MarketInfo {
         startEditState()
         editorBox.setNeutralState()
     }
+    
 }
 
 

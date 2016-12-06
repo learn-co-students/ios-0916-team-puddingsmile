@@ -90,9 +90,10 @@ class EditorBox: UIView {
     func doneButtonAction() {
         switch editorState {
         case .neutral:
-
-            //call firebase function to push up, must check for geolocation
+            
+            //Need to test to make sure data isnt being reset too early, might need a completion
             delegate.editorBoxDone()
+            editorStore.resetProperties()
             
         case .nameEdit:
             doneButton.isUserInteractionEnabled = false
@@ -113,8 +114,8 @@ class EditorBox: UIView {
                     LocationFinder.sharedInstance.getLatLong(with: address, completion: { (success, coord) in
                         if success {
                             self.editorStore.address = self.textView.text
-                            self.editorStore.lat = "\(coord?.0)"
-                            self.editorStore.long = "\(coord?.1)"
+                            self.editorStore.lat = "\(coord!.0)"
+                            self.editorStore.long = "\(coord!.1)"
                             self.delegate.editorBoxDone()
                             self.setNeutralState()
                         } else {
