@@ -133,13 +133,11 @@ extension InfoTableView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
-
+        
         if hasChanges {
-            cell.titleLabel.text = suggestions[indexPath.row].getCellTitleString()
-            cell.votedLabel.text = suggestions[indexPath.row].votes
+            cell.setupCell(with: suggestions[indexPath.row], named: market.name!)
         } else {
-            cell.titleLabel.text = "No suggestions for this market"
-            cell.voteButton.isHidden = true
+            cell.setupCell(with: nil, named: "")
         }
         
         return cell
@@ -190,9 +188,10 @@ struct MarketChanges {
             if titleString != "" { titleString += " / " }
             titleString += "Address"
         }
-//        if let borough = borough {
-//            
-//        }
+        if let _ = city {
+            if titleString != "" { titleString += " / " }
+            titleString += "City"
+        }
         if let _ = season {
             if titleString != "" { titleString += " / " }
             titleString += "Season"

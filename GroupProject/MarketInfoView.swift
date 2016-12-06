@@ -87,6 +87,7 @@ class MarketInfo: UIView {
                 endTableState()
                 toggleEditButton(state: false)
             }
+            print("\(editorBox.editorStore.hasValue())")
         }
     }
     
@@ -242,6 +243,7 @@ extension MarketInfo {
         toggleButtons(state: false)
         labelSwitch()
         hideEditorBox()
+        editorBox.editorStore.resetProperties()
     }
 }
 
@@ -258,6 +260,9 @@ extension MarketInfo {
         switch editorBox.editorState {
         case .neutral:
             //send to firebase
+            FirebaseAPI.writeToUpdate(withName: market.name!, changes: editorBox.editorStore.packageData())
+            endEditState()
+            startTableState()
             return
         case .nameEdit:
             nameLabel.text = "Name: \(editorBox.editorStore.name!)"

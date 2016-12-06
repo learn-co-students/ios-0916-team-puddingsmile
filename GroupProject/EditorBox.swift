@@ -90,32 +90,64 @@ class EditorBox: UIView {
     func doneButtonAction() {
         switch editorState {
         case .neutral:
+
             //call firebase function to push up, must check for geolocation
-            delegate.editorBoxCancel()
+            delegate.editorBoxDone()
+            
         case .nameEdit:
-            editorStore.name = textView.text
-            delegate.editorBoxDone()
-            setNeutralState()
-        case .addressEdit:
-            LocationFinder.sharedInstance.getLatLong(with: textView.text, completion: { (success, coord) in
-                if success {
-                    self.editorStore.name = self.textView.text
-                    print(coord)
-                    self.setNeutralState()
+            doneButton.isUserInteractionEnabled = false
+            if let name = textView.text {
+                if name != "" {
+                    editorStore.name = name
+                    delegate.editorBoxDone()
+                    setNeutralState()
                 } else {
-                    self.vcDelegate.openAlert(title: "Woops", message: "Address couldn't be read! \n Please try with another one.")
+                    vcDelegate.openAlert(title: "Woops", message: "We need a name for this market.")
+                    doneButton.isUserInteractionEnabled = true
                 }
-            })
+            }
+        case .addressEdit:
+            doneButton.isUserInteractionEnabled = false
+            if let address = textView.text {
+                if address != "" {
+                    LocationFinder.sharedInstance.getLatLong(with: address, completion: { (success, coord) in
+                        if success {
+                            self.editorStore.address = self.textView.text
+                            self.editorStore.lat = "\(coord?.0)"
+                            self.editorStore.long = "\(coord?.1)"
+                            self.delegate.editorBoxDone()
+                            self.setNeutralState()
+                        } else {
+                            self.vcDelegate.openAlert(title: "Woops", message: "Address couldn't be read! \n Please try with another one.")
+                            self.doneButton.isUserInteractionEnabled = true
+                        }
+                    })
+                } else {
+                    self.vcDelegate.openAlert(title: "Woops", message: "We need an address to function.")
+                    self.doneButton.isUserInteractionEnabled = true
+                }
+            }
+
         case .cityEdit:
-            editorStore.city = textView.text
-            delegate.editorBoxDone()
-            setNeutralState()
+            doneButton.isUserInteractionEnabled = false
+            if let city = textView.text {
+                if city != "" {
+                    editorStore.city = city
+                    delegate.editorBoxDone()
+                    setNeutralState()
+                } else {
+                    vcDelegate.openAlert(title: "Woops", message: "We need a name for this city.")
+                    doneButton.isUserInteractionEnabled = true
+                }
+            }
         case .seasonEdit:
+            doneButton.isUserInteractionEnabled = false
             editorStore.endSeason = datePicker.date.getMonthDay
             print(datePicker.date.getMonthDay)
             delegate.editorBoxDone()
             setNeutralState()
         case .daysEdit:
+            doneButton.isUserInteractionEnabled = false
             let days = daysSelected()
             if days != "" {
                 editorStore.days = days
@@ -124,9 +156,11 @@ class EditorBox: UIView {
                 setNeutralState()
             } else {
                 self.vcDelegate.openAlert(title: "Woops", message: "You need to select at least one day!")
+                doneButton.isUserInteractionEnabled = true
             }
             
         case .timesEdit:
+            doneButton.isUserInteractionEnabled = false
             editorStore.endTimes = datePicker.date.getHourMinute
             print(datePicker.date.getHourMinute)
             delegate.editorBoxDone()
@@ -206,6 +240,7 @@ class EditorBox: UIView {
 //MARK: - State management
 extension EditorBox {
     func setNeutralState() {
+        doneButton.isUserInteractionEnabled = true
         manageHiddenViews(with: .neutral)
         placeholderLabel.text = "Press On A Field Below To Start Changing Them"
         textView.isHidden = true

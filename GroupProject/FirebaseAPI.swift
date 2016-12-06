@@ -137,7 +137,7 @@ extension FirebaseAPI {
 //MARK: - UpdateMarkets structure functions
 extension FirebaseAPI {
     
-    static func writeToUpdate(with marketName: String, changes: [String : String]) {
+    static func writeToUpdate(withName marketName: String, changes: [String : String]) {
         
         if changes.isEmpty { return }
         
@@ -162,28 +162,48 @@ extension FirebaseAPI {
         })
     }
     
-    static func upvoteInMarket(for marketName: String, with marketID: String, upvoted: Bool) {
+    static func upvoteInMarket(forName marketName: String, withId marketID: String, upvoted: Bool, completion: @escaping (String) -> ()) {
         //make sure people cant upvote same thing over and over and over 
-        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)")
-        
+        let ref = FIRDatabase.database().reference().child("updateMarkets").child("\(marketName)").child("\(marketID)").child("votes")
+
         ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
-            var post = currentData.value as! [String : String]
-            var votes = post["votes"]!
-            if upvoted {
-                votes = String(Int(votes)! + 1)
-            } else {
-                votes = String(Int(votes)! - 1)
+            
+            if let data = currentData.value {
+                if let value = data as? String {
+                    if let votes = Int(value) {
+                        var count = votes
+                        if upvoted {
+                            count += 1
+                        } else {
+                            count -= 1
+                        }
+                        currentData.value = "\(count)"
+                        
+                    }
+                    
+                }
+                
             }
-            
-            post["votes"] = votes
-            currentData.value = post
-            
+
             return FIRTransactionResult.success(withValue: currentData)
         }, andCompletionBlock: { (error, committed, snapshot) in
             if let error = error {
                 print(error)
             } else {
-                //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+                       //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+                if let value = snapshot?.value as? String {
+                    if let votes = Int(value) {
+                        if votes >= 5 {
+                            
+                        } else if votes <= 5 {
+                            
+                        } else {
+                            completion("\(votes)")
+                        }
+                    }
+                    
+                }
+         
             }
         })
         
@@ -257,7 +277,7 @@ extension FirebaseAPI {
 //MARK: Add market to firebase database
 
 extension FirebaseAPI {
-    static func addMarketToFirebase(name: String, address: String, lat: String, long: String, openDate: String, closeDate: String, openTime: String, closeTime: String, acceptEBT: String, days: String) {
+    static func addMarketToFirebase(name: String, address: String, lat: String, long: String, openDate: String, closeDate: String, openTime: String, closeTime: String, acceptEBT: String, days: String, website: String) {
         
         
         let ref = FIRDatabase.database().reference().child("addMarket")
@@ -265,10 +285,9 @@ extension FirebaseAPI {
         let nameChild = ref.child(name)
         
         
-        let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "startTime": openTime, "endTime": closeTime, "ebt": acceptEBT, "days": days]
+        let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "startTime": openTime, "endTime": closeTime, "ebt": acceptEBT, "days": days, "website": website, "votes": "1"]
         
         nameChild.setValue(returnDict)
-        
     }
     
 }
