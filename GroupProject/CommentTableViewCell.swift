@@ -16,8 +16,8 @@ class  CommentTableViewCell: UITableViewCell {
     var commentView: UITextView!
     var nameLabel: UILabel!
     var reportButton: UIButton!
-  //  var likesLabel: UILabel!
-  //  var likesButton: UIButton!
+    var market: Market!
+    var marketLabel: UILabel!
     
     var commentObject: MarketComment!{
         didSet {
@@ -33,13 +33,11 @@ class  CommentTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
-       // addConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        //addConstraints()
     }
     
     func commonInit() {
@@ -50,6 +48,8 @@ class  CommentTableViewCell: UITableViewCell {
         self.addSubview(containerView)
         
         commentView = UITextView()
+        commentView.backgroundColor = UIColor.themeSecondary
+        commentView.font = UIFont.systemFont(ofSize: 18)
         commentView.textAlignment = NSTextAlignment.justified
         containerView.addSubview(commentView)
         
@@ -60,9 +60,10 @@ class  CommentTableViewCell: UITableViewCell {
         containerView.addSubview(nameLabel)
         
         reportButton = UIButton()
-        reportButton.setTitle("Report Comment", for: .normal)
+        reportButton.setTitle("Report", for: .normal)
         reportButton.setTitle("Reported", for: .selected)
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
+        reportButton.backgroundColor = UIColor.themePrimary
         reportButton.setTitleColor(UIColor.red, for: .normal)
         reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 13)
         containerView.addSubview(reportButton)
@@ -75,8 +76,6 @@ class  CommentTableViewCell: UITableViewCell {
 //        likesButton = UIButton()
 //        containerView.addSubview(likesButton)
     }
-    
-    
     
     func likesButtonAction() {
         //add the likes function here *******
@@ -92,6 +91,8 @@ class  CommentTableViewCell: UITableViewCell {
     }
     
     func addConstraints() {
+        
+        //Container View
         containerView.frame = CGRect(x: self.bounds.width * 0.05, y: self.bounds.height * 0.05, width: self.bounds.width * 0.9, height: self.bounds.height * 0.9)
         containerView.layer.cornerRadius = 10
         
@@ -115,6 +116,7 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.35).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.25).isActive = true
         reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.1).isActive = true
+        reportButton.layer.cornerRadius = 10
     
         //Likes Label
 //        likesLabel.translatesAutoresizingMaskIntoConstraints = false

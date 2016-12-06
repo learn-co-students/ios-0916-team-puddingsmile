@@ -12,6 +12,7 @@ import UIKit
 protocol CommentsViewDelegate: class {
     func triggerBackSegue()
     func triggerCommentsSegue()
+    func prepare(for segue: UIStoryboardSegue, sender: Any?)
 }
 
 class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -24,7 +25,7 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Navigation Objects
     var navigationView : UIView!
-    var backButton:     UIButton!
+    var backButton:  UIButton!
     var commentButton: UIButton!
 
     override init(frame: CGRect){
@@ -38,8 +39,9 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     func commonInit() {
         createLayout()
         loadConstraints()
-        readForComments()
     }
+    
+    
     
     //MARK: - Logic functions
     func readForComments() {
@@ -71,8 +73,14 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 160
     }
+    
+    /*
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+    */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -85,12 +93,16 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
         if comments.count > 0 {
             comment = comments[indexPath.row]
         } else {
-            comment = MarketComment(id: "13423423", value: ["comment": "There are no comments for this market"])
+            comment = MarketComment(id: "13423423", value: ["comment": "There are no comments for \(self.market.name!)"])
         }
+        cell.market = market
         cell.commentObject = comment
         cell.addConstraints()
+        cell.updateConstraintsIfNeeded()
         return cell
     }
+    
+   
 }
 
 
@@ -104,6 +116,7 @@ extension CommentsView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        tableView.backgroundColor = UIColor.themeTertiary
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
         
         //Add Navigation Bar

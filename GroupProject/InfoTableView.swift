@@ -47,19 +47,24 @@ class InfoTableView: UIView {
             if success {
                 self.suggestions.removeAll()
                 for (key, value) in data {
+                    
                     let info = value as! [String : String]
-                    self.suggestions.append(MarketChanges(info: info, key: key))
-                }
-                DispatchQueue.main.async {
-                    self.hasChanges = true
-                    self.tableView.reloadData()
+                    
+                    FirebaseAPI.hasVotedForUpdate(marketID: key, isTrue: { (success) in
+            
+                        self.suggestions.append(MarketChanges(info: info, key: key, voted: success))
+                        
+                        self.tableView.reloadData()
+                        
+                    })
                 }
                 
+                self.hasChanges = true
+                
             } else {
-                DispatchQueue.main.async {
-                    self.hasChanges = false
-                    self.tableView.reloadData()
-                }
+
+                self.hasChanges = false
+                
             }
         }
     }
@@ -137,9 +142,13 @@ extension InfoTableView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
         
         if hasChanges {
+            
             cell.setupCell(with: suggestions[indexPath.row], named: market.name!)
+            
         } else {
+            
             cell.setupCell(with: nil, named: "")
+            
         }
         
         return cell
@@ -166,17 +175,26 @@ struct MarketChanges {
     var times: String?
     var ebt: String?
     var votes: String?
+    var hasVoted = false
     
-    init(info: [String : String], key: String?) {
+    init(info: [String : String], key: String?, voted: Bool) {
         self.idKey = key
         self.name = info["name"]
         self.address = info["address"]
         self.city = info["city"]
-        self.season = info["season"]
+        if let open = info["openDate"],
+            let close = info["closeDate"] {
+            self.season = "\(open) - \(close)"
+        }
         self.days = info["days"]
-        self.times = info["times"]
+        if let start = info["startTime"],
+            let end = info["endTime"] {
+            self.times = "\(start) - \(end)"
+        }
         self.ebt = info["ebt"]
         self.votes = info["votes"]
+        self.hasVoted = voted
+        
     }
     
     init() {}

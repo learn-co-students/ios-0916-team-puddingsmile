@@ -40,6 +40,8 @@ class MarketInfo: UIView {
     var favoriteButton: UIButton!
     var commentsButton: UIButton!
     
+    var canFavorite = true
+    
     //MARK: - DetailView Objects
     var detailView:     UIView!
     
@@ -162,6 +164,9 @@ extension MarketInfo {
     func favoriteButtonAction() {
         endTableState()
         endEditState()
+        FirebaseAPI.willFavorite(marketName: market.name!)
+        favoriteButton.isUserInteractionEnabled = false
+        favoriteButton.alpha = 0.5
     }
     
     func commentsButtonAction() {
@@ -178,11 +183,11 @@ extension MarketInfo {
         }
     }
     
-    func editNameAction() {
-        if editorBox.editorState != .nameEdit {
-            editorBox.setNameEditState()
-        }
-    }
+//    func editNameAction() {
+//        if editorBox.editorState != .nameEdit {
+//            editorBox.setNameEditState()
+//        }
+//    }
     func editAddressAction(){
         if editorBox.editorState != .addressEdit {
             editorBox.setAddressEditState()
@@ -243,6 +248,7 @@ extension MarketInfo {
         toggleButtons(state: false)
         labelSwitch()
         hideEditorBox()
+        resetOriginalLabels()
         editorBox.editorStore.resetProperties()
     }
 }
@@ -264,10 +270,10 @@ extension MarketInfo {
             endEditState()
             startTableState()
             return
-        case .nameEdit:
-            nameLabel.text = "Name: \(editorBox.editorStore.name!)"
-            nameLabel.backgroundColor = UIColor.themePrimary
-            return
+//        case .nameEdit:
+//            nameLabel.text = "Name: \(editorBox.editorStore.name!)"
+//            nameLabel.backgroundColor = UIColor.themePrimary
+//            return
         case .addressEdit:
             addressLabel.text = "Address: \(editorBox.editorStore.address!)"
             addressLabel.backgroundColor = UIColor.themePrimary
@@ -335,6 +341,7 @@ extension MarketInfo {
         startEditState()
         editorBox.setNeutralState()
     }
+    
 }
 
 
