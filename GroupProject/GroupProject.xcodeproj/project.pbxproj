@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41C9EFEF0D58011ADABDA4A5 /* Pods_GroupProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E796F04915D3867E73E5AD /* Pods_GroupProjectTests.framework */; };
 		52118E11BE677BA33E036F3B /* Pods_GroupProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */; };
+		561A96C11DF8671A006D2A39 /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561A96C01DF8671A006D2A39 /* NavBarView.swift */; };
 		5633056A1DEF5F6400E54561 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563305691DEF5F6400E54561 /* AddCommentView.swift */; };
 		567EFF661DF227B600525A3E /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567EFF651DF227B600525A3E /* AddCommentViewController.swift */; };
 		569CBD731DE5F3CC00BE502B /* MarketViewPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */; };
@@ -92,6 +93,7 @@
 		237476C277B2E78A7C4F1322 /* Pods_GroupProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E14FECD137F0044D1F924B /* Pods-GroupProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectUITests/Pods-GroupProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		467396D901C55DBB36357A1F /* Pods-GroupProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		561A96C01DF8671A006D2A39 /* NavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
 		563305691DEF5F6400E54561 /* AddCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCommentView.swift; path = GroupProject/AddCommentView.swift; sourceTree = "<group>"; };
 		567EFF651DF227B600525A3E /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCommentViewController.swift; path = GroupProject/AddCommentViewController.swift; sourceTree = "<group>"; };
 		569CBD721DE5F3CC00BE502B /* MarketViewPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarketViewPrototype.xib; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				C35793AA1DEF9032000931F2 /* AddMarketViews */,
 				B5167F681DEDD626005AB062 /* Constants.swift */,
 				C33604421DE357FF0062453A /* MapView.swift */,
+				561A96C01DF8671A006D2A39 /* NavBarView.swift */,
 				B5D2DDEC1DE39B3B001F2CCE /* UIClassExtensions.swift */,
 				B5D2DDEA1DE3943E001F2CCE /* LoginView.swift */,
 				C3C659401DDBCE8300C7B533 /* LandingView.swift */,
@@ -687,6 +690,7 @@
 				B5F429761DEF6A3A00C91084 /* InfoTableView.swift in Sources */,
 				FD55AC741DEFC3580013C8D5 /* MarketInfoViewConstraints.swift in Sources */,
 				B5F429811DF1BE0E00C91084 /* EditorBoxSubviews.swift in Sources */,
+				561A96C11DF8671A006D2A39 /* NavBarView.swift in Sources */,
 				B5167F691DEDD626005AB062 /* Constants.swift in Sources */,
 				C3C6593A1DDBCE6700C7B533 /* SearchViewController.swift in Sources */,
 				C33BDB421DF749B30038072C /* ProposedMarketCell.swift in Sources */,

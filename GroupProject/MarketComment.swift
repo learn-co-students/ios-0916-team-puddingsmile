@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct MarketComment {
     let comment: String?
     //var likes: Int

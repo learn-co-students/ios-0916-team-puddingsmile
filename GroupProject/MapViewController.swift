@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import MapKit
 
-class MapViewController: UIViewController, MapViewDelegate {
+class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
     var passedMarket: Market!
+    
+    var mapView: MapView!
+    var navBar: NavBarView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let mapView = MapView(frame: self.view.frame)
-        mapView.mapDelegate = self
-        self.view = mapView
+        setLayout()
         
     }
     
@@ -25,6 +27,10 @@ class MapViewController: UIViewController, MapViewDelegate {
 
     func transitionToMarketInfoView() {
         performSegue(withIdentifier: "marketInfoSegue", sender: self)
+    }
+    
+    func triggerSearchSegue() {
+        performSegue(withIdentifier: "marketSearchSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,5 +43,20 @@ class MapViewController: UIViewController, MapViewDelegate {
  
 }
 
-
+extension MapViewController {
+    
+    func setLayout() {
+        //let mapView = MapView(frame: self.view.frame)
+        mapView = MapView()
+        mapView.mapDelegate = self
+        self.view.addSubview(mapView)
+        
+        navBar = NavBarView()
+        self.view.addSubview(navBar)
+    }
+    
+    
+    
+    
+}
 
