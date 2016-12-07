@@ -35,27 +35,25 @@ class NavBarView: UIView {
     }
 
     func createLayout() {
-        self.backgroundColor = UIColor.themeSecondary
-        
-        print("calling createLayout() function")
+        self.backgroundColor = UIColor.themePrimary
         
         searchButton = UIButton()
-        let searchImage: UIImage! = UIImage(named: "searchImage.png")
-        searchButton.backgroundColor = UIColor(patternImage: searchImage)
-        searchButton.layer.borderColor = UIColor.black.cgColor
+        searchButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        let searchImage: UIImage! = UIImage(named: "imgres.png")
+        searchButton.setImage(searchImage, for: .normal)
+        searchButton.layer.borderColor = UIColor.gray.cgColor
         searchButton.layer.borderWidth = 2
         searchButton.addTarget(self, action: #selector(searchButtonAction), for: .touchUpInside)
+        searchButton.layer.cornerRadius = CGFloat(7)
         self.addSubview(searchButton)
     }
     
     func loadConstraints() {
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        //searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        //searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.85).isActive = true
-        searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        searchButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        searchButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.4).isActive = true
-        searchButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.4).isActive = true
+        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.2).isActive = true
+        searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.85).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
     }
     
     func searchButtonAction() {

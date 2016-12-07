@@ -39,26 +39,27 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
         }
     }
  
-}
 
-extension MapViewController {
-    
     func setLayout() {
         mapView = MapView()
         mapView.mapDelegate = self
         self.view.addSubview(mapView)
         
-        navBar = NavBarView()
+        let viewFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height * 0.07)
+        navBar = NavBarView(frame: viewFrame)
+        navBar.delegate = self
         self.view.addSubview(navBar)
     }
     
     func setConstraints() {
+        //MapView constraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.bounds.height * 0.07).isActive = true
         mapView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         mapView.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
         mapView.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.93).isActive = true
         
+        //NavBar constraints
         navBar.translatesAutoresizingMaskIntoConstraints = false
         navBar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         navBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
