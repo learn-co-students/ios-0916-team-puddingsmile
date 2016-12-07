@@ -621,7 +621,7 @@ extension FirebaseAPI {
     
     //MARK: -Add new market to markets bucket, then delete from respective bucket
     static func passedThreshold(forMarket marketName: String, dict: [String : String]) {
-        print("UPDATING MARKETS WOOOOO")
+
         let addedMarketRef = FIRDatabase.database().reference().child("addMarket")
         let marketsRef = FIRDatabase.database().reference().child("markets")
         
@@ -630,17 +630,14 @@ extension FirebaseAPI {
         
         returnDict.removeValue(forKey: "votes")
         
-        print("before market added")
         marketsRef.child(marketName).setValue(returnDict)
         
-        print("market added")
-        
         addedMarketRef.child(marketName).removeValue { (error, ref) in
-            print("in remove market")
+
             if error != nil {
-                print(error)
+
             }
-            print("Market successfully removed")
+
         }
         
     }

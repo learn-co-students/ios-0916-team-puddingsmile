@@ -47,13 +47,6 @@ class ProposedMarketTableViewController: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("before perform")
-//        selectedMarket = indexPath.row
-//        self.performSegue(withIdentifier: "proposedMarketInfo", sender: tableView)
-//        print("after perform")
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("in prepare for segue")
         if segue.identifier != "proposedMarketInfo" { return }
