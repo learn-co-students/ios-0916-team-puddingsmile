@@ -28,7 +28,7 @@ class InfoTableView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.themeTertiary
-        alpha = 0.8
+        alpha = 0.95
     }
     
     required init?(coder aDecoder: NSCoder) {

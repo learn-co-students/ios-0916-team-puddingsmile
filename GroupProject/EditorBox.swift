@@ -52,7 +52,7 @@ class EditorBox: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.themeTertiary
-        alpha = 0.9
+        alpha = 0.95
     }
     
     required init?(coder aDecoder: NSCoder) {

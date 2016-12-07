@@ -10,7 +10,7 @@ import UIKit
 
 class InfoTableViewCell: UITableViewCell {
     
-    var mainLabel = UILabel()
+    var cellView = UIView()
     var titleLabel = UILabel()
     var votedLabel = UILabel()
     var voteButton = UIButton()
