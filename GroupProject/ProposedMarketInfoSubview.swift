@@ -119,7 +119,7 @@ extension ProposedMarketInfo {
             cityLabel = UILabel()
             self.detailView.addSubview(cityLabel)
             cityLabel.backgroundColor = UIColor.themeSecondary
-            //cityLabel.text = "City: \(market.borough!)"
+            cityLabel.text = "City: \(market.days!)"
             cityLabel.font = Constants.themeFont()
         }
         
