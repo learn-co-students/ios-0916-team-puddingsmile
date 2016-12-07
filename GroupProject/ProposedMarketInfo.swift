@@ -21,7 +21,7 @@ protocol ProposedMarketViewDelegate {
 class ProposedMarketInfo: UIView {
     weak var delegate: MarketInfoDelegate!
     
-    var market: Market!
+    var market: AddMarket!
     
     //MARK: - Map objects
     var mapView:    MKMapView!
@@ -68,6 +68,16 @@ class ProposedMarketInfo: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupMarketInfoView(market: AddMarket) {
+        self.market = market
+        createObjects()
+        loadContraints()
+        setupLocationManager()
+        centerMapOnCurrentLocation()
+        convertToMapItem()
+        addAnnotationToMap()
+        
+    }
     
     
     

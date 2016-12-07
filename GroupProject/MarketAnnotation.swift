@@ -28,5 +28,25 @@ class MarketAnnotation: NSObject, MKAnnotation {
         self.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
     }
     
+}
+
+class AddMarketAnnotation: NSObject, MKAnnotation {
+    
+    var market: AddMarket!
+    var title: String?
+    var subtitle: String?
+    var coordinate: CLLocationCoordinate2D
+    
+    init(market: AddMarket) {
+        self.market = market
+        self.title = market.marketName
+        self.subtitle = market.address
+        
+        let latitude = Double(market.latitude!)
+        let longitude = Double(market.longitude!)
+        
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+    }
     
 }
+

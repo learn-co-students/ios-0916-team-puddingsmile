@@ -10,6 +10,8 @@ import UIKit
 
 class ProposedMarketTableViewController: UITableViewController {
     
+    var market: AddMarket!
+    var selectedMarket: Int!
     var addedMarketArray = [AddMarket]()
 
     override func viewDidLoad() {
@@ -45,16 +47,30 @@ class ProposedMarketTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "proposedMarketInfo", sender: tableView)
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("before perform")
+//        selectedMarket = indexPath.row
+//        self.performSegue(withIdentifier: "proposedMarketInfo", sender: tableView)
+//        print("after perform")
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("in prepare for segue")
         if segue.identifier != "proposedMarketInfo" { return }
+        print("after perform for segue")
+//        guard let indexPath = selectedMarket else { return }
+        print("after making indexPath")
+        if let destVC = segue.destination as? ProposedMarketInfoViewController {
+            destVC.market = self.addedMarketArray[(tableView.indexPathForSelectedRow?.row)!]
+            print("\(destVC.market?.marketName) is marketNAME!!!")
+        }
     }
 
-
 }
+
+
+
+
 
 
 

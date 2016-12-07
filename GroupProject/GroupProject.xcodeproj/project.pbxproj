@@ -38,6 +38,8 @@
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
 		C323BF931DF866FB00A501E1 /* ProposedMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */; };
 		C323BF951DF86FFA00A501E1 /* ProposedMarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */; };
+		C33022621DF876C5000D11F3 /* ProposedMarketMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */; };
+		C33022641DF8918E000D11F3 /* ProposedMarketInfoSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */; };
 		C33604431DE357FF0062453A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33604421DE357FF0062453A /* MapView.swift */; };
 		C33BDB3C1DF735350038072C /* AddedMarket.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33BDB3B1DF735350038072C /* AddedMarket.xib */; };
 		C33BDB3E1DF738220038072C /* ProposedMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BDB3D1DF738220038072C /* ProposedMarketView.swift */; };
@@ -126,6 +128,8 @@
 		C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketViewController.swift; sourceTree = "<group>"; };
 		C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketInfo.swift; sourceTree = "<group>"; };
+		C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketMapView.swift; sourceTree = "<group>"; };
+		C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketInfoSubview.swift; sourceTree = "<group>"; };
 		C33604421DE357FF0062453A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C33BDB3B1DF735350038072C /* AddedMarket.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddedMarket.xib; sourceTree = "<group>"; };
 		C33BDB3D1DF738220038072C /* ProposedMarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketView.swift; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 				C33BDB3D1DF738220038072C /* ProposedMarketView.swift */,
 				C33BDB411DF749B30038072C /* ProposedMarketCell.swift */,
 				C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */,
+				C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */,
+				C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */,
 			);
 			name = ProposedMarkets;
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 				C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */,
 				B5F429761DEF6A3A00C91084 /* InfoTableView.swift in Sources */,
 				FD55AC741DEFC3580013C8D5 /* MarketInfoViewConstraints.swift in Sources */,
+				C33022621DF876C5000D11F3 /* ProposedMarketMapView.swift in Sources */,
 				B5F429811DF1BE0E00C91084 /* EditorBoxSubviews.swift in Sources */,
 				C323BF951DF86FFA00A501E1 /* ProposedMarketInfo.swift in Sources */,
 				C323BF931DF866FB00A501E1 /* ProposedMarketViewController.swift in Sources */,
@@ -733,6 +740,7 @@
 				B5FFF0F31DEC7A7D004716B8 /* CommentsView.swift in Sources */,
 				C33BDB3E1DF738220038072C /* ProposedMarketView.swift in Sources */,
 				B5D2DDC61DE3729E001F2CCE /* MarketComment.swift in Sources */,
+				C33022641DF8918E000D11F3 /* ProposedMarketInfoSubview.swift in Sources */,
 				B5D2DDC21DE355E3001F2CCE /* CommentsViewController.swift in Sources */,
 				C3C658EE1DDBCC1A00C7B533 /* AppDelegate.swift in Sources */,
 				567EFF661DF227B600525A3E /* AddCommentViewController.swift in Sources */,

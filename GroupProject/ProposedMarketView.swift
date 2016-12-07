@@ -142,27 +142,6 @@ class ProposedMarketView: UIView {
 
 
 
-//extension ProposedMarketView {
-//    
-//    func setupContentViewLabel() {
-//        print("Setup content view called")
-//        contentView.addSubview(testLabel)
-//        
-//        testLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-//        testLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-//        testLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
-//        testLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
-//    }
-//    
-//    
-//}
-
-
-
-
-
-
-
 
 
 

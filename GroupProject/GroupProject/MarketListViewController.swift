@@ -79,7 +79,7 @@ class MarketListViewController: UITableViewController {
     //MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier != "listToViewSegue" { return }
-        
+        print("In story board segue!")
         let sender = sender as! UITableView
         let destController = segue.destination as! MarketInfoViewController
         
