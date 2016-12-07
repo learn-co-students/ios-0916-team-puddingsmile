@@ -57,6 +57,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="proposedMarket" destination="EV4-gN-Aow" id="42r-fH-Rxe"/>
+                                    <segue destination="geO-9I-ttH" kind="presentation" identifier="proposedMarketInfo" id="5YW-3k-gGK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -68,7 +69,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FX9-Jp-H31" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3541.5999999999999" y="-84.107946026986511"/>
+            <point key="canvasLocation" x="4772" y="-76"/>
+        </scene>
+        <!--Proposed Market Info View Controller-->
+        <scene sceneID="OfS-iQ-J9c">
+            <objects>
+                <viewController id="geO-9I-ttH" customClass="ProposedMarketInfoViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dTV-EF-P0l"/>
+                        <viewControllerLayoutGuide type="bottom" id="kHJ-i8-Rnq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3lb-r9-Rio">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HoA-mx-5OH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5668" y="-76"/>
         </scene>
         <!--Add Market View Controller-->
         <scene sceneID="4xp-fW-TA7">
@@ -86,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDh-7h-G9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4433" y="-91"/>
+            <point key="canvasLocation" x="3607" y="-76"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="wCA-wY-CQV">
@@ -239,6 +258,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bz1-sE-CdD"/>
+        <segue reference="KjW-6N-AGa"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -240,7 +240,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         fatalError("init(coder:) has not been implemented")
     }
     
-    //When user taps on screen when time picker or date picker are up, will dismiss
+    //MARK: -When user taps on screen when time picker or date picker are up, will dismiss
     
     func setupGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPickerView))
@@ -279,7 +279,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
     }
     
-    //Set time of open and close date
+    //MARK: -Set time of open and close date
 
     func stringInfoDelegateOpen(time: String) {
         openTime = time
@@ -291,7 +291,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         closeTimeButtonLabel.text = "Close Time: \(time)"
     }
     
-    //Bring up time picker when clicked
+    //MARK: -Bring up time picker when clicked
     
     func bringUpTimePicker(_ sender: UITextField) {
         print("pressed")
@@ -319,7 +319,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }, completion: nil)
     }
     
-    //Adjust open and close dates
+    //MARK: -Adjust open and close dates
     
     func openDateDelegate(date: String) {
         print("open delegate")
@@ -335,7 +335,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         closeDateButtonLabel.text = "Close: \(date)"
     }
     
-    //Bring up add date
+    //MARK: -Bring up add date
     
     func enterSeason() {
         addDateUp = true
@@ -359,7 +359,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         
     }
     
-    //Check or uncheck EBT Box
+    //MARK: -Check or uncheck EBT Box
     
     func ebtCheckboxClicked() {
         print("clicked")
@@ -373,7 +373,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
     }
     
-    //Bring up days of week view
+    //MARK: -Bring up days of week view
     
     func daysOfWeekButtonPressed() {
         print("days of week button pressed")
@@ -400,11 +400,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             
         }, completion: nil)
     }
-    
-//    func passClickedDay(tag: Int) -> String {
-//        print("DELEGATE clicked, tag is \(tag)")
-//        return "Hey"
-//    }
     
     func doneButtonPressed(stringForFirebase: String, stringForDisplay: String) {
         firebaseDayString = stringForFirebase
@@ -440,7 +435,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
             
             if success {
                 guard let unwrappedTuple = coordinateTuple else { return }
-                
                
                 self.latString = "\(unwrappedTuple.0)"
                 self.longString = "\(unwrappedTuple.1)"
@@ -454,26 +448,22 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 print(self.openDate)
                 print(self.closeDate)
                 
-                
                 if (self.marketName != nil || self.marketName != "") && (self.marketAddress != nil || self.marketAddress != "") && (self.websiteAddress != nil || self.websiteAddress != "") && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
                     FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: self.latString, long: self.longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)
                     
-                    print("You sent data up succesfully")
-                    
                 } else {
-                    print("NOT ACCEPTABLE!")
+                    
                 }
                 
-                
             } else {
-                print("blew it")
+                
                 self.checkForErrors()
                 self.addressTextField.shake(count: 3, for: 0.15, withTranslation: 7)
                 self.addressTextField.pulse(count: 1, for: 0.15, withTranslation: 5)
+                
             }
         }
-        print("after location finder")
     }
     
     

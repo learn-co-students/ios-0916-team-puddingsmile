@@ -36,6 +36,8 @@
 		B5FFF0F31DEC7A7D004716B8 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFF0F21DEC7A7D004716B8 /* CommentsView.swift */; };
 		C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
+		C323BF931DF866FB00A501E1 /* ProposedMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */; };
+		C323BF951DF86FFA00A501E1 /* ProposedMarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */; };
 		C33604431DE357FF0062453A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33604421DE357FF0062453A /* MapView.swift */; };
 		C33BDB3C1DF735350038072C /* AddedMarket.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33BDB3B1DF735350038072C /* AddedMarket.xib */; };
 		C33BDB3E1DF738220038072C /* ProposedMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BDB3D1DF738220038072C /* ProposedMarketView.swift */; };
@@ -122,6 +124,8 @@
 		C00C22163A0DAEAF7038196C /* Pods-GroupProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketViewController.swift; sourceTree = "<group>"; };
+		C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketInfo.swift; sourceTree = "<group>"; };
 		C33604421DE357FF0062453A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C33BDB3B1DF735350038072C /* AddedMarket.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddedMarket.xib; sourceTree = "<group>"; };
 		C33BDB3D1DF738220038072C /* ProposedMarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketView.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			children = (
 				C33BDB3D1DF738220038072C /* ProposedMarketView.swift */,
 				C33BDB411DF749B30038072C /* ProposedMarketCell.swift */,
+				C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */,
 			);
 			name = ProposedMarkets;
 			sourceTree = "<group>";
@@ -387,12 +392,13 @@
 				B5D2DDBF1DE35553001F2CCE /* LoginViewController.swift */,
 				C3C659351DDBCE6700C7B533 /* MapViewController.swift */,
 				C3C659361DDBCE6700C7B533 /* SearchViewController.swift */,
-				B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */,
-				C3C659341DDBCE6700C7B533 /* MarketInfoViewController.swift */,
 				C35ADA241DECC760000442BB /* AddMarketViewController.swift */,
 				567EFF651DF227B600525A3E /* AddCommentViewController.swift */,
 				B5D2DDC11DE355E3001F2CCE /* CommentsViewController.swift */,
+				B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */,
+				C3C659341DDBCE6700C7B533 /* MarketInfoViewController.swift */,
 				C33BDB431DF759A90038072C /* ProposedMarketTableViewController.swift */,
+				C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -687,6 +693,8 @@
 				B5F429761DEF6A3A00C91084 /* InfoTableView.swift in Sources */,
 				FD55AC741DEFC3580013C8D5 /* MarketInfoViewConstraints.swift in Sources */,
 				B5F429811DF1BE0E00C91084 /* EditorBoxSubviews.swift in Sources */,
+				C323BF951DF86FFA00A501E1 /* ProposedMarketInfo.swift in Sources */,
+				C323BF931DF866FB00A501E1 /* ProposedMarketViewController.swift in Sources */,
 				B5167F691DEDD626005AB062 /* Constants.swift in Sources */,
 				C3C6593A1DDBCE6700C7B533 /* SearchViewController.swift in Sources */,
 				C33BDB421DF749B30038072C /* ProposedMarketCell.swift in Sources */,
