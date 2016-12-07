@@ -18,7 +18,7 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        
+        setConstraints()
     }
     
     func getInfo(market: Market) {
@@ -45,7 +45,6 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
 extension MapViewController {
     
     func setLayout() {
-        //let mapView = MapView(frame: self.view.frame)
         mapView = MapView()
         mapView.mapDelegate = self
         self.view.addSubview(mapView)
@@ -54,7 +53,19 @@ extension MapViewController {
         self.view.addSubview(navBar)
     }
     
-    
+    func setConstraints() {
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.bounds.height * 0.07).isActive = true
+        mapView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        mapView.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+        mapView.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.93).isActive = true
+        
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        navBar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        navBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        navBar.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+        navBar.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.07).isActive = true
+    }
     
     
 }
