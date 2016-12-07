@@ -47,6 +47,7 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         print("before geocoder")
+      
         geocoder.geocodeAddressString(address, completionHandler: { (response, error) in
             print("in geocoder")
             if error != nil {
@@ -57,7 +58,6 @@ class LocationFinder: NSObject, CLLocationManagerDelegate {
             guard let placemark = response else { return }
    
             for place in placemark {
-             
                 print("determine placemark")
                 let latitude = place.location?.coordinate.latitude
                 let longitude = place.location?.coordinate.longitude

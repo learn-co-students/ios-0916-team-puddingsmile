@@ -44,7 +44,7 @@ class MarketInfo: UIView {
     
     //MARK: - DetailView Objects
     var detailView:     UIView!
-    
+    var blurView:       UIView!
     var nameButton:     UIButton!
     var nameLabel:      UILabel!
     var addressButton:  UIButton!
@@ -88,6 +88,7 @@ class MarketInfo: UIView {
             } else if isShowingTable {
                 endTableState()
                 toggleEditButton(state: false)
+                animateBlurView(isTrue: false)
             }
         }
     }
@@ -127,9 +128,11 @@ extension MarketInfo {
             endTableState()
             endEditState()
             toggleEditButton(state: false)
+            animateBlurView(isTrue: false)
         } else {
             startTableState()
             toggleEditButton(state: true)
+            animateBlurView(isTrue: true)
         }
     }
     
