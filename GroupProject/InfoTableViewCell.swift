@@ -21,6 +21,7 @@ class InfoTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = UIColor.clear
         createSubviews()
         setConstraints()
     }
@@ -47,14 +48,39 @@ class InfoTableViewCell: UITableViewCell {
             titleLabel.text = market!.getCellTitleString()
             votedLabel.text = market!.votes
             
-            voteButton.isHidden = market!.hasVoted ? true : false
-            reportButton.isHidden = market!.hasVoted ? true : false
+            voteButton.isHidden = false
+            reportButton.isHidden = false
             votedLabel.isHidden = false
+            
+            if market!.hasVoted {
+                
+                voteButton.isUserInteractionEnabled = false
+                voteButton.alpha = 0.5
+                
+                reportButton.isUserInteractionEnabled = false
+                reportButton.alpha = 0.5
+                
+                votedLabel.isHidden = false
+                
+            } else {
+                
+                voteButton.isUserInteractionEnabled = true
+                voteButton.alpha = 1
+                
+                reportButton.isUserInteractionEnabled = true
+                reportButton.alpha = 1
+                
+                votedLabel.isHidden = false
+                
+            }
+
         } else {
+            
             titleLabel.text = "No suggestions for this market"
             voteButton.isHidden = true
             reportButton.isHidden = true
             votedLabel.isHidden = true
+            
         }
     }
     
@@ -64,9 +90,11 @@ class InfoTableViewCell: UITableViewCell {
         
         votedLabel.text = changeVotes(increment: true)
         
-        voteButton.isHidden = true
+        voteButton.isUserInteractionEnabled = false
+        voteButton.alpha = 0.5
         
-        reportButton.isHidden = true
+        reportButton.isUserInteractionEnabled = false
+        reportButton.alpha = 0.5
         
     }
     
@@ -76,9 +104,11 @@ class InfoTableViewCell: UITableViewCell {
         
         votedLabel.text = changeVotes(increment: false)
         
-        voteButton.isHidden = true
+        voteButton.isUserInteractionEnabled = false
+        voteButton.alpha = 0.5
         
-        reportButton.isHidden = true
+        reportButton.isUserInteractionEnabled = false
+        reportButton.alpha = 0.5
         
     }
     
@@ -99,76 +129,118 @@ class InfoTableViewCell: UITableViewCell {
 
 //MARK: - Subviews
 extension InfoTableViewCell {
+    
     func createSubviews() {
+        
+        createCellView()
         createTitleLabel()
         createVotedLabel()
         createVoteButton()
         createReportButton()
+        
     }
+    
+    func createCellView() {
+        
+        contentView.addSubview(cellView)
+        cellView.backgroundColor = UIColor.themeSecondary
+        cellView.layer.cornerRadius = 7
+        
+    }
+    
     func createTitleLabel() {
-        contentView.addSubview(titleLabel)
+        
+        cellView.addSubview(titleLabel)
+        titleLabel.textAlignment = .center
+        
     }
+    
     func createVotedLabel() {
-        contentView.addSubview(votedLabel)
-        votedLabel.backgroundColor = UIColor.cyan
+        
+        cellView.addSubview(votedLabel)
+        votedLabel.textAlignment = .center
+        
     }
+    
     func createVoteButton() {
-        contentView.addSubview(voteButton)
-        voteButton.backgroundColor = UIColor.blue
+        
+        cellView.addSubview(voteButton)
         voteButton.setTitle("⬆", for: .normal)
         voteButton.addTarget(self, action: #selector(voteForSuggestion), for: .touchUpInside)
+        
     }
+    
     func createReportButton() {
-        contentView.addSubview(reportButton)
-        reportButton.backgroundColor = UIColor.red
+        
+        cellView.addSubview(reportButton)
         reportButton.setTitle("🚫", for: .normal)
         reportButton.addTarget(self, action: #selector(reportSuggestion), for: .touchUpInside)
+        
     }
+    
 }
 
 //MARK: - Constraints
 extension InfoTableViewCell {
+    
     func setConstraints() {
+        
+        setCellViewConstraints()
         setTitleLabelConstraints()
         setVotedLabelConstraints()
         setVoteButtonConstraints()
         setReportButtonConstraints()
+        
     }
+    
+    func setCellViewConstraints() {
+        
+        cellView.translatesAutoresizingMaskIntoConstraints = false
+        cellView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: self.contentView.bounds.height * 0.05).isActive = true
+        cellView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: self.contentView.bounds.height * -0.05).isActive = true
+        cellView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: self.contentView.bounds.width * 0.05).isActive = true
+        cellView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: self.contentView.bounds.width * -0.05).isActive = true
+        
+    }
+    
     func setTitleLabelConstraints() {
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        titleLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 8).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -8).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 8).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: cellView.widthAnchor, multiplier: 0.8).isActive = true
+        
     }
+    
     func setVotedLabelConstraints() {
+        
         votedLabel.translatesAutoresizingMaskIntoConstraints = false
-        votedLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        votedLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        votedLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
-        votedLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
+        votedLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
+        votedLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
+        votedLabel.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.6).isActive = true
+        votedLabel.widthAnchor.constraint(equalTo: cellView.widthAnchor, multiplier: 0.2).isActive = true
+        
     }
+    
     func setVoteButtonConstraints() {
+        
         voteButton.translatesAutoresizingMaskIntoConstraints = false
-        voteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        voteButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        voteButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
-        voteButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
+        voteButton.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
+        voteButton.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
+        voteButton.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.4).isActive = true
+        voteButton.widthAnchor.constraint(equalTo: cellView.widthAnchor, multiplier: 0.1).isActive = true
+        
     }
+    
     func setReportButtonConstraints() {
+        
         reportButton.translatesAutoresizingMaskIntoConstraints = false
         reportButton.trailingAnchor.constraint(equalTo: voteButton.leadingAnchor).isActive = true
-        reportButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        reportButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
-        reportButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
+        reportButton.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
+        reportButton.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.4).isActive = true
+        reportButton.widthAnchor.constraint(equalTo: cellView.widthAnchor, multiplier: 0.1).isActive = true
+        
     }
+    
 }
-
-
-
-
-
-
-
-
-
