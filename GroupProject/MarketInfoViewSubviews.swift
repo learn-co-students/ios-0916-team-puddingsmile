@@ -32,21 +32,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         createInfoTableView()
     }
     
-    func createEditorBox() {
-        editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
-        editorBox.createObjects()
-        editorBox.isHidden = true
-        editorBox.delegate = self
-        self.addSubview(editorBox)
-    }
-    func createInfoTableView() {
-        infoTableView = InfoTableView(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
-        infoTableView.setupInfoTableView(market: self.market)
-        infoTableView.isHidden = true
-        infoTableView.delegate = self
-        self.addSubview(infoTableView)
-        
-    }
+
     
     func createMapView() {
         mapView = MKMapView()
@@ -213,4 +199,21 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         websiteLabel.font = Constants.themeFont()
         websiteLabel.textAlignment = .center
     }
+    
+    func createEditorBox() {
+        editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
+        editorBox.createObjects()
+        editorBox.isHidden = true
+        editorBox.delegate = self
+        self.addSubview(editorBox)
+    }
+    
+    func createInfoTableView() {
+        infoTableView = InfoTableView(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
+        infoTableView.setupInfoTableView(market: self.market)
+        infoTableView.isHidden = true
+        infoTableView.delegate = self
+        self.addSubview(infoTableView)
+    }
+    
 }

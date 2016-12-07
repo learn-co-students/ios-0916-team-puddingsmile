@@ -26,10 +26,6 @@ class AddMarketPicker: UIView {
         self.backgroundColor = UIColor.gray
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 3
-//        setupOpenTimeLabel()
-//        setupCloseTimeLabel()
-//        setupLeftPicker()
-//        setupRightPicker()
     }
     
     required init?(coder aDecoder: NSCoder) {

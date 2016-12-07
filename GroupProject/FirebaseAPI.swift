@@ -508,15 +508,111 @@ extension FirebaseAPI {
 extension FirebaseAPI {
     static func addMarketToFirebase(name: String, address: String, lat: String, long: String, openDate: String, closeDate: String, openTime: String, closeTime: String, acceptEBT: String, days: String, website: String) {
         
-        
         let ref = FIRDatabase.database().reference().child("addMarket")
         
         let nameChild = ref.child(name)
         
-        
         let returnDict = ["address": address, "latitude": lat, "longitude": long, "openDate": openDate, "closeDate": closeDate, "startTime": openTime, "endTime": closeTime, "ebt": acceptEBT, "days": days, "website": website, "votes": "1"]
         
         nameChild.setValue(returnDict)
+        
+    }
+    
+    static func pullAddedMarketFromFirebase(completion:@escaping ([AddMarket])-> Void) {
+        print("In pull added market from firebase")
+        var addedMarketArray = [AddMarket]()
+        let ref = FIRDatabase.database().reference().child("addMarket")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            let names = snapshot.value as! [String: [String: String]]
+            var nameArray = [String]()
+            
+            for (key, value) in names {
+                nameArray.append(key as! String)
+                
+                let marketName = key
+                print("Market name is \(marketName)")
+                guard let startTime = value["startTime"] else { return }
+                guard let endTime = value["endTime"] else { return }
+                guard let openDate = value["openDate"] else { return }
+                guard let closeDate = value["closeDate"] else { return }
+                guard let address = value["address"] else { return }
+                guard let latitude = value["latitude"] else { return }
+                guard let longitude = value["longitude"] else { return }
+                guard let ebt = value["ebt"] else { return }
+                guard let website = value["website"] else { return }
+                guard let days = value["days"] else { return }
+                guard let votes = value["votes"] else { return }
+                
+                let addedMarket = AddMarket(marketName: marketName, startTime: startTime, endTime: endTime, openDate: openDate, closeDate: closeDate, address: address, latitude: latitude, longitude: longitude, ebt: ebt, website: website, days: days, votes: votes)
+                
+                
+                addedMarketArray.append(addedMarket)
+            }
+            
+            completion(addedMarketArray)
+            
+        })
+
+    }
+    
+    
+    static func upvoteAddedMarket(forName marketName: String, withId marketID: String, upvoted: Bool) {
+        //make sure people cant upvote same thing over and over and over
+        let ref = FIRDatabase.database().reference().child("addMarket").child("\(marketName)")
+        
+        ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
+            
+            if let json = currentData.value as? [String : String] {
+                
+                if let value = json["votes"] {
+                    
+                    if let votes = Int(value) {
+                        
+                        var returnValue = json
+                        
+                        returnValue["votes"] = upvoted ? "\(votes + 1)" : "\(votes - 1)"
+                        
+                        currentData.value = returnValue
+                        
+                    }
+                }
+            }
+            
+            return FIRTransactionResult.success(withValue: currentData)
+            
+        }, andCompletionBlock: { (error, committed, snapshot) in
+            
+            if let error = error {
+                
+                print(error)
+                
+            } else {
+                
+                //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
+                if let json = snapshot?.value as? [String : String] {
+                    
+                    if let votes = json["votes"] {
+                        
+                        if let num = Int(votes) {
+                            
+                            if num >= 5 {
+                                
+                                self.replaceMarketInfo(withName: marketName, replaceWith: json, completion: {
+                                    
+                                    ref.removeValue()
+                                    
+                                })
+                                
+                            } else if num <= -5 {
+                                
+                                ref.removeValue()
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
     
 }

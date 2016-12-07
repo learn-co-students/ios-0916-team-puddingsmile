@@ -15,6 +15,7 @@ class DataStore {
     
     var markets = [Market]()
     
+    
     static let sharedInstance = DataStore()
     
     private init() {}
