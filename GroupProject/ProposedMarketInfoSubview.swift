@@ -63,18 +63,18 @@ extension ProposedMarketInfo {
             navigationView.addSubview(favoriteButton)
             favoriteButton.setTitle("♥️", for: .normal)
             favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
-            FirebaseAPI.hasFavorited(marketName: market.marketName!, isTrue: { isTrue in
-                if isTrue {
-                    
-                    self.favoriteButton.isUserInteractionEnabled = false
-                    self.favoriteButton.alpha = 0.5
-                    
-                } else {
-                    
-                    self.favoriteButton.isUserInteractionEnabled = true
-                    
-                }
-            })
+//            FirebaseAPI.hasFavorited(marketName: market.marketName!, isTrue: { isTrue in
+//                if isTrue {
+//                    
+//                    self.favoriteButton.isUserInteractionEnabled = false
+//                    self.favoriteButton.alpha = 0.5
+//                    
+//                } else {
+//                    
+//                    self.favoriteButton.isUserInteractionEnabled = true
+//                    
+//                }
+//            })
         }
         
         func createDetailView() {

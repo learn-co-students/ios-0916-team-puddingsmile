@@ -101,9 +101,10 @@ extension ProposedMarketInfo {
     }
     
     func favoriteButtonAction() {
-        FirebaseAPI.willFavorite(marketName: market.marketName!)
-        favoriteButton.isUserInteractionEnabled = false
-        favoriteButton.alpha = 0.5
+        print("favorited market clicked")
+        FirebaseAPI.upvoteAddedMarket(forName: market.marketName!)
+    //        favoriteButton.isUserInteractionEnabled = false
+//        favoriteButton.alpha = 0.5
     }
     
     func startSafari() {
