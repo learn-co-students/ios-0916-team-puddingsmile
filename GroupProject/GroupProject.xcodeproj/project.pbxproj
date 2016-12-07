@@ -36,10 +36,11 @@
 		B5FFF0F31DEC7A7D004716B8 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFF0F21DEC7A7D004716B8 /* CommentsView.swift */; };
 		C315CBED1DDE564500EA6D71 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */; };
 		C3188B3B1DDE2FDC00F5479F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */; };
-		C323BF931DF866FB00A501E1 /* ProposedMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */; };
+		C323BF931DF866FB00A501E1 /* ProposedMarketInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323BF921DF866FB00A501E1 /* ProposedMarketInfoViewController.swift */; };
 		C323BF951DF86FFA00A501E1 /* ProposedMarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */; };
 		C33022621DF876C5000D11F3 /* ProposedMarketMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */; };
 		C33022641DF8918E000D11F3 /* ProposedMarketInfoSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */; };
+		C33022661DF892B5000D11F3 /* ProposedMarketInfoConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33022651DF892B5000D11F3 /* ProposedMarketInfoConstraints.swift */; };
 		C33604431DE357FF0062453A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33604421DE357FF0062453A /* MapView.swift */; };
 		C33BDB3C1DF735350038072C /* AddedMarket.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33BDB3B1DF735350038072C /* AddedMarket.xib */; };
 		C33BDB3E1DF738220038072C /* ProposedMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BDB3D1DF738220038072C /* ProposedMarketView.swift */; };
@@ -126,10 +127,11 @@
 		C00C22163A0DAEAF7038196C /* Pods-GroupProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProjectTests/Pods-GroupProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		C315CBEC1DDE564500EA6D71 /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		C3188B3A1DDE2FDC00F5479F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketViewController.swift; sourceTree = "<group>"; };
+		C323BF921DF866FB00A501E1 /* ProposedMarketInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketInfoViewController.swift; sourceTree = "<group>"; };
 		C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketInfo.swift; sourceTree = "<group>"; };
 		C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketMapView.swift; sourceTree = "<group>"; };
 		C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketInfoSubview.swift; sourceTree = "<group>"; };
+		C33022651DF892B5000D11F3 /* ProposedMarketInfoConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketInfoConstraints.swift; sourceTree = "<group>"; };
 		C33604421DE357FF0062453A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C33BDB3B1DF735350038072C /* AddedMarket.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddedMarket.xib; sourceTree = "<group>"; };
 		C33BDB3D1DF738220038072C /* ProposedMarketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposedMarketView.swift; sourceTree = "<group>"; };
@@ -271,14 +273,22 @@
 			name = EditorFolder;
 			sourceTree = "<group>";
 		};
+		C33022671DF893A5000D11F3 /* ProposedInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */,
+				C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */,
+				C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */,
+				C33022651DF892B5000D11F3 /* ProposedMarketInfoConstraints.swift */,
+			);
+			name = ProposedInfo;
+			sourceTree = "<group>";
+		};
 		C33BDB3F1DF747730038072C /* ProposedMarkets */ = {
 			isa = PBXGroup;
 			children = (
 				C33BDB3D1DF738220038072C /* ProposedMarketView.swift */,
 				C33BDB411DF749B30038072C /* ProposedMarketCell.swift */,
-				C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */,
-				C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */,
-				C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */,
 			);
 			name = ProposedMarkets;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 		C35793AA1DEF9032000931F2 /* AddMarketViews */ = {
 			isa = PBXGroup;
 			children = (
+				C33022671DF893A5000D11F3 /* ProposedInfo */,
 				C33BDB401DF7478B0038072C /* AddMarket */,
 				C33BDB3F1DF747730038072C /* ProposedMarkets */,
 			);
@@ -404,7 +415,7 @@
 				B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */,
 				C3C659341DDBCE6700C7B533 /* MarketInfoViewController.swift */,
 				C33BDB431DF759A90038072C /* ProposedMarketTableViewController.swift */,
-				C323BF921DF866FB00A501E1 /* ProposedMarketViewController.swift */,
+				C323BF921DF866FB00A501E1 /* ProposedMarketInfoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -701,12 +712,13 @@
 				C33022621DF876C5000D11F3 /* ProposedMarketMapView.swift in Sources */,
 				B5F429811DF1BE0E00C91084 /* EditorBoxSubviews.swift in Sources */,
 				C323BF951DF86FFA00A501E1 /* ProposedMarketInfo.swift in Sources */,
-				C323BF931DF866FB00A501E1 /* ProposedMarketViewController.swift in Sources */,
+				C323BF931DF866FB00A501E1 /* ProposedMarketInfoViewController.swift in Sources */,
 				B5167F691DEDD626005AB062 /* Constants.swift in Sources */,
 				C3C6593A1DDBCE6700C7B533 /* SearchViewController.swift in Sources */,
 				C33BDB421DF749B30038072C /* ProposedMarketCell.swift in Sources */,
 				5633056A1DEF5F6400E54561 /* AddCommentView.swift in Sources */,
 				B5D2DDA31DDFAF1A001F2CCE /* LocationManager.swift in Sources */,
+				C33022661DF892B5000D11F3 /* ProposedMarketInfoConstraints.swift in Sources */,
 				B5F429781DEF6A4A00C91084 /* EditorBox.swift in Sources */,
 				C3C6593B1DDBCE6700C7B533 /* LandingViewController.swift in Sources */,
 				C3C659381DDBCE6700C7B533 /* MarketInfoViewController.swift in Sources */,

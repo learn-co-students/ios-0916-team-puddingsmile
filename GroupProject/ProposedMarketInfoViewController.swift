@@ -11,13 +11,16 @@ import UIKit
 class ProposedMarketInfoViewController: UIViewController {
     
     var market: AddMarket!
+    var safari: SFSafariViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loading view")
         let proposedMarketInfoView = ProposedMarketInfo(frame: self.view.frame)
+        proposedMarketInfoView.market = self.market
         print("in proposedMarketInfo market is \(market?.marketName)")
         self.view = proposedMarketInfoView
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {

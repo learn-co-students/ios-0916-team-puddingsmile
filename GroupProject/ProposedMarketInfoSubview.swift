@@ -19,7 +19,6 @@ extension ProposedMarketInfo {
         createBackButton()
         createEditButton()
         createFavoriteButton()
-        createCommentsButton()
         createDetailView()
         createNameButtonView()
         createAddressButtonView()
@@ -29,11 +28,8 @@ extension ProposedMarketInfo {
         createTimeButtonView()
         createEBTButtonView()
         createWebsiteButtonView()
-        createEditorBox()
-        createInfoTableView()
-        
-        
-        
+    }
+    
         func createMapView() {
             mapView = MKMapView()
             self.addSubview(mapView)
@@ -58,7 +54,7 @@ extension ProposedMarketInfo {
             editButton = UIButton()
             navigationView.addSubview(editButton)
             editButton.setTitle("📝", for: .normal)
-            editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
+            //editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
             editButton.layer.borderColor = UIColor.red.cgColor
         }
         
@@ -67,7 +63,7 @@ extension ProposedMarketInfo {
             navigationView.addSubview(favoriteButton)
             favoriteButton.setTitle("♥️", for: .normal)
             favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
-            FirebaseAPI.hasFavorited(marketName: market.name!, isTrue: { isTrue in
+            FirebaseAPI.hasFavorited(marketName: market.marketName!, isTrue: { isTrue in
                 if isTrue {
                     
                     self.favoriteButton.isUserInteractionEnabled = false
@@ -79,13 +75,6 @@ extension ProposedMarketInfo {
                     
                 }
             })
-        }
-        
-        func createCommentsButton() {
-            commentsButton = UIButton()
-            navigationView.addSubview(commentsButton)
-            commentsButton.setTitle("💬", for: .normal)
-            commentsButton.addTarget(self, action: #selector(commentsButtonAction), for: .touchUpInside)
         }
         
         func createDetailView() {
@@ -104,7 +93,7 @@ extension ProposedMarketInfo {
             nameLabel = UILabel()
             self.detailView.addSubview(nameLabel)
             nameLabel.backgroundColor = UIColor.themeSecondary
-            nameLabel.text = "Name: \(market.name!)"
+            nameLabel.text = "Name: \(market.marketName!)"
             nameLabel.font = Constants.themeFont()
         }
         
@@ -112,7 +101,7 @@ extension ProposedMarketInfo {
             addressButton = UIButton()
             self.detailView.addSubview(addressButton)
             addressButton.isEnabled = false
-            addressButton.addTarget(self, action: #selector(editAddressAction), for: .touchUpInside)
+            //addressButton.addTarget(self, action: #selector(editAddressAction), for: .touchUpInside)
             
             addressLabel = UILabel()
             self.detailView.addSubview(addressLabel)
@@ -125,12 +114,12 @@ extension ProposedMarketInfo {
             cityButton = UIButton()
             self.detailView.addSubview(cityButton)
             cityButton.isEnabled = false
-            cityButton.addTarget(self, action: #selector(editCityAction), for: .touchUpInside)
+            //cityButton.addTarget(self, action: #selector(editCityAction), for: .touchUpInside)
             
             cityLabel = UILabel()
             self.detailView.addSubview(cityLabel)
             cityLabel.backgroundColor = UIColor.themeSecondary
-            cityLabel.text = "City: \(market.borough!)"
+            //cityLabel.text = "City: \(market.borough!)"
             cityLabel.font = Constants.themeFont()
         }
         
@@ -138,7 +127,7 @@ extension ProposedMarketInfo {
             seasonButton = UIButton()
             self.detailView.addSubview(seasonButton)
             seasonButton.isEnabled = false
-            seasonButton.addTarget(self, action: #selector(editSeasonAction), for: .touchUpInside)
+            //seasonButton.addTarget(self, action: #selector(editSeasonAction), for: .touchUpInside)
             
             seasonLabel = UILabel()
             self.detailView.addSubview(seasonLabel)
@@ -151,12 +140,12 @@ extension ProposedMarketInfo {
             daysButton = UIButton()
             self.detailView.addSubview(daysButton)
             daysButton.isEnabled = false
-            daysButton.addTarget(self, action: #selector(editDaysAction), for: .touchUpInside)
+            //daysButton.addTarget(self, action: #selector(editDaysAction), for: .touchUpInside)
             
             daysLabel = UILabel()
             self.detailView.addSubview(daysLabel)
             daysLabel.backgroundColor = UIColor.themeSecondary
-            daysLabel.text = "Days Open: \(market.weekDayOpen!)"
+            daysLabel.text = "Days Open: \(market.days!)"
             daysLabel.font = Constants.themeFont()
         }
         
@@ -164,7 +153,7 @@ extension ProposedMarketInfo {
             timeButton = UIButton()
             self.detailView.addSubview(timeButton)
             timeButton.isEnabled = false
-            timeButton.addTarget(self, action: #selector(editTimeAction), for: .touchUpInside)
+            //timeButton.addTarget(self, action: #selector(editTimeAction), for: .touchUpInside)
             
             timeLabel = UILabel()
             self.detailView.addSubview(timeLabel)
@@ -177,12 +166,12 @@ extension ProposedMarketInfo {
             ebtButton = UIButton()
             self.detailView.addSubview(ebtButton)
             ebtButton.isEnabled = false
-            ebtButton.addTarget(self, action: #selector(editEBTAction), for: .touchUpInside)
+            //ebtButton.addTarget(self, action: #selector(editEBTAction), for: .touchUpInside)
             
             ebtLabel = UILabel()
             self.detailView.addSubview(ebtLabel)
             ebtLabel.backgroundColor = UIColor.themeSecondary
-            ebtLabel.text = "Accept EBT - \(market.acceptEBT == "EBT" ? "True" : "False")"
+            ebtLabel.text = "Accept EBT - \(market.ebt == "EBT" ? "True" : "False")"
             ebtLabel.font = Constants.themeFont()
         }
         
@@ -199,21 +188,6 @@ extension ProposedMarketInfo {
             websiteLabel.font = Constants.themeFont()
             websiteLabel.textAlignment = .center
         }
-        
-        func createEditorBox() {
-            editorBox = EditorBox(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
-            editorBox.createObjects()
-            editorBox.isHidden = true
-            editorBox.delegate = self
-            self.addSubview(editorBox)
-        }
-        
-        func createInfoTableView() {
-            infoTableView = InfoTableView(frame: CGRect(x: 0, y: self.bounds.height * -0.36, width: self.bounds.width, height: self.bounds.height * 0.36))
-            infoTableView.setupInfoTableView(market: self.market)
-            infoTableView.isHidden = true
-            infoTableView.delegate = self
-            self.addSubview(infoTableView)
-        }
+    
 }
-}
+
