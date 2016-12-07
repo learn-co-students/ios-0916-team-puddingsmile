@@ -519,11 +519,10 @@ extension FirebaseAPI {
     }
     
     static func pullAddedMarketFromFirebase(completion:@escaping ([AddMarket])-> Void) {
-        print("In pull added market from firebase")
         var addedMarketArray = [AddMarket]()
         let ref = FIRDatabase.database().reference().child("addMarket")
         ref.observeSingleEvent(of: .value, with: { snapshot in
-            let names = snapshot.value as! [String: [String: String]]
+            guard let names = snapshot.value as? [String: [String: String]] else { return }
             var nameArray = [String]()
             
             for (key, value) in names {
@@ -555,7 +554,7 @@ extension FirebaseAPI {
 
     }
     
-    
+    //MARK: -Check if the market has been favorited. If not, add to favoriteAddedMarkets bucket, then increase vote amount
     static func upvoteAddedMarket(forName marketName: String) {
         
         let currentUID = FIRAuth.auth()?.currentUser?.uid
@@ -564,37 +563,41 @@ extension FirebaseAPI {
         addedRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let json = snapshot.value as? [String: String] {
-                print("already exists")
+
                 if let market = json[marketName] {
-                    print("That market is accounted for")
+
                 } else {
-                    print("we have a new market on our hands")
+
                     baseRef.child("favoritedAddedMarkets").child(currentUID!).child(marketName).setValue("true")
                     increaseVotesForMarket(for: marketName)
+                    
                 }
                 
             } else {
-                print("ELSE")
+                
                 baseRef.child("favoritedAddedMarkets").child(currentUID!).child(marketName).setValue("true")
                 increaseVotesForMarket(for: marketName)
+                
             }
+            
         })
+        
     }
     
-    
+    //MARK: -Increase votes for market, if number is greater than 9, move to passedThreshold function
     static func increaseVotesForMarket(for marketName: String) {
-        print("In increaseVotesForMarket")
+
         let marketRef = FIRDatabase.database().reference().child("addMarket").child(marketName)
         
         marketRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let json = snapshot.value as? [String: String] {
-                print("this market has value")
+
                 if let value = json["votes"] {
                     
                     if let votes = Int(value) {
                         //If votes is == 9 --> Delete from addMarket and add to markets, minus votes key
-                        if votes == 9 {
+                        if votes >= 9 {
                             passedThreshold(forMarket: marketName, dict: json)
                             return
                         }
@@ -616,6 +619,7 @@ extension FirebaseAPI {
         
     }
     
+    //MARK: -Add new market to markets bucket, then delete from respective bucket
     static func passedThreshold(forMarket marketName: String, dict: [String : String]) {
         print("UPDATING MARKETS WOOOOO")
         let addedMarketRef = FIRDatabase.database().reference().child("addMarket")
@@ -641,75 +645,6 @@ extension FirebaseAPI {
         
     }
     
-    
-//        let ref = FIRDatabase.database().reference().child("addMarket").child("\(marketName)")
-
-        
-//        if let value = json["votes"] {
-//            
-//            if let votes = Int(value) {
-//                
-//                var returnValue = json
-//                
-//                returnValue["votes"] = "\(votes + 1)"
-//            }
-//        }
-        
-        
-        
-////        ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
-//
-//            if let json = currentData.value as? [String : String] {
-//                
-//                if let value = json["votes"] {
-//                    
-//                    if let votes = Int(value) {
-//                        
-//                        var returnValue = json
-//                        
-//                        returnValue["votes"] = upvoted ? "\(votes + 1)" : "\(votes - 1)"
-//                        
-//                        currentData.value = returnValue
-//                        
-//                    }
-//                }
-//            }
-//            
-//            return FIRTransactionResult.success(withValue: currentData)
-//            
-//        }, andCompletionBlock: { (error, committed, snapshot) in
-//            
-//            if let error = error {
-//                
-//                print(error)
-//                
-//            } else {
-//                
-//                //if votes is over a certain amount, use function to replace appropriate fields and remove appropriate database objects
-//                if let json = snapshot?.value as? [String : String] {
-//                    
-//                    if let votes = json["votes"] {
-//                        
-//                        if let num = Int(votes) {
-//                            
-//                            if num >= 5 {
-//                                
-//                                self.replaceMarketInfo(withName: marketName, replaceWith: json, completion: {
-//                                    
-//                                    ref.removeValue()
-//                                    
-//                                })
-//                                
-//                            } else if num <= -5 {
-//                                
-//                                ref.removeValue()
-//                                
-    //                            }
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        })
 }
 
 
