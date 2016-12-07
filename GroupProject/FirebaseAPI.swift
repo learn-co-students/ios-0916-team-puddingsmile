@@ -557,28 +557,105 @@ extension FirebaseAPI {
     
     
     static func upvoteAddedMarket(forName marketName: String) {
-        //make sure people cant upvote same thing over and over and over
-        let ref = FIRDatabase.database().reference().child("addMarket").child("\(marketName)")
         
-//        ref.runTransactionBlock({ (<#FIRMutableData#>) -> FIRTransactionResult in
-//            <#code#>
-//        }, andCompletionBlock: { (<#Error?#>, <#Bool#>, <#FIRDataSnapshot?#>) in
-//            <#code#>
-//        })
         let currentUID = FIRAuth.auth()?.currentUser?.uid
-        
-        let addedRef = FIRDatabase.database().reference().child("favoritedMarkets").child(currentUID!)
-        
+        let baseRef = FIRDatabase.database().reference()
+        let addedRef = FIRDatabase.database().reference().child("favoritedAddedMarkets").child(currentUID!)
         addedRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.value)
-//            let dict = snapshot.value as! [String: String]
-//            print(dict)
-//            if let didVote = dict[marketName] {
-//                print("exists")
-//            } else {
-//                print("doesn't exist")
-//            }
+            
+            if let json = snapshot.value as? [String: String] {
+                print("already exists")
+                if let market = json[marketName] {
+                    print("That market is accounted for")
+                } else {
+                    print("we have a new market on our hands")
+                    baseRef.child("favoritedAddedMarkets").child(currentUID!).child(marketName).setValue("true")
+                    increaseVotesForMarket(for: marketName)
+                }
+                
+            } else {
+                print("ELSE")
+                baseRef.child("favoritedAddedMarkets").child(currentUID!).child(marketName).setValue("true")
+                increaseVotesForMarket(for: marketName)
+            }
         })
+    }
+    
+    
+    static func increaseVotesForMarket(for marketName: String) {
+        print("In increaseVotesForMarket")
+        let marketRef = FIRDatabase.database().reference().child("addMarket").child(marketName)
+        
+        marketRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let json = snapshot.value as? [String: String] {
+                print("this market has value")
+                if let value = json["votes"] {
+                    
+                    if let votes = Int(value) {
+                        //If votes is == 9 --> Delete from addMarket and add to markets, minus votes key
+                        if votes == 9 {
+                            passedThreshold(forMarket: marketName, dict: json)
+                            return
+                        }
+                        
+                        var returnValue = json
+                        
+                        returnValue["votes"] = "\(votes + 1)"
+                        
+                        marketRef.setValue(returnValue)
+                    }
+                    
+                }
+                
+            } else {
+                print("improper market")
+            }
+            
+        })
+        
+    }
+    
+    static func passedThreshold(forMarket marketName: String, dict: [String : String]) {
+        print("UPDATING MARKETS WOOOOO")
+        let addedMarketRef = FIRDatabase.database().reference().child("addMarket")
+        let marketsRef = FIRDatabase.database().reference().child("markets")
+        
+        var returnDict = dict
+        print(returnDict)
+        
+        returnDict.removeValue(forKey: "votes")
+        
+        print("before market added")
+        marketsRef.child(marketName).setValue(returnDict)
+        
+        print("market added")
+        
+        addedMarketRef.child(marketName).removeValue { (error, ref) in
+            print("in remove market")
+            if error != nil {
+                print(error)
+            }
+            print("Market successfully removed")
+        }
+        
+    }
+    
+    
+//        let ref = FIRDatabase.database().reference().child("addMarket").child("\(marketName)")
+
+        
+//        if let value = json["votes"] {
+//            
+//            if let votes = Int(value) {
+//                
+//                var returnValue = json
+//                
+//                returnValue["votes"] = "\(votes + 1)"
+//            }
+//        }
+        
+        
         
 ////        ref.runTransactionBlock({ (currentData) -> FIRTransactionResult in
 //
@@ -627,15 +704,15 @@ extension FirebaseAPI {
 //                                
 //                                ref.removeValue()
 //                                
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        })
-    }
-    
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        })
 }
+
+
 
 
 
