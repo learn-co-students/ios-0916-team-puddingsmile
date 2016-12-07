@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nLl-LC-MwB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -143,7 +143,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="TwL-4O-INN" kind="presentation" identifier="marketInfoSegue" id="KjW-6N-AGa"/>
-                        <segue destination="JRR-XM-pzf" kind="presentation" id="o2I-Af-3ah"/>
+                        <segue destination="JRR-XM-pzf" kind="presentation" identifier="marketSearchSegue" id="o2I-Af-3ah"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Rm-yg-puH" userLabel="First Responder" sceneMemberID="firstResponder"/>

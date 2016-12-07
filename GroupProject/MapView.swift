@@ -45,10 +45,7 @@ class MapView: MKMapView, MKMapViewDelegate {
         //self.showsUserLocation = true
         self.isZoomEnabled = true
         self.showsUserLocation = true
-        
     }
-    
-
     
 //MARK: -Create annotation pins
     
@@ -64,11 +61,8 @@ class MapView: MKMapView, MKMapViewDelegate {
     func addAnnotationsToMap() {
         var annotations: [MKAnnotation] = []
         for location in locationArray {
-            
               let market = MarketAnnotation(market: location)
               annotations.append(market)
-
-    
         }
         self.addAnnotations(annotations)
     }
