@@ -64,11 +64,8 @@ class MapView: MKMapView, MKMapViewDelegate {
     func addAnnotationsToMap() {
         var annotations: [MKAnnotation] = []
         for location in locationArray {
-            
               let market = MarketAnnotation(market: location)
               annotations.append(market)
-
-    
         }
         self.addAnnotations(annotations)
     }
