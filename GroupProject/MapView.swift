@@ -45,10 +45,7 @@ class MapView: MKMapView, MKMapViewDelegate {
         //self.showsUserLocation = true
         self.isZoomEnabled = true
         self.showsUserLocation = true
-        
     }
-    
-
     
 //MARK: -Create annotation pins
     

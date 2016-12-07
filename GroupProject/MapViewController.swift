@@ -17,8 +17,14 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
         setLayout()
         
+=======
+        let mapView = MapView(frame: self.view.frame)
+        mapView.mapDelegate = self
+        self.view = mapView
+>>>>>>> master
     }
     
     func getInfo(market: Market) {
@@ -39,7 +45,6 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
             dest.market = passedMarket
         }
     }
-    
  
 }
 
