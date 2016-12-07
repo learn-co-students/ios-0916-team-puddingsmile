@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol NavBarViewDelegate: class {
     func triggerSearchSegue()
 }
@@ -17,6 +16,7 @@ class NavBarView: UIView {
 
     //MARK: - Properties
     var searchButton: UIButton!
+    var titleLabel: UILabel!
     weak var delegate: NavBarViewDelegate!
     
     override init(frame: CGRect){
@@ -37,6 +37,8 @@ class NavBarView: UIView {
     func createLayout() {
         self.backgroundColor = UIColor.themeSecondary
         
+        print("calling createLayout() function")
+        
         searchButton = UIButton()
         let searchImage: UIImage! = UIImage(named: "searchImage.png")
         searchButton.backgroundColor = UIColor(patternImage: searchImage)
@@ -48,10 +50,12 @@ class NavBarView: UIView {
     
     func loadConstraints() {
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.85).isActive = true
-        searchButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.07).isActive = true
-        searchButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.07).isActive = true
+        //searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
+        //searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.85).isActive = true
+        searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        searchButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.4).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.4).isActive = true
     }
     
     func searchButtonAction() {
