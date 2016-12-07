@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import SafariServices
 
 class ProposedMarketInfoViewController: UIViewController {
     
@@ -20,6 +22,7 @@ class ProposedMarketInfoViewController: UIViewController {
         proposedMarketInfoView.market = self.market
         print("in proposedMarketInfo market is \(market?.marketName)")
         self.view = proposedMarketInfoView
+        proposedMarketInfoView.setupMarketInfoView(market: market)
         
     }
 

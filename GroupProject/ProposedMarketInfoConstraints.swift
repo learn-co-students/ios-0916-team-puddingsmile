@@ -16,8 +16,6 @@ extension ProposedMarketInfo {
         setNavigationViewConstraints()
         setBackConstraints()
         setFavoriteConstraints()
-        setCommentsConstraints()
-        setEditConstraints()
         setDetailViewConstraints()
         setNameConstraints()
         setAddressConstraints()
@@ -59,22 +57,6 @@ extension ProposedMarketInfo {
         favoriteButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: self.bounds.width * -0.03).isActive = true
         favoriteButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
         favoriteButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-    }
-    
-    func setCommentsConstraints() {
-        commentsButton.translatesAutoresizingMaskIntoConstraints = false
-        commentsButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        commentsButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: self.bounds.width * -0.02).isActive = true
-        commentsButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        commentsButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-    }
-    
-    func setEditConstraints() {
-        editButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        editButton.trailingAnchor.constraint(equalTo: commentsButton.leadingAnchor, constant: self.bounds.width * -0.02).isActive = true
-        editButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        editButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
     }
     
     func setDetailViewConstraints() {
