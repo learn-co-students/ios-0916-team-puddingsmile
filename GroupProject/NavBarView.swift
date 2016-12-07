@@ -46,6 +46,13 @@ class NavBarView: UIView {
         searchButton.addTarget(self, action: #selector(searchButtonAction), for: .touchUpInside)
         searchButton.layer.cornerRadius = CGFloat(7)
         self.addSubview(searchButton)
+        
+        titleLabel = UILabel()
+        titleLabel.text = "City Fresh"
+        titleLabel.textAlignment = NSTextAlignment.center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        titleLabel.textColor = UIColor.black
+        self.addSubview(titleLabel)
     }
     
     func loadConstraints() {
@@ -54,6 +61,12 @@ class NavBarView: UIView {
         searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.85).isActive = true
         searchButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
         searchButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.3).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.40).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.15).isActive = true
     }
     
     func searchButtonAction() {

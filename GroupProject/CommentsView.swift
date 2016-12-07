@@ -183,7 +183,6 @@ extension CommentsView {
         commentButton.layer.cornerRadius = CGFloat(7)
         commentButton.layer.borderColor = UIColor.themeAccent2.cgColor
     }
-    
 }
 
 
