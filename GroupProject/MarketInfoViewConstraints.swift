@@ -11,7 +11,9 @@ import Foundation
 //MARK: - Create Contraints
 extension MarketInfo {
     func loadContraints() {
+        
         setMapViewConstraints()
+        setBlurViewConstraints()
         setNavigationViewConstraints()
         setBackConstraints()
         setFavoriteConstraints()
@@ -26,38 +28,53 @@ extension MarketInfo {
         setTimeConstraints()
         setEBTConstraints()
         setWebsiteConstraints()
+        
     }
     
     func setMapViewConstraints() {
+        
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.08).isActive = true
+        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.09).isActive = true
         mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.05).isActive = true
         mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.05).isActive = true
         mapView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.35).isActive = true
+        
+    }
+    
+    func setBlurViewConstraints() {
+        
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        
     }
     
     func setNavigationViewConstraints() {
+        
         navigationView.translatesAutoresizingMaskIntoConstraints = false
         navigationView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         navigationView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         navigationView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         navigationView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.07).isActive = true
+        
     }
     
     func setBackConstraints() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
         backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.07).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.07).isActive = true
     }
     
     func setFavoriteConstraints() {
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         favoriteButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
         favoriteButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: self.bounds.width * -0.03).isActive = true
-        favoriteButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        favoriteButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        favoriteButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.07).isActive = true
+        favoriteButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.07).isActive = true
     }
     
     func setCommentsConstraints() {
@@ -87,13 +104,13 @@ extension MarketInfo {
     func setNameConstraints() {
         nameButton.translatesAutoresizingMaskIntoConstraints = false
         nameButton.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
-        nameButton.topAnchor.constraint(equalTo: detailView.topAnchor, constant: detailView.bounds.height * 0.02).isActive = true
+        nameButton.topAnchor.constraint(equalTo: detailView.topAnchor, constant: 8).isActive = true
         nameButton.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         nameButton.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerXAnchor.constraint(equalTo: detailView.centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: detailView.topAnchor, constant: detailView.bounds.height * 0.02).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: detailView.topAnchor, constant: 8).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: detailView.widthAnchor, multiplier: 0.9).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: detailView.heightAnchor, multiplier: 0.12).isActive = true
         nameLabel.createBottomBorder(forView: nameLabel)

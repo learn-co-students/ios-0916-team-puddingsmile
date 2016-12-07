@@ -116,8 +116,10 @@ class EditorBox: UIView {
                             self.editorStore.address = self.textView.text
                             self.editorStore.lat = "\(coord!.0)"
                             self.editorStore.long = "\(coord!.1)"
-                            self.delegate.editorBoxDone()
-                            self.setNeutralState()
+                            if self.editorState == .addressEdit {
+                                self.delegate.editorBoxDone()
+                                self.setNeutralState()
+                            }
                         } else {
                             self.vcDelegate.openAlert(title: "Woops", message: "Address couldn't be read! \n Please try with another one.")
                             self.doneButton.isUserInteractionEnabled = true
