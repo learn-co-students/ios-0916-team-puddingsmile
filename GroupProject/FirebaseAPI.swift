@@ -58,8 +58,42 @@ class FirebaseAPI {
     
 }
 
-
-
+//MARK: - General Report Methods
+extension FirebaseAPI {
+    
+    static func getUserReportedList(handler: @escaping ([String : Bool]?) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("report").child(self.getCurrentUserID()!)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let json = snapshot.value {
+                
+                if let data = json as? [String : Bool] {
+                    
+                    handler(data)
+                    
+                }
+                
+            } else {
+                
+                handler(nil)
+                
+            }
+            
+        })
+        
+    }
+    
+    static func reportContent(withKey: String) {
+        
+        let ref = FIRDatabase.database().reference().child("report").child(self.getCurrentUserID()!)
+        
+        ref.child(withKey).setValue(true)
+        
+    }
+    
+}
 
 //MARK: - Market structure functions
 extension FirebaseAPI {
@@ -436,9 +470,6 @@ extension FirebaseAPI {
             }
         })
     }
-    
-    
-    
     
 }
 
