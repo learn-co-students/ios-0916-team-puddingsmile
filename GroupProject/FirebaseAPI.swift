@@ -66,19 +66,17 @@ extension FirebaseAPI {
         let ref = FIRDatabase.database().reference().child("report").child(self.getCurrentUserID()!)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
+     
             if let json = snapshot.value {
+              
+                if let data = json as? [String : Bool] { handler(data) }
                 
-                if let data = json as? [String : Bool] {
-                    
-                    handler(data)
-                    
+                else {
+                    handler(nil)
                 }
                 
             } else {
-                
                 handler(nil)
-                
             }
             
         })

@@ -22,7 +22,7 @@ struct MarketChanges {
     var votes: String?
     var hasVoted = false
     
-    init(info: [String : String], key: String?, voted: Bool) {
+    init(info: [String : String], key: String?) {
         
         self.idKey = key
         self.address = info["address"]
@@ -30,7 +30,6 @@ struct MarketChanges {
         self.days = info["days"]
         self.ebt = info["ebt"]
         self.votes = info["votes"]
-        self.hasVoted = voted
         
         if let open = info["openDate"], let close = info["closeDate"] {
             

@@ -50,27 +50,42 @@ class InfoTableView: UIView {
     
     //MARK: - Logic functions
     func readForUpdates() {
-        print("reading")
+
         FirebaseAPI.readFromUpdate(with: market.name!) { (success, data) in
             
             if success {
-                
+
                 self.suggestions.removeAll()
                 
-                for (key, value) in data {
-                    
-                    let info = value as! [String : String]
-                    
-                    FirebaseAPI.hasVotedForUpdate(marketID: key, isTrue: { (success) in
-            
-                        self.suggestions.append(MarketChanges(info: info, key: key, voted: success))
+                FirebaseAPI.getUserReportedList(handler: { (reportData) in
+
+                    for (key, value) in data {
                         
-                        self.tableView.reloadData()
+                        if let _ = reportData?[key] {
+                            
+                        } else {
+                            
+                            let info = value as! [String : String]
+                            
+                            var newMarketChanges = MarketChanges(info: info, key: key)
+                            
+                            FirebaseAPI.hasVotedForUpdate(marketID: key, isTrue: { (success) in
+                                
+                                newMarketChanges.hasVoted = success
+                                
+                                self.suggestions.append(newMarketChanges)
+                                
+                                self.hasChanges = !self.suggestions.isEmpty ? true : false
+                                
+                                self.tableView.reloadData()
+                                
+                            })
+                            
+                        }
                         
-                    })
-                }
-                
-                self.hasChanges = true
+                    }
+                    
+                })
                 
             } else {
 
