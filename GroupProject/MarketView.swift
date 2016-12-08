@@ -93,34 +93,39 @@ class MarketView: UIView {
         containerView.backgroundColor = UIColor(patternImage: background)
         
         //Name Label
-        nameLabel.font = UIFont.systemFont(ofSize: 24, weight: 8)
+        nameLabel.font = UIFont.systemFont(ofSize: 18, weight: 4)
+        nameLabel.numberOfLines = 2
+        nameLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.2).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentView.bounds.height * 0.1).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.25).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.45).isActive = true
         nameLabel.textAlignment = NSTextAlignment.center
         
         //Address Label
+        addressLabel.font = UIFont.systemFont(ofSize: 14)
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        addressLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.5).isActive = true
+        addressLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.55).isActive = true
         addressLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
-        addressLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
+        addressLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.12).isActive = true
         addressLabel.textAlignment = NSTextAlignment.center
         
         //Time Label
+        timeLabel.font = UIFont.systemFont(ofSize: 14)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.75).isActive = true
         timeLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3).isActive = true
-        timeLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.15).isActive = true
+        timeLabel.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.12).isActive = true
         timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.25).isActive = true
         
         //Day Label
+        dayLabel.font = UIFont.systemFont(ofSize: 14)
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
-        dayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
+        dayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.75).isActive = true
         dayLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
-        dayLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.15).isActive = true
+        dayLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.12).isActive = true
         dayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.5).isActive = true
     }
     
