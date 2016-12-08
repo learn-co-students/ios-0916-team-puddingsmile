@@ -12,21 +12,20 @@ import UIKit
 
 // MARK: Setup Labels and one button
 
-
 extension AddMarketView {
     
     func setupHeaderLabel() {
         self.addSubview(headerLabel)
         
         headerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        headerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        headerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
     }
     
     func setupNameLabel() {
         self.addSubview(nameLabel)
         
         nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: self.headerLabel.bottomAnchor, constant: 10).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: self.headerLabel.bottomAnchor, constant: 5).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
@@ -34,21 +33,21 @@ extension AddMarketView {
         self.addSubview(addressLabel)
         
         addressLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        addressLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 10).isActive = true
+        addressLabel.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 5).isActive = true
     }
     
     func setupOpenDateLabel() {
         self.addSubview(hoursOfOperationLabel)
         
         hoursOfOperationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        hoursOfOperationLabel.topAnchor.constraint(equalTo: self.websiteTextField.bottomAnchor, constant: 10).isActive = true
+        hoursOfOperationLabel.topAnchor.constraint(equalTo: self.websiteTextField.bottomAnchor, constant: 5).isActive = true
     }
     
     func setupBeginningOfSeasonLabel() {
         self.addSubview(beginningOfSeasonLabel)
         
         beginningOfSeasonLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        beginningOfSeasonLabel.topAnchor.constraint(equalTo: self.hoursOfOperationButton.bottomAnchor, constant: 10).isActive = true
+        beginningOfSeasonLabel.topAnchor.constraint(equalTo: self.hoursOfOperationButton.bottomAnchor, constant: 5).isActive = true
     }
     
     
@@ -91,7 +90,7 @@ extension AddMarketView {
     func setupAcceptEBTLabel() {
         self.addSubview(acceptsEBTLabel)
         
-        acceptsEBTLabel.topAnchor.constraint(equalTo: self.daysOfWeekButton.bottomAnchor, constant: 10).isActive = true
+        acceptsEBTLabel.topAnchor.constraint(equalTo: self.daysOfWeekButton.bottomAnchor, constant: 5).isActive = true
         acceptsEBTLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         acceptsEBTLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
     }
@@ -99,10 +98,19 @@ extension AddMarketView {
     func setupWebsiteLabel() {
         self.addSubview(websiteLabel)
         
-        websiteLabel.topAnchor.constraint(equalTo: self.addressTextField.bottomAnchor, constant: 10).isActive = true
+        websiteLabel.topAnchor.constraint(equalTo: self.cityTextField.bottomAnchor, constant: 5).isActive = true
         websiteLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         websiteLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         websiteLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+    }
+    
+    func setupCityLabel() {
+        self.addSubview(cityLabel)
+        
+        cityLabel.topAnchor.constraint(equalTo: self.addressTextField.bottomAnchor, constant: 5).isActive = true
+        cityLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        cityLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        cityLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
     func setupEBTCheckbox() {
@@ -124,7 +132,7 @@ extension AddMarketView {
     
     func setupDaysOfWeekLabel() {
         self.addSubview(dayOfWeekOpenLabel)
-        dayOfWeekOpenLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonButton.bottomAnchor, constant: 10).isActive = true
+        dayOfWeekOpenLabel.topAnchor.constraint(equalTo: self.beginningOfSeasonButton.bottomAnchor, constant: 5).isActive = true
 //        dayOfWeekOpenLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         dayOfWeekOpenLabel.leadingAnchor.constraint(equalTo: self.hoursOfOperationButton.leadingAnchor).isActive = true
     }
@@ -208,6 +216,14 @@ extension AddMarketView {
         websiteTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
     }
     
+    func setupCityTextField() {
+        self.addSubview(cityTextField)
+        cityTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        cityTextField.topAnchor.constraint(equalTo: self.cityLabel.bottomAnchor, constant: 5).isActive = true
+        cityTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        cityTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(true)
         return false
@@ -228,6 +244,8 @@ extension AddMarketView {
         self.setupNameTextField()
         self.setupAddressLabel()
         self.setupAddressTextField()
+        self.setupCityLabel()
+        self.setupCityTextField()
         self.setupWebsiteLabel()
         self.setupWebsiteTextField()
         self.setupOpenDateLabel()

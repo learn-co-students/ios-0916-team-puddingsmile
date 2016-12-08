@@ -50,27 +50,50 @@ class InfoTableView: UIView {
     
     //MARK: - Logic functions
     func readForUpdates() {
-        print("reading")
+
         FirebaseAPI.readFromUpdate(with: market.name!) { (success, data) in
             
             if success {
                 
                 self.suggestions.removeAll()
                 
-                for (key, value) in data {
+                FirebaseAPI.getUserReportedList(handler: { (reportData) in
                     
-                    let info = value as! [String : String]
-                    
-                    FirebaseAPI.hasVotedForUpdate(marketID: key, isTrue: { (success) in
-            
-                        self.suggestions.append(MarketChanges(info: info, key: key, voted: success))
+                    FirebaseAPI.hasVotedForUpdate(handler: { (voteData) in
+                        
+                        for (key, value) in data {
+                            
+                            if let _ = reportData?[key] {
+                                
+                            } else {
+                                
+                                let info = value as! [String : String]
+                                
+                                var newMarketChanges = MarketChanges(info: info, key: key)
+                                
+                                if let _ = voteData?[key] {
+                                    
+                                    newMarketChanges.hasVoted = true
+                                    
+                                } else {
+                                    
+                                    newMarketChanges.hasVoted = false
+                                    
+                                }
+                                
+                                self.suggestions.append(newMarketChanges)
+                            
+                            }
+                            
+                        }
+                        
+                        self.hasChanges = !self.suggestions.isEmpty ? true : false
                         
                         self.tableView.reloadData()
                         
                     })
-                }
-                
-                self.hasChanges = true
+                    
+                })
                 
             } else {
 

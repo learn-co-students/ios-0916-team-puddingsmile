@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol AddMarketViewDelegate: class {
+    
+    func presentAlertController()
+    
+}
+
 class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDelegate, UITextFieldDelegate {
-        
+    
+    weak var delegate: AddMarketViewDelegate?
+    
     var addView: AddMarketPicker!
     var addDateView: AddMarketDatePicker!
     var addMarketDayView: AddMarketDayOfWeek!
@@ -18,6 +26,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     var marketName: String?
     var marketAddress: String?
+    var marketStreetAddress: String?
+    var marketCity: String?
     var websiteAddress: String?
     var openTime: String?
     var closeTime: String?
@@ -45,35 +55,39 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Name:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        label.setToTheme()
         return label
     }()
     
     let nameTextField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Enter Name"
+        //field.placeholder = "Enter Name"
         field.backgroundColor = UIColor.gray
         field.layer.cornerRadius = 10
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.setToTheme(string: "Enter Name")
+        field.textAlignment = .center
         
         return field
     }()
     
     let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "Address:"
+        label.text = "Street Address and City:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
     let addressTextField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Enter Address"
+        //field.placeholder = "Enter Street Address"
         field.backgroundColor = UIColor.gray
         field.layer.cornerRadius = 10
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.setToTheme(string: "Enter Street Address")
+        field.textAlignment = .center
         
         return field
     }()
@@ -83,7 +97,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Hours of Operation:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -93,6 +107,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.backgroundColor = UIColor.gray
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -102,7 +117,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Beginning of Season:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -112,6 +127,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.backgroundColor = UIColor.gray
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -119,8 +135,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     let submitMarketButton: UIButton = {
         let button = UIButton()
         button.setTitle("Submit New Market", for: .normal)
-        button.backgroundColor = UIColor.blue
+        button.backgroundColor = UIColor.themeAccent2
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.borderColor = UIColor.themeAccent1.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 10
         
         return button
     }()
@@ -130,7 +149,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Open"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -139,7 +158,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Close"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -148,7 +167,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Open"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -157,7 +176,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Close"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -166,7 +185,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Accepts EBT:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -175,6 +194,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.setTitle("", for: .normal)
         button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -192,6 +212,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Days of Week Open: "
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setToTheme()
         return label
     }()
     
@@ -201,6 +222,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.backgroundColor = UIColor.gray
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -210,26 +232,50 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Enter Website:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
     let websiteTextField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Enter Website"
+        //field.placeholder = "Enter Website"
         field.backgroundColor = UIColor.gray
         field.layer.cornerRadius = 10
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.textAlignment = .center
+        field.setToTheme(string: "Enter Website")
         
         return field
     }()
+    
+    let cityLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Zip Code:"
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setToTheme()
+    
+        return label
+    }()
+    
+    let cityTextField: UITextField = {
+        let label = UITextField()
+        //label.placeholder = "Enter City"
+        label.backgroundColor = UIColor.gray
+        label.layer.cornerRadius = 10
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setToTheme(string: "Enter Zip Code")
+        label.textAlignment = .center
+        return label
+    }()
+    
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         setupAddMarketView()
-        self.backgroundColor = UIColor.themePrimary
+        self.backgroundColor = UIColor.themeAccent1
         nameTextField.delegate = self
         addressTextField.delegate = self
         websiteTextField.delegate = self
@@ -425,11 +471,15 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         
         print("before location finder")
         self.marketName = self.nameTextField.text
-        self.marketAddress = self.addressTextField.text
+        self.marketStreetAddress = self.addressTextField.text
         self.websiteAddress = self.websiteTextField.text
+        self.marketCity = self.cityTextField.text
         
         self.checkForErrors()
 
+        guard let unwrappedMarketStreetAddress = marketStreetAddress else { return }
+        guard let unwrappedMarketCity = marketCity else { return }
+        marketAddress = "\(unwrappedMarketStreetAddress) \(unwrappedMarketCity)"
         
         LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
             
@@ -451,6 +501,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 if (self.marketName != nil || self.marketName != "") && (self.marketAddress != nil || self.marketAddress != "") && (self.websiteAddress != nil || self.websiteAddress != "") && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
                     FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: self.latString, long: self.longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)
+                    
+                    self.delegate?.presentAlertController()
                     
                 } else {
                     
@@ -493,6 +545,12 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         if firebaseDayString == nil {
             self.daysOfWeekButton.shake(count: 3, for: 0.15, withTranslation: 7)
             self.daysOfWeekButton.pulse(count: 1, for: 0.15, withTranslation: 5)
+        }
+        
+        if (self.marketCity == nil || self.marketCity == "") {
+            
+            self.cityTextField.shake(count: 3, for: 0.15, withTranslation: 7)
+            self.cityTextField.pulse(count: 3, for: 0.15, withTranslation: 7)
         }
         
     }

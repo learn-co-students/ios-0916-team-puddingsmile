@@ -58,8 +58,40 @@ class FirebaseAPI {
     
 }
 
-
-
+//MARK: - General Report Methods
+extension FirebaseAPI {
+    
+    static func getUserReportedList(handler: @escaping ([String : Bool]?) -> () ) {
+        
+        let ref = FIRDatabase.database().reference().child("report").child(self.getCurrentUserID()!)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+     
+            if let json = snapshot.value {
+              
+                if let data = json as? [String : Bool] { handler(data) }
+                
+                else {
+                    handler(nil)
+                }
+                
+            } else {
+                handler(nil)
+            }
+            
+        })
+        
+    }
+    
+    static func reportContent(withKey: String) {
+        
+        let ref = FIRDatabase.database().reference().child("report").child(self.getCurrentUserID()!)
+        
+        ref.child(withKey).setValue(true)
+        
+    }
+    
+}
 
 //MARK: - Market structure functions
 extension FirebaseAPI {
@@ -365,30 +397,26 @@ extension FirebaseAPI {
         
     }
     
-    static func hasVotedForUpdate(marketID: String, isTrue: @escaping (Bool) -> () ) {
+    static func hasVotedForUpdate(handler: @escaping ([String : Bool]?) -> () ) {
         
         let ref = FIRDatabase.database().reference().child("votedUpdates").child(self.getCurrentUserID()!)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let markets = snapshot.value as? [String : Bool] {
+            if let json = snapshot.value {
                 
-                if markets[marketID] != nil {
+                if let data = json as? [String : Bool] { handler(data) }
                     
-                    isTrue(true)
-                    
-                } else {
-                    
-                    isTrue(false)
-
+                else {
+                    handler(nil)
                 }
                 
             } else {
-                
-                isTrue(false)
-
+                handler(nil)
             }
+            
         })
+        
     }
     
 }
@@ -436,9 +464,6 @@ extension FirebaseAPI {
             }
         })
     }
-    
-    
-    
     
 }
 

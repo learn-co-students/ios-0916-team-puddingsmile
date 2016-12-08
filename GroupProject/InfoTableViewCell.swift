@@ -58,9 +58,6 @@ class InfoTableViewCell: UITableViewCell {
                 voteButton.isUserInteractionEnabled = false
                 voteButton.alpha = 0.5
                 
-                reportButton.isUserInteractionEnabled = false
-                reportButton.alpha = 0.5
-                
                 votedLabel.isHidden = false
                 
             } else {
@@ -94,19 +91,11 @@ class InfoTableViewCell: UITableViewCell {
         voteButton.isUserInteractionEnabled = false
         voteButton.alpha = 0.5
         
-        reportButton.isUserInteractionEnabled = false
-        reportButton.alpha = 0.5
-        
     }
     
     func reportSuggestion() {
         
-        FirebaseAPI.upvoteInUpdateMarket(forName: marketName, withId: market.idKey!, upvoted: false)
-        
-        votedLabel.text = changeVotes(increment: false)
-        
-        voteButton.isUserInteractionEnabled = false
-        voteButton.alpha = 0.5
+        FirebaseAPI.reportContent(withKey: market.idKey!)
         
         reportButton.isUserInteractionEnabled = false
         reportButton.alpha = 0.5
