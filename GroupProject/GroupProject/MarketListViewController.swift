@@ -108,11 +108,7 @@ class MarketListViewController: UITableViewController {
         let borderWidth: CGFloat = 2
         let cornerRadius: CGFloat = 7
         
-        backButton.backgroundColor = UIColor.themePrimary
-        backButton.layer.borderWidth = borderWidth
-        backButton.layer.cornerRadius = cornerRadius
-        backButton.layer.borderColor = UIColor.themeAccent2.cgColor
-        backButton.setTitle("<", for: .normal)
+        backButton.setTitle("⬅️", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         
         favoriteButton.backgroundColor = UIColor.themePrimary
@@ -125,10 +121,10 @@ class MarketListViewController: UITableViewController {
     
     func setBackConstraints() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.04).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.02).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.06).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.06).isActive = true
+        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.065).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.01).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
     }
     
     func setFavoriteContraints() {

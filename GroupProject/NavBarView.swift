@@ -57,8 +57,8 @@ class NavBarView: UIView {
     
     func loadConstraints() {
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.2).isActive = true
-        searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.85).isActive = true
+        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.23).isActive = true
+        searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.9).isActive = true
         searchButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
         searchButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
         
