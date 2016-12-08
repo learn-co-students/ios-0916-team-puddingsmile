@@ -7,12 +7,12 @@
 
 import UIKit
 
-class MarketListViewController: UIViewController {
+class MarketListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Properties
     
     //Views
-    var tableView: UITableView!
+    var tableView = UITableView()
     var navBar: UIView!
     
     //Nav Bar Buttons
@@ -49,10 +49,12 @@ class MarketListViewController: UIViewController {
     func setLayout() {
         
         //TableView
-        tableView = UITableView()
+        //tableView = UITableView()
         tableView.backgroundColor = UIColor.themeTertiary
-        tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "commentCell")
+        tableView.register(MarketTableCell.self, forCellReuseIdentifier: "marketCell")
         tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
         self.view.addSubview(tableView)
         
         //Search Bar
@@ -85,20 +87,19 @@ class MarketListViewController: UIViewController {
     
     //MARK: - Constraints
     func setConstraints() {
-        //TableView Constraints
+        //TableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.bounds.height * 0.07).isActive = true
         tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         tableView.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
         tableView.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.93).isActive = true
         
-        //Navigation Bar Constraints
-        navigationView.translatesAutoresizingMaskIntoConstraints = false
-        navigationView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        navigationView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        navigationView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        navigationView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.07).isActive = true
-        
+        //Navigation Bar
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        navBar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        navBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        navBar.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+        navBar.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.07).isActive = true
         
         //Back Button
         backButton.translatesAutoresizingMaskIntoConstraints = false
@@ -121,6 +122,11 @@ class MarketListViewController: UIViewController {
 
 extension MarketListViewController: UISearchResultsUpdating {
     //MARK: - Table View
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 115
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredMarkets.count
@@ -135,12 +141,19 @@ extension MarketListViewController: UISearchResultsUpdating {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "marketCell", for: indexPath) as! MarketTableCell
         let market: Market
+        print("\(cell.bounds)")
+        
         if searchController.isActive && searchController.searchBar.text != "" {
             market = filteredMarkets[indexPath.row]
+              cell.marketView.market = market
         } else {
             market = store.markets[indexPath.row]
+            print("The market name is: \(market)")
+            dump(cell.marketView)
+            
+            cell.marketView.market = market
         }
-        cell.marketView.market = market
+        //cell.marketView.market = market
         return cell
     }
     

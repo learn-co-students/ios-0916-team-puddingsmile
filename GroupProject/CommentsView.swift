@@ -159,7 +159,7 @@ extension CommentsView {
         navigationView.translatesAutoresizingMaskIntoConstraints = false
         navigationView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         navigationView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        navigationView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        navigationView.widthAnchor.constraint(equalToConstant: self.bounds.width).isActive = true
         navigationView.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.07).isActive = true
         
         //Back Button Constraints
