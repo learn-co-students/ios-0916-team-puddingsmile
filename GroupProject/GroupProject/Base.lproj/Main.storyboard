@@ -40,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="epx-WI-JIh" id="vy4-Qw-QPb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EV4-gN-Aow" customClass="ProposedMarketView" customModule="GroupProject" customModuleProvider="target">
@@ -69,7 +69,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FX9-Jp-H31" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4772" y="-76"/>
+            <point key="canvasLocation" x="3462" y="-91"/>
         </scene>
         <!--Proposed Market Info View Controller-->
         <scene sceneID="OfS-iQ-J9c">
@@ -87,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoA-mx-5OH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5668" y="-76"/>
+            <point key="canvasLocation" x="4260" y="-91"/>
         </scene>
         <!--Add Market View Controller-->
         <scene sceneID="4xp-fW-TA7">
@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDh-7h-G9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3607" y="-76"/>
+            <point key="canvasLocation" x="3462" y="-769"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="wCA-wY-CQV">
@@ -123,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uS-CZ-MTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1098" y="733"/>
+            <point key="canvasLocation" x="529" y="733"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="QcV-Lj-XCd">
@@ -163,7 +163,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBK-CG-Sse" id="Kj7-TU-xYl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVK-b0-XpR" customClass="MarketView" customModule="GroupProject" customModuleProvider="target">
