@@ -41,6 +41,13 @@ extension UIButton {
    
 }
 
+extension UITextField {
+    func setToTheme(string: String) {
+        self.attributedPlaceholder = NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.buttonText, NSFontAttributeName: Constants.themeFont(size: 15)])
+    }
+    
+}
+
 extension UILabel {
     func setToTheme() {
         self.textColor = UIColor.buttonText
@@ -91,9 +98,12 @@ public extension UIView {
     }
     
     func pulse(count : Float? = nil,for duration : TimeInterval? = nil,withTranslation translation : Float? = nil) {
+        
+        let halfColor = UIColor.themeAccent1.withAlphaComponent(0.3)
+        
         let colorAnimation: CABasicAnimation = CABasicAnimation(keyPath: "backgroundColor")
-        colorAnimation.fromValue = UIColor.gray.cgColor
-        colorAnimation.toValue = UIColor.red.cgColor
+        colorAnimation.fromValue = halfColor.cgColor
+        colorAnimation.toValue = halfColor.cgColor
         colorAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         colorAnimation.repeatCount = count ?? 2
         colorAnimation.duration = (duration ?? 0.5)/TimeInterval(colorAnimation.repeatCount)
