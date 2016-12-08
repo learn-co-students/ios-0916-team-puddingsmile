@@ -18,6 +18,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     var marketName: String?
     var marketAddress: String?
+    var marketStreetAddress: String?
+    var marketCity: String?
     var websiteAddress: String?
     var openTime: String?
     var closeTime: String?
@@ -63,7 +65,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "Street Address:"
+        label.text = "Street Address and City:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setToTheme()
@@ -461,11 +463,15 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         
         print("before location finder")
         self.marketName = self.nameTextField.text
-        self.marketAddress = self.addressTextField.text
+        self.marketStreetAddress = self.addressTextField.text
         self.websiteAddress = self.websiteTextField.text
+        self.marketCity = self.cityTextField.text
         
         self.checkForErrors()
 
+        guard let unwrappedMarketStreetAddress = marketStreetAddress else { return }
+        guard let unwrappedMarketCity = marketCity else { return }
+        marketAddress = "\(unwrappedMarketStreetAddress) \(unwrappedMarketCity)"
         
         LocationFinder.sharedInstance.getLatLong(with: addressText) { (success, coordinateTuple) in
             
