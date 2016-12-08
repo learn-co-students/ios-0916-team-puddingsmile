@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 import SafariServices
 
-protocol ProposedMarketViewDelegate {
+protocol ProposedMarketViewDelegate: class {
     
     func triggerBackSegue()
     func showSafariVC(url: URL)
@@ -19,7 +19,7 @@ protocol ProposedMarketViewDelegate {
 }
 
 class ProposedMarketInfo: UIView {
-    weak var delegate: MarketInfoDelegate!
+    weak var delegate: ProposedMarketViewDelegate!
     
     var market: AddMarket!
     
@@ -108,11 +108,46 @@ extension ProposedMarketInfo {
     }
     
     func startSafari() {
-            let url = URL(string: market.website!)
-            guard let uUrl = url else { return }
-            delegate.showSafariVC(url: uUrl)
+        let url = URL(string: market.website!)
+        print("unfixed url is \(url)")
+        guard let unwrappedURL = url else {
+            print("bad url")
+            return
+        }
         
+        let fixedURL = addHTTPTo(url: unwrappedURL)
+        
+        print("\(fixedURL) is url!")
+        delegate.showSafariVC(url: fixedURL)
     }
+    
+    func addHTTPTo(url inputURL: URL) -> URL {
+        let httpToAppend = "http://"
+        let httpsString = "https://"
+        let urlString = String(describing: inputURL).lowercased()
+        print("urlString is \(urlString)")
+        var returnString = ""
+        
+        if urlString.characters.count < 10 {
+            returnString = httpToAppend + urlString
+            print("return string called")
+        }
+        
+        if !urlString.contains(httpToAppend)  {
+            print("doesn't contain some form of http")
+            returnString = httpToAppend + urlString
+        }
+        
+        let returnURL = URL(string: returnString)
+        
+        if let unwrappedURL = returnURL {
+            return unwrappedURL
+        }
+        
+        return inputURL
+    }
+    
+    
     
 }
 

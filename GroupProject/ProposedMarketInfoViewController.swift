@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SafariServices
 
-class ProposedMarketInfoViewController: UIViewController {
+class ProposedMarketInfoViewController: UIViewController, ProposedMarketViewDelegate {
     
     var market: AddMarket!
     var safari: SFSafariViewController!
@@ -23,7 +23,7 @@ class ProposedMarketInfoViewController: UIViewController {
         print("in proposedMarketInfo market is \(market?.marketName)")
         self.view = proposedMarketInfoView
         proposedMarketInfoView.setupMarketInfoView(market: market)
-        
+        proposedMarketInfoView.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +32,14 @@ class ProposedMarketInfoViewController: UIViewController {
         print(testMarket)
     }
     
-
+    func triggerBackSegue() {
+        print("segue triggered!!!!!!!!!")
+        dismiss(animated: true, completion: nil)
+    }
     
+    func showSafariVC(url: URL) {
+        safari = SFSafariViewController(url: url)
+        present(safari, animated: true, completion: nil)
+    }
 
 }
