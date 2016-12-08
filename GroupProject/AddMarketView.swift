@@ -494,6 +494,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                     
                     FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: self.latString, long: self.longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)
                     
+                    self.succesfulSubmissionMarketAlertController()
+                    
                 } else {
                     
                 }
@@ -535,6 +537,12 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         if firebaseDayString == nil {
             self.daysOfWeekButton.shake(count: 3, for: 0.15, withTranslation: 7)
             self.daysOfWeekButton.pulse(count: 1, for: 0.15, withTranslation: 5)
+        }
+        
+        if (self.marketCity == nil || self.marketCity == "") {
+            
+            self.cityTextField.shake(count: 3, for: 0.15, withTranslation: 7)
+            self.cityTextField.pulse(count: 3, for: 0.15, withTranslation: 7)
         }
         
     }
