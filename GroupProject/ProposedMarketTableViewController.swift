@@ -22,6 +22,26 @@ class ProposedMarketTableViewController: UITableViewController {
         
         FirebaseAPI.pullAddedMarketFromFirebase { (addedMarket) in
             self.addedMarketArray = addedMarket
+            FirebaseAPI.getUserReportedList(handler: { (response) in
+                
+                if response != nil {
+                    
+                    for (key, value) in response! {
+                        
+                        for (index, market) in self.addedMarketArray.enumerated() {
+                            if market.marketName == key {
+                                self.addedMarketArray.remove(at: index)
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                } else {
+                    print("empty")
+                }
+                
+            })
             self.tableView.reloadData()
             
         }

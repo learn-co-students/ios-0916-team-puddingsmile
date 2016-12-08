@@ -55,9 +55,7 @@ class ProposedMarketView: UIView {
         
         Bundle.main.loadNibNamed("AddedMarket", owner: self, options: nil)
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        print("Right before we pull those markets")
         
-        print("added market array in view is ===>\(self.addedMarketArray)")
         self.addSubview(self.contentView)
         
         self.containerView = UIView()
