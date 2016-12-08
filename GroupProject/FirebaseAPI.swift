@@ -544,10 +544,15 @@ extension FirebaseAPI {
     }
     
     static func pullAddedMarketFromFirebase(completion:@escaping ([AddMarket])-> Void) {
+        
         var addedMarketArray = [AddMarket]()
+        
         let ref = FIRDatabase.database().reference().child("addMarket")
+        
         ref.observeSingleEvent(of: .value, with: { snapshot in
+            
             guard let names = snapshot.value as? [String: [String: String]] else { return }
+            
             var nameArray = [String]()
             
             for (key, value) in names {
