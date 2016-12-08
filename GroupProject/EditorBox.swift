@@ -173,13 +173,41 @@ class EditorBox: UIView {
         }
     }
     
-    func sunButtonAction() { sunButton.isSelected = sunButton.isSelected ? false : true }
-    func monButtonAction() { monButton.isSelected = monButton.isSelected ? false : true }
-    func tueButtonAction() { tueButton.isSelected = tueButton.isSelected ? false : true }
-    func wedButtonAction() { wedButton.isSelected = wedButton.isSelected ? false : true }
-    func thuButtonAction() { thuButton.isSelected = thuButton.isSelected ? false : true }
-    func friButtonAction() { friButton.isSelected = friButton.isSelected ? false : true }
-    func satButtonAction() { satButton.isSelected = satButton.isSelected ? false : true }
+    func sunButtonAction() {
+        sunButton.isSelected = sunButton.isSelected ? false : true
+        sunButton.backgroundColor = sunButton.isSelected ? UIColor.themeAccent2 : UIColor.themeAccent1
+        sunButton.isSelected ? sunButton.setTitleColor(UIColor.white, for: .normal) : sunButton.setTitleColor(UIColor.buttonText, for: .normal)
+    }
+    func monButtonAction() {
+        monButton.isSelected = monButton.isSelected ? false : true
+        monButton.backgroundColor = monButton.isSelected ? UIColor.themeAccent2 : UIColor.themeAccent1
+        monButton.isSelected ? monButton.setTitleColor(UIColor.white, for: .normal) : monButton.setTitleColor(UIColor.buttonText, for: .normal)
+    }
+    func tueButtonAction() {
+        tueButton.isSelected = tueButton.isSelected ? false : true
+        tueButton.backgroundColor = tueButton.isSelected ? UIColor.themeAccent2 : UIColor.themeAccent1
+        tueButton.isSelected ? tueButton.setTitleColor(UIColor.white, for: .normal) : tueButton.setTitleColor(UIColor.buttonText, for: .normal)
+    }
+    func wedButtonAction() {
+        wedButton.isSelected = wedButton.isSelected ? false : true
+        wedButton.backgroundColor = wedButton.isSelected ? UIColor.themeAccent2 : UIColor.themeAccent1
+        wedButton.isSelected ? wedButton.setTitleColor(UIColor.white, for: .normal) : wedButton.setTitleColor(UIColor.buttonText, for: .normal)
+    }
+    func thuButtonAction() {
+        thuButton.isSelected = thuButton.isSelected ? false : true
+        thuButton.backgroundColor = thuButton.isSelected ? UIColor.themeAccent2 : UIColor.themeAccent1
+        thuButton.isSelected ? thuButton.setTitleColor(UIColor.white, for: .normal) : thuButton.setTitleColor(UIColor.buttonText, for: .normal)
+    }
+    func friButtonAction() {
+        friButton.isSelected = friButton.isSelected ? false : true
+        friButton.backgroundColor = friButton.isSelected ? UIColor.themeAccent2 : UIColor.themeAccent1
+        friButton.isSelected ? friButton.setTitleColor(UIColor.white, for: .normal) : friButton.setTitleColor(UIColor.buttonText, for: .normal)
+    }
+    func satButtonAction() {
+        satButton.isSelected = satButton.isSelected ? false : true
+        satButton.backgroundColor = satButton.isSelected ? UIColor.themeAccent2 : UIColor.themeAccent1
+        satButton.isSelected ? satButton.setTitleColor(UIColor.white, for: .normal) : satButton.setTitleColor(UIColor.buttonText, for: .normal)
+    }
     
     func daysSelected() -> String {
         var tempString = ""
