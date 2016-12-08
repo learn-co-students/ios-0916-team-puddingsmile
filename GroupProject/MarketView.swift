@@ -67,6 +67,7 @@ class MarketView: UIView {
         containerView.addSubview(timeLabel)
         
         dayLabel = UILabel()
+        dayLabel.textAlignment = NSTextAlignment.left
         containerView.addSubview(dayLabel)
     }
     
@@ -118,9 +119,9 @@ class MarketView: UIView {
         //Day Label
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         dayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.bounds.height * 0.7).isActive = true
-        dayLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
+        dayLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
         dayLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.15).isActive = true
-        dayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.6).isActive = true
+        dayLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: contentView.bounds.width * 0.5).isActive = true
     }
     
 }
