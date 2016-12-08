@@ -45,35 +45,39 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Name:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        label.setToTheme()
         return label
     }()
     
     let nameTextField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Enter Name"
+        //field.placeholder = "Enter Name"
         field.backgroundColor = UIColor.gray
         field.layer.cornerRadius = 10
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.setToTheme(string: "Enter Name")
+        field.textAlignment = .center
         
         return field
     }()
     
     let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "Address:"
+        label.text = "Street Address:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
     let addressTextField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Enter Address"
+        //field.placeholder = "Enter Street Address"
         field.backgroundColor = UIColor.gray
         field.layer.cornerRadius = 10
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.setToTheme(string: "Enter Street Address")
+        field.textAlignment = .center
         
         return field
     }()
@@ -83,7 +87,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Hours of Operation:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -93,6 +97,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.backgroundColor = UIColor.gray
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -102,7 +107,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Beginning of Season:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -112,6 +117,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.backgroundColor = UIColor.gray
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -119,8 +125,11 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     let submitMarketButton: UIButton = {
         let button = UIButton()
         button.setTitle("Submit New Market", for: .normal)
-        button.backgroundColor = UIColor.blue
+        button.backgroundColor = UIColor.themeAccent2
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.borderColor = UIColor.themeAccent1.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 10
         
         return button
     }()
@@ -130,7 +139,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Open"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -139,7 +148,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Close"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -148,7 +157,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Open"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -157,7 +166,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Close"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -166,7 +175,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Accepts EBT:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
@@ -175,6 +184,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.setTitle("", for: .normal)
         button.backgroundColor = UIColor.clear
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -192,6 +202,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Days of Week Open: "
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setToTheme()
         return label
     }()
     
@@ -201,6 +212,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         button.backgroundColor = UIColor.gray
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setToTheme()
         
         return button
     }()
@@ -210,19 +222,43 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.text = "Enter Website:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.setToTheme()
         return label
     }()
     
     let websiteTextField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Enter Website"
+        //field.placeholder = "Enter Website"
         field.backgroundColor = UIColor.gray
         field.layer.cornerRadius = 10
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.textAlignment = .center
+        field.setToTheme(string: "Enter Website")
         
         return field
     }()
+    
+    let cityLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Enter City:"
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setToTheme()
+    
+        return label
+    }()
+    
+    let cityTextField: UITextField = {
+        let label = UITextField()
+        //label.placeholder = "Enter City"
+        label.backgroundColor = UIColor.gray
+        label.layer.cornerRadius = 10
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setToTheme(string: "Enter City")
+        label.textAlignment = .center
+        return label
+    }()
+    
     
     
     override init(frame: CGRect) {
