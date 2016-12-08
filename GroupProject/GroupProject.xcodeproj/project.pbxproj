@@ -415,11 +415,11 @@
 				B5D2DDBF1DE35553001F2CCE /* LoginViewController.swift */,
 				C3C659351DDBCE6700C7B533 /* MapViewController.swift */,
 				C3C659361DDBCE6700C7B533 /* SearchViewController.swift */,
-				C35ADA241DECC760000442BB /* AddMarketViewController.swift */,
 				567EFF651DF227B600525A3E /* AddCommentViewController.swift */,
 				B5D2DDC11DE355E3001F2CCE /* CommentsViewController.swift */,
 				B5D2DDC31DE35639001F2CCE /* MarketListViewController.swift */,
 				C3C659341DDBCE6700C7B533 /* MarketInfoViewController.swift */,
+				C35ADA241DECC760000442BB /* AddMarketViewController.swift */,
 				C33BDB431DF759A90038072C /* ProposedMarketTableViewController.swift */,
 				C323BF921DF866FB00A501E1 /* ProposedMarketInfoViewController.swift */,
 			);

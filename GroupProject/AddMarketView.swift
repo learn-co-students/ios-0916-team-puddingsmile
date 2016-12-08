@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol AddMarketViewDelegate: class {
+    
+    func presentAlertController()
+    
+}
+
 class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDelegate, UITextFieldDelegate {
-        
+    
+    weak var delegate: AddMarketViewDelegate?
+    
     var addView: AddMarketPicker!
     var addDateView: AddMarketDatePicker!
     var addMarketDayView: AddMarketDayOfWeek!
@@ -242,7 +250,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     
     let cityLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter City:"
+        label.text = "Zip Code:"
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setToTheme()
@@ -256,7 +264,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         label.backgroundColor = UIColor.gray
         label.layer.cornerRadius = 10
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.setToTheme(string: "Enter City")
+        label.setToTheme(string: "Enter Zip Code")
         label.textAlignment = .center
         return label
     }()
@@ -267,7 +275,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         setupAddMarketView()
-        self.backgroundColor = UIColor.themePrimary
+        self.backgroundColor = UIColor.themeAccent1
         nameTextField.delegate = self
         addressTextField.delegate = self
         websiteTextField.delegate = self
@@ -494,7 +502,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                     
                     FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: self.latString, long: self.longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)
                     
-                    self.succesfulSubmissionMarketAlertController()
+                    self.delegate?.presentAlertController()
                     
                 } else {
                     

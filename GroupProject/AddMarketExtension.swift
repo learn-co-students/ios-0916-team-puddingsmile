@@ -13,20 +13,6 @@ import UIKit
 // MARK: Setup Labels and one button
 
 extension AddMarketView {
-    func succesfulSubmissionMarketAlertController() {
-        print("In alert controller")
-        let newAlert = UIAlertController(title: "Success", message: "Submitted", preferredStyle: UIAlertControllerStyle.alert)
-
-        newAlert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        
-        
-    }
-    
-}
-
-
-extension AddMarketView {
     
     func setupHeaderLabel() {
         self.addSubview(headerLabel)
