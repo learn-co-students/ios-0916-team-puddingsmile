@@ -69,7 +69,6 @@ class  CommentTableViewCell: UITableViewCell {
     }
 
     func reportButtonAction() {
-        print("User pressed the report comment button!")
         FirebaseAPI.reportContent(withKey: commentObject.commentID)
     }
     

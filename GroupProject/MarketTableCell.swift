@@ -17,14 +17,14 @@ class MarketTableCell: UITableViewCell {
         
         marketView = MarketView(frame: self.bounds)
         self.addSubview(marketView)
-        constrainThisMother()
+        constrainThisView()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        
     }
     
-    func constrainThisMother() {
+    func constrainThisView() {
         
         marketView.translatesAutoresizingMaskIntoConstraints = false
         marketView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -36,14 +36,10 @@ class MarketTableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         marketView = MarketView(frame: self.bounds)
-        print("&&&&&&&&&&&&&&&&&&&&&&&&&")
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
