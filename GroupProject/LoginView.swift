@@ -12,6 +12,7 @@ import UIKit
 protocol LoginViewDelegate: class {
     
     func startSegueButton()
+    func presentAlert(title: String, msg: String)
     
 }
 
@@ -87,14 +88,6 @@ class LoginView: UIView {
         
     }
     
-    func createAlertWith(title: String, message: String) -> UIAlertController {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        return alert
-    }
-    
 }
 
 extension LoginView {
@@ -104,14 +97,21 @@ extension LoginView {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        FirebaseAPI.signIn(email: email, password: password) { success in
-            if success {
-                self.delegate.startSegueButton()
-            } else {
-                // add error control
+        if !email.contains(".com") || !email.contains("@") {
+            delegate.presentAlert(title: "Invalid Email", msg: "Please use a proper email")
+        } else if password.characters.count < 6 {
+            delegate.presentAlert(title: "Invalid Password", msg: "Password is too short")
+        } else {
+            FirebaseAPI.signIn(email: email, password: password) { success in
+                if success {
+                    self.delegate.startSegueButton()
+                } else {
+                    self.delegate.presentAlert(title: "Couldn't login", msg: "Please check your entries again")
+                }
+                
             }
-        
         }
+
     }
     
     func newuserButtonAction(_ sender: UIButton) {
@@ -125,15 +125,23 @@ extension LoginView {
         guard let firstname = firstnameTextField.text else { return }
         guard let lastname = lastnameTextField.text else { return }
         
-        FirebaseAPI.signUp(email: email, password: password, name: "\(firstname) \(lastname)", completion: { success in
-            
-            if success {
-                self.delegate.startSegueButton()
-            } else {
-                // add error control
-            }
-        
-        })
+        if !email.contains(".com") || !email.contains("@") {
+            delegate.presentAlert(title: "Invalid Email", msg: "Please use a proper email")
+        } else if password.characters.count < 6 {
+            delegate.presentAlert(title: "Invalid Password", msg: "Password is too short")
+        } else if firstname == "" || lastname == "" {
+            delegate.presentAlert(title: "Please enter a name", msg: "Both Fields need to be completed. Thank you")
+        } else {
+            FirebaseAPI.signUp(email: email, password: password, name: "\(firstname) \(lastname)", completion: { success in
+                
+                if success {
+                    self.delegate.startSegueButton()
+                } else {
+                    self.delegate.presentAlert(title: "Couldn't create account", msg: "An account with your email may already exist")
+                }
+                
+            })
+        }
     }
     
     func cancelButtonAction(_ sender: UIButton) {
@@ -390,7 +398,7 @@ extension LoginView {
         newuserButton.layer.borderColor = borderColor
         newuserButton.backgroundColor = UIColor.themeAccent2
         newuserButton.setTitle("New User", for: .normal)
-        newuserButton.setTitleColor(UIColor.black, for: .normal)
+        newuserButton.setTitleColor(UIColor.white, for: .normal)
         newuserButton.addTarget(self, action: #selector(newuserButtonAction), for: .touchUpInside)
         
         signupButton = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width * 0.4, height: self.frame.size.height * 0.06))
@@ -400,7 +408,7 @@ extension LoginView {
         signupButton.layer.borderColor = borderColor
         signupButton.backgroundColor = UIColor.themeAccent2
         signupButton.setTitle("Signup", for: .normal)
-        signupButton.setTitleColor(UIColor.black, for: .normal)
+        signupButton.setTitleColor(UIColor.white, for: .normal)
         signupButton.addTarget(self, action: #selector(signupButtonAction), for: .touchUpInside)
         
         cancelButton = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width * 0.4, height: self.frame.size.height * 0.06))
