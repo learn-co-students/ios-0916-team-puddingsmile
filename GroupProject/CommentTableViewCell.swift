@@ -66,12 +66,11 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.setTitleColor(UIColor.darkGray, for: .normal)
         reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 10)
         containerView.addSubview(reportButton)
-    
     }
 
     func reportButtonAction() {
         print("User pressed the report comment button!")
-        //add the deletes comment function here ********
+        FirebaseAPI.reportContent(withKey: commentObject.commentID)
     }
     
     func addConstraints() {

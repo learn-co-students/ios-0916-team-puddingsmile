@@ -46,6 +46,11 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: - Logic functions
     func readForComments() {
         self.comments.removeAll()
+        
+        FirebaseAPI.getUserReportedList { (<#[String : Bool]?#>) in
+            <#code#>
+        }
+        
         FirebaseAPI.readCommentFor(market: market.name!, completion: { commentId in
             for (key, value) in commentId {
                 self.comments.append(MarketComment(id: key, value: value))
@@ -55,6 +60,7 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
             }
         })
     }
+
 
     func backButtonAction() {
        delegate?.triggerBackSegue()
@@ -75,12 +81,6 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
-    
-    /*
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
-    }
-    */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
