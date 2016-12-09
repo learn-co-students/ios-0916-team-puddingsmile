@@ -5,16 +5,13 @@
 //  Created by Alexander Mason on 11/18/16.
 //  Copyright © 2016 Alexander Mason. All rights reserved.
 //
-
 import Foundation
 import FirebaseDatabase
 import CoreData
 
-
 class DataStore {
     
     var markets = [Market]()
-    
     
     static let sharedInstance = DataStore()
     
@@ -32,7 +29,6 @@ class DataStore {
         return container
     }()
     
-    
     func saveContext() {
         let context = persistentContainer.viewContext
         
@@ -44,7 +40,6 @@ class DataStore {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-        
     }
     
     func fetchData() {
@@ -94,7 +89,6 @@ class DataStore {
             print("\(DataStore.sharedInstance.markets.count) count in bottom of loadDataFromFirebase")
         }
     }
-    
 }
 
 
