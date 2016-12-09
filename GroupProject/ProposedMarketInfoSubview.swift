@@ -89,6 +89,7 @@ extension ProposedMarketInfo {
     
     func reportButtonAction() {
         print("report button clicked")
+        FirebaseAPI.reportContent(withKey: market.marketName!)
     }
         
         

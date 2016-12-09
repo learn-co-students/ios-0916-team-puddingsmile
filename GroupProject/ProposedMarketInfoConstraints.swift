@@ -63,7 +63,7 @@ extension ProposedMarketInfo {
     func setReportConstraints() {
         reportButton.translatesAutoresizingMaskIntoConstraints = false
         reportButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        reportButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: self.bounds.width * -0.03).isActive = true
+        reportButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: self.bounds.width * -0.01).isActive = true
         reportButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
     }

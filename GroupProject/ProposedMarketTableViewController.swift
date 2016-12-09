@@ -31,6 +31,8 @@ class ProposedMarketTableViewController: UITableViewController {
                         for (index, market) in self.addedMarketArray.enumerated() {
                             if market.marketName == key {
                                 self.addedMarketArray.remove(at: index)
+                                self.tableView.reloadData()
+                                
                             }
                             
                         }
