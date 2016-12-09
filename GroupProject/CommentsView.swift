@@ -46,18 +46,27 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: - Logic functions
     func readForComments() {
         self.comments.removeAll()
+
+        FirebaseAPI.readCommentFor(market: self.market.name!, completion: { commentId in
+            
+            FirebaseAPI.getUserReportedList(handler: { (reportData) in
+                
+                for (key, value) in commentId {
+                    
+                    if let _ = reportData?[key] {
+                    
+                    } else {
         
-        FirebaseAPI.getUserReportedList { (<#[String : Bool]?#>) in
-            <#code#>
-        }
-        
-        FirebaseAPI.readCommentFor(market: market.name!, completion: { commentId in
-            for (key, value) in commentId {
-                self.comments.append(MarketComment(id: key, value: value))
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+                        //Add to local array of comments
+                        self.comments.append(MarketComment(id: key, value: value))
+                    }
+                }
+            
+                //Reload table view data
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
         })
     }
 

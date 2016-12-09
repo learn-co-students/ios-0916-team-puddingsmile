@@ -38,7 +38,6 @@ extension UIButton {
         self.titleLabel?.font = Constants.themeFont(size: 15)
         self.layer.cornerRadius = 7
     }
-   
 }
 
 extension UITextField {
