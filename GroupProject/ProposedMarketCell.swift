@@ -10,7 +10,7 @@ import UIKit
 
 class ProposedMarketCell: UITableViewCell {
     
-    @IBOutlet weak var proposedMarket: ProposedMarketView!
+    var proposedMarket: ProposedMarketView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,5 +21,15 @@ class ProposedMarketCell: UITableViewCell {
     }
 
     
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: "marketCell")
+        
+        self.proposedMarket = ProposedMarketView(frame: self.contentView.bounds)
+        self.contentView.addSubview(self.proposedMarket)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 }

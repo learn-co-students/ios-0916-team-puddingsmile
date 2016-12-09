@@ -37,7 +37,7 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func addMarketButtonAction() {
-        //segue to add market view controller
+        self.performSegue(withIdentifier: "proposedSegue", sender: self)
     }
 
     
