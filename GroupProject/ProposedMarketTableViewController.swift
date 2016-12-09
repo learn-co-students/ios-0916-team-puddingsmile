@@ -48,7 +48,7 @@ class ProposedMarketTableViewController: UIViewController {
                     
                 } else {
                     print("empty")
-                    print("$$$$$$$$$$$$$$\(self.addedMarketArray.count)")
+  
                 }
                 
                 self.tableView.reloadData()
@@ -97,8 +97,10 @@ extension ProposedMarketTableViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("&&&&&&&&&&&&&&&\(addedMarketArray.count)")
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProposedMarketCell", for: indexPath) as! ProposedMarketCell
+//        cell.setCellConstraints()
+//        cell.proposedMarket.setConstraints()
         let market = addedMarketArray[indexPath.row]
         cell.proposedMarket.addedMarket = market
         return cell
@@ -124,6 +126,7 @@ extension ProposedMarketTableViewController {
     func addSubviewObjects() {
     
         self.view.addSubview(tableView)
+        tableView.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.height * 0.07, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.93)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.themeTertiary
@@ -131,6 +134,7 @@ extension ProposedMarketTableViewController {
         tableView.separatorStyle = .none
         
         self.view.addSubview(navBar)
+        navBar.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.07)
         navBar.backgroundColor = UIColor.themeTertiary
         
         
@@ -147,29 +151,18 @@ extension ProposedMarketTableViewController {
     
     func constrainSubviewObjects() {
         
-        navBar.translatesAutoresizingMaskIntoConstraints = false
-        navBar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        navBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        navBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        navBar.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.07).isActive = true
-        
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: view.bounds.height * 0.065).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: navBar.leadingAnchor, constant: view.bounds.width * 0.01).isActive = true
+        backButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: navBar.bounds.width * 0.05).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: navBar.leadingAnchor, constant: navBar.bounds.width * 0.05).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: view.bounds.height * 0.065).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: navBar.leadingAnchor, constant: view.bounds.width * 0.01).isActive = true
+        addButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: navBar.bounds.width * 0.05).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: navBar.bounds.width * -0.05).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         
     }
     

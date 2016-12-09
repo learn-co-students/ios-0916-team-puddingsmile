@@ -11,6 +11,7 @@ import UIKit
 protocol AddMarketViewDelegate: class {
     
     func presentAlertController()
+    func backButtonAction()
     
 }
 
@@ -40,7 +41,8 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
     var longString: String!
     var addressIsAcceptable = false
   
-
+    let backButton = UIButton()
+    
     let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "Add a market:"
@@ -518,6 +520,9 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         }
     }
     
+    func backButtonAction() {
+        delegate?.backButtonAction()
+    }
     
     func checkForErrors() {
         if (self.marketName == nil || self.marketName == "") {
