@@ -282,9 +282,9 @@
 			isa = PBXGroup;
 			children = (
 				C323BF941DF86FFA00A501E1 /* ProposedMarketInfo.swift */,
-				C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */,
 				C33022631DF8918D000D11F3 /* ProposedMarketInfoSubview.swift */,
 				C33022651DF892B5000D11F3 /* ProposedMarketInfoConstraints.swift */,
+				C33022611DF876C5000D11F3 /* ProposedMarketMapView.swift */,
 			);
 			name = ProposedInfo;
 			sourceTree = "<group>";

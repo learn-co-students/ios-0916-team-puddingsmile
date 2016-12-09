@@ -15,10 +15,10 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
     var tableView = UITableView()
     var navBar: UIView!
     
-    //Nav Bar Buttons
+    //Nav Bar Elements
     var backButton: UIButton!
-    var favoriteButton: UIButton!
     var addMarketButton: UIButton!
+    var titleLabel: UILabel!
     
     let store = DataStore.sharedInstance
     var filteredMarkets = [Market]()
@@ -36,10 +36,6 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         dismiss(animated: true, completion: nil)
     }
     
-    func favoriteButtonAction() {
-        
-    }
-    
     func addMarketButtonAction() {
         //segue to add market view controller
     }
@@ -49,7 +45,6 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
     func setLayout() {
         
         //TableView
-        //tableView = UITableView()
         tableView.backgroundColor = UIColor.themeTertiary
         tableView.register(MarketTableCell.self, forCellReuseIdentifier: "marketCell")
         tableView.separatorStyle = .none
@@ -65,7 +60,7 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Navigation Bar
         navBar = UIView()
-        navBar.backgroundColor = UIColor.themeTertiary
+        navBar.backgroundColor = UIColor.themePrimary
         self.view.addSubview(navBar)
         
         //Back Button
@@ -74,15 +69,21 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         navBar.addSubview(backButton)
         
-        //Favorite Button
-        favoriteButton = UIButton()
-        navBar.addSubview(favoriteButton)
-        
         //Add Market Button
         addMarketButton = UIButton()
+        addMarketButton.layer.borderColor = UIColor.darkGray.cgColor
+        addMarketButton.layer.borderWidth = 2
+        addMarketButton.layer.cornerRadius = 8
         addMarketButton.setTitle("➕", for: .normal)
         addMarketButton.addTarget(self, action: #selector(addMarketButtonAction), for: .touchUpInside)
         navBar.addSubview(addMarketButton)
+        
+        titleLabel = UILabel()
+        titleLabel.text = "City Fresh"
+        titleLabel.textAlignment = NSTextAlignment.center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        titleLabel.textColor = UIColor.black
+        navBar.addSubview(titleLabel)
     }
     
     //MARK: - Constraints
@@ -103,20 +104,24 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Back Button
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.065).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.01).isActive = true
+        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.025).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.025).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
     
-        //Favorite Button
-        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        favoriteButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.04).isActive = true
-        favoriteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0.02).isActive = true
-        favoriteButton.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.8).isActive = true
-        favoriteButton.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.06).isActive = true
-        
         //Add Market Button
+        addMarketButton.translatesAutoresizingMaskIntoConstraints = false
+        addMarketButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.025).isActive = true
+        addMarketButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.9).isActive = true
+        addMarketButton.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
+        addMarketButton.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
         
+        //Title Label
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerYAnchor.constraint(equalTo: navBar.centerYAnchor).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: navBar.centerXAnchor).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.40).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.15).isActive = true
     }
 }
 
@@ -153,24 +158,26 @@ extension MarketListViewController: UISearchResultsUpdating {
             
             cell.marketView.market = market
         }
-        //cell.marketView.market = market
         return cell
     }
     
     //MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "listToViewSegue" { return }
-        let sender = sender as! UITableView
-        let destController = segue.destination as! MarketInfoViewController
+        if segue.identifier == "listToViewSegue" {
+            let sender = sender as! UITableView
+            let destController = segue.destination as! MarketInfoViewController
         
-        if let indexPath = sender.indexPathForSelectedRow {
-            if searchController.isActive && searchController.searchBar.text != "" {
-                destController.market = filteredMarkets[indexPath.row]
-                searchController.isActive = false
-            } else {
-                destController.market = store.markets[indexPath.row]
-                print("The Market was passed was \(store.markets[indexPath.row])")
+            if let indexPath = sender.indexPathForSelectedRow {
+                if searchController.isActive && searchController.searchBar.text != "" {
+                    destController.market = filteredMarkets[indexPath.row]
+                    searchController.isActive = false
+                } else {
+                    destController.market = store.markets[indexPath.row]
+                }
             }
+        } else {
+            //pass to Add Market View Controller
+            //"proposedSegue"
         }
     }
     
