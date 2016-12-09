@@ -14,6 +14,20 @@ import UIKit
 
 extension AddMarketView {
     
+    func setupBackButton() {
+        backButton.setTitle("⬅", for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(backButton)
+        
+        backButton.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.07).isActive = true
+        backButton.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.07).isActive = true
+        
+        
+    }
+    
     func setupHeaderLabel() {
         self.addSubview(headerLabel)
         
@@ -239,6 +253,7 @@ extension AddMarketView {
     
     
     func setupAddMarketView() {
+        self.setupBackButton()
         self.setupHeaderLabel()
         self.setupNameLabel()
         self.setupNameTextField()
