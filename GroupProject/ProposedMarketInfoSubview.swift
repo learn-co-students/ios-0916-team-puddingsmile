@@ -78,21 +78,17 @@ extension ProposedMarketInfo {
             })
         }
     
-    func createReportButton() {
-        reportButton = UIButton()
-        navigationView.addSubview(reportButton)
-        reportButton.setTitle("🚫", for: .normal)
-        reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
-        
-        
-    }
+        func createReportButton() {
+            reportButton = UIButton()
+            navigationView.addSubview(reportButton)
+            reportButton.setTitle("🚫", for: .normal)
+            reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
+        }
     
-    func reportButtonAction() {
-        print("report button clicked")
-        FirebaseAPI.reportContent(withKey: market.marketName!)
-    }
-        
-        
+        func reportButtonAction() {
+            FirebaseAPI.reportContent(withKey: market.marketName!)
+        }
+    
         func createDetailView() {
             detailView = UIView()
             self.addSubview(detailView)
