@@ -169,6 +169,7 @@ extension MarketListViewController: UISearchResultsUpdating {
                 searchController.isActive = false
             } else {
                 destController.market = store.markets[indexPath.row]
+                print("The Market was passed was \(store.markets[indexPath.row])")
             }
         }
     }
