@@ -99,6 +99,8 @@ extension ProposedMarketTableViewController: UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProposedMarketCell", for: indexPath) as! ProposedMarketCell
+//        cell.setCellConstraints()
+//        cell.proposedMarket.setConstraints()
         let market = addedMarketArray[indexPath.row]
         cell.proposedMarket.addedMarket = market
         return cell
@@ -124,6 +126,7 @@ extension ProposedMarketTableViewController {
     func addSubviewObjects() {
     
         self.view.addSubview(tableView)
+        tableView.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.height * 0.07, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.93)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.themeTertiary
@@ -160,11 +163,6 @@ extension ProposedMarketTableViewController {
         addButton.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         
     }
     

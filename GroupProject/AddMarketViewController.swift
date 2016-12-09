@@ -39,5 +39,9 @@ class AddMarketViewController: UIViewController, AddMarketViewDelegate {
         
     }
     
+    func backButtonAction() {
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 }
