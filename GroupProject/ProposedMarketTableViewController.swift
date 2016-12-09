@@ -156,7 +156,7 @@ extension ProposedMarketTableViewController {
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: navBar.bounds.width * 0.05).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: navBar.bounds.width * 0.05).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: navBar.bounds.width * -0.05).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
         

@@ -37,10 +37,9 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func addMarketButtonAction() {
-        //segue to add market view controller
+        self.performSegue(withIdentifier: "proposedSegue", sender: self)
     }
 
-    
     //MARK: - Layout
     func setLayout() {
         
@@ -118,10 +117,10 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Title Label
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerYAnchor.constraint(equalTo: navBar.centerYAnchor).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: navBar.centerXAnchor).isActive = true
-        titleLabel.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.40).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.15).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.width * 0.03).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.3).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
     }
 }
 
