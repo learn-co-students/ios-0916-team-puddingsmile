@@ -3,7 +3,7 @@
     <entity name="Market" representedClassName="Market" syncable="YES" codeGenerationType="class">
         <attribute name="acceptEBT" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="borough" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="closeDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="extras" optional="YES" attributeType="String" syncable="YES"/>

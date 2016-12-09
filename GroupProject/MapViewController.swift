@@ -18,6 +18,7 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
         super.viewDidLoad()
         setLayout()
         setConstraints()
+        
     }
     
     func getInfo(market: Market) {

@@ -515,8 +515,8 @@ extension FirebaseAPI {
             let ebtRef = nameChild.child("ebt")
             ebtRef.setValue(dictionary["EBT"])
             
-            let boroughRef = nameChild.child("borough")
-            boroughRef.setValue(dictionary["borough"])
+            let boroughRef = nameChild.child("city")
+            boroughRef.setValue(dictionary["city"])
             
             let websiteRef = nameChild.child("website")
             websiteRef.setValue(dictionary["website"])

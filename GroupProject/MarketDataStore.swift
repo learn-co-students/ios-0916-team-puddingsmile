@@ -71,7 +71,7 @@ class DataStore {
                 let market: Market = NSEntityDescription.insertNewObject(forEntityName: "Market", into: context) as! Market
                 market.name = key
                 market.address = value["address"]
-                market.borough = value["borough"]
+                market.city = value["city"]
                 market.closeDate = value["closeDate"]
                 market.weekDayOpen = value["days"]
                 market.acceptEBT = value["ebt"]

@@ -23,7 +23,11 @@ final class LandingViewController: UIViewController {
         self.view.addSubview(containerView)
         addNotificationObservers()
         
-        DataStore.sharedInstance.fetchData()
+        if true {
+            print("woah")
+            DataStore.sharedInstance.fetchData()
+        }
+        
         
         if FirebaseAPI.userIsLoggedIn() {
             DispatchQueue.main.async {
@@ -34,6 +38,7 @@ final class LandingViewController: UIViewController {
                 self.loadNewViewController(with: "loginvc")
             }
         }
+        
     }
     
     //Listening for posts

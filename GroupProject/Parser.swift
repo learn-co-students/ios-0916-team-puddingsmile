@@ -50,7 +50,7 @@ struct Parser {
             dictionary["timeOfDay"] = values[5]
             dictionary["days"] = values[6]
             dictionary["EBT"] = values[7]
-            dictionary["borough"] = values[8]
+            dictionary["city"] = values[8]
             dictionary["website"] = values[9]
             dictionary["extras"] = values[10]
             jsonDictionary.append(dictionary)

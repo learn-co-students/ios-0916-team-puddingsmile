@@ -151,7 +151,7 @@ extension MarketInfo {
         nameLabel.backgroundColor = UIColor.themeSecondary
         addressLabel.text = "Address: \(market.address!)"
         addressLabel.backgroundColor = UIColor.themeSecondary
-        cityLabel.text = "City: \(market.borough!)"
+        cityLabel.text = "City: \(market.city!)"
         cityLabel.backgroundColor = UIColor.themeSecondary
         seasonLabel.text = "Season: \(market.openDate!) - \(market.closeDate!)"
         seasonLabel.backgroundColor = UIColor.themeSecondary
