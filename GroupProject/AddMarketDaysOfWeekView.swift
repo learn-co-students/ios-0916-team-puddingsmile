@@ -252,13 +252,10 @@ class AddMarketDayOfWeek: UIView  {
     }()
     
     func buttonChanged(_ sender: UIButton) {
-        print("flip called")
         let tag = sender.tag
         flipDay(tag: tag)
     }
-    
-    //Create string that will be displayed to user
-    //Create string that will be sent to Firebase
+
     
     func doneButtonPressed() {
         print(sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked, fridayChecked, saturdayChecked)
@@ -267,11 +264,9 @@ class AddMarketDayOfWeek: UIView  {
 
         if sundayChecked {
             daysCheckedArray.append("Sunday")
-            print("sunday checked")
         }
         if mondayChecked {
             daysCheckedArray.append("Monday")
-            print("monday checked")
         }
         if tuesdayChecked {
             daysCheckedArray.append("Tuesday")
@@ -297,7 +292,6 @@ class AddMarketDayOfWeek: UIView  {
     
     func daysStringForFirebase(dayArray: [String]) -> String {
         if dayArray.isEmpty {
-            print("ARRAY IS EMPTY")
             return ""
         }
         var dayString = ""
@@ -311,7 +305,6 @@ class AddMarketDayOfWeek: UIView  {
     func dayStringForUI(dayArray: [String]) -> String {
         var dayString = ""
         if dayArray.isEmpty {
-            print("ARRAY IS EMPTY")
             return ""
         }
         for day in dayArray {

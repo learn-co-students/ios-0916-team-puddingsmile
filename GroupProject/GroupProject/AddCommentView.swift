@@ -100,7 +100,6 @@ class AddCommentView: UIView {
     func addCommentButtonAction() {
         let commentString = commentField.text
         if commentField.becomeFirstResponder() && commentField.text != "" {
-            print("commentString is \(commentString!)")
             FirebaseAPI.getCurrentUserName(completion: { (currentUsername) in
                 FirebaseAPI.writeCommentFor(market: self.market.name!, with: commentString!, from: currentUsername)
             })

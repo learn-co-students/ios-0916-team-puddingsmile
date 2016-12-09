@@ -61,7 +61,6 @@ class ProposedMarketInfo: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("setting up proposed market info")
         self.backgroundColor = UIColor.themePrimary
     }
     
@@ -102,23 +101,17 @@ extension ProposedMarketInfo {
     }
     
     func favoriteButtonAction() {
-        print("favorited market clicked")
         FirebaseAPI.upvoteAddedMarket(forName: market.marketName!)
-    //        favoriteButton.isUserInteractionEnabled = false
-//        favoriteButton.alpha = 0.5
     }
     
     func startSafari() {
         let url = URL(string: market.website!)
-        print("unfixed url is \(url)")
         guard let unwrappedURL = url else {
-            print("bad url")
             return
         }
         
         let fixedURL = addHTTPTo(url: unwrappedURL)
         
-        print("\(fixedURL) is url!")
         delegate.showSafariVC(url: fixedURL)
     }
     
@@ -126,16 +119,13 @@ extension ProposedMarketInfo {
         let httpToAppend = "http://"
         let httpsString = "https://"
         let urlString = String(describing: inputURL).lowercased()
-        print("urlString is \(urlString)")
         var returnString = ""
         
         if urlString.characters.count < 10 {
             returnString = httpToAppend + urlString
-            print("return string called")
         }
         
         if !urlString.contains(httpToAppend)  {
-            print("doesn't contain some form of http")
             returnString = httpToAppend + urlString
         }
         

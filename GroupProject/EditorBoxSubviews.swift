@@ -159,8 +159,6 @@ extension EditorBox {
 }
 
 
-
-
 //MARK: - Create and setup for Day picker view
 extension EditorBox {
     func setupDayPickerView() {

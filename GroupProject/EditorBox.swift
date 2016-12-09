@@ -63,7 +63,6 @@ class EditorBox: UIView {
         if editorState != .neutral {
             setNeutralState()
         } else {
-            print("leave")
             editorStore.resetProperties()
             delegate.editorBoxCancel()
         }

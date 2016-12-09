@@ -41,14 +41,12 @@ class ProposedMarketView: UIView {
         super.init(frame: frame)
         commonInit()
         setConstraints()
-        print("view created")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
         setConstraints()
-        print("decoder init")
     }
     
     func commonInit() {
