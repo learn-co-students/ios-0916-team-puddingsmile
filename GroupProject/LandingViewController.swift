@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 final class LandingViewController: UIViewController {
 
     var containerView = UIView()
@@ -28,12 +28,14 @@ final class LandingViewController: UIViewController {
             DataStore.sharedInstance.fetchData()
         }
         
-        
         if FirebaseAPI.userIsLoggedIn() {
+            print("user logged in")
+            print(FIRAuth.auth()?.currentUser?.uid)
             DispatchQueue.main.async {
                 self.loadNewViewController(with: "mapvc")
             }
         } else {
+            print("user not logged in")
             DispatchQueue.main.async {
                 self.loadNewViewController(with: "loginvc")
             }
