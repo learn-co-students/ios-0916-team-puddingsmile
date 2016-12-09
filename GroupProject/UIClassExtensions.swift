@@ -11,19 +11,19 @@ import UIKit
 
 extension UIColor {
     static var themePrimary: UIColor {
-        return UIColor(colorLiteralRed: 149/255, green: 171/255, blue: 99/255, alpha: 1)
+        return UIColor(colorLiteralRed: 63/255, green: 96/255, blue: 131/255, alpha: 1)
     }
     static var themeSecondary: UIColor {
-        return UIColor(colorLiteralRed: 189/255, green: 214/255, blue: 132/255, alpha: 1)
+        return UIColor(colorLiteralRed: 2/255, green: 128/255, blue: 144/255, alpha: 1)
     }
     static var themeTertiary: UIColor {
-        return UIColor(colorLiteralRed: 226/255, green: 240/255, blue: 214/255, alpha: 1)
+        return UIColor(colorLiteralRed: 244/255, green: 91/255, blue: 105/255, alpha: 1)
     }
     static var themeAccent1: UIColor {
-        return UIColor(colorLiteralRed: 246/255, green: 255/255, blue: 224/255, alpha: 1)
+        return UIColor(colorLiteralRed: 228/255, green: 253/255, blue: 225/255, alpha: 1)
     }
     static var themeAccent2: UIColor {
-        return UIColor(colorLiteralRed: 16/255, green: 34/255, blue: 43/255, alpha: 1)
+        return UIColor(colorLiteralRed: 17/255, green: 75/255, blue: 95/255, alpha: 1)
     }
     
     static var buttonText: UIColor {

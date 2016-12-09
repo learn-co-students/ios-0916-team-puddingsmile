@@ -48,6 +48,7 @@ class DataStore {
     }
     
     func fetchData() {
+        print("fetched data called")
         let context = persistentContainer.viewContext
         
         let marketRequest = NSFetchRequest<Market>(entityName: "Market")
@@ -56,14 +57,16 @@ class DataStore {
         } catch {
             print("\(error)")
         }
-        
+        print("\(markets.count) is markets.count")
         if markets.count == 0 {
+            
             loadDataFromFirebase()
         }
-        
+        print("\(DataStore.sharedInstance.markets.count) count in bottom of fetch data")
     }
 
     func loadDataFromFirebase() {
+        print("in load data from firebase")
         let context = persistentContainer.viewContext
         FirebaseAPI.pullMarketsFromFirebase { (markets) in
             for (key, value) in markets {
@@ -88,6 +91,7 @@ class DataStore {
             }
             self.saveContext()
             self.fetchData()
+            print("\(DataStore.sharedInstance.markets.count) count in bottom of loadDataFromFirebase")
         }
     }
     

@@ -37,7 +37,7 @@ class FirebaseAPI {
     }
     
     static func userIsLoggedIn() -> Bool {
-        
+        print("user is logged in called")
         return FIRAuth.auth()?.currentUser != nil ? true : false
         
     }
@@ -97,9 +97,11 @@ extension FirebaseAPI {
 extension FirebaseAPI {
     
     static func pullMarketsFromFirebase(completion: @escaping ([String : [String : String]]) -> () ) {
+        print("in pull markets from firebase")
         let ref = FIRDatabase.database().reference().child("markets")
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        print(ref)
+        ref.observe( .value, with: { (snapshot) in
+            print("inside observe single event")
             let value = snapshot.value as! [String : [String : String]]
             completion(value)
         })
