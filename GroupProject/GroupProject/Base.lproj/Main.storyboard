@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="52Y-lM-mfy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,50 +27,6 @@
             </objects>
             <point key="canvasLocation" x="340" y="-91"/>
         </scene>
-        <!--Proposed Market Table View Controller-->
-        <scene sceneID="jXd-FO-doq">
-            <objects>
-                <tableViewController id="nLl-LC-MwB" customClass="ProposedMarketTableViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" id="kaa-hB-gjA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProposedMarketCell" rowHeight="105" id="epx-WI-JIh" customClass="ProposedMarketCell" customModule="GroupProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="105"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="epx-WI-JIh" id="vy4-Qw-QPb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EV4-gN-Aow" customClass="ProposedMarketView" customModule="GroupProject" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="EV4-gN-Aow" secondAttribute="trailing" id="8ZU-Ax-HA8"/>
-                                        <constraint firstItem="EV4-gN-Aow" firstAttribute="leading" secondItem="vy4-Qw-QPb" secondAttribute="leading" id="BfF-zL-caZ"/>
-                                        <constraint firstItem="EV4-gN-Aow" firstAttribute="top" secondItem="vy4-Qw-QPb" secondAttribute="top" id="OpO-Nc-0pb"/>
-                                        <constraint firstAttribute="bottom" secondItem="EV4-gN-Aow" secondAttribute="bottom" id="pxA-E4-zPa"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="proposedMarket" destination="EV4-gN-Aow" id="42r-fH-Rxe"/>
-                                    <segue destination="geO-9I-ttH" kind="presentation" identifier="proposedMarketInfo" id="5YW-3k-gGK"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="nLl-LC-MwB" id="h7O-Wm-2eM"/>
-                            <outlet property="delegate" destination="nLl-LC-MwB" id="UAg-HH-khK"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FX9-Jp-H31" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3410" y="-91"/>
-        </scene>
         <!--Proposed Market Info View Controller-->
         <scene sceneID="OfS-iQ-J9c">
             <objects>
@@ -87,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoA-mx-5OH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4260" y="-91"/>
+            <point key="canvasLocation" x="4334" y="186"/>
         </scene>
         <!--Add Market View Controller-->
         <scene sceneID="4xp-fW-TA7">
@@ -105,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDh-7h-G9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3774" y="-76"/>
+            <point key="canvasLocation" x="4334" y="-483"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="wCA-wY-CQV">
@@ -168,11 +124,34 @@
                     </view>
                     <connections>
                         <segue destination="TwL-4O-INN" kind="presentation" identifier="listToViewSegue" id="110-WX-CJ7"/>
+                        <segue destination="52Y-lM-mfy" kind="presentation" identifier="proposedSegue" id="7vt-Cn-JTe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7d-9D-H5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2582" y="-93"/>
+        </scene>
+        <!--Proposed Market Table View Controller-->
+        <scene sceneID="QU9-10-tJD">
+            <objects>
+                <viewController id="52Y-lM-mfy" customClass="ProposedMarketTableViewController" customModule="GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pSA-9G-RUJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="kQw-zI-98U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aad-xw-tt2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="geO-9I-ttH" kind="presentation" identifier="proposedMarketInfo" id="NMZ-OS-jfj"/>
+                        <segue destination="669-UR-iPs" kind="presentation" identifier="addMarketSegue" id="pwY-dH-tsA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5oK-8k-6z4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3438" y="-91"/>
         </scene>
         <!--Market Info View Controller-->
         <scene sceneID="Ljr-5G-Ybs">
@@ -193,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="taU-YS-QBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2202" y="733"/>
+            <point key="canvasLocation" x="2247" y="855"/>
         </scene>
         <!--Comments View Controller-->
         <scene sceneID="RFT-SQ-srK">
@@ -214,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygu-xC-l2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3081" y="733"/>
+            <point key="canvasLocation" x="3113" y="854"/>
         </scene>
         <!--Add Comment View Controller-->
         <scene sceneID="Lqx-Ww-TJ0">
@@ -232,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cyi-d0-7Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3916" y="733"/>
+            <point key="canvasLocation" x="4006" y="853"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
