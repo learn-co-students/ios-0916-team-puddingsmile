@@ -28,6 +28,7 @@ extension ProposedMarketInfo {
         createTimeButtonView()
         createEBTButtonView()
         createWebsiteButtonView()
+        createReportButton()
     }
     
         func createMapView() {
@@ -63,19 +64,33 @@ extension ProposedMarketInfo {
             navigationView.addSubview(favoriteButton)
             favoriteButton.setTitle("♥️", for: .normal)
             favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
-//            FirebaseAPI.hasFavorited(marketName: market.marketName!, isTrue: { isTrue in
-//                if isTrue {
-//                    
-//                    self.favoriteButton.isUserInteractionEnabled = false
-//                    self.favoriteButton.alpha = 0.5
-//                    
-//                } else {
-//                    
-//                    self.favoriteButton.isUserInteractionEnabled = true
-//                    
-//                }
-//            })
+            FirebaseAPI.hasFavorited(marketName: market.marketName!, isTrue: { isTrue in
+                if isTrue {
+                    
+                    self.favoriteButton.isUserInteractionEnabled = false
+                    self.favoriteButton.alpha = 0.5
+                    
+                } else {
+                    
+                    self.favoriteButton.isUserInteractionEnabled = true
+                    
+                }
+            })
         }
+    
+    func createReportButton() {
+        reportButton = UIButton()
+        navigationView.addSubview(reportButton)
+        reportButton.setTitle("🚫", for: .normal)
+        reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
+        
+        
+    }
+    
+    func reportButtonAction() {
+        print("report button clicked")
+    }
+        
         
         func createDetailView() {
             detailView = UIView()

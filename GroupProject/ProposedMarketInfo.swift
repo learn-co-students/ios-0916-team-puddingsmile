@@ -57,6 +57,7 @@ class ProposedMarketInfo: UIView {
     var ebtLabel:       UILabel!
     var websiteButton:  UIButton!
     var websiteLabel:   UILabel!
+    var reportButton:   UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
