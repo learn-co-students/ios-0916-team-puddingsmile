@@ -17,7 +17,7 @@ extension UIColor {
         return UIColor(colorLiteralRed: 2/255, green: 128/255, blue: 144/255, alpha: 1)
     }
     static var themeTertiary: UIColor {
-        return UIColor(colorLiteralRed: 244/255, green: 91/255, blue: 105/255, alpha: 1)
+        return UIColor(colorLiteralRed: 246/255, green: 239/255, blue: 238/255, alpha: 1)
     }
     static var themeAccent1: UIColor {
         return UIColor(colorLiteralRed: 228/255, green: 253/255, blue: 225/255, alpha: 1)

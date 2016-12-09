@@ -29,11 +29,10 @@ class MapView: MKMapView, MKMapViewDelegate {
         initialSetupForView()
         setupLocationManager()
         
-        let delay = DispatchTime.now() + 4
-        DispatchQueue.main.asyncAfter(deadline: delay) {
-            self.convertMarketsToMapItem()
-            self.addAnnotationsToMap()
-        }
+        
+        self.convertMarketsToMapItem()
+        self.addAnnotationsToMap()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

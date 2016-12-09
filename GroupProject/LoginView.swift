@@ -68,7 +68,7 @@ class LoginView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.themeTertiary
+        self.backgroundColor = UIColor.themePrimary
         self.loadViews()
         self.setPositions()
     }
@@ -315,7 +315,7 @@ extension LoginView {
     func loadViews() {
         
         let borderWidth: CGFloat = 2
-        let borderColor = UIColor.themeAccent2.cgColor
+        let borderColor = UIColor.themeAccent1.cgColor
         
         appTitleLabel1 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.02, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.05))
         appTitleLabel1.textColor = UIColor.black
@@ -386,7 +386,7 @@ extension LoginView {
         loginButton.layer.cornerRadius = 7
         loginButton.layer.borderWidth = borderWidth
         loginButton.layer.borderColor = borderColor
-        loginButton.backgroundColor = UIColor.themeSecondary
+        loginButton.backgroundColor = UIColor.themeTertiary
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(UIColor.black, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
@@ -416,7 +416,7 @@ extension LoginView {
         cancelButton.layer.borderWidth = borderWidth
         cancelButton.layer.borderColor = borderColor
         self.addSubview(cancelButton)
-        cancelButton.backgroundColor = UIColor.themeSecondary
+        cancelButton.backgroundColor = UIColor.themeTertiary
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.setTitleColor(UIColor.black, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)

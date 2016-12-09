@@ -277,7 +277,7 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         setupAddMarketView()
-        self.backgroundColor = UIColor.themeAccent1
+        self.backgroundColor = UIColor.themeTertiary
         nameTextField.delegate = self
         addressTextField.delegate = self
         websiteTextField.delegate = self
