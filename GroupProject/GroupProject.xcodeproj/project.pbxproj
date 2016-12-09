@@ -111,6 +111,7 @@
 		9AA920360D82CF7B104239AA /* Pods-GroupProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupProject/Pods-GroupProject.release.xcconfig"; sourceTree = "<group>"; };
 		B5167F681DEDD626005AB062 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B5181A6E1DF86A880016833F /* UpdateMarketChangesStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateMarketChangesStruct.swift; sourceTree = "<group>"; };
+		B5181A971DFB713D0016833F /* GroupProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = GroupProject.entitlements; path = GroupProject/GroupProject.entitlements; sourceTree = "<group>"; };
 		B556899E1DF201C400105A21 /* MarketInfoViewAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoViewAnimations.swift; sourceTree = "<group>"; };
 		B55689A01DF201E500105A21 /* MarketInfoViewMapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketInfoViewMapKit.swift; sourceTree = "<group>"; };
 		B5D2DD9E1DDE45EE001F2CCE /* MarketInfo.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MarketInfo.csv; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 		C3C658E11DDBCC1A00C7B533 = {
 			isa = PBXGroup;
 			children = (
+				B5181A971DFB713D0016833F /* GroupProject.entitlements */,
 				56BE382E1DDE560100D5EA17 /* Market.xcdatamodeld */,
 				B5D2DD9E1DDE45EE001F2CCE /* MarketInfo.csv */,
 				C3C659231DDBCCD400C7B533 /* Controller */,
@@ -512,8 +514,13 @@
 				TargetAttributes = {
 					C3C658E91DDBCC1A00C7B533 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 79TR88QV2P;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = KXY9EDFTF5;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					C3C659001DDBCC1A00C7B533 = {
 						CreatedOnToolsVersion = 8.1;
@@ -918,14 +925,19 @@
 			baseConfigurationReference = E7301191369CDC6175227298 /* Pods-GroupProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 79TR88QV2P;
+				CODE_SIGN_ENTITLEMENTS = GroupProject/GroupProject.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = KXY9EDFTF5;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GroupProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apmason.GroupProject;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-pudding-smile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d30ded47-6c15-4b62-8401-29038161a49a";
+				PROVISIONING_PROFILE_SPECIFIER = "Team Pudding Smile iOS 0916";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -934,14 +946,19 @@
 			baseConfigurationReference = 9AA920360D82CF7B104239AA /* Pods-GroupProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 79TR88QV2P;
+				CODE_SIGN_ENTITLEMENTS = GroupProject/GroupProject.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = KXY9EDFTF5;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = GroupProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apmason.GroupProject;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.team-pudding-smile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d30ded47-6c15-4b62-8401-29038161a49a";
+				PROVISIONING_PROFILE_SPECIFIER = "Team Pudding Smile iOS 0916";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
