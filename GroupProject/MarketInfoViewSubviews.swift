@@ -211,7 +211,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         
         navigationView = UIView()
         self.addSubview(navigationView)
-        navigationView.backgroundColor = UIColor.themeTertiary
+        navigationView.backgroundColor = UIColor.themeAccent1
         
     }
     

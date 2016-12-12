@@ -44,12 +44,13 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
     func setLayout() {
         
         //TableView
-        tableView.backgroundColor = UIColor.themeTertiary
         tableView.register(MarketTableCell.self, forCellReuseIdentifier: "marketCell")
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
+        tableView.backgroundColor = UIColor.black
+
         
         //Search Bar
         searchController.searchResultsUpdater = self
@@ -78,10 +79,10 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         navBar.addSubview(addMarketButton)
         
         titleLabel = UILabel()
-        titleLabel.text = "City Fresh"
-        titleLabel.textAlignment = NSTextAlignment.center
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        titleLabel.textColor = UIColor.black
+        titleLabel.text = "CityFresh"
+        titleLabel.textColor = UIColor.white
+        titleLabel.font = UIFont(name: "Didot", size: 30)
+        titleLabel.textAlignment = .center
         navBar.addSubview(titleLabel)
     }
     
@@ -119,7 +120,7 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.width * 0.03).isActive = true
-        titleLabel.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.3).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.5).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
     }
 }
