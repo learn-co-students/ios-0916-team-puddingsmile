@@ -44,12 +44,13 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
     func setLayout() {
         
         //TableView
-        tableView.backgroundColor = UIColor.themePrimary
         tableView.register(MarketTableCell.self, forCellReuseIdentifier: "marketCell")
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
+        tableView.backgroundColor = UIColor.black
+
         
         //Search Bar
         searchController.searchResultsUpdater = self
