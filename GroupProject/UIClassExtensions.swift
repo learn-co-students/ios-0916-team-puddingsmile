@@ -14,16 +14,16 @@ extension UIColor {
         return UIColor(colorLiteralRed: 125/255, green: 170/255, blue: 225/255, alpha: 1)
     }
     static var themeSecondary: UIColor {
-        return UIColor(colorLiteralRed: 2/255, green: 128/255, blue: 144/255, alpha: 1)
+        return UIColor(colorLiteralRed: 254/255, green: 255/255, blue: 240/255, alpha: 1)
     }
     static var themeTertiary: UIColor {
         return UIColor(colorLiteralRed: 246/255, green: 239/255, blue: 238/255, alpha: 1)
     }
     static var themeAccent1: UIColor {
-        return UIColor(colorLiteralRed: 248/255, green: 192/255, blue: 28/255, alpha: 1)
+        return UIColor(colorLiteralRed: 237/255, green: 182/255, blue: 79/255, alpha: 1)
     }
     static var themeAccent2: UIColor {
-        return UIColor(colorLiteralRed: 243/255, green: 121/255, blue: 27/255, alpha: 1)
+        return UIColor(colorLiteralRed: 245/255, green: 124/255, blue: 27/255, alpha: 1)
     }
     
     static var buttonText: UIColor {

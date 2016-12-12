@@ -48,7 +48,7 @@ struct NewUserViewPosition {
 
 class LoginView: UIView {
 
-    var appTitleLabel1: UILabel!
+    var appTitleLabel1: UIImageView!
     var appTitleLabel2: UILabel!
     var appTitleLabel3: UILabel!
     
@@ -317,19 +317,21 @@ extension LoginView {
         let borderWidth: CGFloat = 2
         let borderColor = UIColor.themeAccent1.cgColor
         
-        appTitleLabel1 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.1, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.05))
-        appTitleLabel1.textColor = UIColor.black
-        appTitleLabel1.text = "City"
-        appTitleLabel1.font = UIFont(name: "AvenirNext-Heavy", size: 20)
-        appTitleLabel1.textAlignment = .center
+        appTitleLabel1 = UIImageView()
         self.addSubview(appTitleLabel1)
-        
-        appTitleLabel2 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.07, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.04))
-        appTitleLabel2.textColor = UIColor.black
-        appTitleLabel2.text = "Fresh"
-        appTitleLabel2.font = UIFont(name: "AvenirNext-Heavy", size: 12)
-        appTitleLabel2.textAlignment = .center
-        self.addSubview(appTitleLabel2)
+        appTitleLabel1.translatesAutoresizingMaskIntoConstraints = false
+        appTitleLabel1.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        appTitleLabel1.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        appTitleLabel1.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1).isActive = true
+        appTitleLabel1.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
+        appTitleLabel1.image = UIImage(named: "cityFreshLogo")
+
+//        appTitleLabel2 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.07, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.04))
+//        appTitleLabel2.textColor = UIColor.black
+//        appTitleLabel2.text = "Fresh"
+//        appTitleLabel2.font = UIFont(name: "AvenirNext-Heavy", size: 12)
+//        appTitleLabel2.textAlignment = .center
+//        self.addSubview(appTitleLabel2)
         
         firstnameTextField = UITextField(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width * 0.6, height: self.frame.size.height * 0.06))
         firstnameTextField.layer.cornerRadius = 4
@@ -378,8 +380,8 @@ extension LoginView {
         self.addSubview(loginButton)
         loginButton.layer.cornerRadius = 7
         loginButton.layer.borderWidth = borderWidth
-        loginButton.layer.borderColor = borderColor
-        loginButton.backgroundColor = UIColor.themeAccent2
+        loginButton.layer.borderColor = UIColor.white.cgColor
+        loginButton.backgroundColor = UIColor.themeAccent1
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
@@ -388,8 +390,8 @@ extension LoginView {
         self.addSubview(newuserButton)
         newuserButton.layer.cornerRadius = 7
         newuserButton.layer.borderWidth = borderWidth
-        newuserButton.layer.borderColor = borderColor
-        newuserButton.backgroundColor = UIColor.themeAccent2
+        newuserButton.layer.borderColor = UIColor.white.cgColor
+        newuserButton.backgroundColor = UIColor.themeAccent1
         newuserButton.setTitle("New User", for: .normal)
         newuserButton.setTitleColor(UIColor.white, for: .normal)
         newuserButton.addTarget(self, action: #selector(newuserButtonAction), for: .touchUpInside)
@@ -399,7 +401,7 @@ extension LoginView {
         signupButton.layer.cornerRadius = 7
         signupButton.layer.borderWidth = borderWidth
         signupButton.layer.borderColor = borderColor
-        signupButton.backgroundColor = UIColor.themeAccent2
+        signupButton.backgroundColor = UIColor.themeAccent1
         signupButton.setTitle("Signup", for: .normal)
         signupButton.setTitleColor(UIColor.white, for: .normal)
         signupButton.addTarget(self, action: #selector(signupButtonAction), for: .touchUpInside)
