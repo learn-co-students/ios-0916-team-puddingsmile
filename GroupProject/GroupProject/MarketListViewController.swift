@@ -60,6 +60,10 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         //Navigation Bar
         navBar = UIView()
         navBar.backgroundColor = UIColor.themePrimary
+//        navBar.titleLabel.text = "CityFresh"
+//        navBar.titleLabel.textColor = UIColor.white
+//        navBar.titleLabel.font = UIFont(name: "Didot", size: 34)
+//        navBar.titleLabel.textAlignment = .center
         self.view.addSubview(navBar)
         
         //Back Button

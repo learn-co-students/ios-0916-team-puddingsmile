@@ -89,7 +89,7 @@ class MarketView: UIView {
         containerView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.9).isActive = true
         containerView.layer.cornerRadius = 10
         
-        let background: UIImage! = UIImage(named: "xibBackground.png")
+        let background: UIImage! = UIImage(named: "newXibBackground.png")
         containerView.backgroundColor = UIColor(patternImage: background)
         
         //Name Label

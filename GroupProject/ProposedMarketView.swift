@@ -85,7 +85,7 @@ class ProposedMarketView: UIView {
         containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
         containerView.layer.cornerRadius = 10
         
-        let background: UIImage! = UIImage(named: "xibBackground.png")
+        let background: UIImage! = UIImage(named: "newXibBackground.png")
         containerView.backgroundColor = UIColor(patternImage: background)
         
         //Name Label
