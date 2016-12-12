@@ -317,7 +317,7 @@ extension LoginView {
         let borderWidth: CGFloat = 2
         let borderColor = UIColor.themeAccent1.cgColor
         
-        appTitleLabel1 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.02, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.05))
+        appTitleLabel1 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.1, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.05))
         appTitleLabel1.textColor = UIColor.black
         appTitleLabel1.text = "City"
         appTitleLabel1.font = UIFont(name: "AvenirNext-Heavy", size: 20)
@@ -326,17 +326,10 @@ extension LoginView {
         
         appTitleLabel2 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.07, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.04))
         appTitleLabel2.textColor = UIColor.black
-        appTitleLabel2.text = ""
+        appTitleLabel2.text = "Fresh"
         appTitleLabel2.font = UIFont(name: "AvenirNext-Heavy", size: 12)
         appTitleLabel2.textAlignment = .center
         self.addSubview(appTitleLabel2)
-        
-        appTitleLabel3 = UILabel(frame: CGRect(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.11, width: self.frame.size.width * 0.5, height: self.frame.size.height * 0.05))
-        appTitleLabel3.textColor = UIColor.black
-        appTitleLabel3.text = "Fresh"
-        appTitleLabel3.font = UIFont(name: "AvenirNext-Heavy", size: 20)
-        appTitleLabel3.textAlignment = .center
-        self.addSubview(appTitleLabel3)
         
         firstnameTextField = UITextField(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width * 0.6, height: self.frame.size.height * 0.06))
         firstnameTextField.layer.cornerRadius = 4
@@ -362,7 +355,7 @@ extension LoginView {
         emailTextField.backgroundColor = UIColor.themePrimary
         emailTextField.layer.cornerRadius = 4
         emailTextField.layer.borderWidth = borderWidth
-        emailTextField.layer.borderColor = borderColor
+        emailTextField.layer.borderColor = UIColor.themeTertiary.cgColor
         emailTextField.autocorrectionType = .no
         emailTextField.autocapitalizationType = .none
         emailTextField.setLeftPaddingPoints(5)
@@ -372,7 +365,7 @@ extension LoginView {
         passwordTextField = UITextField(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width * 0.6, height: self.frame.size.height * 0.06))
         passwordTextField.layer.cornerRadius = 4
         passwordTextField.layer.borderWidth = borderWidth
-        passwordTextField.layer.borderColor = borderColor
+        passwordTextField.layer.borderColor = UIColor.themeTertiary.cgColor
         passwordTextField.autocorrectionType = .no
         passwordTextField.autocapitalizationType = .none
         passwordTextField.isSecureTextEntry = true
@@ -386,9 +379,9 @@ extension LoginView {
         loginButton.layer.cornerRadius = 7
         loginButton.layer.borderWidth = borderWidth
         loginButton.layer.borderColor = borderColor
-        loginButton.backgroundColor = UIColor.themeTertiary
+        loginButton.backgroundColor = UIColor.themeAccent2
         loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(UIColor.black, for: .normal)
+        loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
         
         newuserButton = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width * 0.4, height: self.frame.size.height * 0.06))
