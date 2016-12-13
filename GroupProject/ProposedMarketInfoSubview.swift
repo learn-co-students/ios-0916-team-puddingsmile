@@ -47,22 +47,21 @@ extension ProposedMarketInfo {
         func createBackButton() {
             backButton = UIButton()
             navigationView.addSubview(backButton)
-            backButton.setTitle("⬅", for: .normal)
+            backButton.setImage(UIImage(named: "backIconPng"), for: .normal)
             backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         }
         
         func createEditButton() {
             editButton = UIButton()
             navigationView.addSubview(editButton)
-            editButton.setTitle("📝", for: .normal)
-            //editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
-            editButton.layer.borderColor = UIColor.red.cgColor
+            editButton.setImage(UIImage(named: "editIcon"), for: .normal)
+
         }
         
         func createFavoriteButton() {
             favoriteButton = UIButton()
             navigationView.addSubview(favoriteButton)
-            favoriteButton.setTitle("♥️", for: .normal)
+            favoriteButton.setImage(UIImage(named: "heartIcon"), for: .normal)
             favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
             FirebaseAPI.hasFavorited(marketName: market.marketName!, isTrue: { isTrue in
                 if isTrue {
@@ -81,7 +80,7 @@ extension ProposedMarketInfo {
         func createReportButton() {
             reportButton = UIButton()
             navigationView.addSubview(reportButton)
-            reportButton.setTitle("🚫", for: .normal)
+            reportButton.setImage(UIImage(named: "report"), for: .normal)
             reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
         }
     

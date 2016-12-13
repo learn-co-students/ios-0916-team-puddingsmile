@@ -136,7 +136,7 @@ extension CommentsView {
         //Add Back Button
         backButton = UIButton()
         navigationView.addSubview(backButton)
-        backButton.setTitle("⬅️", for: .normal)
+        backButton.setImage(UIImage(named: "backIconPng"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         
         //Add Comment Button
@@ -175,8 +175,8 @@ extension CommentsView {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
         backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
         
         //Comment Button Constraints
         commentButton.translatesAutoresizingMaskIntoConstraints = false

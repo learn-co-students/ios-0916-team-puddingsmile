@@ -39,12 +39,9 @@ class NavBarView: UIView {
         
         searchButton = UIButton()
         searchButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        let searchImage: UIImage! = UIImage(named: "imgres.png")
+        let searchImage: UIImage! = UIImage(named: "searchImage")
         searchButton.setImage(searchImage, for: .normal)
-        searchButton.layer.borderColor = UIColor.gray.cgColor
-        searchButton.layer.borderWidth = 2
         searchButton.addTarget(self, action: #selector(searchButtonAction), for: .touchUpInside)
-        searchButton.layer.cornerRadius = CGFloat(7)
         self.addSubview(searchButton)
         
         titleLabel = UILabel()
@@ -57,16 +54,16 @@ class NavBarView: UIView {
     
     func loadConstraints() {
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.40).isActive = true
-        searchButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.9).isActive = true
-        searchButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        searchButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        searchButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.5).isActive = true
+        searchButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.bounds.width * -0.03).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: self.bounds.height * 0.5).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.5).isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.3).isActive = true
-        titleLabel.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.40).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.15).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: self.bounds.height * 0.18).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.60).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.75).isActive = true
     }
     
     func searchButtonAction() {

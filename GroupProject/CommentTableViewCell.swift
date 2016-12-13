@@ -94,7 +94,7 @@ class  CommentTableViewCell: UITableViewCell {
         
         //Report Button
         reportButton.translatesAutoresizingMaskIntoConstraints = false
-        reportButton.topAnchor.constraint(equalTo: commentView.bottomAnchor, constant: containerView.bounds.height * 0.2).isActive = true
+        reportButton.topAnchor.constraint(equalTo: commentView.bottomAnchor, constant: containerView.bounds.height * 0.1).isActive = true
         reportButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.35).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: containerView.bounds.height * 0.15).isActive = true
         reportButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: containerView.bounds.width * 0.05).isActive = true

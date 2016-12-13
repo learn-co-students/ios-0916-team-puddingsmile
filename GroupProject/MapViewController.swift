@@ -64,12 +64,12 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
         mapView.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
         mapView.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.93).isActive = true
         
-        //NavBar constraints
-        navBar.translatesAutoresizingMaskIntoConstraints = false
-        navBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.bounds.height * 0.00).isActive = true
-        navBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        navBar.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
-        navBar.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.08).isActive = true
+//        //NavBar constraints
+//        navBar.translatesAutoresizingMaskIntoConstraints = false
+//        navBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.bounds.height * 0.00).isActive = true
+//        navBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+//        navBar.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+//        navBar.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.08).isActive = true
     }
     
     

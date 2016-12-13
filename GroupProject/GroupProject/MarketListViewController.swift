@@ -65,16 +65,13 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Back Button
         backButton = UIButton()
-        backButton.setTitle("⬅️", for: .normal)
+        backButton.setImage(UIImage(named: "backIconPng"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         navBar.addSubview(backButton)
         
         //Add Market Button
         addMarketButton = UIButton()
-        addMarketButton.layer.borderColor = UIColor.darkGray.cgColor
-        addMarketButton.layer.borderWidth = 2
-        addMarketButton.layer.cornerRadius = 8
-        addMarketButton.setTitle("➕", for: .normal)
+        addMarketButton.setImage(UIImage(named: "addIcon"), for: .normal)
         addMarketButton.addTarget(self, action: #selector(addMarketButtonAction), for: .touchUpInside)
         navBar.addSubview(addMarketButton)
         
@@ -104,24 +101,24 @@ class MarketListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Back Button
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.025).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.025).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
+        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.03).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.03).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: view.bounds.height * 0.035).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.035).isActive = true
     
         //Add Market Button
         addMarketButton.translatesAutoresizingMaskIntoConstraints = false
-        addMarketButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.025).isActive = true
-        addMarketButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.bounds.width * 0.9).isActive = true
-        addMarketButton.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
-        addMarketButton.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
+        addMarketButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.03).isActive = true
+        addMarketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: view.bounds.width * -0.03).isActive = true
+        addMarketButton.widthAnchor.constraint(equalToConstant: view.bounds.height * 0.035).isActive = true
+        addMarketButton.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.035).isActive = true
         
         //Title Label
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.width * 0.03).isActive = true
-        titleLabel.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.5).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: view.bounds.width * 0.08).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: navBar.centerYAnchor, constant: view.bounds.width * 0.014).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: view.bounds.width * 0.6).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.054).isActive = true
     }
 }
 
