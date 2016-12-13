@@ -17,8 +17,8 @@ class MarketView: UIView {
     var addressLabel: UILabel!
     var timeLabel: UILabel!
     var dayLabel: UILabel!
-    //var backgroundView: UIImageView!
-    var background: UIImage!
+    var backgroundView: UIImageView!
+    //var background: UIImage!
     
     
     var market: Market!{
@@ -57,11 +57,17 @@ class MarketView: UIView {
         
         addSubview(contentView)
         
+        //Ben's solution
+        backgroundView = UIImageView()
+        backgroundView.image = UIImage(named: "newXibBackground.png")
+        
         containerView = UIView()
+        containerView.addSubview(backgroundView)
+        containerView.sendSubview(toBack: backgroundView)
         contentView.addSubview(containerView)
         
-        var background = UIImage(named: "newXibBackground.png")
-        containerView.backgroundColor = UIColor(patternImage: background!)
+        //let background = UIImage(named: "newXibBackground.png")
+        //containerView.backgroundColor = UIColor(patternImage: background!)
         
         nameLabel = UILabel()
         containerView.addSubview(nameLabel)
@@ -86,6 +92,14 @@ class MarketView: UIView {
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         contentView.backgroundColor = UIColor.themeSecondary
+        
+        //Background View
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        backgroundView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        backgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95).isActive = true
+        backgroundView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.9).isActive = true
+        backgroundView.layer.cornerRadius = 10
         
         //Container View
         containerView.translatesAutoresizingMaskIntoConstraints = false
