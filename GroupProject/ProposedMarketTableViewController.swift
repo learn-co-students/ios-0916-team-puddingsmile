@@ -134,17 +134,17 @@ extension ProposedMarketTableViewController {
         tableView.separatorStyle = .none
         
         self.view.addSubview(navBar)
-        navBar.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.07)
+        navBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.07)
         navBar.backgroundColor = UIColor.themeTertiary
         
         
         self.navBar.addSubview(backButton)
-        backButton.setTitle("⬅️", for: .normal)
+        backButton.setImage(UIImage(named: "backIconPng"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         
         
         self.navBar.addSubview(addButton)
-        addButton.setTitle("➕", for: .normal)
+        addButton.setImage(UIImage(named: "addIcon"), for: .normal)
         addButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
         
     }
@@ -152,16 +152,16 @@ extension ProposedMarketTableViewController {
     func constrainSubviewObjects() {
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: navBar.bounds.width * 0.05).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: navBar.leadingAnchor, constant: navBar.bounds.width * 0.05).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
+        backButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: view.bounds.height * 0.03).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: navBar.leadingAnchor, constant: view.bounds.width * 0.03).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: navBar.bounds.height * 0.5).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: navBar.bounds.height * 0.5).isActive = true
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: navBar.bounds.width * 0.05).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: navBar.bounds.width * -0.05).isActive = true
-        addButton.widthAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
-        addButton.heightAnchor.constraint(equalToConstant: navBar.bounds.width * 0.08).isActive = true
+        addButton.topAnchor.constraint(equalTo: navBar.topAnchor, constant: view.bounds.height * 0.03).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: view.bounds.width * -0.03).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: navBar.bounds.height * 0.5).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: navBar.bounds.height * 0.5).isActive = true
         
         
     }

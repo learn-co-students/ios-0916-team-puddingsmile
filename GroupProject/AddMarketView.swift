@@ -491,15 +491,6 @@ class AddMarketView: UIView, TimePickerDelegate, MarketDateDelegate, DayOfWeekDe
                 self.latString = "\(unwrappedTuple.0)"
                 self.longString = "\(unwrappedTuple.1)"
                 
-                print(self.marketName)
-                print(self.marketAddress)
-                print(self.websiteAddress)
-                print(self.latString)
-                print(self.openTime)
-                print(self.closeTime)
-                print(self.openDate)
-                print(self.closeDate)
-                
                 if (self.marketName != nil || self.marketName != "") && (self.marketAddress != nil || self.marketAddress != "") && (self.websiteAddress != nil || self.websiteAddress != "") && self.openTime != nil && self.closeTime != nil && self.openDate != nil && self.closeDate != nil && self.firebaseDayString != nil && (self.firebaseDayString != nil || self.firebaseDayString != "") {
                     
                     FirebaseAPI.addMarketToFirebase(name: self.marketName!, address: self.marketAddress!, lat: self.latString, long: self.longString, openDate: self.openDate!, closeDate: self.closeDate!, openTime: self.openTime!, closeTime: self.closeTime!, acceptEBT: self.ebtString, days: self.firebaseDayString!, website: self.websiteAddress!)

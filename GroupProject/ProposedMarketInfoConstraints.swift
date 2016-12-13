@@ -48,24 +48,24 @@ extension ProposedMarketInfo {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
         backButton.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
     }
     
     func setFavoriteConstraints() {
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         favoriteButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
         favoriteButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: self.bounds.width * -0.03).isActive = true
-        favoriteButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        favoriteButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        favoriteButton.widthAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
+        favoriteButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
     }
     
     func setReportConstraints() {
         reportButton.translatesAutoresizingMaskIntoConstraints = false
-        reportButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.03).isActive = true
-        reportButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: self.bounds.width * -0.01).isActive = true
-        reportButton.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
-        reportButton.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.08).isActive = true
+        reportButton.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: self.bounds.height * 0.0325).isActive = true
+        reportButton.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: self.bounds.width * -0.03).isActive = true
+        reportButton.widthAnchor.constraint(equalToConstant: self.bounds.height * 0.03).isActive = true
+        reportButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.03).isActive = true
     }
     
     func setDetailViewConstraints() {

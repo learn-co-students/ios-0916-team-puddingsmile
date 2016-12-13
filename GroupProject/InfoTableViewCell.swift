@@ -155,7 +155,7 @@ extension InfoTableViewCell {
     func createVoteButton() {
         
         cellView.addSubview(voteButton)
-        voteButton.setTitle("⬆", for: .normal)
+        voteButton.setImage(UIImage(named: "heartIcon"), for: .normal)
         voteButton.addTarget(self, action: #selector(voteForSuggestion), for: .touchUpInside)
         
     }
@@ -163,7 +163,7 @@ extension InfoTableViewCell {
     func createReportButton() {
         
         cellView.addSubview(reportButton)
-        reportButton.setTitle("🚫", for: .normal)
+        reportButton.setImage(UIImage(named: "report"), for: .normal)
         reportButton.addTarget(self, action: #selector(reportSuggestion), for: .touchUpInside)
         
     }
@@ -209,7 +209,7 @@ extension InfoTableViewCell {
         votedLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
         votedLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
         votedLabel.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.6).isActive = true
-        votedLabel.widthAnchor.constraint(equalTo: cellView.widthAnchor, multiplier: 0.2).isActive = true
+        votedLabel.widthAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.6).isActive = true
         
     }
     
@@ -219,7 +219,7 @@ extension InfoTableViewCell {
         voteButton.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
         voteButton.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
         voteButton.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.4).isActive = true
-        voteButton.widthAnchor.constraint(equalTo: cellView.widthAnchor, multiplier: 0.1).isActive = true
+        voteButton.widthAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.4).isActive = true
         
     }
     
@@ -227,9 +227,9 @@ extension InfoTableViewCell {
         
         reportButton.translatesAutoresizingMaskIntoConstraints = false
         reportButton.trailingAnchor.constraint(equalTo: voteButton.leadingAnchor).isActive = true
-        reportButton.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
-        reportButton.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.4).isActive = true
-        reportButton.widthAnchor.constraint(equalTo: cellView.widthAnchor, multiplier: 0.1).isActive = true
+        reportButton.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 4).isActive = true
+        reportButton.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.3).isActive = true
+        reportButton.widthAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.3).isActive = true
         
     }
     
