@@ -1,5 +1,7 @@
 # CityFresh
 
+![alt tag](https://github.com/learn-co-students/ios-0916-team-puddingsmile/blob/master/cityfresh.png)
+
 ## Team:
 [Alex Mason](https://github.com/apmason)
 
