@@ -24,8 +24,7 @@ extension AddMarketView {
         backButton.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * 0.03).isActive = true
         backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * 0.03).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true
-        
+        backButton.heightAnchor.constraint(equalToConstant: self.bounds.height * 0.035).isActive = true        
         
     }
     
