@@ -5,7 +5,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/** A block that takes a BOOL and has no return value. */
 typedef void (^FIRAppVoidBoolCallback)(BOOL success);
 
 /**
@@ -78,7 +77,7 @@ typedef void (^FIRAppVoidBoolCallback)(BOOL success);
  * FIRFirebaseApp instances should not be initialized directly. Call |FIRApp configure|, or
  * |FIRApp configureWithOptions:|, or |FIRApp configureWithNames:options| directly.
  */
-- (instancetype)init NS_UNAVAILABLE;
+- (nullable instancetype)init NS_UNAVAILABLE;
 
 /**
  * Gets the name of this app.
