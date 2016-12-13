@@ -20,7 +20,7 @@ extension AddMarketView {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(backButton)
         
-        backButton.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        backButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.07).isActive = true
         backButton.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.07).isActive = true
