@@ -17,6 +17,9 @@ class MarketView: UIView {
     var addressLabel: UILabel!
     var timeLabel: UILabel!
     var dayLabel: UILabel!
+    //var backgroundView: UIImageView!
+    var background: UIImage!
+    
     
     var market: Market!{
         didSet {
@@ -57,6 +60,9 @@ class MarketView: UIView {
         containerView = UIView()
         contentView.addSubview(containerView)
         
+        var background = UIImage(named: "newXibBackground.png")
+        containerView.backgroundColor = UIColor(patternImage: background!)
+        
         nameLabel = UILabel()
         containerView.addSubview(nameLabel)
         
@@ -89,8 +95,16 @@ class MarketView: UIView {
         containerView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.9).isActive = true
         containerView.layer.cornerRadius = 10
         
-        let background: UIImage! = UIImage(named: "newXibBackground.png")
-        containerView.backgroundColor = UIColor(patternImage: background)
+        //let background: UIImage! = UIImage(named: "newXibBackground.png")
+        
+//        UIGraphicsBeginImageContext(containerView.frame.size)
+//        UIImage(named: "newXibBackground.png")?.draw(in: containerView.bounds)
+//        
+//        let background = UIGraphicsGetImageFromCurrentImageContext()!
+//        
+//        UIGraphicsEndImageContext()
+        
+        //containerView.backgroundColor = UIColor(patternImage: backgroundView)
         
         //Name Label
         nameLabel.font = UIFont.systemFont(ofSize: 20, weight: 4)

@@ -155,6 +155,7 @@ extension MarketListViewController: UISearchResultsUpdating {
             
             cell.marketView.market = market
         }
+        
         return cell
     }
     
