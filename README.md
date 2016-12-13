@@ -20,4 +20,4 @@ For the general user of City Fresh, they have access to maps of farmer markets, 
 - Core Data
 - [NYC Open Data](https://nycopendata.socrata.com)
 
-● App is free. ● The user will need to grant app permission to access their current location for the app to display current location. ● Users preferences will be stored locally on a user’s device so no login form is required. ● The user will be provided with a “report” option to block offensive content and report it to app administrators. 
+● App is free. ● The user will need to grant app permission to access their current location for the app to display current location. ● Users preferences will be stored locally on a user’s device so no login form is required. ● The user will be provided with a “report” option to block offensive content and report it to app administrators.
