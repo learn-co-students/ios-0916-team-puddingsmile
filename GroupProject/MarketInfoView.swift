@@ -142,8 +142,6 @@ extension MarketInfo {
         if !editorBox.editorStore.hasValue() {
             resetOriginalLabels()
         }
-        
-        
     }
     
     func resetOriginalLabels() {
@@ -166,6 +164,8 @@ extension MarketInfo {
     func favoriteButtonAction() {
         endTableState()
         endEditState()
+        toggleEditButton(state: false)
+        animateBlurView(isTrue: false)
         FirebaseAPI.willFavorite(marketName: market.name!)
         favoriteButton.isUserInteractionEnabled = false
         favoriteButton.alpha = 0.5

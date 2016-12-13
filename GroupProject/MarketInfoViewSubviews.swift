@@ -219,7 +219,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         
         backButton = UIButton()
         navigationView.addSubview(backButton)
-        backButton.setTitle("⬅", for: .normal)
+        backButton.setImage(UIImage(named: "backIconPng"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         
     }
@@ -228,7 +228,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         
         editButton = UIButton()
         navigationView.addSubview(editButton)
-        editButton.setTitle("📝", for: .normal)
+        editButton.setImage(UIImage(named: "editIcon"), for: .normal)
         editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         editButton.layer.borderColor = UIColor.red.cgColor
         
@@ -238,7 +238,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         
         favoriteButton = UIButton()
         navigationView.addSubview(favoriteButton)
-        favoriteButton.setTitle("♥️", for: .normal)
+        favoriteButton.setImage(UIImage(named: "heartIcon"), for: .normal)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
         FirebaseAPI.hasFavorited(marketName: market.name!, isTrue: { isTrue in
             
@@ -259,7 +259,7 @@ extension MarketInfo: InfoTableDelegate, EditorBoxDelegate {
         
         commentsButton = UIButton()
         navigationView.addSubview(commentsButton)
-        commentsButton.setTitle("💬", for: .normal)
+        commentsButton.setImage(UIImage(named: "commentImage"), for: .normal)
         commentsButton.addTarget(self, action: #selector(commentsButtonAction), for: .touchUpInside)
         
     }
