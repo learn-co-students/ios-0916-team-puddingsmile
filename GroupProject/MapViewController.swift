@@ -51,7 +51,7 @@ class MapViewController: UIViewController, MapViewDelegate, NavBarViewDelegate {
         navBar.delegate = self
         navBar.titleLabel.text = "CityFresh"
         navBar.titleLabel.textColor = UIColor.white
-        navBar.titleLabel.font = UIFont(name: "Didot", size: 34)
+        navBar.titleLabel.font = UIFont(name: "Didot", size: 28)
         navBar.titleLabel.textAlignment = .center
         self.view.addSubview(navBar)
     }
