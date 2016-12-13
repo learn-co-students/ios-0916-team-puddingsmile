@@ -135,7 +135,7 @@ extension ProposedMarketTableViewController {
         
         self.view.addSubview(navBar)
         navBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.07)
-        navBar.backgroundColor = UIColor.themeTertiary
+        navBar.backgroundColor = UIColor.themePrimary
         
         
         self.navBar.addSubview(backButton)
