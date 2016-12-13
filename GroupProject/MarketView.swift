@@ -17,6 +17,9 @@ class MarketView: UIView {
     var addressLabel: UILabel!
     var timeLabel: UILabel!
     var dayLabel: UILabel!
+    var backgroundView: UIImageView!
+    //var background: UIImage!
+    
     
     var market: Market!{
         didSet {
@@ -54,8 +57,17 @@ class MarketView: UIView {
         
         addSubview(contentView)
         
+        //Ben's solution
+        backgroundView = UIImageView()
+        backgroundView.image = UIImage(named: "newXibBackground.png")
+        
         containerView = UIView()
+        containerView.addSubview(backgroundView)
+        containerView.sendSubview(toBack: backgroundView)
         contentView.addSubview(containerView)
+        
+        //let background = UIImage(named: "newXibBackground.png")
+        //containerView.backgroundColor = UIColor(patternImage: background!)
         
         nameLabel = UILabel()
         containerView.addSubview(nameLabel)
@@ -81,6 +93,14 @@ class MarketView: UIView {
         contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         contentView.backgroundColor = UIColor.themeSecondary
         
+        //Background View
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        backgroundView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        backgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95).isActive = true
+        backgroundView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.9).isActive = true
+        backgroundView.layer.cornerRadius = 10
+        
         //Container View
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -89,8 +109,16 @@ class MarketView: UIView {
         containerView.heightAnchor.constraint(equalToConstant: contentView.bounds.height * 0.9).isActive = true
         containerView.layer.cornerRadius = 10
         
-        let background: UIImage! = UIImage(named: "newXibBackground.png")
-        containerView.backgroundColor = UIColor(patternImage: background)
+        //let background: UIImage! = UIImage(named: "newXibBackground.png")
+        
+//        UIGraphicsBeginImageContext(containerView.frame.size)
+//        UIImage(named: "newXibBackground.png")?.draw(in: containerView.bounds)
+//        
+//        let background = UIGraphicsGetImageFromCurrentImageContext()!
+//        
+//        UIGraphicsEndImageContext()
+        
+        //containerView.backgroundColor = UIColor(patternImage: backgroundView)
         
         //Name Label
         nameLabel.font = UIFont.systemFont(ofSize: 20, weight: 4)

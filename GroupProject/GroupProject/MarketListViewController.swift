@@ -155,6 +155,11 @@ extension MarketListViewController: UISearchResultsUpdating {
             
             cell.marketView.market = market
         }
+        //Ben's solution:
+        //cell.marketView.backgroundView.frame = cell.marketView.containerView.frame
+        //cell.marketView.backgroundView.image = UIImage(named: "newXibBackground.png")
+        //cell.marketView.containerView.addSubview(cell.marketView.backgroundView)
+        
         return cell
     }
     
