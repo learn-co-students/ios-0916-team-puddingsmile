@@ -64,7 +64,7 @@ class  CommentTableViewCell: UITableViewCell {
         reportButton.setTitle("Reported", for: .selected)
         reportButton.addTarget(self, action: #selector(reportButtonAction), for: .touchUpInside)
         reportButton.setTitleColor(UIColor.darkGray, for: .normal)
-        reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 10)
+        reportButton.titleLabel!.font = UIFont.systemFont(ofSize: 24)
         containerView.addSubview(reportButton)
     }
 
