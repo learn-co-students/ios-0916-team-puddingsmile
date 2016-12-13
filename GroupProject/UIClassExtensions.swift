@@ -33,14 +33,19 @@ extension UIColor {
 }
 
 extension UIButton {
+    
     func setToTheme() {
+        
         self.setTitleColor(UIColor.buttonText, for: .normal)
         self.titleLabel?.font = Constants.themeFont(size: 15)
         self.layer.cornerRadius = 7
+        
     }
+    
 }
 
 extension UITextField {
+    
     func setToTheme(string: String) {
         self.attributedPlaceholder = NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName: UIColor.buttonText, NSFontAttributeName: Constants.themeFont(size: 15)])
     }
@@ -48,9 +53,12 @@ extension UITextField {
 }
 
 extension UILabel {
+    
     func setToTheme() {
+        
         self.textColor = UIColor.buttonText
         self.font = Constants.themeFont(size: 15)
+        
     }
     
 }
