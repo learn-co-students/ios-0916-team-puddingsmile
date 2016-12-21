@@ -66,7 +66,7 @@ class AddCommentView: UIView {
         commentLabel = UITextView()
         commentLabel.backgroundColor = UIColor.themeSecondary
         commentLabel.textAlignment = NSTextAlignment.center
-        commentLabel.textContainer.lineBreakMode = .byWordWrapping
+          commentLabel.textContainer.lineBreakMode = .byWordWrapping
         commentLabel.font = UIFont.systemFont(ofSize: 20)
         commentLabel.textColor = UIColor.black
         contentView.addSubview(commentLabel)

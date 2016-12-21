@@ -14,7 +14,7 @@ Our team realized that government data related to farmer markets where severely 
 
 City Fresh is an app made to unify data related to farmer's markets.  We do this by allowing the community of users to create, modify and comment on markets that they frequently use.  The community driven app aims to alleviate the unneeded overhead of managing websites by the smaller markets, while allowing larger markets be able to update themselves.
 
-For the general user of City Fresh, they have access to maps of farmer markets, detailed infomation about markets location and times, and also search functionality to narrow down the list of markets.  The current version of the app only includes markets in the New York City area, but with the help of our users, we hope to expand the list of markets to include cities all over the United States.
+For the general user of City Fresh, they have access to maps of farmer markets, detailed information about markets location and times, and also search functionality to narrow down the list of markets.  The current version of the app only includes markets in the New York City area, but with the help of our users, we hope to expand the list of markets to include cities all over the United States.
 
 ## Resources:
 - MapKit
